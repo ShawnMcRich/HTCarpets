@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1600"
+     height="1600"
+     viewBox="0 0 1600 1600"
+     role="img"
+     aria-labelledby="title description">
+  <title id="title">Hosseintalab circular brand seal</title>
+  <desc id="description">The original Hosseintalab Persian medallion framed by a gold circular seal, with the brand name, Persian Handwoven Carpets, and establishment year 1290 Solar Hijri.</desc>
+
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Hosseintalab Serif";
+        src: url("../fonts/cormorant-latin-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 300 700;
+      }
+    </style>
+
+    <radialGradient id="ivory" cx="50%" cy="42%" r="74%">
+      <stop offset="0" stop-color="#fffaf4"/>
+      <stop offset="0.64" stop-color="#fcf5ee"/>
+      <stop offset="1" stop-color="#faf1e9"/>
+    </radialGradient>
+
+    <g id="seal-rosette" fill="url(#gold)" stroke="#fffaf4" stroke-width="2">
+      <path d="M0,-25 C8,-18 12,-11 11,-3 C19,-6 27,-3 33,4 C26,12 18,15 10,12 C12,20 8,28 0,34 C-8,28 -12,20 -10,12 C-18,15 -26,12 -33,4 C-27,-3 -19,-6 -11,-3 C-12,-11 -8,-18 0,-25 Z"/>
+      <circle cx="0" cy="4" r="6" fill="#fffaf4" stroke="#b58a3b" stroke-width="3"/>
+    </g>
+
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9f712a"/>
+      <stop offset="0.48" stop-color="#c49a50"/>
+      <stop offset="1" stop-color="#a6762c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- The ivory field belongs only inside the circular seal. The surrounding
+       SVG canvas must stay transparent for use over any surface. -->
+  <circle cx="800" cy="800" r="708" fill="url(#ivory)"/>
+
+  <g fill="none" stroke="url(#gold)">
+    <circle cx="800" cy="800" r="708" stroke-width="7"/>
+    <circle cx="800" cy="800" r="681" stroke-width="3"/>
+  </g>
+
+  <g>
+    <use xlink:href="#seal-rosette" transform="translate(800 106) scale(.76)"/>
+    <use xlink:href="#seal-rosette" transform="translate(1494 800) rotate(90) scale(.76)"/>
+    <use xlink:href="#seal-rosette" transform="translate(800 1494) rotate(180) scale(.76)"/>
+    <use xlink:href="#seal-rosette" transform="translate(106 800) rotate(-90) scale(.76)"/>
+  </g>
+
+  <!-- Individual letter positions make the wordmark's curve dependable in
+       browsers, native PNG exports, and design applications alike. -->
+  <g fill="#082a50"
+     text-anchor="middle"
+     font-family="'Hosseintalab Serif', 'Cormorant Garamond', 'Big Caslon', 'Times New Roman', serif"
+     font-size="84"
+     font-weight="400"
+     aria-label="HOSSEINTALAB">
+    <text x="393.6" y="379.2" transform="rotate(-44 393.6 379.2)">H</text>
+    <text x="456.1" y="326.7" transform="rotate(-36 456.1 326.7)">O</text>
+    <text x="525.4" y="283.5" transform="rotate(-28 525.4 283.5)">S</text>
+    <text x="599.9" y="250.3" transform="rotate(-20 599.9 250.3)">S</text>
+    <text x="678.4" y="227.8" transform="rotate(-12 678.4 227.8)">E</text>
+    <text x="759.2" y="216.4" transform="rotate(-4 759.2 216.4)">I</text>
+    <text x="840.8" y="216.4" transform="rotate(4 840.8 216.4)">N</text>
+    <text x="921.6" y="227.8" transform="rotate(12 921.6 227.8)">T</text>
+    <text x="1000.1" y="250.3" transform="rotate(20 1000.1 250.3)">A</text>
+    <text x="1074.6" y="283.5" transform="rotate(28 1074.6 283.5)">L</text>
+    <text x="1143.9" y="326.7" transform="rotate(36 1143.9 326.7)">A</text>
+    <text x="1206.4" y="379.2" transform="rotate(44 1206.4 379.2)">B</text>
+  </g>
+
+  <!--
+    This is the approved pixel-preserving medallion crop. It is embedded without
+    redrawing, reshaping, or generative alteration.
+  -->
+  <image x="420"
+         y="280"
+         width="760"
+         height="887"
+         xlink:href="../raster/hosseintalab-medallion-transparent.png"
+         preserveAspectRatio="xMidYMid meet"/>
+
+  <g text-anchor="middle"
+     font-family="'Hosseintalab Serif', 'Cormorant Garamond', 'Big Caslon', 'Times New Roman', serif">
+    <text x="800"
+          y="1210"
+          fill="#082a50"
+          font-size="44"
+          font-weight="500"
+          letter-spacing="7">PERSIAN HANDWOVEN CARPETS</text>
+
+    <g fill="url(#gold)">
+      <rect x="470" y="1290" width="95" height="3" rx="1.5"/>
+      <rect x="1035" y="1290" width="95" height="3" rx="1.5"/>
+      <circle cx="590" cy="1291.5" r="3"/>
+      <circle cx="1010" cy="1291.5" r="3"/>
+    </g>
+
+    <text x="800"
+          y="1309"
+          fill="#a7792e"
+          font-size="38"
+          font-weight="600"
+          letter-spacing="6"
+          xml:space="preserve">EST. 1290 · SH</text>
+  </g>
+</svg>

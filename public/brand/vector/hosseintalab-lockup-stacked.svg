@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="900"
+     height="1000"
+     viewBox="0 0 900 1000"
+     role="img"
+     aria-labelledby="title description">
+  <title id="title">Hosseintalab stacked logo</title>
+  <desc id="description">The approved Hosseintalab medallion above the Latin wordmark, descriptor, and establishment year.</desc>
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Hosseintalab Serif";
+        src: url("../fonts/cormorant-latin-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 300 700;
+      }
+    </style>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9f712a"/>
+      <stop offset="0.48" stop-color="#c49a50"/>
+      <stop offset="1" stop-color="#a6762c"/>
+    </linearGradient>
+  </defs>
+
+  <image x="210"
+         y="40"
+         width="480"
+         height="560"
+         xlink:href="../raster/hosseintalab-medallion-transparent.png"
+         preserveAspectRatio="xMidYMid meet"/>
+
+  <g text-anchor="middle"
+     font-family="'Hosseintalab Serif', 'Cormorant Garamond', 'Big Caslon', 'Times New Roman', serif">
+    <text x="450" y="710"
+          fill="#072a51"
+          font-size="72"
+          font-weight="500"
+          letter-spacing="9">HOSSEINTALAB</text>
+    <text x="450" y="780"
+          fill="#072a51"
+          font-size="28"
+          font-weight="520"
+          letter-spacing="6">PERSIAN HANDWOVEN CARPETS</text>
+    <g fill="#a7792e">
+      <rect x="120" y="832" width="135" height="2"/>
+      <rect x="645" y="832" width="135" height="2"/>
+      <circle cx="280" cy="833" r="3"/>
+      <circle cx="620" cy="833" r="3"/>
+      <text x="450" y="850"
+            font-size="27"
+            font-weight="600"
+            letter-spacing="5">EST. 1290 · SH</text>
+    </g>
+  </g>
+</svg>
