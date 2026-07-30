@@ -55,6 +55,7 @@ Make choosing an authentic handwoven Persian carpet clear, trustworthy, and prac
 - [Catalog taxonomy](docs/CATALOG_TAXONOMY.md)
 - [Project journal](docs/PROJECT_JOURNAL.md)
 - [Portfolio case-study draft](docs/PORTFOLIO_CASE_STUDY.md)
+- [Inventory and commerce data model](docs/DATA_MODEL.md)
 - [Architecture decision records](docs/adr/)
 - [Changelog](CHANGELOG.md)
 
