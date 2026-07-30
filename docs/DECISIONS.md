@@ -15,6 +15,7 @@
 | Jira template | Kanban | Fits continuous multidisciplinary delivery better than sprint-based planning |
 | Experience direction | Warm residential editorial commerce | Keeps the brand distinctive and premium while feeling helpful, domestic, and easy to shop |
 | Prototype stack | React, TypeScript, and Vite | Keeps the first experience fast, portable, and straightforward to evolve |
+| Commerce data and hosting | Self-hosted PostgreSQL and a private local API on the existing production server | Keeps customer and inventory data under Hosseintalab control without exposing PostgreSQL to browsers or adding a managed backend dependency |
 | Primary catalog paths | Size, weaving origin, and pattern | Keeps unrelated carpet attributes separate and understandable |
 | Discovery entry point | Room-based guidance before specialist terminology | Matches what an ordinary residential customer already knows |
 | Consultation | Primary conversion path | Turns the seller's expertise into a useful customer service |
@@ -45,7 +46,6 @@
 - Initial product range and price architecture
 - Returns, home viewing, shipping, insurance, and payment policies
 - Catalog ownership and inventory-update workflow
-- Commerce platform and hosting architecture
 - Payment and shipping integrations
 - Launch measurement targets
 - Final production photography replacing reference imagery

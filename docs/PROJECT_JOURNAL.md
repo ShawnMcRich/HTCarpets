@@ -112,6 +112,35 @@ This is a retrospective record of meaningful project outcomes. It is not a trans
   the browser.
 - Confirmed the browser console contains no runtime errors.
 
+## Commerce data foundation — 2026-07-31
+
+### Architecture and inventory
+
+- Chose a fully self-hosted PostgreSQL approach on the existing production
+  server; no managed backend or third-party database is part of the project.
+- Created an isolated `hosseintalab` database, separate owner and application
+  roles, and left PostgreSQL bound to localhost only.
+- Modeled the actual carpet records needed for operations: SKU, origin, pattern,
+  dimensions, Solar Hijri weaving year, estimated age, age classification, dye,
+  material roles, price, image records, and collection (`فرش برای خانه` or
+  `فرش آنتیک`).
+- Defined `چله` correctly as the warp/foundation and kept `ریشه` separate as
+  the visible end of the warp.
+- Made inventory auditable through immutable stock movements, time-limited
+  checkout reservations, and availability calculations that prevent a sale
+  being deducted twice.
+
+### Customer and operational readiness
+
+- Added private database records for customer accounts, secure session tokens,
+  email verification, password reset, addresses, orders, payments, and audit
+  events.
+- Restricted the future API role to Hosseintalab data access only; it cannot
+  change the database schema or access unrelated server databases.
+- Installed and validated a nightly PostgreSQL backup timer, retaining 14 local
+  compressed database snapshots. Off-server replication remains required before
+  accepting customer orders.
+
 ## Evidence still to capture
 
 - Before-and-after screenshots for major design turns

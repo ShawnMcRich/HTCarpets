@@ -97,7 +97,8 @@ erDiagram
 
 1. Create the private `hosseintalab` database and its local API role on the
    existing server.
-2. Apply `database/migrations/001_initial_commerce.sql` as the PostgreSQL
+2. Apply `database/migrations/001_initial_commerce.sql`, then
+   `database/bootstrap/grant_application_role.sql`, as the PostgreSQL
    administrator.
 3. Create the first administrator through the API bootstrap command; passwords
    are hashed in the API before they reach the database.

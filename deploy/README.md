@@ -21,7 +21,11 @@ is issued. `nginx/hosseintalab.ir.conf` is the final HTTPS configuration.
 The storefront database is a separate `hosseintalab` PostgreSQL database on the
 same server. PostgreSQL remains bound to localhost; only the future local API
 will connect with the dedicated `hosseintalab_app` role. Apply
-`database/migrations/001_initial_commerce.sql` as a PostgreSQL administrator.
+`database/migrations/001_initial_commerce.sql`, then
+`database/bootstrap/grant_application_role.sql`, as a PostgreSQL administrator.
+The dedicated `hosseintalab_app` role is deliberately `NOLOGIN` until the local
+API is deployed with a root-owned database URL and session secret. Do not enable
+raw database access for the browser, a remote client, or a developer laptop.
 
 Nightly, compressed PostgreSQL backups are installed with the systemd files in
 `systemd/` and stored at `/var/backups/hosseintalab/` for 14 days. Backups must

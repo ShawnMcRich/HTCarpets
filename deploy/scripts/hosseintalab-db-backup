@@ -4,6 +4,7 @@ set -euo pipefail
 backup_dir=/var/backups/hosseintalab
 today=$(date -u +%F)
 
-install -d -m 0700 -o postgres -g postgres "$backup_dir"
+test -d "$backup_dir"
+test -O "$backup_dir"
 pg_dump --format=custom --no-owner --file="$backup_dir/hosseintalab-$today.dump" hosseintalab
 find "$backup_dir" -maxdepth 1 -type f -name 'hosseintalab-*.dump' -mtime +14 -delete
