@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the Hosseintalab PostgreSQL backup every night
+
+[Timer]
+OnCalendar=*-*-* 03:20:00 UTC
+Persistent=true
+Unit=hosseintalab-db-backup.service
+
+[Install]
+WantedBy=timers.target

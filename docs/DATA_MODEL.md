@@ -2,18 +2,18 @@
 
 ## Decision
 
-Use a managed Supabase project as the production backend:
+Use PostgreSQL already running on the Hosseintalab production server as the
+production backend:
 
 - PostgreSQL is the source of truth for inventory, customers, orders, and payments.
-- Supabase Auth provides customer accounts and sessions.
-- Supabase Storage holds product photography behind staff-only upload rules.
-- Row Level Security protects customer data and prevents the browser from
-  changing prices, stock, or order state.
+- A small server-side Node API will provide customer accounts, sessions, catalog
+  administration, checkout, and image uploads.
+- Product media is stored on the server and catalogued by `product_images`.
+- The browser never receives a database password or connects to PostgreSQL.
 
-The current Ubuntu host has 1 GB of RAM and already runs other applications.
-Do not self-host the complete Supabase stack there. The official minimum for a
-complete self-hosted Supabase installation is 4 GB RAM; managed Supabase keeps
-the commerce database independent from the storefront host.
+The database listens on `127.0.0.1:5432` only. A dedicated application role is
+limited to the Hosseintalab database; Nginx will route `/api` to the local API,
+not to PostgreSQL.
 
 ## Product terminology
 
@@ -60,8 +60,8 @@ erDiagram
   PRODUCTS ||--o{ PRODUCT_MATERIALS : uses
   PRODUCTS ||--o{ INVENTORY_MOVEMENTS : tracks
   PRODUCTS ||--o{ STOCK_RESERVATIONS : reserves
-  PROFILES ||--o{ CUSTOMER_ADDRESSES : saves
-  PROFILES ||--o{ ORDERS : places
+  USERS ||--o{ CUSTOMER_ADDRESSES : saves
+  USERS ||--o{ ORDERS : places
   ORDERS ||--o{ ORDER_ITEMS : contains
   ORDERS ||--o{ PAYMENTS : records
   PRODUCTS ||--o{ ORDER_ITEMS : snapshots
@@ -82,26 +82,30 @@ erDiagram
 
 ### Public, customer, and staff access
 
-- Guests can read only active, public product data and public product images.
-- Customers can read and edit only their own profile, addresses, and orders.
-- Customers cannot alter prices, inventory, payments, or order status from the
-  browser.
-- Staff and admins manage catalog entries and stock movements.
-- Checkout will be a server-side function, where quantity is checked and a
-  time-limited reservation is created atomically before payment begins.
+- Guests can retrieve only active, public product data through read-only API
+  endpoints.
+- Customers can retrieve and edit only their own profile, addresses, and orders
+  through a signed, secure server session.
+- Customers cannot alter prices, inventory, payments, or order status because
+  PostgreSQL is never exposed to the browser.
+- Staff and admins use authenticated API routes to manage catalog entries and
+  stock movements; all important changes are written to `audit_events`.
+- Checkout is a database transaction in the API, where quantity is checked and
+  a time-limited reservation is created atomically before payment begins.
 
 ## Setup sequence
 
-1. Create a managed Supabase project for Hosseintalab.
-2. Apply `supabase/migrations/20260731_0001_inventory_and_commerce.sql` in the
-   Supabase SQL editor or through the Supabase CLI.
-3. Create the first staff user using Auth, then promote that profile to `admin`
-   with the SQL shown at the bottom of the migration.
-4. Add the project URL and public anonymous key to a local `.env` file; never
-   commit service-role keys.
+1. Create the private `hosseintalab` database and its local API role on the
+   existing server.
+2. Apply `database/migrations/001_initial_commerce.sql` as the PostgreSQL
+   administrator.
+3. Create the first administrator through the API bootstrap command; passwords
+   are hashed in the API before they reach the database.
+4. Keep the API database URL and session secret in a root-owned server
+   environment file—never in `.env`, JavaScript, Git, or the browser.
 5. Build the private catalog-admin interface, product import flow, customer
-   login, cart, checkout function, and Iranian payment gateway integration in
-   that order.
+   login, cart, checkout transaction, and Iranian payment gateway integration
+   in that order.
 
 ## Not in scope yet
 
