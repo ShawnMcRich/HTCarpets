@@ -1,9 +1,11 @@
 import {
   type KeyboardEvent as ReactKeyboardEvent,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
+import { catalogProducts } from "./catalog";
 
 type CatalogPath = "size" | "origin" | "pattern";
 
@@ -16,8 +18,8 @@ type CatalogSample = {
 };
 
 const navigation = [
-  { href: "#home-carpets", label: "فرش برای خانه" },
-  { href: "#antiques", label: "فرش آنتیک" },
+  { href: "#collection", label: "مجموعه فرش‌ها" },
+  { href: "#craft", label: "جنس و رنگ" },
   { href: "#catalog", label: "راهنمای انتخاب" },
   { href: "#story", label: "داستان حسین‌طلب" },
 ];
@@ -253,35 +255,7 @@ const rooms = [
   },
 ];
 
-const collection = [
-  {
-    code: "HT 01",
-    name: "ماهیِ تبریز",
-    origin: "دستباف تبریز",
-    size: "۲۰۰ × ۳۰۰ سانتی‌متر",
-    description: "زمینه‌ی لاجوردی و نقش منظم ماهی درهم",
-    image: "/media/products/tabriz-mahi-v2.jpg",
-    alt: "فرش دستباف تبریز با زمینه‌ی سرمه‌ای",
-  },
-  {
-    code: "HT 02",
-    name: "هریسِ اناری",
-    origin: "دستباف هریس",
-    size: "۲۰۵ × ۳۰۸ سانتی‌متر",
-    description: "نقش هندسی و رنگ گرم برای خانه‌های روشن",
-    image: "/media/products/heriz-madder.jpg",
-    alt: "فرش دستباف هریس با زمینه‌ی اناری",
-  },
-  {
-    code: "HT 03",
-    name: "نائینِ روشن",
-    origin: "دستباف نائین",
-    size: "۱۵۰ × ۲۲۵ سانتی‌متر",
-    description: "ظریف و روشن برای اتاق یا نشیمن کوچک",
-    image: "/media/products/nain-ivory.jpg",
-    alt: "فرش دستباف نائین با زمینه‌ی روشن",
-  },
-];
+const collection = catalogProducts;
 
 function ArrowIcon() {
   return (
@@ -337,11 +311,21 @@ export default function Home() {
   const [catalogPath, setCatalogPath] = useState<CatalogPath>("size");
   const [selectedSample, setSelectedSample] = useState<CatalogSample | null>(null);
   const [activeRoom, setActiveRoom] = useState(0);
+  const [collectionFilter, setCollectionFilter] = useState<"all" | "home" | "antique">("all");
+  const [collectionQuery, setCollectionQuery] = useState("");
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const sampleTriggerRef = useRef<HTMLButtonElement | null>(null);
   const activeCatalog = catalogPaths[catalogPath];
+  const visibleCollection = useMemo(() => {
+    const query = collectionQuery.trim().toLocaleLowerCase("fa");
+    return collection.filter((product) => {
+      const matchesKind = collectionFilter === "all" || product.collection === collectionFilter;
+      const haystack = `${product.name} ${product.originName} ${product.pattern} ${product.fieldColor}`.toLocaleLowerCase("fa");
+      return matchesKind && (!query || haystack.includes(query));
+    });
+  }, [collectionFilter, collectionQuery]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -443,7 +427,7 @@ export default function Home() {
 
       <div className="service-bar">
         <div className="shell service-bar__inner">
-          <p>ارسال امن به سراسر ایران</p>
+          <p>تمام فرش‌ها با رنگ طبیعی و پشم دست‌ریس</p>
           <span aria-hidden="true" />
           <p>مشاوره‌ی مستقیم با کارشناس فرش</p>
           <a href="#story">فعال در بازار تهران از ۱۲۹۰</a>
@@ -564,19 +548,19 @@ export default function Home() {
           <div className="hero__veil" />
           <div className="shell hero__content">
             <p className="eyebrow eyebrow--light">
-              از بازار تهران، برای خانه‌ی شما
+              رنگ طبیعی · پشم دست‌ریس · تک‌تخته
             </p>
             <h1>
-              فرشی که فقط زیر پای شما نیست؛
-              <em>بخشی از زندگی شماست.</em>
+              رنگی که از طبیعت آمده؛
+              <em>هنری که برای زندگی مانده.</em>
             </h1>
             <p className="hero__lead">
-              برای خانه، فرشی اصیل و متناسب با فضا، سلیقه و بودجه‌تان پیدا کنید؛
-              با راهنمایی خانواده‌ای که بیش از یک قرن با فرش زندگی کرده است.
+              مجموعه‌ای از فرش‌های دستباف ایرانی با رنگرزی گیاهی و پشم دست‌ریس؛
+              هر تخته با شناسنامه، تصاویر دقیق و کارشناسی خانواده‌ای با بیش از یک قرن تجربه.
             </p>
             <div className="hero__actions">
               <a className="button button--ivory" href="#collection">
-                دیدن انتخاب‌های خانه
+                دیدن همه‌ی فرش‌ها
                 <ArrowIcon />
               </a>
               <a className="button button--ghost" href="#consultation">
@@ -585,14 +569,14 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__aside">
-            <span>دو مسیر برای دیدن مجموعه</span>
-            <a href="#home-carpets">
-              <strong>فرش برای خانه</strong>
-              <small>برای زندگی روزمره</small>
+            <span>مجموعه‌ی حاضر</span>
+            <a href="#collection">
+              <strong>{collection.length.toLocaleString("fa-IR")} تخته</strong>
+              <small>هرکدام یگانه و موجود</small>
             </a>
             <a href="#antiques">
-              <strong>فرش آنتیک</strong>
-              <small>برای مجموعه‌داران</small>
+              <strong>از ۱۲۹۰</strong>
+              <small>ریشه در بازار تهران</small>
             </a>
           </div>
           <a className="hero__scroll" href="#home-carpets" aria-label="ادامه‌ی صفحه">
@@ -604,33 +588,50 @@ export default function Home() {
         <section className="trust-ribbon" aria-label="خدمات حسین‌طلب">
           <div className="shell trust-ribbon__grid">
             <article>
+              <span>۱۰۰٪</span>
+              <div>
+                <strong>رنگرزی طبیعی</strong>
+                <p>رنگ‌های گیاهی، زنده و ماندگار</p>
+              </div>
+            </article>
+            <article>
+              <span>✦</span>
+              <div>
+                <strong>پشم دست‌ریس</strong>
+                <p>بافت اصیل با لمس و شخصیت طبیعی</p>
+              </div>
+            </article>
+            <article>
+              <span>۱</span>
+              <div>
+                <strong>هر فرش، تنها یک تخته</strong>
+                <p>شناسنامه و تصاویر واقعی همان اثر</p>
+              </div>
+            </article>
+            <article>
               <span>۱۲۹۰</span>
               <div>
                 <strong>ریشه در بازار تهران</strong>
-                <p>تجربه‌ای خانوادگی، نسل به نسل</p>
+                <p>شناخت فرش، نسل به نسل</p>
               </div>
             </article>
-            <article>
-              <span>۰۱</span>
-              <div>
-                <strong>کارشناسی پیش از خرید</strong>
-                <p>شفاف درباره‌ی بافت، سلامت و ارزش فرش</p>
+          </div>
+        </section>
+
+        <section id="craft" className="craft-statement">
+          <div className="shell craft-statement__grid">
+            <p className="craft-statement__number">۰۱</p>
+            <div>
+              <p className="eyebrow">امضای مشترک تمام مجموعه</p>
+              <h2>نه رنگ شیمیایی.<br />نه نخ کارخانه‌ای.</h2>
+            </div>
+            <div className="craft-statement__copy">
+              <p>تمام فرش‌های حسین‌طلب با <strong>رنگ‌های طبیعی و گیاهی</strong> و <strong>پشم دست‌ریس</strong> بافته شده‌اند؛ تفاوتی که در عمق رنگ، لطافت بافت و زیباییِ گذر زمان دیده می‌شود.</p>
+              <div className="craft-statement__facts">
+                <span><b>رنگ طبیعی</b><small>Natural dyes</small></span>
+                <span><b>پشم دست‌ریس</b><small>Hand-spun wool</small></span>
               </div>
-            </article>
-            <article>
-              <span>۰۲</span>
-              <div>
-                <strong>انتخاب برای فضای واقعی</strong>
-                <p>با توجه به ابعاد، نور و چیدمان خانه</p>
-              </div>
-            </article>
-            <article>
-              <span>۰۳</span>
-              <div>
-                <strong>ارسال مطمئن</strong>
-                <p>از بازار تهران به سراسر ایران</p>
-              </div>
-            </article>
+            </div>
           </div>
         </section>
 
@@ -766,22 +767,53 @@ export default function Home() {
           <div className="shell">
             <div className="collection-section__head">
               <div className="section-heading">
-                <p className="eyebrow">انتخاب این هفته</p>
-                <h2>سه فرش، سه حال‌وهوای متفاوت.</h2>
+                <p className="eyebrow">مجموعه‌ی موجود</p>
+                <h2>هر تخته، یک جهان مستقل.</h2>
               </div>
               <p>
-                این‌ها نمونه‌ای از شیوه‌ی نمایش فرش‌ها هستند. موجودی نهایی پس از
-                عکاسی و ثبت مشخصات هر تخته به‌روز می‌شود.
+                تمام فرش‌های موجود را ببینید؛ با تصاویر واقعی، مشخصات کامل و شناسنامه‌ی هر اثر.
+              </p>
+            </div>
+
+            <div className="collection-tools">
+              <div className="collection-filters" aria-label="فیلتر مجموعه">
+                {([
+                  ["all", "همه"],
+                  ["home", "برای خانه"],
+                  ["antique", "آنتیک و نیمه‌آنتیک"],
+                ] as const).map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    className={collectionFilter === value ? "is-active" : ""}
+                    aria-pressed={collectionFilter === value}
+                    onClick={() => setCollectionFilter(value)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <label className="collection-search">
+                <span>جست‌وجو در مجموعه</span>
+                <input
+                  value={collectionQuery}
+                  onChange={(event) => setCollectionQuery(event.target.value)}
+                  placeholder="نام، شهر، نقشه یا رنگ…"
+                  type="search"
+                />
+              </label>
+              <p className="collection-count" aria-live="polite">
+                {visibleCollection.length.toLocaleString("fa-IR")} فرش
               </p>
             </div>
 
             <div className="product-grid">
-              {collection.map((product, index) => (
-                <article className="product-card" key={product.code}>
+              {visibleCollection.map((product, index) => (
+                <article className="product-card" key={product.sku}>
                   <a
                     className="product-card__image"
-                    href="#consultation"
-                    aria-label={`پرس‌وجو درباره‌ی ${product.name}`}
+                    href={`/carpets/${product.slug}`}
+                    aria-label={`مشاهده‌ی ${product.name}`}
                   >
                     <img
                       src={product.image}
@@ -791,16 +823,16 @@ export default function Home() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <span>{product.code}</span>
+                    <span>{product.sku}</span>
                   </a>
                   <div className="product-card__body">
-                    <p>{product.origin}</p>
+                    <p>{product.origin} · رنگ طبیعی</p>
                     <h3>{product.name}</h3>
                     <span>{product.description}</span>
                     <footer>
                       <small>{product.size}</small>
-                      <a href="#consultation">
-                        پرس‌وجو
+                      <a href={`/carpets/${product.slug}`}>
+                        مشاهده‌ی فرش
                         <ArrowIcon />
                       </a>
                     </footer>
@@ -811,6 +843,14 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            {visibleCollection.length === 0 && (
+              <div className="collection-empty">
+                <p>فرشی با این مشخصات پیدا نشد.</p>
+                <button type="button" onClick={() => { setCollectionFilter("all"); setCollectionQuery(""); }}>
+                  نمایش همه‌ی فرش‌ها
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -922,9 +962,6 @@ export default function Home() {
                 راه‌های ارتباطی
               </a>
             </div>
-            <small>
-              شماره و نشانی فعلی نمونه هستند و پیش از انتشار نهایی تأیید می‌شوند.
-            </small>
           </div>
         </section>
       </main>
@@ -976,7 +1013,6 @@ export default function Home() {
             <h2>ساعات حضور</h2>
             <p>شنبه تا چهارشنبه · ۹ تا ۱۷</p>
             <p>پنجشنبه · با هماهنگی</p>
-            <p className="site-footer__note">اطلاعات تماس پیش از انتشار تأیید شود.</p>
           </div>
         </div>
         <div className="shell site-footer__bottom">
