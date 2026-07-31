@@ -1,303 +1,28 @@
-import {
-  type KeyboardEvent as ReactKeyboardEvent,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useMemo, useState } from "react";
 import { catalogProducts } from "./catalog";
+import {
+  collectionLabel,
+  formatPrice,
+  getContextImage,
+  isKnownValue,
+  productSearchText,
+} from "./catalog-helpers";
 
-type CatalogPath = "size" | "origin" | "pattern";
+type CollectionFilter = "all" | "home" | "antique";
+type SortOrder = "curated" | "price-asc" | "price-desc";
 
-type CatalogSample = {
-  name: string;
-  note: string;
-  use: string;
-  image: string;
-  alt: string;
-};
-
-const navigation = [
-  { href: "#collection", label: "مجموعه فرش‌ها" },
-  { href: "#craft", label: "جنس و رنگ" },
-  { href: "#catalog", label: "راهنمای انتخاب" },
-  { href: "#story", label: "داستان حسین‌طلب" },
+const collectionFilters: Array<{ value: CollectionFilter; label: string }> = [
+  { value: "all", label: "همه‌ی فرش‌ها" },
+  { value: "home", label: "برای خانه" },
+  { value: "antique", label: "آنتیک و نیمه‌آنتیک" },
 ];
 
-const catalogPaths: Record<
-  CatalogPath,
-  {
-    label: string;
-    kicker: string;
-    title: string;
-    description: string;
-    items: CatalogSample[];
-  }
-> = {
-  size: {
-    label: "قواره",
-    kicker: "از اندازه‌ی فضا شروع کنید",
-    title: "قواره‌ای که درست در خانه بنشیند",
-    description:
-      "اندازه‌های رایج بازار را با کاربرد واقعی‌شان ببینید؛ از قالیچه‌ی کنار تخت تا فرش اصلی پذیرایی.",
-    items: [
-      {
-        name: "ذرع‌ونیم",
-        note: "حدود ۱٫۵ مترمربع",
-        use: "کنار مبل، ورودی یا گوشه‌های کوچک",
-        image: "/media/categories/sizes/zaro-nim.jpg",
-        alt: "فرش ذرع‌ونیم در کنار صندلی",
-      },
-      {
-        name: "قالیچه‌ی سه‌متری",
-        note: "معمولاً ۱۵۰ × ۲۰۰",
-        use: "اتاق خواب یا نشیمن کوچک",
-        image: "/media/categories/sizes/ghalicheh-3m.jpg",
-        alt: "قالیچه‌ی سه‌متری در اتاق خواب",
-      },
-      {
-        name: "پرده‌ای",
-        note: "حدود چهار مترمربع",
-        use: "فضاهای باریک و کشیده",
-        image: "/media/categories/sizes/pardei-4m.jpg",
-        alt: "فرش پرده‌ای در فضای کشیده",
-      },
-      {
-        name: "شش‌متری",
-        note: "معمولاً ۲۰۰ × ۳۰۰",
-        use: "بیشتر نشیمن‌های آپارتمانی",
-        image: "/media/categories/sizes/6m.jpg",
-        alt: "فرش شش‌متری در نشیمن",
-      },
-      {
-        name: "نه‌متری",
-        note: "معمولاً ۲۵۰ × ۳۵۰",
-        use: "پذیرایی‌های متوسط",
-        image: "/media/categories/sizes/9m.jpg",
-        alt: "فرش نه‌متری در پذیرایی",
-      },
-      {
-        name: "دوازده‌متری",
-        note: "معمولاً ۳۰۰ × ۴۰۰",
-        use: "پذیرایی بزرگ و فرش اصلی خانه",
-        image: "/media/categories/sizes/12m.jpg",
-        alt: "فرش دوازده‌متری در پذیرایی بزرگ",
-      },
-      {
-        name: "کناره",
-        note: "باریک و کشیده",
-        use: "راهرو، ورودی یا کنار تخت",
-        image: "/media/categories/sizes/runner.jpg",
-        alt: "فرش کناره در راهروی خانه",
-      },
-    ],
-  },
-  origin: {
-    label: "محل بافت",
-    kicker: "هر شهر، امضای خودش را دارد",
-    title: "فرش را از روی ریشه‌اش بشناسید",
-    description:
-      "رنگ، نقش و شیوه‌ی بافت در هر منطقه متفاوت است. اینجا تفاوت‌ها را ساده و تصویری می‌بینید.",
-    items: [
-      {
-        name: "تبریز",
-        note: "ریزبافت و متنوع",
-        use: "از ماهی تا نقشه‌های شهری ظریف",
-        image: "/media/categories/origins/tabriz-mahi-v2.jpg",
-        alt: "فرش تبریز با نقشه‌ی ماهی درهم",
-      },
-      {
-        name: "هریس",
-        note: "هندسی و پرقدرت",
-        use: "رنگ‌های گرم برای خانه‌های روشن",
-        image: "/media/products/heriz-madder.jpg",
-        alt: "فرش هریس با نقش هندسی",
-      },
-      {
-        name: "بیجار",
-        note: "متراکم و ماندگار",
-        use: "بافتی محکم برای استفاده‌ی طولانی",
-        image: "/media/categories/origins/bijar-gol-farang.jpg",
-        alt: "فرش بیجار با نقش گل‌فرنگ",
-      },
-      {
-        name: "نائین",
-        note: "آرام و ظریف",
-        use: "رنگ‌های روشن و جزئیات منظم",
-        image: "/media/products/nain-ivory.jpg",
-        alt: "فرش نائین با زمینه‌ی روشن",
-      },
-      {
-        name: "کاشان",
-        note: "شهری و کلاسیک",
-        use: "نقشه‌های اصیل با ترکیب‌بندی رسمی",
-        image: "/media/categories/origins/kashan-afshan.jpg",
-        alt: "فرش کاشان با نقشه‌ی افشان",
-      },
-      {
-        name: "اصفهان",
-        note: "ظریف و دقیق",
-        use: "نقش‌های پرجزئیات و بافت منظم",
-        image: "/media/categories/origins/isfahan-tree-vase.jpg",
-        alt: "فرش اصفهان با نقش درختی و گلدانی",
-      },
-      {
-        name: "قشقایی",
-        note: "ذهنی‌باف و زنده",
-        use: "رنگ‌های صریح و نقش‌های هندسی",
-        image: "/media/categories/origins/qashqai-boteh.jpg",
-        alt: "فرش قشقایی با نقش بته‌جقه",
-      },
-      {
-        name: "بختیاری",
-        note: "خشتی و رنگارنگ",
-        use: "قاب‌هایی پر از گل و نقش طبیعت",
-        image: "/media/categories/origins/bakhtiari-kheshti.jpg",
-        alt: "فرش بختیاری با نقشه‌ی خشتی",
-      },
-    ],
-  },
-  pattern: {
-    label: "نقشه",
-    kicker: "اسم درست نقش‌ها را یاد بگیرید",
-    title: "نقشه‌ای هماهنگ با چیدمان شما",
-    description:
-      "به‌جای عنوان‌های مبهم، ساختار واقعی نقش را بشناسید و انتخاب دقیق‌تری داشته باشید.",
-    items: [
-      {
-        name: "لچک‌وترنج",
-        note: "مرکزگرا و متقارن",
-        use: "مناسب فرش اصلی پذیرایی",
-        image: "/media/products/tabriz-navy.jpg",
-        alt: "فرش با نقشه‌ی لچک‌وترنج",
-      },
-      {
-        name: "افشان",
-        note: "روان و بدون ترنج مرکزی",
-        use: "فضا را بازتر و یکدست‌تر نشان می‌دهد",
-        image: "/media/categories/origins/kashan-afshan.jpg",
-        alt: "فرش با نقشه‌ی افشان",
-      },
-      {
-        name: "ماهی درهم",
-        note: "ریز و تکرارشونده",
-        use: "پرنقش اما منظم و آرام از فاصله",
-        image: "/media/categories/origins/tabriz-mahi-v2.jpg",
-        alt: "فرش با نقشه‌ی ماهی درهم",
-      },
-      {
-        name: "خشتی",
-        note: "قاب‌بندی‌شده",
-        use: "هر قاب با گل و نقش جداگانه",
-        image: "/media/categories/origins/bakhtiari-kheshti.jpg",
-        alt: "فرش با نقشه‌ی خشتی",
-      },
-      {
-        name: "بته‌جقه",
-        note: "ایرانی و آشنا",
-        use: "بته‌های تکرارشونده با حرکت نرم",
-        image: "/media/categories/origins/qashqai-boteh.jpg",
-        alt: "فرش با نقش بته‌جقه",
-      },
-      {
-        name: "درختی و گلدانی",
-        note: "برگرفته از طبیعت",
-        use: "نقش‌هایی از درخت، گل و گلدان",
-        image: "/media/categories/origins/isfahan-tree-vase.jpg",
-        alt: "فرش با نقش درختی و گلدانی",
-      },
-      {
-        name: "هندسی و عشایری",
-        note: "آزاد و صریح",
-        use: "مناسب چیدمان‌های ساده و امروزی",
-        image: "/media/products/heriz-madder.jpg",
-        alt: "فرش با نقش هندسی",
-      },
-      {
-        name: "گل‌فرنگ",
-        note: "گل‌های درشت و رنگی",
-        use: "برای دوست‌داران طرح‌های گل‌دار",
-        image: "/media/categories/origins/bijar-gol-farang.jpg",
-        alt: "فرش با نقش گل‌فرنگ",
-      },
-    ],
-  },
-};
-
-const rooms = [
-  {
-    title: "پذیرایی",
-    note: "فرشی با حضور قوی برای مرکز چیدمان",
-    tip: "برای اینکه مبلمان از هم جدا دیده نشود، بهتر است دست‌کم پایه‌های جلویی مبل روی فرش قرار بگیرد.",
-    image: "/media/rooms/reception-room.jpg",
-    alt: "فرش دستباف سرمه‌ای در پذیرایی روشن",
-  },
-  {
-    title: "نشیمن",
-    note: "گرم، راحت و مناسب زندگی روزمره",
-    tip: "در فضای پررفت‌وآمد، بافت محکم و رنگ‌های میانه نگهداری روزمره را آسان‌تر می‌کند.",
-    image: "/media/rooms/living-room.jpg",
-    alt: "فرش هریس در نشیمن خانوادگی",
-  },
-  {
-    title: "اتاق خواب",
-    note: "رنگ‌های آرام برای شروع و پایان روز",
-    tip: "قالیچه‌ای انتخاب کنید که هنگام پایین آمدن از تخت، هر دو پا روی بافت نرم آن قرار بگیرد.",
-    image: "/media/rooms/bedroom-v2.jpg",
-    alt: "فرش روشن در اتاق خواب آرام",
-  },
-  {
-    title: "فضاهای کوچک",
-    note: "قالیچه و کناره برای استفاده‌ی هوشمندانه",
-    tip: "فرش بیش‌ازحد کوچک فضا را تکه‌تکه نشان می‌دهد؛ چند سانتی‌متر بزرگ‌تر معمولاً انتخاب بهتری است.",
-    image: "/media/rooms/small-space.jpg",
-    alt: "قالیچه‌ی دستباف در فضای کوچک",
-  },
-];
-
-const collection = catalogProducts;
-
-function ArrowIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M19 12H5m6-6-6 6 6 6" />
-    </svg>
+const contextStories = catalogProducts
+  .map((product) => ({ product, image: getContextImage(product) }))
+  .filter((story): story is { product: (typeof catalogProducts)[number]; image: NonNullable<ReturnType<typeof getContextImage>> } => Boolean(story.image))
+  .filter(({ product }) =>
+    ["HT-QOM-0001", "HT-KSH-0001", "HT-SNH-0001", "HT-RVR-0001", "HT-TBZ-0001"].includes(product.sku),
   );
-}
-
-function MenuIcon({ open }: { open: boolean }) {
-  return (
-    <span className={`menu-icon ${open ? "is-open" : ""}`} aria-hidden="true">
-      <i />
-      <i />
-    </span>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m6 6 12 12M18 6 6 18" />
-    </svg>
-  );
-}
-
-function ChevronIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m9 6 6 6-6 6" />
-    </svg>
-  );
-}
-
-function getFocusable(container: HTMLElement | null) {
-  if (!container) return [] as HTMLElement[];
-  return Array.from(
-    container.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    ),
-  );
-}
 
 function formatIndex(index: number) {
   return index.toLocaleString("fa-IR", {
@@ -307,117 +32,51 @@ function formatIndex(index: number) {
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [catalogPath, setCatalogPath] = useState<CatalogPath>("size");
-  const [selectedSample, setSelectedSample] = useState<CatalogSample | null>(null);
-  const [activeRoom, setActiveRoom] = useState(0);
-  const [collectionFilter, setCollectionFilter] = useState<"all" | "home" | "antique">("all");
+  const [collectionFilter, setCollectionFilter] = useState<CollectionFilter>("all");
+  const [originFilter, setOriginFilter] = useState("all");
   const [collectionQuery, setCollectionQuery] = useState("");
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const menuPanelRef = useRef<HTMLDivElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const sampleTriggerRef = useRef<HTMLButtonElement | null>(null);
-  const activeCatalog = catalogPaths[catalogPath];
+  const [sortOrder, setSortOrder] = useState<SortOrder>("curated");
+
+  useEffect(() => {
+    document.title = "فرش حسین‌طلب | مجموعه‌ی فرش‌های دستباف ایرانی";
+  }, []);
+
+  const origins = useMemo(
+    () =>
+      Array.from(new Set(catalogProducts.map((product) => product.originName))).sort(
+        new Intl.Collator("fa-IR").compare,
+      ),
+    [],
+  );
+
   const visibleCollection = useMemo(() => {
-    const query = collectionQuery.trim().toLocaleLowerCase("fa");
-    return collection.filter((product) => {
-      const matchesKind = collectionFilter === "all" || product.collection === collectionFilter;
-      const haystack = `${product.name} ${product.originName} ${product.pattern} ${product.fieldColor}`.toLocaleLowerCase("fa");
-      return matchesKind && (!query || haystack.includes(query));
+    const query = collectionQuery.trim().toLocaleLowerCase("fa-IR");
+    const products = catalogProducts.filter((product) => {
+      const matchesCollection =
+        collectionFilter === "all" || product.collection === collectionFilter;
+      const matchesOrigin = originFilter === "all" || product.originName === originFilter;
+      const matchesQuery = !query || productSearchText(product).includes(query);
+      return matchesCollection && matchesOrigin && matchesQuery;
     });
-  }, [collectionFilter, collectionQuery]);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const focusable = getFocusable(menuPanelRef.current);
-    focusable[0]?.focus();
-
-    const handleKeydown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-        menuButtonRef.current?.focus();
-      }
-      if (event.key === "Tab" && focusable.length) {
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleKeydown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (!selectedSample) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const focusable = getFocusable(dialogRef.current);
-    focusable[0]?.focus();
-
-    const handleKeydown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSelectedSample(null);
-        sampleTriggerRef.current?.focus();
-      }
-      if (event.key === "Tab" && focusable.length) {
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleKeydown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  }, [selectedSample]);
-
-  const closeMenu = () => setMenuOpen(false);
-
-  const openSample = (
-    sample: CatalogSample,
-    trigger: HTMLButtonElement,
-  ) => {
-    sampleTriggerRef.current = trigger;
-    setSelectedSample(sample);
-  };
-
-  const handleTabKey = (
-    event: ReactKeyboardEvent<HTMLButtonElement>,
-    path: CatalogPath,
-  ) => {
-    const order: CatalogPath[] = ["size", "origin", "pattern"];
-    const index = order.indexOf(path);
-    let nextIndex = index;
-    if (event.key === "ArrowLeft") nextIndex = (index + 1) % order.length;
-    if (event.key === "ArrowRight")
-      nextIndex = (index - 1 + order.length) % order.length;
-    if (nextIndex !== index) {
-      event.preventDefault();
-      const next = order[nextIndex];
-      setCatalogPath(next);
-      document.getElementById(`catalog-tab-${next}`)?.focus();
+    if (sortOrder === "price-asc") {
+      return [...products].sort((a, b) => a.priceToman - b.priceToman);
     }
+    if (sortOrder === "price-desc") {
+      return [...products].sort((a, b) => b.priceToman - a.priceToman);
+    }
+    return products;
+  }, [collectionFilter, collectionQuery, originFilter, sortOrder]);
+
+  const resetFilters = () => {
+    setCollectionFilter("all");
+    setOriginFilter("all");
+    setCollectionQuery("");
+    setSortOrder("curated");
   };
+
+  const heroProduct = catalogProducts.find((product) => product.sku === "HT-QOM-0001")!;
+  const heroImage = getContextImage(heroProduct)!;
 
   return (
     <>
@@ -425,651 +84,325 @@ export default function Home() {
         رفتن به محتوای اصلی
       </a>
 
-      <div className="service-bar">
-        <div className="shell service-bar__inner">
-          <p>تمام فرش‌ها با رنگ طبیعی و پشم دست‌ریس</p>
-          <span aria-hidden="true" />
-          <p>مشاوره‌ی مستقیم با کارشناس فرش</p>
-          <a href="#story">فعال در بازار تهران از ۱۲۹۰</a>
+      <div className="service-line">
+        <div className="shell service-line__inner">
+          <p>بازار فرش تهران · از ۱۲۹۰ هجری شمسی</p>
+          <p>هر فرش با کد، تصاویر همان تخته و اطلاعات ثبت‌شده</p>
         </div>
       </div>
 
       <header className="site-header">
         <div className="shell site-header__inner">
-          <a className="brand-link" href="#top" aria-label="حسین‌طلب؛ صفحه‌ی نخست">
-            <img
-              className="brand-link__desktop"
-              src="/brand/exports/hosseintalab-lockup-horizontal.svg"
-              alt="Hosseintalab — Persian Handwoven Carpets — Est. 1290 SH"
-              width="1600"
-              height="300"
-            />
-            <img
-              className="brand-link__mobile"
-              src="/brand/raster/hosseintalab-medallion-transparent.png"
-              alt=""
-              width="760"
-              height="887"
-            />
+          <a className="site-brand" href="#top" aria-label="فرش حسین‌طلب؛ صفحه‌ی نخست">
+            <picture>
+              <source media="(max-width: 580px)" srcSet="/brand/exports/hosseintalab-icon-192.png" />
+              <img
+                src="/brand/exports/hosseintalab-lockup-horizontal.svg"
+                alt="Hosseintalab — Persian Handwoven Carpets — Est. 1290 SH"
+                width="1600"
+                height="300"
+              />
+            </picture>
           </a>
-
-          <nav className="desktop-nav" aria-label="راهنمای اصلی">
-            {navigation.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
+          <nav className="main-nav" aria-label="راهنمای اصلی">
+            <a href="#collection">فرش‌های موجود</a>
+            <a href="#places">فرش و جغرافیا</a>
+            <a href="#buying-guide">روش انتخاب</a>
+            <a href="#heritage">درباره‌ی حسین‌طلب</a>
           </nav>
-
-          <div className="header-actions">
-            <a className="text-action" href="#consultation">
-              <span>مشاوره و انتخاب</span>
-              <ArrowIcon />
-            </a>
-            <button
-              ref={menuButtonRef}
-              className="menu-button"
-              type="button"
-              aria-label={menuOpen ? "بستن فهرست" : "باز کردن فهرست"}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-              onClick={() => setMenuOpen((value) => !value)}
-            >
-              <MenuIcon open={menuOpen} />
-            </button>
-          </div>
+          <a className="header-cta" href="#collection">
+            دیدن مجموعه
+          </a>
         </div>
       </header>
 
-      <div
-        id="mobile-menu"
-        className={`mobile-menu ${menuOpen ? "is-open" : ""}`}
-        aria-hidden={!menuOpen}
-      >
-        <button
-          className="mobile-menu__scrim"
-          type="button"
-          tabIndex={menuOpen ? 0 : -1}
-          aria-label="بستن فهرست"
-          onClick={closeMenu}
-        />
-        <div
-          ref={menuPanelRef}
-          className="mobile-menu__panel"
-          role="dialog"
-          aria-modal="true"
-          aria-label="فهرست سایت"
-        >
-          <div className="mobile-menu__head">
-            <img
-              src="/brand/exports/hosseintalab-lockup-stacked.svg"
-              alt="Hosseintalab"
-              width="900"
-              height="1000"
-            />
-            <button
-              type="button"
-              aria-label="بستن فهرست"
-              onClick={() => {
-                closeMenu();
-                menuButtonRef.current?.focus();
-              }}
-            >
-              <CloseIcon />
-            </button>
-          </div>
-          <nav aria-label="راهنمای موبایل">
-            {navigation.map((item, index) => (
-              <a key={item.href} href={item.href} onClick={closeMenu}>
-                <small>{formatIndex(index + 1)}</small>
-                <span>{item.label}</span>
-                <ChevronIcon />
-              </a>
-            ))}
-          </nav>
-          <a className="button button--gold" href="#consultation" onClick={closeMenu}>
-            درخواست مشاوره
-            <ArrowIcon />
-          </a>
-          <p>بازار فرش تهران · ارسال به سراسر ایران</p>
-        </div>
-      </div>
-
       <main id="main-content">
-        <section id="top" className="hero">
-          <img
-            className="hero__image"
-            src="/media/hero-home-v2.jpg"
-            alt="فرش دستباف ایرانی در نشیمن روشن و صمیمی"
-            width="1672"
-            height="941"
-            fetchPriority="high"
-          />
-          <div className="hero__veil" />
-          <div className="shell hero__content">
-            <p className="eyebrow eyebrow--light">
-              رنگ طبیعی · پشم دست‌ریس · تک‌تخته
-            </p>
+        <section id="top" className="hero shell">
+          <div className="hero__copy">
+            <p className="eyebrow">مجموعه‌ی حاضر · {catalogProducts.length.toLocaleString("fa-IR")} تک‌تخته</p>
             <h1>
-              رنگی که از طبیعت آمده؛
-              <em>هنری که برای زندگی مانده.</em>
+              فرش را همان‌طور که هست
+              <em>ببینید و بشناسید.</em>
             </h1>
             <p className="hero__lead">
-              مجموعه‌ای از فرش‌های دستباف ایرانی با رنگرزی گیاهی و پشم دست‌ریس؛
-              هر تخته با شناسنامه، تصاویر دقیق و کارشناسی خانواده‌ای با بیش از یک قرن تجربه.
+              نمای کامل، جزئیات بافت و تصویر محیطیِ هر فرش کنار اطلاعات روشن آن آمده است؛
+              تا پیش از تصمیم، خودِ تخته را ببینید، نه یک تصویر جایگزین را.
             </p>
             <div className="hero__actions">
-              <a className="button button--ivory" href="#collection">
-                دیدن همه‌ی فرش‌ها
-                <ArrowIcon />
+              <a className="button button--primary" href="#collection">
+                فرش‌های موجود را ببینید
               </a>
-              <a className="button button--ghost" href="#consultation">
-                برای انتخاب کمک می‌خواهم
+              <a className="text-link" href="#buying-guide">
+                روش بررسی هر فرش
               </a>
             </div>
+            <dl className="hero__facts">
+              <div>
+                <dt>تصویر</dt>
+                <dd>نمای کامل و جزئیات</dd>
+              </div>
+              <div>
+                <dt>شناسنامه</dt>
+                <dd>کد، محل بافت و ابعاد ثبت‌شده</dd>
+              </div>
+              <div>
+                <dt>انتخاب</dt>
+                <dd>مقایسه بدون فشار خرید</dd>
+              </div>
+            </dl>
           </div>
-          <div className="hero__aside">
-            <span>مجموعه‌ی حاضر</span>
-            <a href="#collection">
-              <strong>{collection.length.toLocaleString("fa-IR")} تخته</strong>
-              <small>هرکدام یگانه و موجود</small>
+
+          <figure className="hero__media">
+            <a href={`/carpets/${heroProduct.slug}`} aria-label={`مشاهده‌ی ${heroProduct.name}`}>
+              <img
+                src={heroImage.src}
+                alt={heroImage.alt}
+                width="1536"
+                height="1024"
+                fetchPriority="high"
+              />
             </a>
-            <a href="#antiques">
-              <strong>از ۱۲۹۰</strong>
-              <small>ریشه در بازار تهران</small>
-            </a>
-          </div>
-          <a className="hero__scroll" href="#home-carpets" aria-label="ادامه‌ی صفحه">
-            <span />
-            پایین بروید
-          </a>
+            <figcaption>
+              <span>قم · نمای محیطی همان تخته</span>
+              <a href={`/carpets/${heroProduct.slug}`}>{heroProduct.name}</a>
+            </figcaption>
+          </figure>
         </section>
 
-        <section className="trust-ribbon" aria-label="خدمات حسین‌طلب">
-          <div className="shell trust-ribbon__grid">
+        <section className="proof-strip" aria-label="اصول ارائه‌ی مجموعه">
+          <div className="shell proof-strip__grid">
             <article>
-              <span>۱۰۰٪</span>
-              <div>
-                <strong>رنگرزی طبیعی</strong>
-                <p>رنگ‌های گیاهی، زنده و ماندگار</p>
-              </div>
+              <strong>۰۱</strong>
+              <p>هیچ فرشی برای جا شدن در قاب کشیده یا بریده نمی‌شود.</p>
             </article>
             <article>
-              <span>✦</span>
-              <div>
-                <strong>پشم دست‌ریس</strong>
-                <p>بافت اصیل با لمس و شخصیت طبیعی</p>
-              </div>
+              <strong>۰۲</strong>
+              <p>تصویر محیطی فقط کنار همان فرشی می‌آید که در آن دیده می‌شود.</p>
             </article>
             <article>
-              <span>۱</span>
-              <div>
-                <strong>هر فرش، تنها یک تخته</strong>
-                <p>شناسنامه و تصاویر واقعی همان اثر</p>
-              </div>
-            </article>
-            <article>
-              <span>۱۲۹۰</span>
-              <div>
-                <strong>ریشه در بازار تهران</strong>
-                <p>شناخت فرش، نسل به نسل</p>
-              </div>
+              <strong>۰۳</strong>
+              <p>اطلاعات نامطمئن به‌جای تبدیل‌شدن به ادعا، از نمایش حذف می‌شود.</p>
             </article>
           </div>
         </section>
 
-        <section id="craft" className="craft-statement">
-          <div className="shell craft-statement__grid">
-            <p className="craft-statement__number">۰۱</p>
-            <div>
-              <p className="eyebrow">امضای مشترک تمام مجموعه</p>
-              <h2>نه رنگ شیمیایی.<br />نه نخ کارخانه‌ای.</h2>
-            </div>
-            <div className="craft-statement__copy">
-              <p>تمام فرش‌های حسین‌طلب با <strong>رنگ‌های طبیعی و گیاهی</strong> و <strong>پشم دست‌ریس</strong> بافته شده‌اند؛ تفاوتی که در عمق رنگ، لطافت بافت و زیباییِ گذر زمان دیده می‌شود.</p>
-              <div className="craft-statement__facts">
-                <span><b>رنگ طبیعی</b><small>Natural dyes</small></span>
-                <span><b>پشم دست‌ریس</b><small>Hand-spun wool</small></span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="home-carpets" className="section intro-section">
-          <div className="shell intro-section__grid">
-            <div className="section-heading">
-              <p className="eyebrow">فرش برای خانه</p>
-              <h2>از اتاق شروع کنید، نه از اصطلاحات بازار.</h2>
-              <p>
-                لازم نیست از قبل فرق نقشه‌ها و بافت‌ها را بدانید. بگویید فرش را
-                برای کدام فضا می‌خواهید؛ ما قدم‌به‌قدم گزینه‌ها را روشن می‌کنیم.
-              </p>
-              <a className="inline-link" href="#catalog">
-                راهنمای ساده‌ی انتخاب
-                <ArrowIcon />
-              </a>
-            </div>
-
-            <div className="room-finder">
-              <div className="room-finder__media">
-                {rooms.map((room, index) => (
-                  <img
-                    key={room.title}
-                    className={index === activeRoom ? "is-active" : ""}
-                    src={room.image}
-                    alt={index === activeRoom ? room.alt : ""}
-                    width="1122"
-                    height="1402"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ))}
-                <p>
-                  <span>نکته‌ی انتخاب</span>
-                  {rooms[activeRoom].tip}
-                </p>
-              </div>
-              <div className="room-finder__choices" aria-label="انتخاب فضای خانه">
-                {rooms.map((room, index) => (
-                  <button
-                    key={room.title}
-                    type="button"
-                    className={index === activeRoom ? "is-active" : ""}
-                    aria-pressed={index === activeRoom}
-                    onClick={() => setActiveRoom(index)}
-                  >
-                    <span>{formatIndex(index + 1)}</span>
-                    <div>
-                      <strong>{room.title}</strong>
-                      <small>{room.note}</small>
-                    </div>
-                    <ChevronIcon />
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="catalog" className="section catalog-section">
+        <section id="places" className="section context-section">
           <div className="shell">
-            <div className="catalog-section__head">
-              <div className="section-heading">
-                <p className="eyebrow">راهنمای انتخاب فرش</p>
-                <h2>با سه زبان اصلی بازار آشنا شوید.</h2>
+            <div className="section-heading section-heading--split">
+              <div>
+                <p className="eyebrow">فرش و جغرافیا</p>
+                <h2>هر تخته را در نسبت با جایی که از آن آمده ببینید.</h2>
               </div>
               <p>
-                فرش‌ها را با نام واقعی‌شان دسته‌بندی کرده‌ایم تا هنگام دیدن،
-                پرسیدن و مقایسه‌کردن دقیق‌تر باشید.
+                تصاویر محیطی بخشی از روایت محصول‌اند: نه پس‌زمینه‌ی تزئینی، بلکه راهی برای دیدن
+                رنگ، مقیاس و شخصیت فرش در یک قاب ایرانی.
               </p>
             </div>
 
-            <div className="catalog-tabs" role="tablist" aria-label="روش دسته‌بندی فرش">
-              {(Object.keys(catalogPaths) as CatalogPath[]).map((path) => (
-                <button
-                  id={`catalog-tab-${path}`}
-                  key={path}
-                  type="button"
-                  role="tab"
-                  aria-selected={catalogPath === path}
-                  aria-controls="catalog-panel"
-                  tabIndex={catalogPath === path ? 0 : -1}
-                  onClick={() => setCatalogPath(path)}
-                  onKeyDown={(event) => handleTabKey(event, path)}
-                >
-                  بر اساس {catalogPaths[path].label}
-                </button>
+            <div className="context-journal">
+              {contextStories.map(({ product, image }, index) => (
+                <figure className={`context-journal__item context-journal__item--${index + 1}`} key={product.sku}>
+                  <a href={`/carpets/${product.slug}`}>
+                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption>
+                    <span>{formatIndex(index + 1)} · {product.originName}</span>
+                    <a href={`/carpets/${product.slug}`}>{product.name}</a>
+                  </figcaption>
+                </figure>
               ))}
-            </div>
-
-            <div
-              id="catalog-panel"
-              className="catalog-panel"
-              role="tabpanel"
-              aria-labelledby={`catalog-tab-${catalogPath}`}
-            >
-              <div className="catalog-panel__intro">
-                <p className="eyebrow">{activeCatalog.kicker}</p>
-                <h3>{activeCatalog.title}</h3>
-                <p>{activeCatalog.description}</p>
-                <small>برای دیدن نمونه، روی هر تصویر بزنید.</small>
-              </div>
-              <div className="catalog-panel__rail">
-                {activeCatalog.items.map((item) => (
-                  <button
-                    key={item.name}
-                    type="button"
-                    className="sample-card"
-                    onClick={(event) => openSample(item, event.currentTarget)}
-                    aria-label={`دیدن نمونه‌ی ${item.name}`}
-                  >
-                    <span className="sample-card__image">
-                      <img
-                        src={item.image}
-                        alt=""
-                        width="1200"
-                        height="800"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <i>دیدن نمونه</i>
-                    </span>
-                    <strong>{item.name}</strong>
-                    <small>{item.note}</small>
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
         </section>
 
         <section id="collection" className="section collection-section">
           <div className="shell">
-            <div className="collection-section__head">
-              <div className="section-heading">
+            <div className="section-heading section-heading--split collection-heading">
+              <div>
                 <p className="eyebrow">مجموعه‌ی موجود</p>
-                <h2>هر تخته، یک جهان مستقل.</h2>
+                <h2>فرش را کامل ببینید؛ بعد مقایسه کنید.</h2>
               </div>
               <p>
-                تمام فرش‌های موجود را ببینید؛ با تصاویر واقعی، مشخصات کامل و شناسنامه‌ی هر اثر.
+                هر کارت با نمای روبه‌روی کامل آغاز می‌شود. اگر تصویر محیطیِ همان تخته ثبت شده
+                باشد، بدون برش و تغییر نسبت کنار آن می‌آید.
               </p>
             </div>
 
-            <div className="collection-tools">
-              <div className="collection-filters" aria-label="فیلتر مجموعه">
-                {([
-                  ["all", "همه"],
-                  ["home", "برای خانه"],
-                  ["antique", "آنتیک و نیمه‌آنتیک"],
-                ] as const).map(([value, label]) => (
+            <div className="collection-tools" aria-label="فیلترهای مجموعه">
+              <div className="collection-tabs" aria-label="نوع مجموعه">
+                {collectionFilters.map((filter) => (
                   <button
-                    key={value}
+                    key={filter.value}
                     type="button"
-                    className={collectionFilter === value ? "is-active" : ""}
-                    aria-pressed={collectionFilter === value}
-                    onClick={() => setCollectionFilter(value)}
+                    className={collectionFilter === filter.value ? "is-active" : ""}
+                    aria-pressed={collectionFilter === filter.value}
+                    onClick={() => setCollectionFilter(filter.value)}
                   >
-                    {label}
+                    {filter.label}
                   </button>
                 ))}
               </div>
-              <label className="collection-search">
-                <span>جست‌وجو در مجموعه</span>
+
+              <label className="field-control field-control--search">
+                <span>جست‌وجو</span>
                 <input
+                  type="search"
                   value={collectionQuery}
                   onChange={(event) => setCollectionQuery(event.target.value)}
-                  placeholder="نام، شهر، نقشه یا رنگ…"
-                  type="search"
+                  placeholder="نام، کد، شهر، نقش یا رنگ"
                 />
               </label>
-              <p className="collection-count" aria-live="polite">
-                {visibleCollection.length.toLocaleString("fa-IR")} فرش
-              </p>
+
+              <label className="field-control">
+                <span>محل بافت</span>
+                <select value={originFilter} onChange={(event) => setOriginFilter(event.target.value)}>
+                  <option value="all">همه‌ی شهرها</option>
+                  {origins.map((origin) => (
+                    <option value={origin} key={origin}>{origin}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="field-control">
+                <span>مرتب‌سازی</span>
+                <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as SortOrder)}>
+                  <option value="curated">چیدمان مجموعه</option>
+                  <option value="price-asc">کمترین قیمت</option>
+                  <option value="price-desc">بیشترین قیمت</option>
+                </select>
+              </label>
+            </div>
+
+            <div className="collection-result-line" aria-live="polite">
+              <p>{visibleCollection.length.toLocaleString("fa-IR")} فرش نمایش داده می‌شود</p>
+              {(collectionFilter !== "all" || originFilter !== "all" || collectionQuery || sortOrder !== "curated") && (
+                <button type="button" onClick={resetFilters}>پاک‌کردن فیلترها</button>
+              )}
             </div>
 
             <div className="product-grid">
-              {visibleCollection.map((product, index) => (
-                <article className="product-card" key={product.sku}>
-                  <a
-                    className="product-card__image"
-                    href={`/carpets/${product.slug}`}
-                    aria-label={`مشاهده‌ی ${product.name}`}
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.alt}
-                      width="1122"
-                      height="1402"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span>{product.sku}</span>
-                  </a>
-                  <div className="product-card__body">
-                    <p>{product.origin} · رنگ طبیعی</p>
-                    <h3>{product.name}</h3>
-                    <span>{product.description}</span>
-                    <footer>
-                      <small>{product.size}</small>
-                      <a href={`/carpets/${product.slug}`}>
-                        مشاهده‌ی فرش
-                        <ArrowIcon />
+              {visibleCollection.map((product, index) => {
+                const contextImage = getContextImage(product);
+                return (
+                  <article className="product-card" key={product.sku}>
+                    <div className="product-card__visual">
+                      <a className="product-card__frontal" href={`/carpets/${product.slug}`}>
+                        <img src={product.image} alt={product.alt} loading="lazy" decoding="async" />
                       </a>
-                    </footer>
-                  </div>
-                  <span className="product-card__number" aria-hidden="true">
-                    {formatIndex(index + 1)}
-                  </span>
-                </article>
-              ))}
+                      {contextImage && (
+                        <figure className="product-card__context">
+                          <a href={`/carpets/${product.slug}`} tabIndex={-1}>
+                            <img src={contextImage.src} alt="" loading="lazy" decoding="async" />
+                          </a>
+                          <figcaption>در {product.originName}</figcaption>
+                        </figure>
+                      )}
+                    </div>
+
+                    <div className="product-card__body">
+                      <div className="product-card__meta">
+                        <span>{formatIndex(index + 1)}</span>
+                        <span>{collectionLabel(product)}</span>
+                        <span dir="ltr">{product.sku}</span>
+                      </div>
+                      <h3><a href={`/carpets/${product.slug}`}>{product.name}</a></h3>
+                      <p>{product.description}</p>
+                      <dl>
+                        <div><dt>محل بافت</dt><dd>{product.originName}</dd></div>
+                        {isKnownValue(product.size) && <div><dt>ابعاد</dt><dd>{product.size}</dd></div>}
+                        <div><dt>قیمت</dt><dd>{formatPrice(product.priceToman)}</dd></div>
+                      </dl>
+                      <a className="product-card__link" href={`/carpets/${product.slug}`}>
+                        تصاویر و شناسنامه‌ی کامل
+                      </a>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
+
             {visibleCollection.length === 0 && (
               <div className="collection-empty">
-                <p>فرشی با این مشخصات پیدا نشد.</p>
-                <button type="button" onClick={() => { setCollectionFilter("all"); setCollectionQuery(""); }}>
-                  نمایش همه‌ی فرش‌ها
-                </button>
+                <p>فرشی با این ترکیب پیدا نشد.</p>
+                <button type="button" onClick={resetFilters}>نمایش دوباره‌ی همه‌ی فرش‌ها</button>
               </div>
             )}
           </div>
         </section>
 
-        <section id="antiques" className="antiques-section">
-          <div className="antiques-section__image">
-            <img
-              src="/media/story/bazaar-inspection.jpg"
-              alt="کارشناسی فرش دستباف قدیمی در بازار تهران"
-              width="1122"
-              height="1402"
-              loading="lazy"
-              decoding="async"
-            />
+        <section id="buying-guide" className="section buying-guide">
+          <div className="shell buying-guide__grid">
+            <div className="buying-guide__intro">
+              <p className="eyebrow eyebrow--light">روش انتخاب</p>
+              <h2>اطمینان از دیدن شروع می‌شود.</h2>
+              <p>
+                برای یک فرش تک‌تخته، عکس زیبا کافی نیست. باید بتوانید کل فرش، نسبت واقعی، لبه‌ها،
+                جزئیات نقش و اطلاعات ثبت‌شده را کنار هم ببینید.
+              </p>
+            </div>
+            <ol className="buying-guide__steps">
+              <li>
+                <span>۱</span>
+                <div><h3>نمای کامل را ببینید</h3><p>نسبت، رنگ زمینه و ساختار حاشیه را بدون برش بررسی کنید.</p></div>
+              </li>
+              <li>
+                <span>۲</span>
+                <div><h3>جزئیات ثبت‌شده را بخوانید</h3><p>ابعاد، محل بافت، جنس ثبت‌شده، قدمت و توضیح وضعیت را کنار تصویر بگذارید.</p></div>
+              </li>
+              <li>
+                <span>۳</span>
+                <div><h3>کد فرش را نگه دارید</h3><p>هر گفت‌وگو و بررسی بعدی را با همان کد یکتا ادامه دهید تا ابهامی درباره‌ی تخته نباشد.</p></div>
+              </li>
+            </ol>
           </div>
-          <div className="antiques-section__content">
-            <p className="eyebrow eyebrow--light">مجموعه‌ی خصوصی</p>
-            <h2>فرش آنتیک</h2>
-            <p>
-              فرش‌های قدیمی و کمیاب، بخشی از ریشه‌ی حرفه‌ای خانواده‌ی حسین‌طلب
-              هستند. این مجموعه برای خریداران و مجموعه‌دارانی است که به اصالت،
-              قدمت و شناسنامه‌ی هر اثر اهمیت می‌دهند.
-            </p>
-            <ul>
-              <li>بررسی اصالت و سلامت بافت</li>
-              <li>ارائه‌ی اطلاعات قدمت و محل بافت</li>
-              <li>معرفی گزیده و فقط با هماهنگی</li>
-            </ul>
-            <a className="button button--ivory" href="#consultation">
-              گفت‌وگو درباره‌ی فرش آنتیک
-              <ArrowIcon />
-            </a>
-          </div>
-          <span className="antiques-section__seal" aria-hidden="true">
-            <img
-              src="/brand/exports/hosseintalab-watermark.png"
-              alt=""
-              width="1200"
-              height="1200"
-              loading="lazy"
-            />
-          </span>
         </section>
 
-        <section id="story" className="section story-section">
-          <div className="shell story-section__grid">
-            <div className="story-section__seal">
+        <section id="heritage" className="section heritage-section">
+          <div className="shell heritage-section__grid">
+            <div className="heritage-section__mark">
               <img
                 src="/brand/exports/hosseintalab-seal.svg"
-                alt="نشان رسمی حسین‌طلب؛ تأسیس ۱۲۹۰ هجری شمسی"
-                width="1600"
-                height="1600"
+                alt="نشان حسین‌طلب؛ فرش دستباف ایرانی؛ تأسیس ۱۲۹۰ هجری شمسی"
+                width="900"
+                height="1000"
                 loading="lazy"
-                decoding="async"
               />
             </div>
-            <div className="section-heading">
-              <p className="eyebrow">داستان حسین‌طلب</p>
-              <h2>اعتماد، پیش از آنکه آنلاین شود، در بازار ساخته شد.</h2>
+            <div className="heritage-section__copy">
+              <p className="eyebrow">ریشه در بازار فرش تهران</p>
+              <h2>اعتماد، پیش از فروشگاه آنلاین ساخته شده است.</h2>
               <p>
-                فعالیت خانواده‌ی حسین‌طلب از سال ۱۲۹۰ هجری شمسی در بازار فرش
-                تهران آغاز شده است. تجربه‌ی شناخت بافت، تشخیص کیفیت و دادوستد
-                بین‌المللی، امروز با زبانی روشن‌تر در اختیار خریدار خانه قرار
-                می‌گیرد.
+                فعالیت خانواده‌ی حسین‌طلب از سال ۱۲۹۰ هجری شمسی در بازار فرش تهران آغاز شده
+                است. این فروشگاه قرار نیست آن تجربه را با ادعاهای پرزرق‌وبرق جایگزین کند؛ باید
+                شناخت فرش را به اطلاعات روشن، تصویر دقیق و انتخاب کم‌ریسک‌تر تبدیل کند.
               </p>
-              <p>
-                هدف این فروشگاه فقط نمایش فرش نیست؛ می‌خواهیم فاصله‌ی میان تخصص
-                بازار و نیاز واقعی یک خانه را کمتر کنیم.
-              </p>
-              <a className="inline-link" href="#consultation">
-                از ما راهنمایی بگیرید
-                <ArrowIcon />
-              </a>
-            </div>
-            <div className="story-section__quote">
-              <span>«</span>
-              <blockquote>
-                فرش خوب باید با خانه، شیوه‌ی زندگی و سال‌هایی که قرار است کنار
-                شما بماند، جور باشد.
-              </blockquote>
-              <p>خانواده‌ی حسین‌طلب · بازار فرش تهران</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="consultation" className="consultation-section">
-          <img
-            src="/media/consultation-room-measure-v2.jpg"
-            alt="اندازه‌گیری فضای نشیمن برای انتخاب فرش"
-            width="1536"
-            height="1024"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="consultation-section__veil" />
-          <div className="shell consultation-section__content">
-            <p className="eyebrow eyebrow--light">هنوز مطمئن نیستید؟</p>
-            <h2>یک عکس از فضا بفرستید؛ از همان‌جا شروع می‌کنیم.</h2>
-            <p>
-              اندازه‌ی تقریبی فضا، رنگ مبلمان و بودجه‌تان را بگویید تا چند مسیر
-              مناسب پیشنهاد کنیم. مشاوره می‌تواند آنلاین باشد یا با دیدار در
-              فروشگاه ادامه پیدا کند.
-            </p>
-            <div>
-              <a className="button button--gold" href="tel:+982155675890">
-                تماس با فروشگاه
-                <ArrowIcon />
-              </a>
-              <a className="button button--ghost" href="#footer-contact">
-                راه‌های ارتباطی
-              </a>
+              <a className="text-link" href="#collection">بازگشت به مجموعه‌ی موجود</a>
             </div>
           </div>
         </section>
       </main>
 
-      <footer id="footer-contact" className="site-footer">
+      <footer className="site-footer">
         <div className="shell site-footer__top">
-          <a className="site-footer__brand" href="#top" aria-label="بازگشت به بالای صفحه">
-            <img
-              src="/brand/exports/hosseintalab-lockup-horizontal-reversed.svg"
-              alt="Hosseintalab — Persian Handwoven Carpets"
-              width="1600"
-              height="300"
-              loading="lazy"
-            />
-          </a>
-          <p>
-            فرش دستباف برای خانه و فرش آنتیک؛ با کارشناسی خانواده‌ی حسین‌طلب در
-            بازار فرش تهران.
-          </p>
-          <a className="back-to-top" href="#top">
-            بازگشت به بالا
-            <span aria-hidden="true">↑</span>
-          </a>
+          <img
+            src="/brand/exports/hosseintalab-lockup-horizontal-reversed.svg"
+            alt="Hosseintalab"
+            width="1600"
+            height="300"
+          />
+          <p>فرش دستباف ایرانی، با تصویر همان تخته و اطلاعاتی که بتوان بررسی کرد.</p>
         </div>
-        <div className="shell site-footer__grid">
-          <div>
-            <h2>مجموعه</h2>
-            <a href="#home-carpets">فرش برای خانه</a>
-            <a href="#antiques">فرش آنتیک</a>
-            <a href="#collection">انتخاب این هفته</a>
-          </div>
-          <div>
-            <h2>راهنمای انتخاب</h2>
-            <a href="#catalog">بر اساس قواره</a>
-            <a href="#catalog">بر اساس محل بافت</a>
-            <a href="#catalog">بر اساس نقشه</a>
-          </div>
-          <div>
-            <h2>ارتباط</h2>
-            <a href="tel:+982155675890" dir="ltr">
-              +98 21 5567 5890
-            </a>
-            <a href="mailto:info@hosseintalab.com" dir="ltr">
-              info@hosseintalab.com
-            </a>
-            <p>تهران، بازار بزرگ، بازار فرش</p>
-          </div>
-          <div>
-            <h2>ساعات حضور</h2>
-            <p>شنبه تا چهارشنبه · ۹ تا ۱۷</p>
-            <p>پنجشنبه · با هماهنگی</p>
-          </div>
+        <div className="shell site-footer__nav">
+          <a href="#collection">فرش‌های موجود</a>
+          <a href="#places">فرش و جغرافیا</a>
+          <a href="#buying-guide">روش انتخاب</a>
+          <a href="#heritage">درباره‌ی حسین‌طلب</a>
         </div>
         <div className="shell site-footer__bottom">
-          <p>© ۱۴۰۵ حسین‌طلب. همه‌ی حقوق محفوظ است.</p>
-          <p>فرش دستباف ایرانی · بازار تهران</p>
+          <p>© ۱۴۰۵ حسین‌طلب</p>
+          <a href="#top">بازگشت به ابتدای صفحه</a>
         </div>
       </footer>
-
-      {selectedSample && (
-        <div
-          className="sample-dialog"
-          role="presentation"
-          onMouseDown={(event) => {
-            if (event.currentTarget === event.target) {
-              setSelectedSample(null);
-              sampleTriggerRef.current?.focus();
-            }
-          }}
-        >
-          <div
-            ref={dialogRef}
-            className="sample-dialog__panel"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="sample-title"
-            aria-describedby="sample-description"
-          >
-            <button
-              className="sample-dialog__close"
-              type="button"
-              aria-label="بستن نمونه"
-              onClick={() => {
-                setSelectedSample(null);
-                sampleTriggerRef.current?.focus();
-              }}
-            >
-              <CloseIcon />
-            </button>
-            <img
-              src={selectedSample.image}
-              alt={selectedSample.alt}
-              width="1200"
-              height="800"
-            />
-            <div>
-              <p className="eyebrow">نمونه‌ی تصویری</p>
-              <h2 id="sample-title">{selectedSample.name}</h2>
-              <p id="sample-description">{selectedSample.use}</p>
-              <span>{selectedSample.note}</span>
-              <a className="inline-link" href="#consultation" onClick={() => setSelectedSample(null)}>
-                درباره‌ی این دسته راهنمایی می‌خواهم
-                <ArrowIcon />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
