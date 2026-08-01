@@ -18,7 +18,8 @@
   --line: rgba(23, 37, 54, 0.17);
   --line-light: rgba(255, 255, 255, 0.2);
   --shadow: 0 24px 60px rgba(16, 26, 38, 0.1);
-  --shell: min(1440px, calc(100vw - 64px));
+  --shell: min(1504px, 100%);
+  --shell-padding: 32px;
 }
 
 * {
@@ -32,7 +33,9 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--canvas);
   color: var(--ink);
   font-weight: 400;
@@ -62,6 +65,13 @@ img {
   height: auto;
 }
 
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
 p,
 h1,
 h2,
@@ -83,6 +93,7 @@ select:focus-visible {
 .shell {
   width: var(--shell);
   margin-inline: auto;
+  padding-inline: var(--shell-padding);
 }
 
 .skip-link {
@@ -883,17 +894,23 @@ select:focus-visible {
 
 .product-gallery__main {
   position: relative;
-  display: block;
+  display: grid;
   width: 100%;
+  min-width: 0;
+  place-items: center;
   border: 0;
   padding: clamp(18px, 3vw, 44px);
+  overflow: hidden;
   background: #e8e4dc;
   color: var(--navy);
 }
 
 .product-gallery__main img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 820px;
+  max-height: min(72svh, 820px);
   object-fit: contain;
 }
 
@@ -907,14 +924,21 @@ select:focus-visible {
 }
 
 .product-gallery__thumbs {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
   gap: 12px;
   margin-top: 14px;
+  padding-bottom: 8px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline proximity;
+  scrollbar-color: rgba(7, 42, 81, 0.34) transparent;
+  scrollbar-width: thin;
 }
 
 .product-gallery__thumbs button {
+  flex: 0 0 clamp(96px, 9vw, 124px);
   min-width: 0;
+  scroll-snap-align: start;
   border: 1px solid transparent;
   padding: 7px;
   background: var(--paper);
@@ -929,7 +953,7 @@ select:focus-visible {
 
 .product-gallery__thumbs img {
   width: 100%;
-  height: auto;
+  height: clamp(82px, 8vw, 108px);
   object-fit: contain;
 }
 
@@ -1002,7 +1026,7 @@ select:focus-visible {
 
 .product-summary__quick-facts div {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: minmax(82px, 110px) minmax(0, 1fr);
   gap: 16px;
   padding-block: 10px;
   border-bottom: 1px solid var(--line);
@@ -1228,7 +1252,7 @@ select:focus-visible {
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: clamp(10px, 3vw, 24px);
   background: rgba(3, 14, 28, 0.94);
 }
 
@@ -1236,7 +1260,8 @@ select:focus-visible {
   position: relative;
   display: grid;
   max-width: min(1500px, 94vw);
-  max-height: 94vh;
+  width: 100%;
+  max-height: 94svh;
   place-items: center;
 }
 
@@ -1256,7 +1281,7 @@ select:focus-visible {
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 86vh;
+  max-height: calc(100svh - 76px);
   object-fit: contain;
 }
 
@@ -1268,7 +1293,7 @@ select:focus-visible {
 
 @media (max-width: 1120px) {
   :root {
-    --shell: min(100% - 42px, 1080px);
+    --shell-padding: 21px;
   }
 
   .site-header__inner {
@@ -1310,9 +1335,9 @@ select:focus-visible {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   :root {
-    --shell: calc(100% - 32px);
+    --shell-padding: 16px;
   }
 
   html {
@@ -1360,7 +1385,7 @@ select:focus-visible {
   .product-hero,
   .product-identity__grid,
   .product-place__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .hero {
@@ -1422,20 +1447,33 @@ select:focus-visible {
 
   .product-summary {
     position: static;
+    width: min(100%, 720px);
+    margin-inline: auto;
   }
 
-  .product-gallery__thumbs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .product-gallery {
+    width: min(100%, 680px);
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .product-gallery__main img {
+    max-height: 680px;
+    max-height: min(64svh, 680px);
   }
 
   .product-record__grid {
     column-count: 2;
   }
+
+  .related-products__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 580px) {
   :root {
-    --shell: calc(100% - 24px);
+    --shell-padding: 12px;
   }
 
   .service-line {
@@ -1520,6 +1558,11 @@ select:focus-visible {
     border-right: 0;
   }
 
+  .field-control input,
+  .field-control select {
+    font-size: 1rem;
+  }
+
   .collection-result-line {
     align-items: flex-start;
     flex-direction: column;
@@ -1558,25 +1601,30 @@ select:focus-visible {
   }
 
   .product-hero {
-    padding-top: 36px;
+    gap: 42px;
+    padding-block: 30px 76px;
   }
 
   .product-gallery__main {
-    padding: 14px;
+    padding: 12px;
   }
 
-  .product-gallery__thumbs {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 8px;
+  .product-gallery__main img {
+    max-height: 540px;
+    max-height: min(58svh, 540px);
   }
 
   .product-gallery__thumbs button {
-    flex: 0 0 112px;
+    flex-basis: 96px;
+  }
+
+  .product-gallery__thumbs img {
+    height: 80px;
   }
 
   .product-summary h1 {
-    font-size: clamp(2.8rem, 14vw, 4.7rem);
+    font-size: clamp(2.2rem, 11vw, 3.6rem);
+    overflow-wrap: anywhere;
   }
 
   .product-specs div {
@@ -1595,6 +1643,76 @@ select:focus-visible {
 
   .product-notes__grid {
     gap: 58px;
+  }
+
+  .product-place__grid,
+  .product-identity__grid,
+  .buying-guide__grid,
+  .heritage-section__grid {
+    gap: 48px;
+  }
+
+  .product-summary__quick-facts div {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --shell-padding: 10px;
+  }
+
+  .service-line {
+    font-size: 0.59rem;
+  }
+
+  .site-header__inner {
+    gap: 10px;
+  }
+
+  .header-cta {
+    padding-inline: 10px;
+    font-size: 0.68rem;
+  }
+
+  .main-nav,
+  .product-nav {
+    gap: 15px;
+  }
+
+  .hero__title h1 {
+    font-size: clamp(2.35rem, 13vw, 3rem);
+  }
+
+  .section {
+    padding-block: 68px;
+  }
+
+  .product-card__visual {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .product-card__context {
+    width: min(62%, 180px);
+    padding-bottom: 0;
+  }
+
+  .product-summary__quick-facts div,
+  .product-specs div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .product-gallery__main img {
+    max-height: 460px;
+    max-height: min(54svh, 460px);
+  }
+
+  .product-gallery__main > span {
+    right: 8px;
+    bottom: 8px;
+    padding: 5px 7px;
+    font-size: 0.58rem;
   }
 }
 
