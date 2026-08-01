@@ -21,7 +21,7 @@ const contextStories = catalogProducts
   .map((product) => ({ product, image: getContextImage(product) }))
   .filter((story): story is { product: (typeof catalogProducts)[number]; image: NonNullable<ReturnType<typeof getContextImage>> } => Boolean(story.image))
   .filter(({ product }) =>
-    ["HT-QOM-0001", "HT-KSH-0001", "HT-SNH-0001", "HT-RVR-0001", "HT-TBZ-0001"].includes(product.sku),
+    ["HT-KSH-0001", "HT-KHY-0001", "HT-ISF-0002", "HT-SNH-0001", "HT-QOM-0004", "HT-TBZ-0001"].includes(product.sku),
   );
 
 function formatIndex(index: number) {
@@ -75,7 +75,7 @@ export default function Home() {
     setSortOrder("curated");
   };
 
-  const heroProduct = catalogProducts.find((product) => product.sku === "HT-QOM-0001")!;
+  const heroProduct = catalogProducts.find((product) => product.sku === "HT-QOM-0003")!;
   const heroImage = getContextImage(heroProduct)!;
 
   return (
@@ -118,38 +118,28 @@ export default function Home() {
 
       <main id="main-content">
         <section id="top" className="hero shell">
-          <div className="hero__copy">
-            <p className="eyebrow">مجموعه‌ی حاضر · {catalogProducts.length.toLocaleString("fa-IR")} تک‌تخته</p>
-            <h1>
-              فرش را همان‌طور که هست
-              <em>ببینید و بشناسید.</em>
-            </h1>
-            <p className="hero__lead">
-              نمای کامل، جزئیات بافت و تصویر محیطیِ هر فرش کنار اطلاعات روشن آن آمده است؛
-              تا پیش از تصمیم، خودِ تخته را ببینید، نه یک تصویر جایگزین را.
-            </p>
-            <div className="hero__actions">
-              <a className="button button--primary" href="#collection">
-                فرش‌های موجود را ببینید
-              </a>
-              <a className="text-link" href="#buying-guide">
-                روش بررسی هر فرش
-              </a>
+          <div className="hero__intro">
+            <div className="hero__title">
+              <p className="eyebrow">مجموعه‌ی حاضر · {catalogProducts.length.toLocaleString("fa-IR")} تک‌تخته</p>
+              <h1>
+                فرش را کامل ببینید.
+                <em>بعد انتخاب کنید.</em>
+              </h1>
             </div>
-            <dl className="hero__facts">
-              <div>
-                <dt>تصویر</dt>
-                <dd>نمای کامل و جزئیات</dd>
+            <div className="hero__copy">
+              <p className="hero__lead">
+                نمای کامل، جزئیات بافت و تصویر محیطیِ همان تخته را کنار اطلاعات روشن آن ببینید؛
+                بی‌برش، بی‌اغراق و آماده‌ی مقایسه.
+              </p>
+              <div className="hero__actions">
+                <a className="button button--primary" href="#collection">
+                  فرش‌های موجود را ببینید
+                </a>
+                <a className="text-link" href="#buying-guide">
+                  روش بررسی هر فرش
+                </a>
               </div>
-              <div>
-                <dt>شناسنامه</dt>
-                <dd>کد، محل بافت و ابعاد ثبت‌شده</dd>
-              </div>
-              <div>
-                <dt>انتخاب</dt>
-                <dd>مقایسه بدون فشار خرید</dd>
-              </div>
-            </dl>
+            </div>
           </div>
 
           <figure className="hero__media">
@@ -163,8 +153,11 @@ export default function Home() {
               />
             </a>
             <figcaption>
-              <span>قم · نمای محیطی همان تخته</span>
-              <a href={`/carpets/${heroProduct.slug}`}>{heroProduct.name}</a>
+              <div>
+                <span>قم · نمای محیطی همان تخته</span>
+                <strong>{heroProduct.name}</strong>
+              </div>
+              <a href={`/carpets/${heroProduct.slug}`}>دیدن تصاویر و شناسنامه</a>
             </figcaption>
           </figure>
         </section>
@@ -188,7 +181,7 @@ export default function Home() {
 
         <section id="places" className="section context-section">
           <div className="shell">
-            <div className="section-heading section-heading--split">
+            <div className="context-section__head">
               <div>
                 <p className="eyebrow">فرش و جغرافیا</p>
                 <h2>هر تخته را در نسبت با جایی که از آن آمده ببینید.</h2>
@@ -199,15 +192,18 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="context-journal">
+            <div className="place-grid">
               {contextStories.map(({ product, image }, index) => (
-                <figure className={`context-journal__item context-journal__item--${index + 1}`} key={product.sku}>
-                  <a href={`/carpets/${product.slug}`}>
+                <figure className="place-card" key={product.sku}>
+                  <a className="place-card__image" href={`/carpets/${product.slug}`}>
                     <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
                   </a>
                   <figcaption>
-                    <span>{formatIndex(index + 1)} · {product.originName}</span>
-                    <a href={`/carpets/${product.slug}`}>{product.name}</a>
+                    <span>{formatIndex(index + 1)}</span>
+                    <div>
+                      <p>{product.originName}</p>
+                      <a href={`/carpets/${product.slug}`}>{product.name}</a>
+                    </div>
                   </figcaption>
                 </figure>
               ))}
