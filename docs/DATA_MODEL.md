@@ -24,7 +24,7 @@ not to PostgreSQL.
 | طرح و نقش | `patterns` | Normalized pattern/design, such as افشان or ماهی |
 | ابعاد | `width_cm`, `length_cm`, `diameter_cm` | Store centimetres as numbers; format for the website later |
 | سال بافت | `weaving_year_shamsi`, `weaving_year_note_fa` | Stores an exact شمسـی year when known, or a careful note such as «دهه ۱۳۲۰» |
-| قیمت | `price_toman` | Integer تومان, never a floating-point amount |
+| قیمت | `price_toman`, `price_usd` | Integer تومان or whole US dollars; exactly one is used for a public price |
 | سن | `age_years` | Estimated current age in years when exact weaving date is not known |
 | رنگرزی | `dye_type` | گیاهی, طبیعی, شیمیایی, ترکیبی, یا نامشخص |
 | چله | `product_materials.role = warp` | `چله` is the **warp/foundation thread**, not the fringe. ریشه is the exposed end of the warp. |
@@ -97,7 +97,8 @@ erDiagram
 
 1. Create the private `hosseintalab` database and its local API role on the
    existing server.
-2. Apply `database/migrations/001_initial_commerce.sql`, then
+2. Apply `database/migrations/001_initial_commerce.sql`,
+   `database/migrations/002_product_usd_prices.sql`, then
    `database/bootstrap/grant_application_role.sql`, as the PostgreSQL
    administrator.
 3. Create the first administrator through the API bootstrap command; passwords

@@ -286,12 +286,13 @@
         "HT-KSH-0003": ["لچک‌وترنجِ کاشان", "Kashan Medallion-and-Corner Carpet", "کاشان", "Kashan, Iran", "ht-ksh-0003"],
         "HT-QOM-0004": ["محرابی قندیلیِ قم", "Qom Lamp-Mihrab Carpet", "قم", "Qom, Iran", "ht-qom-0004"],
         "HT-SHB-0001": ["محرماتِ شهر بابک / سیرجان", "Shahr Babak/Sirjan Moharramat Carpet", "شهر بابک / سیرجان", "Shahr Babak/Sirjan, Iran", "ht-shb-0001"],
-        "HT-TBZ-0001": ["لچک‌وترنجِ تبریز، ۶۰ رج", "Tabriz 60-Raj Medallion Carpet", "تبریز", "Tabriz, Iran", "ht-tbz-0001"]
+        "HT-TBZ-0001": ["لچک‌وترنجِ تبریز، ۶۰ رج", "Tabriz 60-Raj Medallion Carpet", "تبریز", "Tabriz, Iran", "ht-tbz-0001"],
+        "HT-KSH-0004": ["تابلوفرشِ مشاهیرِ کاشان", "Kashan Pictorial Carpet of Persian Luminaries", "کاشان", "Kashan, Iran", "ht-ksh-0004", "webp"]
       };
 
       const requested = new URLSearchParams(location.search).get("sku") || "HT-KSH-0001";
       const sku = COVERS[requested] ? requested : "HT-KSH-0001";
-      const [faName, enName, faOrigin, enOrigin, slug] = COVERS[sku];
+      const [faName, enName, faOrigin, enOrigin, slug, extension = "png"] = COVERS[sku];
       const faTitle = document.getElementById("title-fa");
       faTitle.textContent = faName;
       faTitle.classList.toggle("is-long", faName.length > 22);
@@ -299,7 +300,7 @@
       document.getElementById("origin-fa").textContent = faOrigin;
       document.getElementById("origin-en").textContent = enOrigin;
       document.getElementById("sku").textContent = sku;
-      document.getElementById("carpet").src = `../public/media/products/${slug}/full-frontal.png`;
+      document.getElementById("carpet").src = `../public/media/products/${slug}/full-frontal.${extension}`;
       document.getElementById("carpet").alt = `${faName} · ${sku}`;
       document.title = `${sku} Reel Cover`;
     </script>

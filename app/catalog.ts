@@ -15,7 +15,8 @@ export type CatalogProduct = {
   image: string;
   alt: string;
   collection: "antique" | "home";
-  priceToman: number;
+  priceToman?: number;
+  priceUsd?: number;
   priceLabel: string;
   ageLabel: string;
   pattern: string;
@@ -1054,6 +1055,64 @@ export const catalogProducts: CatalogProduct[] = [
         src: "/media/products/ht-tbz-0001/tabriz-context.png",
         alt: "فرش لچک‌وترنج تبریز در نمای محیطی",
         label: "نمای محیطی",
+      },
+    ],
+  },
+  {
+    slug: "ht-ksh-0004",
+    sku: "HT-KSH-0004",
+    name: "تابلوفرشِ مشاهیرِ کاشان",
+    origin: "تابلوفرش دستباف کاشان",
+    originName: "کاشان",
+    size: "۱۰۶ × ۱۵۶ سانتی‌متر",
+    dimensions: "۱۰۶ × ۱۵۶ سانتی‌متر",
+    description: "نقشه‌ی تصویریِ مشاهیر با شش چهره‌ی نام‌گذاری‌شده و امضای بافته‌شده",
+    image: "/media/products/ht-ksh-0004/full-frontal.webp",
+    alt: "تابلوفرش دستباف کاشان با نقشه‌ی تصویری مشاهیر و حاشیه‌ی لاکی",
+    collection: "antique",
+    priceUsd: 5000,
+    priceLabel: "۵٬۰۰۰ دلار آمریکا",
+    ageLabel: "حدود ۷۰ سال",
+    pattern: "تصویریِ مشاهیر",
+    materials: "پشم",
+    fieldColor: "کرم / بژ",
+    borderColor: "لاکی، سرمه‌ای و طلایی",
+    longDescription:
+      "شش چهره‌ی نام‌گذاری‌شده از مشاهیر ادب و فرهنگ در قاب‌های تصویریِ جداگانه روی زمینه‌ای روشن چیده شده‌اند. شاخه‌ها و گل‌های ظریف، فاصله‌ی میان پرتره‌ها را پُر می‌کنند و حاشیه‌ی لاکیِ پرنقش، ترکیب را مانند یک قاب نمایشگاهی در بر می‌گیرد. نسبت عمودی و روایت تصویری، این تخته را برای نمایش دیواری مناسب می‌کند.",
+    designNote:
+      "نقشه‌ی تصویریِ مشاهیر به‌جای ترنج یا ساختار سراسری، بر پرتره‌های کتیبه‌دار تکیه دارد. چهره‌ها در یک نظم عمودی خوانده می‌شوند و نوشته‌ها هویت هر شخصیت را در خودِ بافت ثبت می‌کنند. امضای بافته‌شده‌ی «ترسیم محمد افسری» نیز در بخش پایینیِ متن دیده می‌شود.",
+    conditionNote:
+      "نمای کامل، دو نمای زاویه‌دار، جزئیات چهره‌ها، نمای نزدیک امضا و یک نمای محیطی در گالری ثبت شده‌اند. جنس پشم، قدمت تقریبی ۷۰ سال و انتساب امضا بر اساس اطلاعات ارائه‌شده و کتیبه‌ی قابل مشاهده ثبت شده‌اند؛ وضعیت فنی و هرگونه مرمت احتمالی نیازمند تأیید کارشناسی است.",
+    images: [
+      {
+        src: "/media/products/ht-ksh-0004/full-frontal.webp",
+        alt: "نمای روبه‌روی کامل تابلوفرش مشاهیر کاشان",
+        label: "نمای کامل",
+      },
+      {
+        src: "/media/products/ht-ksh-0004/studio-three-quarter.webp",
+        alt: "نمای زاویه‌دار تابلوفرش مشاهیر کاشان",
+        label: "نمای زاویه‌دار",
+      },
+      {
+        src: "/media/products/ht-ksh-0004/low-angle.webp",
+        alt: "نمای کم‌ارتفاع از تابلوفرش مشاهیر کاشان",
+        label: "نمای دوم",
+      },
+      {
+        src: "/media/products/ht-ksh-0004/portrait-detail.webp",
+        alt: "جزئیات شش چهره و کتیبه‌های تابلوفرش مشاهیر کاشان",
+        label: "جزئیات چهره‌ها",
+      },
+      {
+        src: "/media/products/ht-ksh-0004/signature-detail.webp",
+        alt: "نمای نزدیک امضای بافته‌شده‌ی ترسیم محمد افسری",
+        label: "جزئیات امضا",
+      },
+      {
+        src: "/media/products/ht-ksh-0004/kashan-context.webp",
+        alt: "تابلوفرش مشاهیر در فضای معماری کاشان",
+        label: "نمای کاشان",
       },
     ],
   },

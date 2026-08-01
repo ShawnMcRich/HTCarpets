@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { catalogProducts } from "./catalog";
 import {
   collectionLabel,
+  compareCatalogPrices,
   formatPrice,
   getContextImage,
   isKnownValue,
@@ -22,7 +23,7 @@ const contextStories = catalogProducts
   .map((product) => ({ product, image: getContextImage(product) }))
   .filter((story): story is { product: (typeof catalogProducts)[number]; image: NonNullable<ReturnType<typeof getContextImage>> } => Boolean(story.image))
   .filter(({ product }) =>
-    ["HT-KSH-0001", "HT-KHY-0001", "HT-ISF-0002", "HT-SNH-0001", "HT-QOM-0004", "HT-TBZ-0001"].includes(product.sku),
+    ["HT-KSH-0001", "HT-KHY-0001", "HT-ISF-0002", "HT-SNH-0001", "HT-QOM-0004", "HT-TBZ-0001", "HT-KSH-0004"].includes(product.sku),
   );
 
 function formatIndex(index: number) {
@@ -61,10 +62,10 @@ export default function Home() {
     });
 
     if (sortOrder === "price-asc") {
-      return [...products].sort((a, b) => a.priceToman - b.priceToman);
+      return [...products].sort((a, b) => compareCatalogPrices(a, b, "asc"));
     }
     if (sortOrder === "price-desc") {
-      return [...products].sort((a, b) => b.priceToman - a.priceToman);
+      return [...products].sort((a, b) => compareCatalogPrices(a, b, "desc"));
     }
     return products;
   }, [collectionFilter, collectionQuery, originFilter, sortOrder]);
@@ -88,7 +89,7 @@ export default function Home() {
       <div className="service-line">
         <div className="shell service-line__inner">
           <p>بازار فرش تهران · از ۱۲۹۰ هجری شمسی</p>
-          <p>هر فرش با کد، تصاویر همان تخته و اطلاعات ثبت‌شده</p>
+          <p>هر فرش با نام، تصاویر همان تخته و اطلاعات ثبت‌شده</p>
         </div>
       </div>
 
@@ -183,8 +184,8 @@ export default function Home() {
             <article>
               <strong>۰۳</strong>
               <div>
-                <h2>یک کد برای پیگیری</h2>
-                <p>هر سؤال و بررسی بعدی را با کد یکتای همان فرش ادامه دهید.</p>
+                <h2>پرسش، بدون حفظ‌کردن کد</h2>
+                <p>نام فرش، لینک صفحه یا یک اسکرین‌شات بفرستید؛ همین برای شناسایی آن کافی است.</p>
               </div>
             </article>
           </div>
@@ -256,7 +257,7 @@ export default function Home() {
                   type="search"
                   value={collectionQuery}
                   onChange={(event) => setCollectionQuery(event.target.value)}
-                  placeholder="نام، کد، شهر، نقش یا رنگ"
+                  placeholder="نام، شهر، نقش یا رنگ"
                 />
               </label>
 
@@ -310,14 +311,13 @@ export default function Home() {
                       <div className="product-card__meta">
                         <span>{formatIndex(index + 1)}</span>
                         <span>{collectionLabel(product)}</span>
-                        <span dir="ltr">{product.sku}</span>
                       </div>
                       <h3><a href={`/carpets/${product.slug}`}>{product.name}</a></h3>
                       <p>{product.description}</p>
                       <dl>
                         <div><dt>محل بافت</dt><dd>{product.originName}</dd></div>
                         {isKnownValue(product.size) && <div><dt>ابعاد</dt><dd>{product.size}</dd></div>}
-                        <div><dt>قیمت</dt><dd>{formatPrice(product.priceToman)}</dd></div>
+                        <div><dt>قیمت</dt><dd>{formatPrice(product)}</dd></div>
                       </dl>
                       <a className="product-card__link" href={`/carpets/${product.slug}`}>
                         تصاویر و شناسنامه‌ی کامل
@@ -358,7 +358,7 @@ export default function Home() {
               </li>
               <li>
                 <span>۳</span>
-                <div><h3>کد فرش را نگه دارید</h3><p>هر گفت‌وگو و بررسی بعدی را با همان کد یکتا ادامه دهید تا ابهامی درباره‌ی تخته نباشد.</p></div>
+                <div><h3>همان چیزی را که می‌بینید بفرستید</h3><p>نام فرش، لینک صفحه یا یک اسکرین‌شات را در واتساپ یا دایرکت بفرستید؛ نیازی به حفظ‌کردن کد نیست.</p></div>
               </li>
             </ol>
           </div>
@@ -392,17 +392,23 @@ export default function Home() {
           <div className="shell contact-section__grid">
             <div className="contact-section__intro">
               <p className="eyebrow eyebrow--light">تماس و مشاوره</p>
-              <h2>کد فرش را بفرستید؛ درباره‌ی همان تخته پاسخ می‌دهیم.</h2>
+              <h2>نام فرش یا اسکرین‌شاتش را بفرستید.</h2>
               <p>
-                برای دریافت تصاویر کامل، بررسی موجودی و هماهنگی خرید، کد یکتای فرش را در
-                واتساپ ارسال کنید. برای گفت‌وگوی تلفنی هم مستقیماً تماس بگیرید.
+                برای دریافت تصاویر کامل، بررسی موجودی و هماهنگی خرید، نام فرش، لینک صفحه یا
+                یک اسکرین‌شات را در واتساپ یا دایرکت اینستاگرام بفرستید. برای گفت‌وگوی تلفنی
+                هم می‌توانید مستقیماً تماس بگیرید.
               </p>
             </div>
             <div className="contact-section__actions">
               <a href={contact.whatsappHref} target="_blank" rel="noreferrer">
                 <span>واتساپ</span>
                 <strong dir="ltr">{contact.whatsappDisplay}</strong>
-                <small>ارسال کد فرش و دریافت جزئیات</small>
+                <small>ارسال نام، لینک یا تصویر فرش</small>
+              </a>
+              <a href={contact.instagramHref} target="_blank" rel="noreferrer">
+                <span>دایرکت اینستاگرام</span>
+                <strong dir="ltr">{contact.instagramDisplay}</strong>
+                <small>بازکردن پروفایل و ارسال نام یا اسکرین‌شات</small>
               </a>
               <a href={contact.callHref}>
                 <span>تماس تلفنی</span>
@@ -438,6 +444,9 @@ export default function Home() {
           <a href="#contact">تماس</a>
           <a href={contact.whatsappHref} target="_blank" rel="noreferrer" dir="ltr">
             WhatsApp {contact.whatsappDisplay}
+          </a>
+          <a href={contact.instagramHref} target="_blank" rel="noreferrer" dir="ltr">
+            Instagram {contact.instagramDisplay}
           </a>
           <a href={contact.callHref} dir="ltr">Call {contact.callDisplay}</a>
           <a href={contact.websiteHref} dir="ltr">{contact.website}</a>

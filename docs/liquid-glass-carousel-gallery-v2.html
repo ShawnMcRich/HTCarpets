@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hosseintalab — Art-directed carousel collection</title>
+    <style>
+      :root { color-scheme: dark; --gold: #d6ae68; --paper: #f4efe5; --muted: #aaa79e; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #11110e;
+        color: var(--paper);
+        font-family: Arial, sans-serif;
+      }
+      header {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 64px 28px 38px;
+      }
+      h1 {
+        max-width: 920px;
+        margin: 0;
+        font: 400 clamp(2.4rem, 7vw, 6rem)/.94 Georgia, serif;
+        letter-spacing: -.04em;
+      }
+      header p {
+        max-width: 760px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+      .status {
+        display: inline-flex;
+        margin-top: 24px;
+        border: 1px solid rgba(214, 174, 104, .42);
+        border-radius: 999px;
+        padding: 10px 14px;
+        color: var(--gold);
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+      }
+      main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+        gap: 28px;
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 20px 28px 90px;
+      }
+      article {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, .1);
+        border-radius: 18px;
+        background: #191915;
+        box-shadow: 0 22px 70px rgba(0, 0, 0, .28);
+      }
+      article img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        background: #090a08;
+      }
+      .meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px 18px;
+      }
+      h2 {
+        margin: 0;
+        color: var(--gold);
+        font-size: .9rem;
+        letter-spacing: .08em;
+      }
+      a {
+        color: var(--paper);
+        font-size: .78rem;
+        text-decoration-color: rgba(214, 174, 104, .56);
+        text-underline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Twenty carpets.<br />Twenty art-directed spaces.</h1>
+      <p>The approved liquid-glass campaign system rebuilt as individual 1080 × 1350 compositions. Product facts and the official logo are deterministic overlays; references, dimensions and ages now use uniform-height lining numerals for fast reading.</p>
+      <div class="status">20 / 20 · V2 EXPORTS READY</div>
+    </header>
+    <main id="gallery"></main>
+    <script>
+      const skus = [
+        "HT-KSH-0001", "HT-KHY-0001", "HT-KRM-0001", "HT-NHV-0001", "HT-RVR-0001",
+        "HT-QOM-0001", "HT-QOM-0002", "HT-QOM-0003", "HT-KSH-0002", "HT-ISF-0001",
+        "HT-ISF-0002", "HT-SRJ-0001", "HT-SNH-0001", "HT-NJF-0001", "HT-BJR-0001",
+        "HT-KSH-0003", "HT-QOM-0004", "HT-SHB-0001", "HT-TBZ-0001", "HT-KSH-0004"
+      ];
+      document.getElementById("gallery").innerHTML = skus.map(sku => {
+        const slug = sku.toLowerCase();
+        const src = `../public/media/carousel-info-v2/${slug}-liquid-glass-info-v2.png`;
+        return `<article>
+          <img src="${src}" alt="${sku} art-directed liquid-glass carousel slide" loading="lazy" />
+          <div class="meta"><h2>${sku}</h2><a href="${src}" download>Download PNG</a></div>
+        </article>`;
+      }).join("");
+    </script>
+  </body>
+</html>

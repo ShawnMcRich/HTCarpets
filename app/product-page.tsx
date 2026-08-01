@@ -43,7 +43,6 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
 
   const specs = useMemo(() => {
     const values: Array<Spec & { known?: boolean }> = [
-      { label: "کد فرش", value: product.sku },
       { label: "محل بافت", value: product.originName },
       { label: "ابعاد", value: product.dimensions, known: isKnownValue(product.dimensions) },
       { label: "طرح و نقشه", value: product.pattern },
@@ -65,9 +64,9 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
     return Array.from(new Map([...sameOrigin, ...sameCollection].map((candidate) => [candidate.slug, candidate])).values()).slice(0, 3);
   }, [product]);
 
-  const copySku = async () => {
+  const copyProductLink = async () => {
     try {
-      await navigator.clipboard.writeText(product.sku);
+      await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
@@ -82,7 +81,7 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
       <div className="service-line">
         <div className="shell service-line__inner">
           <p>بازار فرش تهران · از ۱۲۹۰ هجری شمسی</p>
-          <p>تصاویر این صفحه متعلق به همین کد فرش است</p>
+          <p>تصاویر این صفحه متعلق به همین فرش است</p>
         </div>
       </div>
 
@@ -147,12 +146,11 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
 
           <aside className="product-summary">
             <p className="eyebrow">{collectionLabel(product)}</p>
-            <p className="product-summary__sku" dir="ltr">{product.sku}</p>
             <h1>{product.name}</h1>
             <p className="product-summary__lead">{product.description}</p>
             <div className="product-summary__price">
               <span>قیمت ثبت‌شده</span>
-              <strong>{formatPrice(product.priceToman)}</strong>
+              <strong>{formatPrice(product)}</strong>
             </div>
             <p className="product-summary__availability">
               تک‌تخته · موجودی و وضعیت نهایی پیش از تصمیم تأیید می‌شود
@@ -167,21 +165,33 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
             <div className="product-summary__actions">
               <a
                 className="button button--primary"
-                href={whatsappProductHref(product.sku)}
+                href={whatsappProductHref(product)}
                 target="_blank"
                 rel="noreferrer"
               >
                 پیام در واتساپ درباره‌ی این فرش
               </a>
+              <a
+                className="button product-summary__instagram"
+                href={contact.instagramHref}
+                target="_blank"
+                rel="noreferrer"
+              >
+                دایرکت اینستاگرام
+              </a>
               <a className="button product-summary__call" href={contact.callHref}>
                 تماس تلفنی
               </a>
-              <button className="product-summary__copy" type="button" onClick={copySku}>
-                {copied ? "کد فرش کپی شد" : `کپی کد ${product.sku}`}
+              <button className="product-summary__copy" type="button" onClick={copyProductLink}>
+                {copied ? "لینک صفحه کپی شد" : "کپی لینک این فرش"}
               </button>
             </div>
             <p className="product-summary__note">
+              لازم نیست کدی حفظ کنید؛ نام فرش، لینک همین صفحه یا اسکرین‌شات آن کافی است.
+              <br />
               واتساپ: <a href={contact.whatsappHref} dir="ltr">{contact.whatsappDisplay}</a>
+              <span aria-hidden="true"> · </span>
+              اینستاگرام: <a href={contact.instagramHref} dir="ltr">{contact.instagramDisplay}</a>
               <span aria-hidden="true"> · </span>
               تماس: <a href={contact.callHref} dir="ltr">{contact.callDisplay}</a>
             </p>
@@ -199,10 +209,10 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
               {specs.map((spec) => (
                 <div key={spec.label}>
                   <dt>{spec.label}</dt>
-                  <dd dir={spec.label === "کد فرش" ? "ltr" : undefined}>{spec.value}</dd>
+                  <dd>{spec.value}</dd>
                 </div>
               ))}
-              <div><dt>قیمت ثبت‌شده</dt><dd>{formatPrice(product.priceToman)}</dd></div>
+              <div><dt>قیمت ثبت‌شده</dt><dd>{formatPrice(product)}</dd></div>
             </dl>
           </div>
         </section>
@@ -288,9 +298,8 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
                     <a href={`/carpets/${related.slug}`}>
                       <img src={related.image} alt={related.alt} loading="lazy" decoding="async" />
                     </a>
-                    <p dir="ltr">{related.sku}</p>
                     <h3><a href={`/carpets/${related.slug}`}>{related.name}</a></h3>
-                    <span>{related.originName} · {formatPrice(related.priceToman)}</span>
+                    <span>{related.originName} · {formatPrice(related)}</span>
                   </article>
                 ))}
               </div>
@@ -314,6 +323,9 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
           <div className="product-footer__links">
             <a href={contact.whatsappHref} target="_blank" rel="noreferrer" dir="ltr">
               WhatsApp {contact.whatsappDisplay}
+            </a>
+            <a href={contact.instagramHref} target="_blank" rel="noreferrer" dir="ltr">
+              Instagram {contact.instagramDisplay}
             </a>
             <a href={contact.callHref} dir="ltr">Call {contact.callDisplay}</a>
             <a href={contact.mapsHref} target="_blank" rel="noreferrer">{contact.address}</a>
