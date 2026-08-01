@@ -81,42 +81,14 @@
         justify-content: space-between;
       }
 
-      .brand-lockup {
-        display: flex;
-        gap: 22px;
-        align-items: center;
-      }
-
-      .brand-mark {
-        display: grid;
-        width: 58px;
-        height: 58px;
-        place-items: center;
-        border: 2px solid var(--gold);
-        color: var(--gold-pale);
-        font-family: Georgia, serif;
-        font-size: 20px;
-        transform: rotate(45deg);
-      }
-
-      .brand-mark span { transform: rotate(-45deg); }
-
-      .brand-name strong,
-      .brand-name small {
+      .brand-logo {
         display: block;
+        width: 475px;
+        height: auto;
       }
 
-      .brand-name strong {
-        font-family: Georgia, serif;
-        font-size: 24px;
-        font-weight: 500;
-        letter-spacing: 0.16em;
-      }
-
-      .brand-name small,
       .edition {
-        margin-top: 4px;
-        color: rgba(255, 255, 255, 0.48);
+        color: var(--gold-pale);
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 0.18em;
@@ -282,7 +254,7 @@
     <main class="cover">
       <div class="frame-line"></div>
       <header class="brand">
-        <div class="brand-lockup"><div class="brand-mark"><span>HT</span></div><div class="brand-name"><strong>HOSSEINTALAB</strong><small>PERSIAN CARPET ARCHIVE</small></div></div>
+        <img class="brand-logo" id="brand-logo" src="../public/brand/exports/hosseintalab-lockup-horizontal-reversed.svg" alt="Hosseintalab — Persian Handwoven Carpets — Est. 1290 SH" />
         <div class="edition">ONE CARPET · ONE STORY</div>
       </header>
       <section class="title"><h1 class="title-fa" id="title-fa" dir="rtl"></h1><p class="title-en" id="title-en"></p></section>
