@@ -1,0 +1,3067 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10261f" />
+    <title>Hosseintalab — Higgsfield Carpet Video Workbook</title>
+    <style>
+      :root {
+        --forest: #10261f;
+        --forest-2: #18372d;
+        --forest-3: #275244;
+        --amber: #d6a85d;
+        --amber-pale: #f0dfbd;
+        --paper: #f4efe5;
+        --paper-2: #fbf8f1;
+        --ink: #17211d;
+        --muted: #68736e;
+        --line: #d8d2c5;
+        --white: #fff;
+        --red: #9c443d;
+        --green: #28705a;
+        --shadow: 0 16px 50px rgba(16, 38, 31, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        min-height: 100vh;
+      }
+
+      .topbar {
+        position: sticky;
+        z-index: 30;
+        top: 0;
+        display: grid;
+        grid-template-columns: auto minmax(240px, 1fr) auto;
+        gap: 22px;
+        align-items: center;
+        min-height: 76px;
+        padding: 12px clamp(18px, 4vw, 64px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(16, 38, 31, 0.96);
+        color: var(--white);
+        backdrop-filter: blur(16px);
+      }
+
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid var(--amber);
+        color: var(--amber-pale);
+        font-family: Georgia, serif;
+        transform: rotate(45deg);
+      }
+
+      .brand-mark span {
+        transform: rotate(-45deg);
+      }
+
+      .brand strong,
+      .brand small {
+        display: block;
+      }
+
+      .brand strong {
+        font-family: Georgia, serif;
+        font-size: 1.02rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .brand small {
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.52);
+        font-size: 0.64rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .top-progress {
+        display: grid;
+        grid-template-columns: auto minmax(120px, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        width: min(560px, 100%);
+        justify-self: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.72rem;
+      }
+
+      .progress-track {
+        height: 5px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .progress-track span {
+        display: block;
+        width: 0;
+        height: 100%;
+        background: var(--amber);
+        transition: width 180ms ease;
+      }
+
+      .top-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .button,
+      .icon-button,
+      .copy-button {
+        border: 1px solid currentColor;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .button {
+        min-height: 40px;
+        padding: 8px 14px;
+        font-size: 0.7rem;
+      }
+
+      .button:hover,
+      .copy-button:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(70px, 9vw, 138px) clamp(20px, 7vw, 112px) clamp(64px, 8vw, 110px);
+        background:
+          radial-gradient(circle at 82% 18%, rgba(214, 168, 93, 0.24), transparent 30%),
+          linear-gradient(132deg, #10261f 0%, #153d31 100%);
+        color: var(--white);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: -110px;
+        bottom: -230px;
+        width: 560px;
+        height: 560px;
+        border: 1px solid rgba(214, 168, 93, 0.3);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: var(--amber);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        max-width: 900px;
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: clamp(3rem, 7.2vw, 7rem);
+        font-weight: 400;
+        letter-spacing: -0.055em;
+        line-height: 0.96;
+      }
+
+      .hero h1 em {
+        display: block;
+        color: var(--amber-pale);
+        font-weight: 400;
+      }
+
+      .hero-lead {
+        max-width: 720px;
+        margin: 34px 0 0;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+      }
+
+      .hero-stats {
+        display: grid;
+        max-width: 870px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-stat {
+        padding: 18px 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-stat:last-child {
+        border-right: 0;
+      }
+
+      .hero-stat strong,
+      .hero-stat span {
+        display: block;
+      }
+
+      .hero-stat strong {
+        color: var(--amber-pale);
+        font-family: Georgia, serif;
+        font-size: 2rem;
+        font-weight: 400;
+      }
+
+      .hero-stat span {
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.68rem;
+      }
+
+      .content {
+        width: min(1240px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 72px 0 110px;
+      }
+
+      .decision {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        box-shadow: var(--shadow);
+      }
+
+      .decision-main,
+      .decision-side {
+        padding: clamp(28px, 5vw, 58px);
+      }
+
+      .decision-main {
+        background: var(--white);
+      }
+
+      .decision-side {
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .decision h2,
+      .section-head h2 {
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: clamp(2rem, 4vw, 4rem);
+        font-weight: 400;
+        letter-spacing: -0.045em;
+        line-height: 1.05;
+      }
+
+      .decision-main > p:not(.eyebrow),
+      .decision-side > p:not(.eyebrow) {
+        color: var(--muted);
+      }
+
+      .decision-side > p:not(.eyebrow) {
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .choice-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .choice {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        padding: 15px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .choice strong:first-child {
+        color: var(--green);
+      }
+
+      .choice span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.74rem;
+      }
+
+      .later-list {
+        margin: 26px 0 0;
+        padding-left: 18px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.78rem;
+      }
+
+      .source-link {
+        display: inline-block;
+        margin-top: 24px;
+        color: var(--amber-pale);
+        font-size: 0.72rem;
+      }
+
+      .section {
+        padding-top: 92px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.65fr);
+        gap: 44px;
+        align-items: end;
+        padding-bottom: 30px;
+        border-bottom: 1px solid var(--ink);
+      }
+
+      .section-head > p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .step {
+        min-height: 230px;
+        padding: 25px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .step:nth-child(4n) {
+        border-right: 0;
+      }
+
+      .step:nth-last-child(-n + 4) {
+        border-bottom: 0;
+      }
+
+      .step-number {
+        color: var(--amber);
+        font-family: Georgia, serif;
+        font-size: 1.75rem;
+      }
+
+      .step h3 {
+        margin: 34px 0 0;
+        font-family: Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+      }
+
+      .step p {
+        margin: 11px 0 0;
+        color: var(--muted);
+        font-size: 0.74rem;
+      }
+
+      .warning {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        margin-top: 18px;
+        padding: 20px;
+        border-left: 3px solid var(--amber);
+        background: #f6e9d4;
+        color: #59452b;
+        font-size: 0.8rem;
+      }
+
+      .warning strong:first-child {
+        font-size: 1.15rem;
+      }
+
+      .edit-timeline {
+        display: grid;
+        grid-template-columns: 0.75fr 1.15fr 1fr 0.65fr;
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .timeline-clip {
+        position: relative;
+        min-height: 210px;
+        padding: 24px;
+        border-right: 1px solid var(--line);
+      }
+
+      .timeline-clip:last-child {
+        border-right: 0;
+      }
+
+      .timeline-clip::before {
+        display: block;
+        width: 34px;
+        height: 3px;
+        margin-bottom: 28px;
+        background: var(--amber);
+        content: "";
+      }
+
+      .timeline-clip small,
+      .timeline-clip strong,
+      .timeline-clip span {
+        display: block;
+      }
+
+      .timeline-clip small {
+        color: var(--muted);
+        font-size: 0.63rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .timeline-clip strong {
+        margin-top: 12px;
+        font-family: Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+      }
+
+      .timeline-clip span {
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 0.71rem;
+      }
+
+      .first-reel {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .first-reel-copy,
+      .first-reel-plan {
+        padding: clamp(26px, 4vw, 46px);
+      }
+
+      .first-reel-copy {
+        border-right: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .first-reel h3 {
+        margin: 0;
+        color: var(--amber-pale);
+        font-family: Georgia, serif;
+        font-size: clamp(1.8rem, 3vw, 3rem);
+        font-weight: 400;
+      }
+
+      .first-reel p {
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 0.78rem;
+      }
+
+      .text-cue-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .text-cue {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 12px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .text-cue time {
+        color: var(--amber);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.68rem;
+      }
+
+      .text-cue span {
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 0.78rem;
+        line-height: 1.8;
+      }
+
+      .text-cue small {
+        display: block;
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.64rem;
+        line-height: 1.45;
+      }
+
+      .copy-panel {
+        position: relative;
+        margin-top: 18px;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .copy-panel label {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--amber);
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .copy-panel p {
+        margin: 0;
+        padding-right: 52px;
+        color: rgba(255, 255, 255, 0.82);
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 0.77rem;
+        line-height: 1.9;
+      }
+
+      .copy-panel .copy-button {
+        color: var(--amber-pale);
+      }
+
+      .publish-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .publish-list article {
+        padding: 22px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .publish-list h3 {
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+      }
+
+      .publish-list ol,
+      .publish-list ul {
+        margin: 16px 0 0;
+        padding-left: 19px;
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+
+      .toolbar {
+        position: sticky;
+        z-index: 20;
+        top: 76px;
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) auto auto;
+        gap: 12px;
+        align-items: center;
+        margin-top: 28px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        background: rgba(244, 239, 229, 0.95);
+        backdrop-filter: blur(14px);
+      }
+
+      .search {
+        width: 100%;
+        min-height: 42px;
+        border: 1px solid var(--line);
+        padding: 9px 13px;
+        background: var(--white);
+        color: var(--ink);
+      }
+
+      .filters,
+      .expand-actions {
+        display: flex;
+        gap: 7px;
+      }
+
+      .filters button,
+      .expand-actions button {
+        min-height: 40px;
+        border: 1px solid var(--line);
+        padding: 8px 12px;
+        background: var(--white);
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 0.68rem;
+      }
+
+      .filters button.is-active {
+        border-color: var(--forest);
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .catalog {
+        display: grid;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .product {
+        border: 1px solid var(--line);
+        background: var(--paper-2);
+        box-shadow: 0 8px 28px rgba(16, 38, 31, 0.04);
+      }
+
+      .product[open] {
+        box-shadow: var(--shadow);
+      }
+
+      .product.is-hidden {
+        display: none;
+      }
+
+      .product-summary {
+        display: grid;
+        grid-template-columns: 74px 118px minmax(220px, 1.2fr) minmax(250px, 0.9fr) auto;
+        gap: 22px;
+        align-items: center;
+        min-height: 150px;
+        padding: 18px 22px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .product-summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .product-index {
+        color: var(--amber);
+        font-family: Georgia, serif;
+        font-size: 2.2rem;
+      }
+
+      .product-thumb {
+        display: grid;
+        width: 118px;
+        height: 118px;
+        place-items: center;
+        padding: 7px;
+        background: #e8e5de;
+      }
+
+      .product-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .product-title small,
+      .product-title strong,
+      .meta-line span {
+        display: block;
+      }
+
+      .product-title small {
+        color: var(--muted);
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+
+      .product-title strong {
+        margin-top: 8px;
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 1.35rem;
+        line-height: 1.6;
+      }
+
+      .hook {
+        margin-top: 8px;
+        color: var(--forest-3);
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .meta-line {
+        min-width: 0;
+      }
+
+      .meta-line b {
+        color: var(--muted);
+        font-size: 0.61rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .meta-line span {
+        overflow: hidden;
+        margin-top: 3px;
+        font-size: 0.72rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .product-status {
+        display: grid;
+        gap: 7px;
+        justify-items: end;
+      }
+
+      .status-pill {
+        min-width: 72px;
+        padding: 6px 9px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.64rem;
+        text-align: center;
+      }
+
+      .status-pill.is-complete {
+        border-color: var(--green);
+        background: var(--green);
+        color: var(--white);
+      }
+
+      .chevron {
+        color: var(--amber);
+        font-size: 1.3rem;
+        transition: transform 160ms ease;
+      }
+
+      .product[open] .chevron {
+        transform: rotate(45deg);
+      }
+
+      .product-body {
+        padding: 0 22px 28px;
+        border-top: 1px solid var(--line);
+      }
+
+      .reel-kit {
+        margin-bottom: 18px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .reel-kit-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .reel-kit h3 {
+        margin: 0;
+        color: var(--amber-pale);
+        font-family: Georgia, serif;
+        font-size: 1.65rem;
+        font-weight: 400;
+      }
+
+      .reel-kit-head p {
+        max-width: 620px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.72rem;
+      }
+
+      .mini-timeline {
+        display: grid;
+        grid-template-columns: 3fr 4.5fr 4fr 2.5fr;
+        margin-top: 18px;
+      }
+
+      .mini-timeline span {
+        min-width: 0;
+        padding: 9px 8px;
+        border-right: 1px solid var(--forest);
+        background: var(--amber-pale);
+        color: #513c20;
+        font-size: 0.62rem;
+        text-align: center;
+      }
+
+      .mini-timeline span:nth-child(2) {
+        background: #dfc793;
+      }
+
+      .mini-timeline span:nth-child(3) {
+        background: #c9aa6d;
+      }
+
+      .mini-timeline span:last-child {
+        border-right: 0;
+        background: var(--amber);
+      }
+
+      .reel-kit-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .reel-kit .copy-panel {
+        margin-top: 0;
+      }
+
+      .music-note {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        margin: 18px 0;
+        padding: 18px;
+        border: 1px solid #c9aa6d;
+        background: #fff8e9;
+        color: #59452b;
+        font-size: 0.76rem;
+      }
+
+      .music-note strong:first-child {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--forest);
+        color: var(--amber-pale);
+      }
+
+      .music-note p {
+        margin: 0;
+      }
+
+      .music-note a {
+        font-weight: 800;
+      }
+
+      .reel-pack-label {
+        margin: 20px 0 8px;
+        color: var(--amber);
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .reel-pack-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .reel-pack-card {
+        min-width: 0;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .reel-pack-card h4 {
+        margin: 0;
+        color: var(--amber-pale);
+        font-family: Georgia, serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+      }
+
+      .reel-pack-card p,
+      .reel-pack-card li {
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.72rem;
+      }
+
+      .reel-pack-card p {
+        margin: 10px 0 0;
+      }
+
+      .reel-pack-card ol,
+      .reel-pack-card ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      .music-search {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 12px;
+        padding: 10px 12px;
+        border: 1px solid rgba(214, 168, 93, 0.42);
+        background: rgba(0, 0, 0, 0.18);
+        color: var(--amber-pale);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.68rem;
+      }
+
+      .music-search span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .screen-cues {
+        display: grid;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .screen-cue {
+        display: grid;
+        grid-template-columns: 66px minmax(0, 1fr);
+        gap: 10px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .screen-cue time {
+        color: var(--amber);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.62rem;
+      }
+
+      .screen-cue b,
+      .screen-cue small {
+        display: block;
+      }
+
+      .screen-cue b {
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 0.74rem;
+        line-height: 1.7;
+      }
+
+      .screen-cue small {
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.52);
+        font-size: 0.62rem;
+      }
+
+      .cover-card {
+        display: grid;
+        grid-template-columns: 126px minmax(0, 1fr);
+        gap: 16px;
+        align-items: center;
+      }
+
+      .cover-preview {
+        position: relative;
+        display: grid;
+        width: 126px;
+        aspect-ratio: 9 / 16;
+        place-items: center;
+        overflow: hidden;
+        padding: 0;
+        border: 1px solid rgba(214, 168, 93, 0.46);
+        background: #0b1b16;
+      }
+
+      .cover-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .cover-preview strong,
+      .cover-preview small {
+        position: absolute;
+        right: 8px;
+        left: 8px;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .cover-preview strong {
+        top: 9px;
+        color: var(--paper-2);
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 0.52rem;
+      }
+
+      .cover-preview small {
+        bottom: 8px;
+        color: var(--amber-pale);
+        font-size: 0.42rem;
+        letter-spacing: 0.04em;
+      }
+
+      .caption-panel {
+        grid-column: 1 / -1;
+      }
+
+      .caption-panel p {
+        max-height: 390px;
+        overflow: auto;
+        padding-right: 64px;
+        white-space: normal;
+      }
+
+      .microcopy-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        grid-column: 1 / -1;
+      }
+
+      .microcopy-grid .copy-panel {
+        margin-top: 0;
+      }
+
+      .content-system {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .content-system article {
+        min-height: 220px;
+        padding: 24px;
+        border-right: 1px solid var(--line);
+      }
+
+      .content-system article:last-child { border-right: 0; }
+
+      .content-system strong,
+      .content-system b,
+      .content-system span {
+        display: block;
+      }
+
+      .content-system strong {
+        color: var(--amber);
+        font-family: Georgia, serif;
+        font-size: 2.2rem;
+        font-weight: 400;
+      }
+
+      .content-system b {
+        margin-top: 12px;
+        font-family: Georgia, serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      .content-system span {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+
+      .viral-kit {
+        margin-bottom: 18px;
+        border: 1px solid #6f4c69;
+        background: #241722;
+        color: var(--white);
+      }
+
+      .viral-kit > summary {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: center;
+        padding: 18px 20px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .viral-kit > summary::-webkit-details-marker { display: none; }
+
+      .viral-index {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid #c897bb;
+        color: #f2cde8;
+        font-family: Georgia, serif;
+        font-size: 1.15rem;
+      }
+
+      .viral-title small,
+      .viral-title strong {
+        display: block;
+      }
+
+      .viral-title small {
+        color: #c897bb;
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .viral-title strong {
+        margin-top: 4px;
+        color: #fff1fa;
+        font-family: Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+      }
+
+      .viral-mechanism {
+        max-width: 240px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.67rem;
+        text-align: right;
+      }
+
+      .viral-body {
+        padding: 0 20px 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .viral-rule {
+        margin: 18px 0 0;
+        padding: 13px 15px;
+        border-left: 3px solid #c897bb;
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.7rem;
+      }
+
+      .viral-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .viral-card {
+        min-width: 0;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .viral-card h4 {
+        margin: 0;
+        color: #f2cde8;
+        font-family: Georgia, serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      .viral-card p,
+      .viral-card li {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.7rem;
+      }
+
+      .viral-card ol,
+      .viral-card ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      .viral-card code {
+        color: #f2cde8;
+        font-size: 0.66rem;
+        overflow-wrap: anywhere;
+      }
+
+      .hook-variant {
+        position: relative;
+        margin-top: 9px;
+        padding: 11px 48px 11px 12px;
+        border: 1px solid rgba(200, 151, 187, 0.26);
+        background: rgba(0, 0, 0, 0.17);
+      }
+
+      .hook-variant b,
+      .hook-variant small {
+        display: block;
+      }
+
+      .hook-variant b {
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 0.73rem;
+        line-height: 1.7;
+      }
+
+      .hook-variant small {
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 0.62rem;
+      }
+
+      .viral-prompt {
+        position: relative;
+        grid-column: 1 / -1;
+        padding: 18px;
+        border: 1px solid rgba(200, 151, 187, 0.36);
+        background: #160e15;
+      }
+
+      .viral-prompt label {
+        display: block;
+        margin-bottom: 12px;
+        color: #c897bb;
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .viral-prompt p {
+        max-height: 440px;
+        overflow: auto;
+        margin: 0;
+        padding-right: 56px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.71rem;
+        line-height: 1.72;
+      }
+
+      .viral-prompt .copy-button,
+      .hook-variant .copy-button {
+        color: #f2cde8;
+      }
+
+      .trial-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 14px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .trial-strip span {
+        padding: 12px;
+        background: #241722;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 0.65rem;
+        text-align: center;
+      }
+
+      .shot-intro {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .shot-intro p {
+        max-width: 720px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .shot-intro .button {
+        color: var(--forest);
+      }
+
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .shot {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .shot.is-truth-safe {
+        border-color: #7fa38f;
+        background: #f4faf6;
+      }
+
+      .shot.is-truth-safe .shot-number {
+        background: var(--green);
+      }
+
+      .shot.is-truth-safe .motion-tag {
+        background: #d9ebdf;
+        color: #24523f;
+      }
+
+      .shot.is-truth-safe .prompt-box {
+        border-color: #b6d2bf;
+        background: #f8fcf9;
+      }
+
+      .shot-mode-note {
+        margin: 14px 0 0;
+        padding: 10px 12px;
+        border-left: 3px solid var(--green);
+        background: #e3f1e8;
+        color: #24523f;
+        font-size: 0.69rem;
+        font-weight: 750;
+      }
+
+      .reference-test {
+        margin-top: 12px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .reference-test summary {
+        padding: 11px 13px;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 0.67rem;
+        font-weight: 800;
+      }
+
+      .reference-test .prompt-box {
+        margin: 0;
+        border-width: 1px 0 0;
+        border-color: var(--line);
+        background: #fff9ee;
+      }
+
+      .shot-visual {
+        position: relative;
+        display: grid;
+        height: 320px;
+        place-items: center;
+        overflow: hidden;
+        background: #e9e6df;
+      }
+
+      .shot-visual img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .shot-number {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 5px 8px;
+        background: var(--forest);
+        color: var(--white);
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+
+      .shot-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .shot-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .shot h3 {
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+
+      .motion-tag {
+        align-self: flex-start;
+        padding: 4px 7px;
+        background: var(--amber-pale);
+        color: #654a22;
+        font-size: 0.6rem;
+        white-space: nowrap;
+      }
+
+      .source-file {
+        margin-top: 12px;
+        color: var(--muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.65rem;
+        overflow-wrap: anywhere;
+      }
+
+      .source-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 9px;
+        color: var(--forest-3);
+        font-size: 0.65rem;
+      }
+
+      .prompt-box {
+        position: relative;
+        flex: 1;
+        margin-top: 18px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        background: var(--paper-2);
+      }
+
+      .prompt-box p {
+        margin: 0;
+        padding-right: 52px;
+        color: #27332e;
+        font-size: 0.73rem;
+        line-height: 1.72;
+      }
+
+      .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 8px;
+        color: var(--forest-3);
+        font-size: 0.62rem;
+      }
+
+      .approval {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 10px;
+        align-items: start;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-size: 0.72rem;
+      }
+
+      .approval input {
+        width: 17px;
+        height: 17px;
+        margin: 2px 0 0;
+        accent-color: var(--green);
+      }
+
+      .approval:has(input:checked) label {
+        color: var(--muted);
+        text-decoration: line-through;
+      }
+
+      .notes {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 12px;
+        align-items: start;
+        margin-top: 16px;
+        padding: 16px;
+        background: var(--paper);
+      }
+
+      .notes label {
+        padding-top: 9px;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .notes textarea {
+        width: 100%;
+        min-height: 76px;
+        resize: vertical;
+        border: 1px solid var(--line);
+        padding: 10px 12px;
+        background: var(--white);
+        color: var(--ink);
+      }
+
+      .empty {
+        display: none;
+        margin-top: 18px;
+        padding: 40px;
+        border: 1px solid var(--line);
+        background: var(--white);
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .empty.is-visible {
+        display: block;
+      }
+
+      .qc-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .qc-card {
+        padding: 28px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .qc-card h3 {
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+      }
+
+      .qc-card ul {
+        margin: 18px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .footer {
+        margin-top: 86px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+
+      .toast {
+        position: fixed;
+        z-index: 80;
+        right: 20px;
+        bottom: 20px;
+        padding: 12px 16px;
+        background: var(--forest);
+        color: var(--white);
+        font-size: 0.72rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: 160ms ease;
+      }
+
+      .toast.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      :focus-visible {
+        outline: 3px solid rgba(214, 168, 93, 0.7);
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 1060px) {
+        .topbar {
+          grid-template-columns: auto 1fr;
+        }
+
+        .top-progress {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          width: 100%;
+        }
+
+        .top-actions {
+          justify-self: end;
+        }
+
+        .steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .step:nth-child(2n) {
+          border-right: 0;
+        }
+
+        .step:nth-child(-n + 6) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .step:nth-last-child(-n + 2) {
+          border-bottom: 0;
+        }
+
+        .product-summary {
+          grid-template-columns: 54px 100px minmax(200px, 1fr) auto;
+        }
+
+        .product-thumb {
+          width: 100px;
+          height: 100px;
+        }
+
+        .meta-grid {
+          display: none;
+        }
+
+        .shots {
+          grid-template-columns: 1fr;
+        }
+
+        .shot {
+          display: grid;
+          grid-template-columns: minmax(240px, 0.65fr) 1fr;
+        }
+
+        .shot-visual {
+          height: 100%;
+          min-height: 400px;
+        }
+
+        .content-system {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .content-system article:nth-child(2) { border-right: 0; }
+
+        .content-system article:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          position: relative;
+          grid-template-columns: 1fr auto;
+          gap: 14px;
+        }
+
+        .brand small {
+          display: none;
+        }
+
+        .top-actions .button:first-child {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 68px;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-stat:nth-child(2) {
+          border-right: 0;
+        }
+
+        .hero-stat:nth-child(-n + 2) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .decision,
+        .section-head,
+        .qc-grid,
+        .first-reel,
+        .publish-list {
+          grid-template-columns: 1fr;
+        }
+
+        .first-reel-copy {
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .edit-timeline {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .timeline-clip:nth-child(2) {
+          border-right: 0;
+        }
+
+        .timeline-clip:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .section-head {
+          gap: 18px;
+          align-items: start;
+        }
+
+        .toolbar {
+          position: relative;
+          top: 0;
+          grid-template-columns: 1fr;
+        }
+
+        .filters,
+        .expand-actions {
+          overflow-x: auto;
+        }
+
+        .filters button,
+        .expand-actions button {
+          flex: 0 0 auto;
+        }
+
+        .product-summary {
+          grid-template-columns: 45px 82px minmax(0, 1fr) auto;
+          gap: 12px;
+          padding: 14px;
+        }
+
+        .product-thumb {
+          width: 82px;
+          height: 94px;
+        }
+
+        .product-title strong {
+          font-size: 1.05rem;
+        }
+
+        .hook {
+          display: none;
+        }
+
+        .product-body {
+          padding: 0 14px 18px;
+        }
+
+        .reel-kit-head,
+        .reel-kit-grid,
+        .reel-pack-grid,
+        .microcopy-grid,
+        .viral-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .caption-panel,
+        .microcopy-grid,
+        .viral-prompt {
+          grid-column: auto;
+        }
+
+        .viral-kit > summary {
+          grid-template-columns: auto minmax(0, 1fr);
+        }
+
+        .viral-mechanism {
+          grid-column: 2;
+          max-width: none;
+          text-align: left;
+        }
+
+        .shot {
+          display: flex;
+        }
+
+        .shot-visual {
+          height: 360px;
+          min-height: 0;
+        }
+
+        .shot-intro {
+          align-items: flex-start;
+        }
+
+        .notes {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .content {
+          width: min(100% - 24px, 1240px);
+          padding-top: 42px;
+        }
+
+        .brand strong {
+          font-size: 0.82rem;
+        }
+
+        .top-progress {
+          grid-template-columns: 1fr auto;
+        }
+
+        .top-progress .progress-track {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+
+        .steps {
+          grid-template-columns: 1fr;
+        }
+
+        .content-system,
+        .trial-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .content-system article,
+        .content-system article:nth-child(n) {
+          min-height: 0;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .content-system article:last-child { border-bottom: 0; }
+
+        .viral-kit > summary {
+          padding: 14px;
+        }
+
+        .viral-body {
+          padding: 0 14px 16px;
+        }
+
+        .viral-index { display: none; }
+
+        .viral-kit > summary,
+        .viral-mechanism {
+          grid-template-columns: 1fr;
+          grid-column: auto;
+        }
+
+        .viral-prompt p {
+          padding-right: 0;
+        }
+
+        .step,
+        .step:nth-child(n) {
+          min-height: 0;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .step:last-child {
+          border-bottom: 0;
+        }
+
+        .edit-timeline {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline-clip,
+        .timeline-clip:nth-child(n) {
+          min-height: 0;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .timeline-clip:last-child {
+          border-bottom: 0;
+        }
+
+        .product-summary {
+          grid-template-columns: 36px 68px minmax(0, 1fr) 20px;
+          gap: 9px;
+        }
+
+        .product-index {
+          font-size: 1.5rem;
+        }
+
+        .product-thumb {
+          width: 68px;
+          height: 80px;
+        }
+
+        .product-status .status-pill {
+          display: none;
+        }
+
+        .shot-intro {
+          display: grid;
+        }
+
+        .cover-card {
+          grid-template-columns: 94px minmax(0, 1fr);
+        }
+
+        .cover-preview {
+          width: 94px;
+        }
+
+        .screen-cue {
+          grid-template-columns: 54px minmax(0, 1fr);
+        }
+
+        .caption-panel p {
+          padding-right: 0;
+        }
+
+        .shot-visual {
+          height: 310px;
+        }
+
+        .prompt-box p {
+          padding-right: 0;
+          padding-top: 32px;
+        }
+      }
+
+      @media print {
+        .topbar,
+        .toolbar,
+        .top-actions,
+        .copy-button,
+        .source-actions,
+        .toast,
+        .expand-actions {
+          display: none !important;
+        }
+
+        body {
+          background: var(--white);
+        }
+
+        .hero {
+          padding: 45px;
+        }
+
+        .content {
+          width: 100%;
+          padding: 40px 0;
+        }
+
+        .product,
+        .shot,
+        .decision,
+        .qc-card {
+          break-inside: avoid;
+          box-shadow: none;
+        }
+
+        .product:not([open]) .product-body {
+          display: block;
+        }
+
+        .shots {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .shot-visual {
+          height: 240px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"><span>HT</span></span>
+          <span><strong>Hosseintalab</strong><small>Higgsfield production workbook</small></span>
+        </a>
+        <div class="top-progress" aria-live="polite">
+          <span id="progress-label">0 of 57 clips approved</span>
+          <span class="progress-track" aria-hidden="true"><span id="progress-bar"></span></span>
+          <strong id="progress-percent">0%</strong>
+        </div>
+        <div class="top-actions">
+          <button class="button" id="print-button" type="button">Print / PDF</button>
+          <button class="button" id="reset-button" type="button">Reset</button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-inner">
+            <p class="eyebrow">One week · website workflow · copy-ready prompts</p>
+            <h1>Turn every carpet <em>into three truthful shots.</em></h1>
+            <p class="hero-lead">A source-led production workbook built from the actual Hosseintalab catalog photography. Generate context and full-product shots in Higgsfield; build the detail shot from real pixels in your editor; finish every Reel with the same branded three-second contact card.</p>
+            <div class="hero-stats">
+              <div class="hero-stat"><strong>19</strong><span>catalog carpets covered</span></div>
+              <div class="hero-stat"><strong>38</strong><span>Higgsfield video prompts</span></div>
+              <div class="hero-stat"><strong>19</strong><span>cinematic viral campaigns</span></div>
+              <div class="hero-stat"><strong>57</strong><span>bilingual hook tests</span></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="content">
+          <section class="decision" aria-labelledby="decision-title">
+            <article class="decision-main">
+              <p class="eyebrow">The right choice this week</p>
+              <h2 id="decision-title">Use the Higgsfield website.</h2>
+              <p>Your unlimited entitlement is most valuable in the human-operated website workflow. Current Higgsfield guidance says Unlimited models are not included through MCP/CLI, so programmatic generations can still consume credits.</p>
+              <div class="choice-list">
+                <div class="choice"><strong>✓</strong><div><b>Learn on four carpets first.</b><span>You need to see which model and motion preserve intricate carpet patterns before batching the rest.</span></div></div>
+                <div class="choice"><strong>✓</strong><div><b>Generate unlimited candidates.</b><span>Use the model carrying the Unlimited or zero-credit label in your account; do not assume every model is included.</span></div></div>
+                <div class="choice"><strong>✓</strong><div><b>Judge every result visually.</b><span>Carpets are unusually difficult because one mutated motif turns an attractive clip into false product information.</span></div></div>
+              </div>
+            </article>
+            <aside class="decision-side">
+              <p class="eyebrow">When MCP / CLI becomes better</p>
+              <h2>After the recipe is proven.</h2>
+              <p>Once we know the winning model, duration, prompt structure, and rejection rate, automation can generate batches, download results, rename files by SKU, and build comparison sheets.</p>
+              <ul class="later-list">
+                <li>It uses your normal Higgsfield credits, not this Unlimited benefit.</li>
+                <li>Authentication should happen through Higgsfield OAuth—never paste a password or token into the project.</li>
+                <li>If you connect it later, I can operate the full generation and organization workflow for you.</li>
+              </ul>
+              <a class="source-link" href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">Official Higgsfield MCP &amp; CLI setup ↗</a>
+            </aside>
+          </section>
+
+          <section class="section" id="instructions">
+            <div class="section-head">
+              <div><p class="eyebrow">Before the first generation</p><h2>The website workflow, button by button.</h2></div>
+              <p>Names and exact menu positions can change, but the logic stays the same. Begin in the main Video / Image-to-Video generator—not Text-to-Video—and confirm the Generate button is not charging credits.</p>
+            </div>
+
+            <div class="steps">
+              <article class="step"><span class="step-number">01</span><h3>Open Video</h3><p>Sign in at higgsfield.ai. Open Generate → Video or the Image-to-Video workflow. Avoid Text-to-Video for products.</p></article>
+              <article class="step"><span class="step-number">02</span><h3>Choose Unlimited</h3><p>Select the model marked Unlimited in your account. Enhanced Seedance Fast is a good starting point when that is the included model.</p></article>
+              <article class="step"><span class="step-number">03</span><h3>Check the card type</h3><p>In the truthful product workflow, Context and Full go to Higgsfield while Detail uses editor keyframes. The separate Viral Campaign kit later uses all three as multi-reference evidence.</p></article>
+              <article class="step"><span class="step-number">04</span><h3>Set the frame</h3><p>Choose vertical 9:16, five seconds, and 720p when that is the highest Unlimited setting. Turn generated audio off for clean masters.</p></article>
+              <article class="step"><span class="step-number">05</span><h3>Paste the prompt</h3><p>Copy the entire English prompt. If there is a separate motion selector, choose the same restrained motion named on the card.</p></article>
+              <article class="step"><span class="step-number">06</span><h3>Generate three AI takes</h3><p>For Context and Full only, run the identical prompt three times. The Detail clip needs no AI generation and therefore no alternate takes.</p></article>
+              <article class="step"><span class="step-number">07</span><h3>Reject aggressively</h3><p>Compare the first, middle, and final frames to the source. Reject any changing border, motif, fringe, scale, text, face, or architecture.</p></article>
+              <article class="step"><span class="step-number">08</span><h3>Download + rename</h3><p>Keep only the winner. Use the output filename shown on the card, then check the task box and record the model/take in Notes.</p></article>
+            </div>
+
+            <div class="warning"><strong>!</strong><div><b>Do not ask a crop to reveal what is outside it.</b> That is an outpainting request disguised as camera movement, so invented motifs are unavoidable. A Detail card now uses non-generative editor keyframes that move only across pixels already present in the real detail photograph.</div></div>
+          </section>
+
+          <section class="section" id="editing">
+            <div class="section-head">
+              <div><p class="eyebrow">After Higgsfield</p><h2>Do not post the three clips separately.</h2></div>
+              <p>Turn them into one short Reel. The contextual shot earns attention, the complete view proves what the carpet is, the detail creates trust, and a real still frame gives the buyer a clean final reference.</p>
+            </div>
+
+            <div class="edit-timeline" aria-label="Fourteen-second Reel timeline">
+              <article class="timeline-clip"><small>0.0–3.0 seconds</small><strong>Shot A · Context</strong><span>Trim to the strongest opening three seconds. Put the hook on screen immediately.</span></article>
+              <article class="timeline-clip"><small>3.0–7.0 seconds</small><strong>Shot B · Complete view</strong><span>Give the carpet a clear uninterrupted view. Add its name and origin.</span></article>
+              <article class="timeline-clip"><small>7.0–11.0 seconds</small><strong>Shot C · Detail</strong><span>Show the evidence: weave, medallion, tree, figure, stripe, border, or pile.</span></article>
+              <article class="timeline-clip"><small>11.0–14.0 seconds</small><strong>Branded CTA card</strong><span>Use the ready-made card for that SKU. Hold it still for the full three seconds.</span></article>
+            </div>
+
+            <div class="decision" style="margin-top: 18px">
+              <article class="decision-main">
+                <p class="eyebrow">One recognizable ending</p>
+                <h2>Same system. Different carpet code.</h2>
+                <p>Do not redesign the ending for every Reel. Repetition makes the logo, colors and contact route recognizable. Every supplied CTA card has the same layout, wording, website, WhatsApp number, calling number and three-second duration.</p>
+                <div class="choice-list">
+                  <div class="choice"><strong>=</strong><div><b>Always identical.</b><span>Logo, forest-and-gold design, type, CTA wording, WhatsApp +46 70 452 56 46, call +98 938 787 7818 and hosseintalab.ir.</span></div></div>
+                  <div class="choice"><strong>↻</strong><div><b>Changes per carpet.</b><span>Only the SKU, so a buyer can send the exact code without ambiguity.</span></div></div>
+                  <div class="choice"><strong>3s</strong><div><b>Hold completely still.</b><span>No animation, extra transition or new copy. Three seconds is just enough to read and screenshot.</span></div></div>
+                </div>
+              </article>
+              <aside class="decision-side">
+                <p class="eyebrow">The exact final frame</p>
+                <h2>Logo → action → code → contacts.</h2>
+                <p dir="rtl" lang="fa">کد فرش را در واتساپ بفرستید</p>
+                <p>Send the carpet code on WhatsApp</p>
+                <p dir="ltr" style="margin-top: 24px; color: #ead6ad">WhatsApp +46 70 452 56 46<br />Call +98 938 787 7818<br />hosseintalab.ir</p>
+              </aside>
+            </div>
+
+            <div class="steps">
+              <article class="step"><span class="step-number">01</span><h3>Install Edits</h3><p>Use Meta’s free Edits app on your phone, or CapCut if you already know it. Edits has a frame-accurate timeline and exports without an added watermark.</p></article>
+              <article class="step"><span class="step-number">02</span><h3>Start 9:16</h3><p>Create a new vertical project. Import approved Shot A, Shot B, Shot C, then the supplied CTA PNG for that SKU—in exactly that order.</p></article>
+              <article class="step"><span class="step-number">03</span><h3>Trim the clips</h3><p>A = 3.0s, B = 4.0s, C = 4.0s, CTA card = 3.0s. Total target: 14 seconds. Choose each video clip’s most stable section; never shorten the CTA.</p></article>
+              <article class="step"><span class="step-number">04</span><h3>Use hard cuts</h3><p>Place the clips directly against each other. No spinning, flash, zoom, glitch, page-turn, or AI transition. The movement is already inside the shots.</p></article>
+              <article class="step"><span class="step-number">05</span><h3>Add four text cues</h3><p>Use the exact Persian + English lines in each Reel kit. Persian is the main line; English is smaller beneath it. Use off-white text and a subtle dark shadow—not a loud template.</p></article>
+              <article class="step"><span class="step-number">06</span><h3>Add music—no voice needed</h3><p>Mute every Higgsfield clip. Add one instrumental track at 35–45% volume, align the cuts near 0:03 / 0:07 / 0:11, and let the music continue under the CTA before fading only the final 0.2 seconds.</p></article>
+              <article class="step"><span class="step-number">07</span><h3>Keep text safe</h3><p>Keep important text away from the extreme top, bottom, and right edge where Instagram’s interface sits. Preview the Reel full-screen before export.</p></article>
+              <article class="step"><span class="step-number">08</span><h3>Export one master</h3><p>Export vertical 1080 × 1920, H.264, 30 fps, highest quality, no watermark. Do not add filters, HDR, artificial sharpening, or color replacement.</p></article>
+            </div>
+
+            <div class="music-note"><strong>♪</strong><p><b>Use commercially safe music.</b> For each carpet below, search the exact phrase inside Meta Sound Collection (or the royalty-free audio available to your business account), then choose a no-vocal track matching the listed instruments and BPM. Track titles and availability vary by account and region, so a fixed song title would be unreliable. Sound Collection is cleared by Meta for commercial use; it also keeps the Reel eligible for boosting. <a href="https://www.facebook.com/help/instagram/402084904469945" target="_blank" rel="noreferrer">Meta music guidance ↗</a></p></div>
+
+            <div class="first-reel">
+              <article class="first-reel-copy">
+                <p class="eyebrow">Your first finished Reel · HT-KSH-0001</p>
+                <h3>Music + exact screen text</h3>
+                <p><b>Music:</b> warm santur with soft kamancheh, 78–84 BPM, no vocals. Search <b>“Persian santur calm instrumental”</b>. Start on a clear plucked note, cut on beats near 0:03 / 0:07 / 0:11, and fade at 0:13.8.</p>
+                <div class="text-cue-list">
+                  <div class="text-cue"><time>0:00–0:03</time><span dir="rtl" lang="fa">یک باغ، بافته‌شده با نخ<small lang="en" dir="ltr">A garden woven in thread</small></span></div>
+                  <div class="text-cue"><time>0:03–0:07</time><span dir="rtl" lang="fa">درخت زندگیِ کاشان<small lang="en" dir="ltr">Kashan Tree of Life Carpet</small></span></div>
+                  <div class="text-cue"><time>0:07–0:11</time><span dir="rtl" lang="fa">حدود ۶۰ تا ۸۰ سال · ۱۳۸ × ۲۱۷<small lang="en" dir="ltr">Approx. 60–80 years · 138 × 217 cm</small></span></div>
+                  <div class="text-cue"><time>0:11–0:14</time><span dir="rtl" lang="fa">کارت پایانی آماده · کد HT-KSH-0001<small lang="en" dir="ltr">Ready CTA card · HT-KSH-0001</small></span></div>
+                </div>
+              </article>
+              <article class="first-reel-plan">
+                <h3>Cover, caption, publish.</h3>
+                <div class="copy-panel">
+                  <label>Finished cover</label>
+                  <p>Your 1080 × 1920 cover is ready: original full-frontal photograph, complete carpet visible, Persian and English title, and SKU. <a href="../public/media/reel-covers/ht-ksh-0001-reel-cover.png" target="_blank" download="ht-ksh-0001-reel-cover.png">Open / download PNG ↗</a></p>
+                </div>
+                <div class="copy-panel">
+                  <label>Finished three-second CTA card</label>
+                  <p>Place this still at 0:11–0:14. Do not add more text over it. <a href="../public/media/reel-ctas/ht-ksh-0001-reel-cta.png" target="_blank" download="ht-ksh-0001-reel-cta.png">Open / download PNG ↗</a></p>
+                </div>
+                <div class="copy-panel">
+                  <label>Bilingual Instagram caption</label>
+                  <p id="first-caption" dir="auto">یک باغ کامل، بافته‌شده روی ۱۳۸ × ۲۱۷ سانتی‌متر.<br /><br />درخت زندگیِ کاشان<br />محل بافت: کاشان<br />ابعاد: ۱۳۸ × ۲۱۷ سانتی‌متر<br />قدمت تقریبی: ۶۰ تا ۸۰ سال<br />قیمت ثبت‌شده: ۳۷۰٬۰۰۰٬۰۰۰ تومان<br />کد: HT-KSH-0001<br /><br />برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، کد HT-KSH-0001 را در واتساپ +46 70 452 56 46 بفرستید یا وارد hosseintalab.ir شوید.<br /><br />—<br /><br />A whole garden woven into 138 × 217 centimeters.<br /><br />Kashan Tree of Life Carpet<br />Origin: Kashan, Iran<br />Dimensions: 138 × 217 cm<br />Approximate age: 60–80 years<br />Listed price: 370,000,000 toman<br />Reference: HT-KSH-0001<br /><br />Send “HT-KSH-0001” on WhatsApp +46 70 452 56 46 for complete photographs, condition notes and purchase details, or visit hosseintalab.ir.<br /><br />#فرش_دستباف #فرش_کاشان #PersianCarpet #KashanCarpet #Hosseintalab</p>
+                  <button class="copy-button" type="button" data-copy-target="first-caption">Copy</button>
+                </div>
+              </article>
+            </div>
+
+            <div class="publish-list">
+              <article><h3>Build the cover</h3><ol><li>Create a separate 1080 × 1920 cover—do not pull a frame from the AI video.</li><li>Use a deep forest background and the original full-frontal photograph with the entire carpet visible.</li><li>Add the Persian short name, smaller English name, and SKU only.</li><li>Keep all text and most of the carpet inside the center area; preview the profile-grid crop before publishing.</li></ol></article>
+              <article><h3>Upload settings</h3><ol><li>Instagram Settings → Media quality → turn on “Upload at highest quality.”</li><li>Create Reel and upload the exported master.</li><li>Add the cover and paste the supplied caption.</li><li>Turn on the AI information/disclosure option because the motion was generated.</li><li>Share to Feed. Do not geotag a city unless the media was actually created there.</li></ol></article>
+              <article><h3>Immediately after posting</h3><ol><li>Pin this comment: <span dir="rtl">«برای دیدن تصاویر کامل، کد فرش را در واتساپ +46 70 452 56 46 بفرستید.»</span></li><li>Share the Reel to Stories.</li><li>Add a second Story with a detail still and a poll.</li><li>Add a third Story with price, SKU, and hosseintalab.ir link sticker.</li><li>Answer every genuine comment, WhatsApp message and DM the same day.</li></ol></article>
+              <article><h3>Measure before repeating</h3><ol><li>At 24 hours record reach, non-follower reach, watch time, shares, saves, profile visits, website taps, and DMs.</li><li>At 72 hours update the numbers.</li><li>Do not judge only by likes.</li><li>If people drop in the first three seconds, change the hook—not the carpet.</li><li>Reuse the same 14-second structure for the next four carpets.</li></ol></article>
+            </div>
+
+            <div class="warning"><strong>!</strong><div><b>Your three 5-second clips are raw material, not three posts—and voiceover is optional.</b> Trim them, assemble one 14-second master, use one music track plus the supplied bilingual text, and finish with the supplied branded CTA card for the exact SKU.</div></div>
+            <p style="margin: 18px 0 0; color: var(--muted); font-size: 0.72rem">Editing reference: <a href="https://about.fb.com/news/2025/04/introducing-edits-streamlined-video-creation-app/" target="_blank" rel="noreferrer">Meta Edits</a> · Upload reference: <a href="https://www.facebook.com/help/1038071743007909" target="_blank" rel="noreferrer">Instagram Reel resolution, cover, and highest-quality settings</a></p>
+          </section>
+
+          <section class="section" id="viral-studio">
+            <div class="section-head">
+              <div><p class="eyebrow">Cinematic reach system</p><h2>Luxury enough to desire. Native enough to share.</h2></div>
+              <p>The product Reel proves the carpet. The viral campaign Reel earns attention through a question, contradiction, reveal, opinion, or visual challenge. Use both; do not turn the entire page into polished advertisements.</p>
+            </div>
+
+            <div class="content-system">
+              <article><strong>30%</strong><b>Cinematic desire</b><span>Campaign films, geography, room transformations and museum-style reveals that make the collection feel important.</span></article>
+              <article><strong>40%</strong><b>Discovery + sharing</b><span>Find-the-detail challenges, directional puzzles, visual contradictions and questions people want to send to someone.</span></article>
+              <article><strong>20%</strong><b>Expertise + trust</b><span>Real hands, measurements, backs, fringes, wear, age, raj count and honest explanations of what is known.</span></article>
+              <article><strong>10%</strong><b>Direct selling</b><span>Availability, price, dimensions, SKU, website and DM. One clear action—never five competing requests.</span></article>
+            </div>
+
+            <div class="decision" style="margin-top: 18px">
+              <article class="decision-main">
+                <p class="eyebrow">Seedance 2.0 · reference mode</p>
+                <h2>Upload evidence, not Start/End frames.</h2>
+                <p>Each carpet card below has a dedicated viral prompt. Upload its three named references through the normal reference slots and insert the tags Higgsfield gives you. The prompt directs a short multi-shot commercial with hard cuts, so Seedance never needs to morph one photograph into another.</p>
+                <div class="choice-list">
+                  <div class="choice"><strong>1</strong><div><b>Full-frontal reference.</b><span>Authoritative geometry, proportions, colors and complete border structure.</span></div></div>
+                  <div class="choice"><strong>2</strong><div><b>Context reference.</b><span>Atmosphere and commercial setting; never authoritative for unseen textile detail.</span></div></div>
+                  <div class="choice"><strong>3</strong><div><b>Detail reference.</b><span>Authoritative motif, pile and knot evidence for the close-up shot.</span></div></div>
+                </div>
+              </article>
+              <aside class="decision-side">
+                <p class="eyebrow">One body · three Trial Reels</p>
+                <h2>Test the hook, not everything.</h2>
+                <ol class="later-list"><li>Generate one clean commercial without AI text or logos.</li><li>Make three edits with Hook A, B and C.</li><li>Keep footage, music, caption body and cover identical.</li><li>Publish as Trial Reels to non-followers.</li><li>Review after 24 hours; decide after 72.</li></ol>
+                <p style="margin-top: 18px; color: rgba(255,255,255,.58); font-size: .7rem">Choose the winner by watch time, completion/replays, sends, saves, profile visits and genuine DMs—not likes alone.</p>
+              </aside>
+            </div>
+
+            <div class="warning"><strong>!</strong><div><b>Cinematic does not mean slow.</b> The first visual and hook appear immediately. Generated footage stays clean; all Persian/English text is added later in Edits/CapCut. Finish every version with the same supplied three-second branded CTA card for its SKU.</div></div>
+            <p style="margin: 18px 0 0; color: var(--muted); font-size: 0.72rem">Research: <a href="https://higgsfield.ai/blog/generating-with-seedance-2-0" target="_blank" rel="noreferrer">Seedance 2.0 multi-reference system</a> · <a href="https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/" target="_blank" rel="noreferrer">Instagram Trial Reels</a> · <a href="https://www.facebook.com/business/ads/facebook-instagram-reels-ads" target="_blank" rel="noreferrer">Meta Reels creative essentials</a></p>
+          </section>
+
+          <section class="section" id="carpets">
+            <div class="section-head">
+              <div><p class="eyebrow">Corrected production cards</p><h2>Two AI shots. One real-photo detail shot.</h2></div>
+              <p>Context and Full use restrained Higgsfield motion. Detail uses the actual high-resolution crop in Edits/CapCut, so no unseen border or motif has to be invented.</p>
+            </div>
+
+            <div class="toolbar">
+              <input class="search" id="search" type="search" placeholder="Search SKU, city, pattern, or Persian name…" autocomplete="off" />
+              <div class="filters" aria-label="Workbook filters">
+                <button type="button" class="is-active" data-filter="all">All 19</button>
+                <button type="button" data-filter="todo">Needs work</button>
+                <button type="button" data-filter="complete">Complete</button>
+              </div>
+              <div class="expand-actions">
+                <button type="button" id="open-all">Open all</button>
+                <button type="button" id="close-all">Collapse all</button>
+              </div>
+            </div>
+
+            <div class="catalog" id="catalog"></div>
+            <div class="empty" id="empty">No carpets match this search or filter.</div>
+          </section>
+
+          <section class="section" id="quality-control">
+            <div class="section-head">
+              <div><p class="eyebrow">Final gate</p><h2>Beautiful is not enough. It must be true.</h2></div>
+              <p>Judge at full-screen size. A clip passes only when a buyer could compare it with the product photographs and recognize the same carpet without qualification.</p>
+            </div>
+            <div class="qc-grid">
+              <article class="qc-card"><h3>Approve when…</h3><ul><li>The border count and shape remain identical.</li><li>The central medallion, tree, vase, stripes, or figures do not morph.</li><li>Colors do not drift between frames.</li><li>Fringe and edges stay attached and physically plausible.</li><li>Any architecture and scale remain stable.</li><li>The movement is subtle enough to feel intentional.</li></ul></article>
+              <article class="qc-card"><h3>Reject immediately when…</h3><ul><li>Woven animals or people begin moving.</li><li>Calligraphy changes, shimmers, or becomes invented text.</li><li>Damage disappears or the pile looks newly restored.</li><li>Extra flowers, borders, furniture, or buildings appear.</li><li>The carpet stretches, breathes, ripples, floats, or changes size.</li><li>A dramatic camera move hides product inaccuracies.</li></ul></article>
+            </div>
+          </section>
+
+          <footer class="footer">
+            <p>This workbook covers the 19 carpet records currently present in the Hosseintalab catalog. Progress and notes are stored only in this browser. Source photography remains in the project and is not embedded into this HTML.</p>
+            <p>Platform references: <a href="https://higgsfield.ai/blog/generating-with-seedance-2-0" target="_blank" rel="noreferrer">Seedance 2.0 reference workflow</a> · <a href="https://higgsfield.ai/blog/cinema-studio-guide" target="_blank" rel="noreferrer">Cinema Studio workflow</a> · <a href="https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/" target="_blank" rel="noreferrer">Instagram Trial Reels</a> · <a href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">MCP &amp; CLI</a></p>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
+    <script>
+      const PROJECT_ROOT = "/home/shawn/Projects/HTCarpets";
+      const PRODUCTS = [
+        {
+          sku: "HT-KSH-0001", slug: "ht-ksh-0001", name: "درختِ زندگیِ کاشان", origin: "کاشان", dimensions: "۱۳۸ × ۲۱۷ سانتی‌متر", age: "حدود ۶۰ تا ۸۰ سال", pattern: "درخت زندگی", price: "۳۷۰٬۰۰۰٬۰۰۰ تومان", colors: "ivory field with red, olive, blue-grey and natural botanical colors", protected: "the central tree trunk, every branch, bird and animal, the ivory ground, all nested borders and both fringed ends", hook: "یک باغ کامل، بافته‌شده روی ۱۳۸ در ۲۱۷ سانتی‌متر.",
+          shots: [
+            { kind: "context", title: "Kashan courtyard opener", source: "/media/products/ht-ksh-0001/kashan-courtyard-three-quarter.png", motion: "Slow axial dolly", direction: "Make a slow stabilized dolly forward along the carpet's long axis, drawing the eye from the near fringe toward the woven tree and the courtyard water channel. Stop before the carpet leaves the composition. Keep the cypress trees, water, architecture, shadows and every carpet motif completely stable." },
+            { kind: "full", title: "Complete tree reveal", source: "/media/products/ht-ksh-0001/full-frontal.png", motion: "Centered micro push", direction: "Begin with the complete carpet centered and fully visible. Make an extremely slow 3 percent optical push toward the central tree, ending while all outer borders and both fringed ends are still visible. Emphasize the vertical rise of the trunk without animating any bird, animal, flower or branch." },
+            { kind: "detail", title: "Tree and birds detail", source: "/media/products/ht-ksh-0001/detail-tree-and-birds.png", motion: "Gentle upward track", direction: "Make a very gentle upward macro track along the woven tree and perched birds. Preserve the exact yarn texture and motif edges. The birds, leaves, flowers and animals are woven marks and must remain absolutely motionless." }
+          ]
+        },
+        {
+          sku: "HT-KHY-0001", slug: "ht-khy-0001", name: "گلدانیِ خوی", origin: "خوی، آذربایجان غربی", dimensions: "۱۳۵ × ۱۹۴ سانتی‌متر", age: "حدود ۶۰ تا ۸۰ سال", pattern: "گلدانیِ یک‌طرفه", price: "۹۵٬۰۰۰٬۰۰۰ تومان", colors: "deep red field with a navy border, cream outlines and muted blue flowers", protected: "the directional vase at the lower end, its rising floral branches, the deep red field, navy main border, guard borders and fringe", hook: "این نقش از یک گلدان شروع می‌شود؛ جهت درستش را می‌بینید؟",
+          shots: [
+            { kind: "context", title: "Carpet-to-dome opener", source: "/media/products/ht-khy-0001/khoy-context.png", motion: "Slow tilt up", direction: "Begin on the carpet in the foreground and execute a slow controlled tilt upward toward the brick dome, keeping the carpet present in the lower frame long enough to establish it. Preserve the courtyard paving, building geometry, mountains, sky and the exact directional vase design. No clouds, trees or fabric move." },
+            { kind: "full", title: "Directional vase reveal", source: "/media/products/ht-khy-0001/full-frontal.png", motion: "Bottom-to-top drift", direction: "Keep the complete carpet square and centered. Apply a restrained upward camera drift that follows the visual direction from the lower vase into the branching flowers, never rotating the carpet or allowing the navy outer border to deform or leave frame." },
+            { kind: "detail", title: "Vase and border evidence", source: "/media/products/ht-khy-0001/vase-and-border-detail.png", motion: "Short diagonal slide", direction: "Make a tiny diagonal macro slide from the woven vase and floral stems toward the adjacent navy border. Keep every knot, flower, contour and color boundary identical. The movement comes only from the camera, never from the woven design." }
+          ]
+        },
+        {
+          sku: "HT-KRM-0001", slug: "ht-krm-0001", name: "هزارگلِ کرمان", origin: "کرمان", dimensions: "ابعاد دقیق در دست تکمیل", age: "حدود ۷۰ تا ۸۰ سال", pattern: "هزارگلِ سراسری", price: "۱۶۰٬۰۰۰٬۰۰۰ تومان", colors: "warm golden-cream field densely filled with red, blue and green flowers inside a deep red border", protected: "the dense all-over floral field, small central rosette, red border bands, irregularities, carpet outline and exact color density", hook: "در این فرش تقریباً هیچ جای خالی برای نگاه باقی نمانده.",
+          shots: [
+            { kind: "studio", title: "Three-quarter studio opener", source: "/media/products/ht-krm-0001/studio-three-quarter.png", motion: "Slow lateral slider", direction: "Use the three-quarter studio view exactly as supplied. Make a very slow lateral camera slide from left to right, revealing the density of the thousand-flower field without changing perspective, carpet thickness or edge geometry. The neutral studio background remains unchanged. Do not invent a city or room scene for this carpet." },
+            { kind: "full", title: "All-over field reveal", source: "/media/products/ht-krm-0001/full-frontal.png", motion: "Centered micro push", direction: "Hold the complete carpet centered and make a subtle 2 percent push toward the small central rosette. Keep all four sides, the full red border system and both ends visible. The many small flowers must not shimmer, merge, multiply or change color." },
+            { kind: "detail", title: "Field-to-border detail", source: "/media/products/ht-krm-0001/field-and-border-detail.png", motion: "Diagonal macro track", direction: "Make a precise diagonal macro track from the golden-cream flower field into the deep red border. Preserve every small blossom and vine exactly; avoid depth effects that separate or animate the woven motifs." }
+          ]
+        },
+        {
+          sku: "HT-NHV-0001", slug: "ht-nhv-0001", name: "تابلوفرشِ نورعلی‌شاه", origin: "نهاوند، همدان", dimensions: "۱۳۵ × ۱۹۰ سانتی‌متر", age: "حدود ۱۲۰ سال", pattern: "تصویری و کتیبه‌دار", price: "۷۵۰٬۰۰۰٬۰۰۰ تومان", colors: "black pictorial field with cream calligraphy panels, brick red, blue and brown details", protected: "the portrait's exact face and hands, garment, axe, trees, fish, birds, every Persian calligraphy mark, black field, frame and blue upper fringe", hook: "این تابلوفرش حدود ۱۲۰ سال است که یک چهره و روایت را حفظ کرده.",
+          shots: [
+            { kind: "context", title: "Museum display opener", source: "/media/products/ht-nhv-0001/display-context.png", motion: "Slow gallery dolly", direction: "Make a quiet, perfectly stabilized gallery dolly forward toward the wall-mounted pictorial carpet. Keep both spotlights, wall panels, floor, barrier and the carpet's scale fixed. The portrait must not blink, breathe, smile or move; the Persian calligraphy must remain pixel-for-pixel stable." },
+            { kind: "full", title: "Complete pictorial record", source: "/media/products/ht-nhv-0001/full-frontal.png", motion: "Very slow portrait push", direction: "Begin with the entire pictorial carpet and all inscription borders visible. Apply only a 2 percent slow optical push toward the seated figure, ending before any calligraphy panel or fringe leaves frame. Do not animate the face, eyes, mouth, hands, clothing, axe, birds, fish, trees or writing." },
+            { kind: "detail", title: "Portrait weave detail", source: "/media/products/ht-nhv-0001/portrait-detail.jpg", motion: "Micro lateral slide", direction: "Make a minimal left-to-right macro slide across the woven portrait and garment to reveal yarn texture. The face and hand are textile motifs, not a living person: no blinking, breathing, gaze shift, lip motion, hand movement or expression change. Preserve every surrounding weave detail." }
+          ]
+        },
+        {
+          sku: "HT-RVR-0001", slug: "ht-rvr-0001", name: "درختیِ راور", origin: "راور، کرمان", dimensions: "۱۳۶ × ۲۱۳ سانتی‌متر", age: "حدود ۱۱۰ تا ۱۴۰ سال", pattern: "درختیِ یک‌طرفه", price: "۱۳۸٬۰۰۰٬۰۰۰ تومان", colors: "navy tree field with warm brown branches, cream and red borders and muted birds", protected: "the tall asymmetric tree, each perched bird, blossoms, navy field, warm red outer border, carpet outline and visible age", hook: "یک درخت بافته‌شده که بیش از یک قرن پرنده‌هایش را نگه داشته.",
+          shots: [
+            { kind: "context", title: "Kerman arch opener", source: "/media/products/ht-rvr-0001/kerman-architecture-context.png", motion: "Slow room arc", direction: "Perform a restrained left-to-right camera arc within the brick arch, keeping the wall-mounted carpet as the visual anchor. Preserve the pomegranate tree, brickwork, open doorway, distant landscape and warm light exactly. No leaves, fruit, birds or woven branches move." },
+            { kind: "full", title: "Tree ascent", source: "/media/products/ht-rvr-0001/full-frontal.png", motion: "Gentle upward drift", direction: "Hold the carpet square and perform a slow upward camera drift following the woven trunk from the large lower bird toward the upper branches. Maintain stable perspective and border geometry. Every bird and blossom remains a motionless part of the weave." },
+            { kind: "detail", title: "Birds among branches", source: "/media/products/ht-rvr-0001/tree-and-birds-detail.jpg", motion: "Macro push", direction: "Make a tiny smooth macro push toward the birds among the branches, revealing pile and color transitions. Do not give the birds eyes, breathing, wing movement or separate depth; do not grow, sway or animate any branch or flower." }
+          ]
+        },
+        {
+          sku: "HT-QOM-0001", slug: "ht-qom-0001", name: "شکارگاهِ قم", origin: "قم", dimensions: "۱۶۵ × ۲۵۵ سانتی‌متر", age: "حدود ۴۰ سال", pattern: "شکارگاه", price: "۱۶۵٬۰۰۰٬۰۰۰ تومان", colors: "cream narrative field with pale blue floral border and red, blue and earth-toned figures", protected: "every hunter, horse, animal, tree and small narrative motif, the cream field, pale blue main border, complete outline and fringes", hook: "در این شکارگاه چند حیوان پیدا می‌کنید؟",
+          shots: [
+            { kind: "context", title: "Qom arcade opener", source: "/media/products/ht-qom-0001/qom-context.png", motion: "Centered architectural dolly", direction: "Make a slow centered dolly through the brick arcade toward the wall-hung carpet. Maintain the symmetry of the arch, the garden water channel, tree and daylight. The carpet remains flat and all woven hunters, horses and animals stay completely frozen." },
+            { kind: "full", title: "Narrative field reveal", source: "/media/products/ht-qom-0001/full-frontal.png", motion: "Slow central push", direction: "Begin with the complete hunting carpet fully visible and make a subtle push toward the center of the cream narrative field. Stop before the pale blue floral border leaves frame. Do not animate any rider, animal, bird, tree, flame-like motif or weapon." },
+            { kind: "detail", title: "Hunting scene evidence", source: "/media/products/ht-qom-0001/hunting-scene-detail.jpg", motion: "Controlled diagonal scan", direction: "Apply a short diagonal macro scan across the woven hunting scene to reveal multiple figures and animals. Preserve their exact anatomy as woven, including all irregularities. No legs run, heads turn, weapons move, vegetation sways or motifs separate from the pile." }
+          ]
+        },
+        {
+          sku: "HT-QOM-0002", slug: "ht-qom-0002", name: "شکارگاهِ لاجوردیِ قم", origin: "قم", dimensions: "۱۴۲ × ۲۱۵ سانتی‌متر", age: "حدود ۴۰ سال", pattern: "شکارگاه", price: "۲۵۰٬۰۰۰٬۰۰۰ تومان", colors: "deep navy field with cream riders and animals, sky-blue border and restrained brown details", protected: "all mounted hunters and animals, the deep navy field, blue medallion border panels, cream fringe, exact proportions and pictorial arrangement", hook: "روی این زمینهٔ لاجوردی، هر حرکت فقط با نخ روایت شده.",
+          shots: [
+            { kind: "context", title: "Hunting-room opener", source: "/media/products/ht-qom-0002/hunting-interior-context.png", motion: "Low slow dolly", direction: "Make a low, slow dolly along the carpet toward the tiled arch and displayed saddle, preserving the shaft of window light and every architectural line. The saddle, arrows and woven figures remain static. Do not add a rider or create historical action." },
+            { kind: "full", title: "Lapis hunting ascent", source: "/media/products/ht-qom-0002/full-frontal.png", motion: "Lower-to-upper drift", direction: "Keep the complete carpet stable and make a restrained upward camera drift from the lower hunter toward the upper mounted figures. Preserve the deep navy field and exact blue border panels. Every human and animal is a fixed woven motif and must not move." },
+            { kind: "detail", title: "Rider and animal detail", source: "/media/products/ht-qom-0002/hunting-scene-detail.jpg", motion: "Horizontal macro slide", direction: "Use a gentle horizontal macro slide across the selected rider and animals, revealing weave texture without adding depth or motion to the scene. No blinking, running, weapon movement, moving foliage, changing anatomy or invented pattern." }
+          ]
+        },
+        {
+          sku: "HT-QOM-0003", slug: "ht-qom-0003", name: "لچک‌وترنجِ قم", origin: "قم", dimensions: "۱۳۷ × ۲۱۲ سانتی‌متر", age: "حدود ۶۰ سال", pattern: "لچک‌وترنج", price: "۱۶۵٬۰۰۰٬۰۰۰ تومان", colors: "cream field with a red central medallion, pale blue and red borders and fine multicolor florals", protected: "the red scalloped medallion, four corner compositions, cream field, oval border cartouches, both fringes and exact floral symmetry", hook: "از ترنج مرکزی تا حاشیه، تقارن این تخته را دنبال کنید.",
+          shots: [
+            { kind: "context", title: "Weaving-room opener", source: "/media/products/ht-qom-0003/weaving-room-context.png", motion: "Long-axis dolly", direction: "Make a very slow dolly along the carpet's long axis toward the yarn bench, keeping the red medallion centered. Preserve the stone floor, bench, tools, yarn balls, light and perspective exactly. Nothing in the room or weave moves independently." },
+            { kind: "full", title: "Medallion symmetry", source: "/media/products/ht-qom-0003/full-frontal.png", motion: "Radial micro push", direction: "Start with the entire carpet and all borders visible. Make a perfectly centered 3 percent optical push toward the red medallion while preserving bilateral symmetry. Stop before any outer border or fringe leaves frame; no floral unit may shimmer or mutate." },
+            { kind: "detail", title: "Red medallion detail", source: "/media/products/ht-qom-0003/medallion-detail.jpg", motion: "Centered macro push", direction: "Make a slow centered macro push into the red medallion, keeping its scalloped outline and every internal blossom exactly fixed. Avoid rotation, kaleidoscope effects, pulsing symmetry, color changes or invented petals." }
+          ]
+        },
+        {
+          sku: "HT-KSH-0002", slug: "ht-ksh-0002", name: "لچک‌وترنجِ کف‌ساده‌ی کاشان", origin: "کاشان", dimensions: "۱۳۵ × ۲۰۷ سانتی‌متر", age: "حدود ۸۰ تا ۱۰۰ سال", pattern: "لچک‌وترنج؛ کف‌ساده", price: "۲۲۰٬۰۰۰٬۰۰۰ تومان", colors: "open brick-red field with a dark central medallion, navy border and blue floral accents", protected: "the broad plain red field, dark central medallion, suspended bouquets, corner motifs, navy border, areas of wear and exact fringe", hook: "گاهی ارزش یک نقشه در فضای خالیِ اطراف ترنج دیده می‌شود.",
+          shots: [
+            { kind: "context", title: "Kashan courtyard glide", source: "/media/products/ht-ksh-0002/courtyard-context.png", motion: "Slow floor dolly", direction: "Make a slow floor-level dolly from the near fringe toward the dark central medallion and the courtyard pool beyond. Preserve the open red field, stone floor, carved doors, pool, light and carpet perspective. No water, plants, fabric or motifs move." },
+            { kind: "full", title: "Open-field reveal", source: "/media/products/ht-ksh-0002/full-frontal.png", motion: "Near-static push", direction: "Hold the complete carpet perfectly square and use only a 2 percent centered push toward the dark medallion. The broad plain red field is essential and must remain open, uneven and authentic; do not fill it with new texture or flowers. Keep all borders visible." },
+            { kind: "detail", title: "Plain field to medallion", source: "/media/products/ht-ksh-0002/plain-field-and-medallion-detail.jpg", motion: "Short lateral track", direction: "Make a short lateral macro track from the worn plain red pile into the medallion edge, showing the contrast between open field and ornament. Preserve all wear, yarn direction and motif boundaries; do not repair or enrich the field." }
+          ]
+        },
+        {
+          sku: "HT-ISF-0001", slug: "ht-isf-0001", name: "لچک‌وترنجِ اصفهان", origin: "اصفهان", dimensions: "۱۵۴ × ۲۴۲ سانتی‌متر", age: "حدود ۵۰ تا ۶۰ سال", pattern: "لچک‌وترنج", price: "۲۸۰٬۰۰۰٬۰۰۰ تومان", colors: "rich red field, dark floral border, pale blue spandrels and a finely layered central medallion", protected: "the multi-layered central medallion, red arabesque field, pale blue corners, black main border, silk-highlighted details and exact symmetry", hook: "از دور یک ترنج؛ از نزدیک صدها تصمیم ریز در رنگ و خط.",
+          shots: [
+            { kind: "context", title: "Isfahan balcony opener", source: "/media/products/ht-isf-0001/isfahan-context.png", motion: "Carpet-to-dome tilt", direction: "Begin with the carpet and its medallion dominant in the foreground, then make a very slow controlled tilt toward the blue mosque dome while keeping part of the carpet in frame. Preserve every tile, arch, railing, courtyard element, light direction and carpet detail. No city or fabric motion." },
+            { kind: "full", title: "Fine medallion reveal", source: "/media/products/ht-isf-0001/full-frontal.png", motion: "Centered precision push", direction: "Begin with the whole carpet fully visible. Use a precise centered 3 percent push toward the layered central medallion, keeping the black floral border and fringes within frame. Fine curving vines and silk highlights must not flicker, crawl or change." },
+            { kind: "detail", title: "Medallion craftsmanship", source: "/media/products/ht-isf-0001/medallion-detail.png", motion: "Tiny lateral arc", direction: "Make a tiny stabilized lateral arc across the medallion detail to reveal color layering and pile. Maintain flat textile geometry with no 3D petals, rotating symmetry, shimmering silk, moving vines or newly generated ornament." }
+          ]
+        },
+        {
+          sku: "HT-ISF-0002", slug: "ht-isf-0002", name: "شکارگاهِ اصفهان", origin: "اصفهان", dimensions: "۱۵۳ × ۲۳۳ سانتی‌متر", age: "قدمت در دست تکمیل", pattern: "شکارگاه", price: "۴۲۰٬۰۰۰٬۰۰۰ تومان", colors: "cream pictorial field with pale blue, brown and black riders inside a black floral-and-bird border", protected: "all riders, horses, animals and trees, the cream field, black bird-and-flower border, pale blue details, exact fringe and visible weave", hook: "شکارگاه است، اما هیچ‌چیز حرکت نمی‌کند؛ تمام هیجان با گره ساخته شده.",
+          shots: [
+            { kind: "context", title: "Loom-room opener", source: "/media/products/ht-isf-0002/weaving-room-context.png", motion: "Slow axial dolly", direction: "Make a slow dolly along the laid carpet toward the empty loom in the rear room, keeping the hunting scene readable. Preserve the table, yarn, lattice light, tiled arch, floor and loom exactly. Do not add a weaver or animate any woven figure or animal." },
+            { kind: "full", title: "Complete hunt composition", source: "/media/products/ht-isf-0002/full-frontal.png", motion: "Measured upward scan", direction: "Keep the carpet straight and make a measured upward camera scan through the cream hunting field, revealing the stacked rider groups while retaining portions of the black border. All hunters, horses, animals, trees and birds are fixed textile motifs and remain motionless." },
+            { kind: "detail", title: "Rider group evidence", source: "/media/products/ht-isf-0002/hunting-scene-detail.jpg", motion: "Three-percent detail push", direction: "Apply a smooth 3 percent push toward the selected rider group to show the fine weave. Preserve every face, limb, horse, weapon, branch and color edge exactly. No blinking, galloping, body motion, leaf motion or narrative animation." }
+          ]
+        },
+        {
+          sku: "HT-SRJ-0001", slug: "ht-srj-0001", name: "قالی عشایریِ سیرجان", origin: "سیرجان", dimensions: "۱۱۸ × ۱۶۳ سانتی‌متر", age: "حدود ۴۰ تا ۵۰ سال", pattern: "عشایری هندسی", price: "۳۵٬۰۰۰٬۰۰۰ تومان", colors: "cream field with strong red and navy geometric blocks, angular plant and animal motifs and dark borders", protected: "the central red stepped medallion, mirrored geometric blocks, angular birds and plants, navy borders, cream field and exact hand-made asymmetries", hook: "هندسه‌ای که با خط‌کش ساخته نشده؛ با حافظه و دست بافته شده.",
+          shots: [
+            { kind: "context", title: "Sirjan wall-and-door opener", source: "/media/products/ht-srj-0001/sirjan-context.png", motion: "Slow horizontal slider", direction: "Make a restrained horizontal camera slide from the wooden door toward the wall-hung tribal carpet. Preserve the mud wall, timber, door hardware, mountains, sunlight and exact carpet scale. No wind, fabric movement, shifting shadows or moving motifs." },
+            { kind: "full", title: "Geometric center reveal", source: "/media/products/ht-srj-0001/full-frontal.png", motion: "Centered two-percent push", direction: "Hold the complete tribal carpet centered and use a 2 percent push toward the red stepped center. Preserve the deliberate hand-made asymmetries and every angular bird, plant and border unit; do not auto-correct the geometry into perfect digital symmetry." },
+            { kind: "detail", title: "Tribal motif detail", source: "/media/products/ht-srj-0001/tribal-detail.jpg", motion: "Crisp lateral macro slide", direction: "Make a crisp, slow lateral macro slide across the angular tribal motifs and color blocks. Preserve the hard stepped edges, yarn texture and irregular spacing. No glowing color, moving birds, new symbols or smoothed computer-perfect lines." }
+          ]
+        },
+        {
+          sku: "HT-SNH-0001", slug: "ht-snh-0001", name: "سه‌ترنجِ سنندج", origin: "سنندج، کردستان", dimensions: "۱۱۴ × ۱۶۸ سانتی‌متر", age: "حدود ۶۰ سال", pattern: "سه‌ترنج هندسی", price: "۱۶۰٬۰۰۰٬۰۰۰ تومان", colors: "strong red stepped field with navy floral compartments, a cream middle medallion and muted blue border", protected: "the exact sequence of three vertical medallions, cream center diamond, stepped red field, navy compartments, blue border and both fringes", hook: "سه ترنج روی یک محور؛ چشم شما اول کدام را می‌بیند؟",
+          shots: [
+            { kind: "context", title: "Kurdistan wall opener", source: "/media/products/ht-snh-0001/kurdistan-context.png", motion: "Door-to-carpet slide", direction: "Make a slow lateral slide from the carved wooden door toward the wall-hung carpet, holding the three-medallion axis upright. Preserve the stone wall, mountain background, timber rail, ground and sunlight. No wind or fabric movement; the rug remains fixed to the wall." },
+            { kind: "full", title: "Three-medallion journey", source: "/media/products/ht-snh-0001/full-frontal.png", motion: "Vertical axis track", direction: "Make a controlled vertical camera track from the lower dark medallion through the cream middle medallion to the upper dark medallion. Keep the carpet flat and the sequence exact; the stepped red field, navy compartments and blue border must not bend, pulse or change." },
+            { kind: "detail", title: "Medallion sequence detail", source: "/media/products/ht-snh-0001/three-medallion-detail.png", motion: "Slow axial macro track", direction: "Apply a slow macro track along the three-medallion axis, emphasizing the transition into the cream central diamond. Preserve every stepped contour, floral fill and knot. Do not rotate, mirror, multiply or perfect the hand-made geometry." }
+          ]
+        },
+        {
+          sku: "HT-NJF-0001", slug: "ht-njf-0001", name: "لچک‌وترنجِ نجف‌آباد", origin: "نجف‌آباد", dimensions: "۱۰۴ × ۱۶۲ سانتی‌متر", age: "حدود ۵۰ سال", pattern: "لچک‌وترنج؛ نقشه‌ی اصفهان", price: "۸۵٬۰۰۰٬۰۰۰ تومان", colors: "cream field with a compact red central medallion, pale blue spandrels and layered red-blue borders", protected: "the compact red medallion, cream arabesque field, pale blue corners, red floral border, full rectangular outline and fringe", hook: "نقشهٔ اصفهان، در تخته‌ای جمع‌وجور از نجف‌آباد.",
+          shots: [
+            { kind: "context", title: "Architectural wall opener", source: "/media/products/ht-njf-0001/isfahan-pattern-context.png", motion: "Slow approach", direction: "Make a slow stabilized approach toward the wall-hung carpet while preserving the soft-focus arch and tiled architecture in the background. Keep the rug's rectangular outline, fringe, wall contact and scale fixed. Architecture and fabric remain motionless." },
+            { kind: "full", title: "Compact medallion reveal", source: "/media/products/ht-njf-0001/full-frontal.png", motion: "Centered micro push", direction: "Begin with the entire carpet centered and make a 3 percent push toward the compact red medallion. Retain the cream field, pale blue spandrels, layered red-blue borders and both fringed ends in view. No symmetry drift or floral mutation." },
+            { kind: "detail", title: "Medallion petal detail", source: "/media/products/ht-njf-0001/medallion-detail.png", motion: "Short petal-side slide", direction: "Make a tiny side-to-side macro slide across the red medallion petals and surrounding cream vines. Preserve every color edge, petal count and yarn contour exactly; avoid rotation, blooming, crawling vines or artificial dimensionality." }
+          ]
+        },
+        {
+          sku: "HT-BJR-0001", slug: "ht-bjr-0001", name: "لچک‌وترنجِ بیجار/جوزان", origin: "بیجار/جوزان", dimensions: "۱۱۴ × ۱۵۳ سانتی‌متر", age: "قدمت در دست تکمیل", pattern: "لچک‌وترنج", price: "۶۰٬۰۰۰٬۰۰۰ تومان", colors: "cream shaped field with olive central medallion, black spandrels, coral flowers and red-blue outer borders", protected: "the olive-centered medallion, shaped cream field, black corner compartments, coral flowers, dense border stack, exact outline and fringe", hook: "کرم، زیتونی و مشکی؛ ترکیبی که از دور آرام و از نزدیک پرجزئیات است.",
+          shots: [
+            { kind: "context", title: "Quiet room opener", source: "/media/products/ht-bjr-0001/bijar-context.png", motion: "Window-light slider", direction: "Make a slow stabilized slider from the patterned window light toward the small wall-mounted carpet. Preserve the timber ceiling, plaster wall, floor, door, light pattern and exact rug scale. Nothing moves or changes brightness unnaturally." },
+            { kind: "full", title: "Olive medallion reveal", source: "/media/products/ht-bjr-0001/full-frontal.png", motion: "Centered precision push", direction: "Hold the complete carpet square and make a restrained 3 percent push toward the olive central medallion. Preserve the shaped cream field, black spandrels, coral flowers, all border bands and fringes; do not smooth its hand-made geometry." },
+            { kind: "detail", title: "Olive-to-black detail", source: "/media/products/ht-bjr-0001/medallion-detail.png", motion: "Micro diagonal slide", direction: "Make a micro diagonal slide from the olive medallion into the cream field and black floral compartment. Preserve exact pile texture, flower placement and contour edges. No expanding ornament, color breathing, fake gloss or repaired wear." }
+          ]
+        },
+        {
+          sku: "HT-KSH-0003", slug: "ht-ksh-0003", name: "لچک‌وترنجِ کاشان", origin: "کاشان", dimensions: "۱۳۱ × ۲۱۲ سانتی‌متر", age: "حدود ۶۰ تا ۷۰ سال", pattern: "لچک‌وترنج", price: "۱۲۰٬۰۰۰٬۰۰۰ تومان", colors: "dense warm red field with a cream-black central medallion, black floral border and muted blue corner accents", protected: "the cream-and-black central medallion, dense red floral field, blue corner shapes, black main border, multiple guard borders and fringes", hook: "این زمینهٔ لاکی از دور یکپارچه است؛ نزدیک‌تر که شوید، باغ شروع می‌شود.",
+          shots: [
+            { kind: "context", title: "Kashan courtyard opener", source: "/media/products/ht-ksh-0003/kashan-context.png", motion: "Slow forward dolly", direction: "Make a slow forward dolly from the carpet in the courtyard toward the tall arched doorway, keeping the rug dominant for most of the shot. Preserve the wind tower, brickwork, paving, door, sunlight and carpet perspective. No changing shadows, wind or fabric movement." },
+            { kind: "full", title: "Dense red-field reveal", source: "/media/products/ht-ksh-0003/full-frontal.png", motion: "Centered three-percent push", direction: "Start with the entire carpet fully visible and apply a centered 3 percent push toward the cream-and-black medallion. Keep the dense red floral field, blue corner forms, black border and both fringes stable and in frame. No pattern crawl or color shift." },
+            { kind: "detail", title: "Central medallion detail", source: "/media/products/ht-ksh-0003/medallion-detail.png", motion: "Gentle vertical macro drift", direction: "Make a gentle vertical macro drift across the cream-and-black medallion and its surrounding red vines. Preserve every pointed contour, flower and color boundary. Do not rotate the medallion, grow vines, add petals or erase age." }
+          ]
+        },
+        {
+          sku: "HT-QOM-0004", slug: "ht-qom-0004", name: "محرابی قندیلیِ قم", origin: "قم", dimensions: "۱۴۰ × ۲۱۲ سانتی‌متر", age: "حدود ۶۰ سال", pattern: "محرابی قندیلی", price: "۱۷۰٬۰۰۰٬۰۰۰ تومان", colors: "open red prayer field with pale blue border, twin columns, birds and an ornate hanging lamp", protected: "the suspended lamp, two columns, paired birds, open red field, prayer-niche arch, pale blue border, small lower motifs and fringe", hook: "دو ستون، دو پرنده و یک قندیل؛ نقشه‌ای که جهت دارد.",
+          shots: [
+            { kind: "context", title: "Qom skyline opener", source: "/media/products/ht-qom-0004/qom-context.png", motion: "Carpet-to-skyline tilt", direction: "Begin with the prayer carpet dominant in the foreground and make a slow upward tilt toward the Qom skyline and golden dome, retaining the carpet's upper niche in the lower frame. Preserve the tiled terrace, brick parapet, skyline, domes, minarets and light. Nothing in the city or textile moves." },
+            { kind: "full", title: "Columns-to-lamp ascent", source: "/media/products/ht-qom-0004/full-frontal.png", motion: "Slow vertical track", direction: "Keep the carpet straight and make a slow vertical track from the bases of the two columns upward to the ornate hanging lamp and niche. The open red field, paired birds and pale blue border remain exactly fixed; the lamp does not swing and birds do not move." },
+            { kind: "detail", title: "Prayer niche evidence", source: "/media/products/ht-qom-0004/prayer-niche-detail.png", motion: "Centered detail push", direction: "Apply a gentle centered push into the hanging lamp and prayer-niche detail, revealing pile and line work. Preserve exact symmetry and every chain, column, bird and small ornament. No lamp swing, flame, bird motion, glowing light or new religious text." }
+          ]
+        },
+        {
+          sku: "HT-SHB-0001", slug: "ht-shb-0001", name: "محرماتِ شهر بابک / سیرجان", origin: "شهر بابک / سیرجان", dimensions: "احتمالاً پرده‌ای؛ ابعاد دقیق در دست تعیین", age: "حدود ۹۰ تا ۱۱۰ سال", pattern: "محرمات", price: "۸۵٬۰۰۰٬۰۰۰ تومان", colors: "very dark navy field with narrow vertical cream-red stripes, repeating boteh-like units and deep red borders", protected: "every narrow vertical stripe, repeated dark-red motif, cream lattice line, deep red outer border, exact row rhythm, worn edges and proportions", hook: "تکرار این نوارها ساده نیست؛ ریتمی است که نزدیک یک قرن دوام آورده.",
+          shots: [
+            { kind: "context", title: "Desert architecture opener", source: "/media/products/ht-shb-0001/shahr-babak-context.png", motion: "Slow lateral reveal", direction: "Make a slow lateral camera reveal from the hanging striped carpet toward the arched opening and rocky settlement, then settle with both visible. Preserve the mud wall, arch, caves, desert light, hanging rail and carpet shape. No wind, swinging textile, dust or moving shadows." },
+            { kind: "full", title: "Stripe rhythm reveal", source: "/media/products/ht-shb-0001/full-frontal.png", motion: "Vertical pattern track", direction: "Make a very slow vertical camera track along the repeating stripe columns, keeping both side borders visible to anchor scale. Preserve every repeated motif and hand-made variation; do not merge, straighten, multiply or animate the rows." },
+            { kind: "detail", title: "Moharramat repeat detail", source: "/media/products/ht-shb-0001/moharramat-detail.png", motion: "Horizontal macro cross", direction: "Make a controlled horizontal macro track crossing several vertical stripes to show their repeated rhythm and yarn texture. Every cream lattice, red motif and dark ground remains fixed. No moiré shimmer, crawling pattern, added rows or color pulsing." }
+          ]
+        },
+        {
+          sku: "HT-TBZ-0001", slug: "ht-tbz-0001", name: "لچک‌وترنجِ تبریز، ۶۰ رج", origin: "تبریز", dimensions: "۱۳۶ × ۱۹۲ سانتی‌متر", age: "حدود ۷۰ تا ۹۰ سال", pattern: "لچک‌وترنج؛ ۶۰ رج", price: "۴۷۰٬۰۰۰٬۰۰۰ تومان", colors: "warm red field with a dark green-blue central medallion, dark green floral border and fine cream guard lines", protected: "the green-blue central medallion, red arabesque field, dark green border, fine 60-raj line work, cream guards, outline and fringes", hook: "۶۰ رج یعنی جزئیاتی که در یک نگاه دیده نمی‌شوند.",
+          shots: [
+            { kind: "context", title: "Tabriz courtyard opener", source: "/media/products/ht-tbz-0001/tabriz-context.png", motion: "Slow medallion dolly", direction: "Make a slow low dolly from the near border toward the green-blue medallion and courtyard pool beyond. Preserve the paving, pool, plants, arches, soft focus, carpet perspective and daylight exactly. No water, leaves, fabric, shadows or woven motifs move." },
+            { kind: "full", title: "Sixty-raj full reveal", source: "/media/products/ht-tbz-0001/full-frontal.png", motion: "Centered precision push", direction: "Begin with the complete carpet and all borders visible. Apply a precise 3 percent centered push toward the dark green-blue medallion, stopping before any border or fringe exits frame. Fine 60-raj line work must remain stable with no shimmer or simplification." },
+            { kind: "detail", title: "Fine medallion evidence", source: "/media/products/ht-tbz-0001/medallion-detail.png", motion: "Ultra-slow macro push", direction: "Make an ultra-slow macro push into the medallion's fine blue, green and cream line work. Preserve every small petal, vine and color junction. No sharpening halos, sparkling silk effect, rotating geometry, moving vines or newly invented micro-pattern." }
+          ]
+        }
+      ];
+
+      const REEL_PACKS = {
+        "HT-KSH-0001": {
+          enName: "Kashan Tree of Life Carpet", enOrigin: "Kashan, Iran", enPattern: "Tree of Life",
+          enHook: "A whole garden woven into 138 × 217 centimeters.", screenFa: "یک باغ، بافته‌شده با نخ", screenEn: "A garden woven in thread",
+          musicSearch: "Persian santur calm instrumental", music: "Warm santur with soft kamancheh · 78–84 BPM · no vocals · a gentle lift after the first three seconds",
+          hashtags: "#فرش_دستباف #فرش_کاشان #PersianCarpet #KashanCarpet #Hosseintalab"
+        },
+        "HT-KHY-0001": {
+          enName: "Khoy Vase Carpet", enOrigin: "Khoy, West Azerbaijan, Iran", enPattern: "Directional vase design",
+          enHook: "The entire composition grows from a single vase. Can you spot its correct orientation?", screenFa: "نقش از یک گلدان آغاز می‌شود", screenEn: "It begins with a single vase",
+          musicSearch: "Persian setar soft daf instrumental", music: "Clear setar phrases with a very soft daf pulse · 88–94 BPM · no vocals · one distinct beat for each cut",
+          hashtags: "#فرش_دستباف #فرش_خوی #PersianCarpet #VaseCarpet #Hosseintalab"
+        },
+        "HT-KRM-0001": {
+          enName: "Kerman Millefleurs Carpet", enOrigin: "Kerman, Iran", enPattern: "All-over millefleurs",
+          enHook: "Almost no empty space remains—the field is filled with flowers.", screenFa: "هزار گل، تقریباً بی‌فضای خالی", screenEn: "A thousand flowers, almost no empty space",
+          musicSearch: "bright santur tombak instrumental", music: "Bright santur figures over restrained tombak · 96–104 BPM · no vocals · lively but never festive or comic",
+          hashtags: "#فرش_دستباف #فرش_کرمان #PersianCarpet #MillefleursCarpet #Hosseintalab"
+        },
+        "HT-NHV-0001": {
+          enName: "Nur Ali Shah Pictorial Carpet", enOrigin: "Nahavand, Hamadan, Iran", enPattern: "Pictorial carpet with inscriptions",
+          enHook: "For roughly 120 years, this carpet has preserved a face and a story.", screenFa: "روایتی با قدمت حدود ۱۲۰ سال", screenEn: "A story preserved for about 120 years",
+          musicSearch: "ney kamancheh contemplative instrumental", music: "Low ney with sparse kamancheh · 68–74 BPM · no vocals · dignified, archival and contemplative—not ominous",
+          hashtags: "#تابلوفرش #فرش_نهاوند #PersianCarpet #PictorialCarpet #Hosseintalab"
+        },
+        "HT-RVR-0001": {
+          enName: "Ravar Tree Carpet", enOrigin: "Ravar, Kerman, Iran", enPattern: "Directional tree design",
+          enHook: "A woven tree that has held its birds for more than a century.", screenFa: "درختی با قدمت بیش از یک قرن", screenEn: "A tree more than a century old",
+          musicSearch: "Persian kamancheh setar slow instrumental", music: "Warm kamancheh over sparse setar · 72–78 BPM · no vocals · long notes that leave room for the old tree",
+          hashtags: "#فرش_دستباف #فرش_راور #PersianCarpet #TreeCarpet #Hosseintalab"
+        },
+        "HT-QOM-0001": {
+          enName: "Qom Hunting Scene Carpet", enOrigin: "Qom, Iran", enPattern: "Hunting scene",
+          enHook: "How many animals can you find in this hunting scene?", screenFa: "چند حیوان پیدا می‌کنید؟", screenEn: "How many animals can you find?",
+          musicSearch: "Persian cinematic frame drum setar", music: "Agile setar with controlled frame drum · 100–108 BPM · no vocals · curious rather than aggressive",
+          hashtags: "#فرش_قم #فرش_شکارگاه #PersianCarpet #HuntingCarpet #Hosseintalab"
+        },
+        "HT-QOM-0002": {
+          enName: "Qom Lapis Hunting Carpet", enOrigin: "Qom, Iran", enPattern: "Hunting scene",
+          enHook: "Across this deep lapis field, every movement is told only through thread.", screenFa: "تمام حرکت‌ها با نخ روایت شده", screenEn: "Every movement is woven",
+          musicSearch: "dark oud frame drum cinematic instrumental", music: "Low oud with muted frame drum · 92–100 BPM · no vocals · deep, elegant and cinematic without a dramatic trailer drop",
+          hashtags: "#فرش_قم #فرش_شکارگاه #PersianCarpet #LapisCarpet #Hosseintalab"
+        },
+        "HT-QOM-0003": {
+          enName: "Qom Medallion-and-Corner Carpet", enOrigin: "Qom, Iran", enPattern: "Medallion-and-corner",
+          enHook: "Follow the symmetry from the central medallion to the border.", screenFa: "تقارن را از ترنج تا حاشیه دنبال کنید", screenEn: "Follow the symmetry",
+          musicSearch: "santur arpeggio elegant instrumental", music: "Even santur arpeggios with a light drone · 82–88 BPM · no vocals · precise, balanced and unhurried",
+          hashtags: "#فرش_قم #لچک_ترنج #PersianCarpet #MedallionCarpet #Hosseintalab"
+        },
+        "HT-KSH-0002": {
+          enName: "Kashan Open-Field Medallion Carpet", enOrigin: "Kashan, Iran", enPattern: "Open-field medallion-and-corner",
+          enHook: "Sometimes the character of a design lies in the quiet space around its medallion.", screenFa: "سکوتِ اطراف ترنج", screenEn: "The quiet around the medallion",
+          musicSearch: "minimal Persian setar ambient instrumental", music: "Minimal solo setar with plenty of silence · 70–76 BPM · no vocals · no heavy percussion",
+          hashtags: "#فرش_کاشان #لچک_ترنج #PersianCarpet #AntiqueCarpet #Hosseintalab"
+        },
+        "HT-ISF-0001": {
+          enName: "Isfahan Medallion-and-Corner Carpet", enOrigin: "Isfahan, Iran", enPattern: "Medallion-and-corner",
+          enHook: "From a distance, one medallion. Up close, hundreds of precise choices in line and color.", screenFa: "صدها تصمیم در یک ترنج", screenEn: "Hundreds of choices in one medallion",
+          musicSearch: "Persian classical tar santur refined", music: "Refined tar and santur dialogue · 80–86 BPM · no vocals · polished, detailed and restrained",
+          hashtags: "#فرش_اصفهان #لچک_ترنج #PersianCarpet #IsfahanCarpet #Hosseintalab"
+        },
+        "HT-ISF-0002": {
+          enName: "Isfahan Hunting Scene Carpet", enOrigin: "Isfahan, Iran", enPattern: "Hunting scene",
+          enHook: "A hunting scene in complete stillness—every trace of motion is made from knots.", screenFa: "هیجان، ساخته‌شده از گره", screenEn: "Motion made entirely of knots",
+          musicSearch: "kamancheh daf cinematic instrumental", music: "Kamancheh phrases with measured daf accents · 96–104 BPM · no vocals · energetic but sophisticated",
+          hashtags: "#فرش_اصفهان #فرش_شکارگاه #PersianCarpet #HuntingCarpet #Hosseintalab"
+        },
+        "HT-SRJ-0001": {
+          enName: "Sirjan Tribal Carpet", enOrigin: "Sirjan, Iran", enPattern: "Geometric tribal design",
+          enHook: "Geometry drawn without a ruler—woven from memory and hand.", screenFa: "هندسه‌ای بافته‌شده از حافظه", screenEn: "Geometry woven from memory",
+          musicSearch: "Persian tribal daf plucked strings", music: "Dry daf rhythm with short plucked-string figures · 105–112 BPM · no vocals · tactile and handmade, not electronic club music",
+          hashtags: "#فرش_عشایری #فرش_سیرجان #PersianCarpet #TribalCarpet #Hosseintalab"
+        },
+        "HT-SNH-0001": {
+          enName: "Sanandaj Three-Medallion Carpet", enOrigin: "Sanandaj, Kurdistan, Iran", enPattern: "Geometric three-medallion design",
+          enHook: "Three medallions on one axis—which one catches your eye first?", screenFa: "چشم شما اول کدام را می‌بیند؟", screenEn: "Which one catches your eye first?",
+          musicSearch: "Kurdish daf tanbur instrumental", music: "Tanbur with an understated Kurdish daf rhythm · 106–114 BPM · no vocals · forward-moving and warm",
+          hashtags: "#فرش_سنندج #فرش_کردستان #PersianCarpet #KurdishCarpet #Hosseintalab"
+        },
+        "HT-NJF-0001": {
+          enName: "Najafabad Medallion-and-Corner Carpet", enOrigin: "Najafabad, Iran", enPattern: "Isfahan-style medallion-and-corner",
+          enHook: "An Isfahan design in a compact carpet woven in Najafabad.", screenFa: "نقشهٔ اصفهان، بافت نجف‌آباد", screenEn: "Isfahan design, woven in Najafabad",
+          musicSearch: "soft setar santur Persian instrumental", music: "Soft setar supported by light santur · 78–84 BPM · no vocals · intimate and precise",
+          hashtags: "#فرش_نجف_آباد #لچک_ترنج #PersianCarpet #NajafabadCarpet #Hosseintalab"
+        },
+        "HT-BJR-0001": {
+          enName: "Bijar/Jozan Medallion Carpet", enOrigin: "Bijar/Jozan, Iran", enPattern: "Medallion-and-corner",
+          enHook: "Cream, olive and black: calm from afar, intricate up close.", screenFa: "آرام از دور، پرجزئیات از نزدیک", screenEn: "Calm from afar, intricate up close",
+          musicSearch: "tanbur low frame drum instrumental", music: "Earthy tanbur with a low, sparse frame drum · 84–92 BPM · no vocals · grounded and architectural",
+          hashtags: "#فرش_بیجار #لچک_ترنج #PersianCarpet #BijarCarpet #Hosseintalab"
+        },
+        "HT-KSH-0003": {
+          enName: "Kashan Medallion-and-Corner Carpet", enOrigin: "Kashan, Iran", enPattern: "Medallion-and-corner",
+          enHook: "From afar, the red field feels whole. Step closer and the garden appears.", screenFa: "نزدیک‌تر شوید؛ باغ ظاهر می‌شود", screenEn: "Step closer; the garden appears",
+          musicSearch: "santur tombak Persian elegant instrumental", music: "Flowing santur with restrained tombak · 88–96 BPM · no vocals · warm and detailed",
+          hashtags: "#فرش_کاشان #لچک_ترنج #PersianCarpet #KashanCarpet #Hosseintalab"
+        },
+        "HT-QOM-0004": {
+          enName: "Qom Lamp-Mihrab Carpet", enOrigin: "Qom, Iran", enPattern: "Prayer niche with hanging lamp",
+          enHook: "Two columns, two birds and one hanging lamp—a composition with direction.", screenFa: "دو ستون، دو پرنده، یک قندیل", screenEn: "Two columns, two birds, one lamp",
+          musicSearch: "ney santur meditative instrumental", music: "Breathy ney over a quiet santur drone · 62–70 BPM · no vocals · calm and reverent, without dramatic effects",
+          hashtags: "#فرش_قم #فرش_محرابی #PersianCarpet #PrayerRug #Hosseintalab"
+        },
+        "HT-SHB-0001": {
+          enName: "Shahr Babak/Sirjan Moharramat Carpet", enOrigin: "Shahr Babak/Sirjan, Iran", enPattern: "Moharramat striped design",
+          enHook: "These stripes are more than repetition—they are a rhythm that has survived nearly a century.", screenFa: "ریتمی نزدیک به یک قرن", screenEn: "A rhythm nearly a century old",
+          musicSearch: "minimal daf drone Persian instrumental", music: "Minimal daf pulse over a dark, warm drone · 86–92 BPM · no vocals · repetitive in a deliberate, hypnotic way",
+          hashtags: "#فرش_محرمات #شهر_بابک #PersianCarpet #StripedCarpet #Hosseintalab"
+        },
+        "HT-TBZ-0001": {
+          enName: "Tabriz 60-Raj Medallion Carpet", enOrigin: "Tabriz, Iran", enPattern: "60-raj medallion-and-corner",
+          enHook: "Sixty raj means detail that cannot be absorbed in a single glance.", screenFa: "۶۰ رج؛ فراتر از یک نگاه", screenEn: "60 raj; beyond a single glance",
+          musicSearch: "Persian tar santur precise instrumental", music: "Crisp tar and santur with fine rhythmic detail · 90–98 BPM · no vocals · intricate but never busy",
+          hashtags: "#فرش_تبریز #فرش_۶۰_رج #PersianCarpet #TabrizCarpet #Hosseintalab"
+        }
+      };
+
+      const VIRAL_PACKS = {
+        "HT-KSH-0001": {
+          concept: "The Woven Garden Hunt", mechanism: "Visual challenge · replay · send to a detail-lover",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for an immediate macro of one documented bird and nearby branches, a restrained 2% optical push. SHOT 2 · 1.4–3.6s: hard cut to @context; glide slowly along the carpet toward the Kashan courtyard water channel while keeping the product stable. SHOT 3 · 3.6–6.2s: hard cut to @full; centered complete Tree of Life carpet, subtle axial push with every border visible. SHOT 4 · 6.2–8.0s: hard cut back to @detail; reveal the documented birds and animals without animating them.",
+          hooks: [["چند حیوان در این باغ پیدا می‌کنید؟", "How many animals can you find in this garden?"], ["یک باغ کامل؛ اما بافته‌شده با نخ.", "A whole garden—woven entirely in thread."], ["برای دیدن همهٔ جزئیات، یک نگاه کافی نیست.", "One look is not enough to see everything."]],
+          engagementFa: "تعداد حیوان‌هایی را که پیدا کردید بنویسید و این ویدئو را برای یک عاشق جزئیات بفرستید.", engagementEn: "Comment how many animals you found and send this to someone who notices every detail."
+        },
+        "HT-KHY-0001": {
+          concept: "Which Way Is Up?", mechanism: "Directional puzzle · comments · comparison",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail to show the documented vase and stems at close range with a tiny diagonal optical slide contained inside the reference. SHOT 2 · 1.4–3.6s: hard cut to @full; show the entire carpet square and readable so its directional composition can be judged. SHOT 3 · 3.6–6.2s: hard cut to @context; controlled tilt from the carpet toward the Khoy brick dome. SHOT 4 · 6.2–8.0s: hard cut back to @full and settle on the lower vase, without rotating the carpet.",
+          hooks: [["جهت درست این فرش را پیدا می‌کنید؟", "Can you identify the correct direction of this carpet?"], ["تمام این نقش از یک گلدان شروع می‌شود.", "This entire composition begins with one vase."], ["اگر برعکس پهن شود، متوجه می‌شوید؟", "Would you notice if it were placed upside down?"]],
+          engagementFa: "قبل از دیدن نمای آخر، بالا و پایین فرش را حدس بزنید.", engagementEn: "Choose which end is the top before the final view."
+        },
+        "HT-KRM-0001": {
+          concept: "No Empty Space", mechanism: "Pattern overload · visual search · replay",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for a dense field-to-border macro with a controlled diagonal move entirely inside the reference. SHOT 2 · 1.4–3.8s: hard cut to @studio; a refined lateral studio slider showing the carpet as a physical object. SHOT 3 · 3.8–6.4s: hard cut to @full; complete centered carpet with a minimal push toward the central rosette. SHOT 4 · 6.4–8.0s: hard cut to @detail and hold long enough to register the density of individual blossoms.",
+          hooks: [["می‌توانید یک جای خالی در این فرش پیدا کنید؟", "Can you find one empty space in this carpet?"], ["هزارگل؛ اسمی که اغراق نیست.", "Millefleurs—its name is not an exaggeration."], ["نگاه شما کجا می‌تواند استراحت کند؟", "Where can your eye possibly rest?"]],
+          engagementFa: "اگر یک فضای خالی پیدا کردید، محلش را در کامنت بنویسید.", engagementEn: "If you find an empty area, describe where it is in the comments."
+        },
+        "HT-NHV-0001": {
+          concept: "A Face Preserved in Thread", mechanism: "Age reveal · human curiosity · cultural story",
+          sequence: "SHOT 1 · 0.0–1.5s: use @detail for a dignified macro of the documented woven portrait; the face is completely motionless and never blinks. SHOT 2 · 1.5–3.7s: hard cut to @context; a slow museum-display drift with the full object readable. SHOT 3 · 3.7–6.3s: hard cut to @full; complete pictorial carpet, stable calligraphy and portrait. SHOT 4 · 6.3–8.0s: hard cut to @detail and make a restrained optical push into real weave texture, with no living-person behavior.",
+          hooks: [["این چهره حدود ۱۲۰ سال است که پلک نزده.", "This face has not blinked for roughly 120 years."], ["یک تصویر نیست؛ هزاران گره است.", "It is not a painting—it is thousands of knots."], ["چه روایتی پشت این چهره پنهان است؟", "What story is preserved behind this face?"]],
+          engagementFa: "این ویدئو را برای کسی بفرستید که تاریخ را در اشیا جست‌وجو می‌کند.", engagementEn: "Send this to someone who looks for history inside objects."
+        },
+        "HT-RVR-0001": {
+          concept: "Birds That Never Flew", mechanism: "Poetic contradiction · age reveal · visual search",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the exact documented birds among branches, a 2% centered push with all woven forms motionless. SHOT 2 · 1.4–3.6s: hard cut to @context; low controlled movement through the Ravar/Kerman architectural setting toward the carpet. SHOT 3 · 3.6–6.2s: hard cut to @full; complete tree composition with a restrained upward optical move. SHOT 4 · 6.2–8.0s: hard cut to @detail, ending on one bird and the visible aged pile.",
+          hooks: [["این پرنده‌ها بیش از یک قرن است که پرواز نکرده‌اند.", "These birds have not flown for more than a century."], ["چند پرنده میان شاخه‌ها می‌بینید؟", "How many birds can you find among the branches?"], ["یک درخت که زمان نتوانسته آن را متوقف کند.", "A tree that time could not erase."]],
+          engagementFa: "تعداد پرنده‌ها را بنویسید و برای کسی بفرستید که عاشق نقوش درختی است.", engagementEn: "Count the birds and send this to someone who loves tree-pattern carpets."
+        },
+        "HT-QOM-0001": {
+          concept: "Count the Hunt", mechanism: "Counting challenge · replay · comments",
+          sequence: "SHOT 1 · 0.0–1.3s: use @detail for an immediate documented hunter-and-animal macro, with no figure animation. SHOT 2 · 1.3–3.4s: hard cut to @context; cinematic Qom setting with a slow camera move while the carpet remains stable. SHOT 3 · 3.4–6.1s: hard cut to @full; complete hunting carpet, centered, all figures readable as woven motifs. SHOT 4 · 6.1–8.0s: hard cut to @detail and scan only within the supplied crop, giving viewers time to count.",
+          hooks: [["در هشت ثانیه چند حیوان پیدا می‌کنید؟", "How many animals can you find in eight seconds?"], ["این شکارگاه حرکت نمی‌کند؛ اما چشم شما چرا.", "The hunt never moves—but your eyes will."], ["هر صحنه با یک گره ساخته شده.", "Every scene is constructed from knots."]],
+          engagementFa: "عددتان را کامنت کنید؛ بعد ویدئو را دوباره ببینید.", engagementEn: "Comment your number, then replay it and count again."
+        },
+        "HT-QOM-0002": {
+          concept: "Movement Made of Thread", mechanism: "Visual contradiction · deep-color hook · replay",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the exact rider group on the lapis field, with a tiny horizontal optical slide and absolutely no body motion. SHOT 2 · 1.4–3.6s: hard cut to @context; a dark, elegant Qom architectural reveal. SHOT 3 · 3.6–6.2s: hard cut to @full; complete navy hunting field, pale riders and full border visible. SHOT 4 · 6.2–8.0s: hard cut to @detail, emphasizing that apparent action is entirely woven.",
+          hooks: [["تمام این حرکت‌ها فقط با نخ ساخته شده‌اند.", "Every movement here is made only from thread."], ["هیچ‌چیز حرکت نمی‌کند؛ اما صحنه زنده است.", "Nothing moves—yet the scene feels alive."], ["روی زمینهٔ لاجوردی چند روایت می‌بینید؟", "How many stories can you see across the lapis field?"]],
+          engagementFa: "این تضاد را برای کسی بفرستید که به هنر روایی علاقه دارد.", engagementEn: "Send this visual contradiction to someone who loves narrative art."
+        },
+        "HT-QOM-0003": {
+          concept: "Follow the Symmetry", mechanism: "Eye-path challenge · satisfying geometry · saves",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the exact red medallion with a 2% centered optical push and no rotation. SHOT 2 · 1.4–3.6s: hard cut to @context; slow weaving-room reveal connecting craft atmosphere to the carpet. SHOT 3 · 3.6–6.3s: hard cut to @full; complete carpet centered, symmetrical composition readable from medallion to corners. SHOT 4 · 6.3–8.0s: hard cut to @detail and hold the scalloped outline stable.",
+          hooks: [["چشم شما می‌تواند این تقارن را تا حاشیه دنبال کند؟", "Can your eye follow this symmetry all the way to the border?"], ["اول ترنج را دیدید یا گوشه‌ها را؟", "Did you notice the medallion or the corners first?"], ["تقارن کامل است؟ یک بار دیگر نگاه کنید.", "Is the symmetry perfect? Look one more time."]],
+          engagementFa: "اولین بخشی را که دیدید بنویسید: ترنج، گوشه یا حاشیه.", engagementEn: "Comment what you noticed first: medallion, corner or border."
+        },
+        "HT-KSH-0002": {
+          concept: "The Luxury of Empty Space", mechanism: "Contrarian insight · education · design opinion",
+          sequence: "SHOT 1 · 0.0–1.5s: use @detail for the documented worn plain field meeting the medallion edge; a tiny lateral move contained inside the reference. SHOT 2 · 1.5–3.7s: hard cut to @context; refined Kashan courtyard movement with the carpet dominant. SHOT 3 · 3.7–6.4s: hard cut to @full; complete open red field and central medallion visible with no invented ornament. SHOT 4 · 6.4–8.0s: hard cut to @detail and hold on the contrast between quiet pile and dense motif.",
+          hooks: [["چرا فضای خالی می‌تواند ارزش یک فرش باشد؟", "Why can empty space be one of a carpet’s greatest strengths?"], ["کم‌نقش‌تر؛ اما نه کم‌ارزش‌تر.", "Less ornament does not mean less value."], ["شما کف ساده را ترجیح می‌دهید یا نقش سراسری؟", "Do you prefer an open field or an all-over design?"]],
+          engagementFa: "انتخابتان را بنویسید: کف ساده یا نقش سراسری؟", engagementEn: "Choose one in the comments: open field or all-over pattern?"
+        },
+        "HT-ISF-0001": {
+          concept: "Hundreds of Decisions", mechanism: "Scale reveal · craftsmanship · saves",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for an exact silk-highlighted medallion macro, a tiny contained lateral optical move. SHOT 2 · 1.4–3.6s: hard cut to @context; slow balcony-to-dome cinematic movement with the carpet still present. SHOT 3 · 3.6–6.3s: hard cut to @full; complete Isfahan carpet, layered medallion and pale corners stable. SHOT 4 · 6.3–8.0s: hard cut back to @detail to show line and color decisions without shimmer.",
+          hooks: [["از دور یک ترنج؛ از نزدیک صدها تصمیم.", "From afar, one medallion. Up close, hundreds of decisions."], ["چند رنگ در این جزئیات می‌بینید؟", "How many colors can you identify in this detail?"], ["این تفاوتِ نگاه کردن و دقیق دیدن است.", "This is the difference between looking and truly seeing."]],
+          engagementFa: "این ویدئو را ذخیره کنید و جزئیات را در نمای دوم دوباره ببینید.", engagementEn: "Save this and inspect the details again on the second viewing."
+        },
+        "HT-ISF-0002": {
+          concept: "The Frozen Hunt", mechanism: "Contradiction · narrative discovery · replay",
+          sequence: "SHOT 1 · 0.0–1.3s: use @detail for the exact rider group; the camera moves 2% but no horse, person, weapon or branch moves. SHOT 2 · 1.3–3.5s: hard cut to @context; elegant Isfahan setting with a controlled reveal. SHOT 3 · 3.5–6.2s: hard cut to @full; complete hunting composition and black narrative border visible. SHOT 4 · 6.2–8.0s: hard cut to @detail and finish on real weave evidence.",
+          hooks: [["یک شکارگاه پرهیجان که هیچ‌چیز در آن حرکت نمی‌کند.", "A dramatic hunt in which nothing actually moves."], ["چند روایت در یک فرش جا می‌شود؟", "How many stories can fit inside one carpet?"], ["حرکت را می‌بینید؛ اما فقط گره وجود دارد.", "You see motion—but only knots exist."]],
+          engagementFa: "صحنه‌ای را که اول توجهتان را گرفت توصیف کنید.", engagementEn: "Describe the scene that caught your attention first."
+        },
+        "HT-SRJ-0001": {
+          concept: "Geometry Without a Ruler", mechanism: "Craft surprise · opinion · cultural memory",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for angular motifs and handmade spacing with a short contained lateral slide. SHOT 2 · 1.4–3.5s: hard cut to @context; cinematic Sirjan landscape/architecture establishing the origin. SHOT 3 · 3.5–6.3s: hard cut to @full; complete tribal carpet, stepped medallion and asymmetries visible. SHOT 4 · 6.3–8.0s: hard cut to @detail and emphasize real yarn edges without perfecting them.",
+          hooks: [["این هندسه بدون خط‌کش ساخته شده.", "This geometry was created without a ruler."], ["بی‌نظمی است یا امضای دست بافنده؟", "Is it irregularity—or the weaver’s signature?"], ["می‌توانید این نقش را از حافظه بکشید؟", "Could you draw this pattern from memory?"]],
+          engagementFa: "به‌نظر شما زیبایی در تقارن کامل است یا ردّ دست انسان؟", engagementEn: "Is beauty found in perfect symmetry or in the trace of the human hand?"
+        },
+        "HT-SNH-0001": {
+          concept: "Which Medallion Wins?", mechanism: "Choice prompt · comments · eye-path test",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail to show the documented three-medallion axis and cream center, moving only within the reference. SHOT 2 · 1.4–3.5s: hard cut to @context; restrained Sanandaj/Kurdistan atmosphere with the carpet clear. SHOT 3 · 3.5–6.3s: hard cut to @full; all three medallions visible in one centered composition. SHOT 4 · 6.3–8.0s: hard cut to @detail, stopping on the central cream diamond.",
+          hooks: [["چشم شما اول کدام ترنج را انتخاب کرد؟", "Which medallion did your eye choose first?"], ["بالا، وسط یا پایین؟ فقط یکی را انتخاب کنید.", "Top, middle or bottom? Choose only one."], ["سه ترنج؛ سه نقطه برای توقف نگاه.", "Three medallions, three places for the eye to stop."]],
+          engagementFa: "فقط یک کلمه کامنت کنید: بالا، وسط یا پایین.", engagementEn: "Comment only one word: top, middle or bottom."
+        },
+        "HT-NJF-0001": {
+          concept: "A Design That Travelled", mechanism: "Origin story · geographic curiosity · education",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the exact red medallion petals and cream vines with a tiny side move. SHOT 2 · 1.4–3.6s: hard cut to @context; Isfahan-pattern architectural atmosphere as a visual clue, not a claim about shooting location. SHOT 3 · 3.6–6.3s: hard cut to @full; compact Najafabad carpet completely visible. SHOT 4 · 6.3–8.0s: hard cut to @detail and finish on the translated design language.",
+          hooks: [["نقشهٔ اصفهان؛ اما بافت نجف‌آباد.", "An Isfahan design—woven in Najafabad."], ["یک نقشه چگونه از شهری به شهر دیگر می‌رود؟", "How does a design travel from one city to another?"], ["مبدأ نقش و محل بافت همیشه یکی نیست.", "The origin of a design and the place of weaving are not always the same."]],
+          engagementFa: "این نکته را برای کسی بفرستید که تفاوت نقش و محل بافت را نمی‌داند.", engagementEn: "Send this to someone who may not know the difference between design origin and weaving origin."
+        },
+        "HT-BJR-0001": {
+          concept: "Three Colors, Two Personalities", mechanism: "Palette reveal · before/after perception · saves",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the exact olive-to-cream-to-black junction with a micro diagonal move. SHOT 2 · 1.4–3.6s: hard cut to @context; restrained Bijar architectural reveal using the supplied scene. SHOT 3 · 3.6–6.3s: hard cut to @full; complete shaped cream field, olive medallion and black corners visible. SHOT 4 · 6.3–8.0s: hard cut to @detail to show how the palette changes at close range.",
+          hooks: [["کرم، زیتونی و مشکی؛ انتخاب شما کدام است؟", "Cream, olive and black—which color leads for you?"], ["از دور آرام؛ از نزدیک پرجزئیات.", "Calm from afar, intricate up close."], ["اول رنگ را دیدید یا نقش را؟", "Did you notice the color or the pattern first?"]],
+          engagementFa: "اولین رنگی را که دیدید کامنت کنید.", engagementEn: "Comment the first color you noticed."
+        },
+        "HT-KSH-0003": {
+          concept: "The Garden Appears", mechanism: "Macro reveal · replay · visual payoff",
+          sequence: "SHOT 1 · 0.0–1.4s: use @full for the complete red field with a clean centered composition. SHOT 2 · 1.4–3.5s: hard cut to @context; slow Kashan architectural reveal keeping the carpet dominant. SHOT 3 · 3.5–6.1s: hard cut to @detail; a documented vertical micro move across the cream-and-black medallion, never outside the reference. SHOT 4 · 6.1–8.0s: hard cut between @full and @detail once, creating a scale comparison without morphing.",
+          hooks: [["نزدیک‌تر شوید؛ باغ ظاهر می‌شود.", "Step closer and the garden appears."], ["از دور فقط یک زمینهٔ لاکی می‌بینید؟", "From afar, do you see only a red field?"], ["این جزئیات در نگاه اول پنهان می‌مانند.", "These details disappear at first glance."]],
+          engagementFa: "ویدئو را دوباره ببینید و اولین گلی را که پیدا کردید بنویسید.", engagementEn: "Replay it and comment the first flower you found."
+        },
+        "HT-QOM-0004": {
+          concept: "A Composition With Direction", mechanism: "Orientation puzzle · symbolic detail · comments",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the documented hanging lamp, columns and birds with a 2% centered push; the lamp and birds never move. SHOT 2 · 1.4–3.6s: hard cut to @context; restrained Qom architectural atmosphere. SHOT 3 · 3.6–6.3s: hard cut to @full; complete prayer-niche composition, columns and directional arch visible. SHOT 4 · 6.3–8.0s: hard cut to @detail and settle on the lamp without glow or animation.",
+          hooks: [["دو ستون، دو پرنده، یک قندیل؛ جهت را پیدا می‌کنید؟", "Two columns, two birds, one lamp—can you find the direction?"], ["چرا این فرش بالا و پایین دارد؟", "Why does this carpet have a clear top and bottom?"], ["اول قندیل را دیدید یا پرنده‌ها را؟", "Did you notice the lamp or the birds first?"]],
+          engagementFa: "اولین چیزی را که دیدید بنویسید: قندیل، ستون یا پرنده.", engagementEn: "Comment what you saw first: lamp, column or bird."
+        },
+        "HT-SHB-0001": {
+          concept: "A Century of Rhythm", mechanism: "Hypnotic repeat · seamless replay · age reveal",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for a controlled horizontal move across only the documented stripes, keeping every repeat fixed. SHOT 2 · 1.4–3.6s: hard cut to @context; slow Shahr Babak desert-architecture reveal with the hanging carpet stable. SHOT 3 · 3.6–6.3s: hard cut to @full; complete striped carpet and border rhythm visible. SHOT 4 · 6.3–8.0s: hard cut to @detail and finish on a matching stripe position suitable for a clean replay loop.",
+          hooks: [["این ریتم نزدیک به یک قرن تکرار شده.", "This rhythm has repeated for nearly a century."], ["تکرار است؛ اما هیچ دو بخش کاملاً یکسان نیست.", "It repeats—but no two sections are perfectly identical."], ["چشم شما می‌تواند یک نوار را تا آخر دنبال کند؟", "Can your eye follow one stripe all the way through?"]],
+          engagementFa: "یک نوار را انتخاب کنید و تا پایان دنبال کنید؛ بعد ویدئو را دوباره ببینید.", engagementEn: "Choose one stripe and follow it to the end—then replay the Reel."
+        },
+        "HT-TBZ-0001": {
+          concept: "What 60 Raj Looks Like", mechanism: "Extreme-detail proof · education · saves",
+          sequence: "SHOT 1 · 0.0–1.4s: use @detail for the exact blue-green medallion line work with an ultra-slow 2% push and no shimmer. SHOT 2 · 1.4–3.6s: hard cut to @context; refined Tabriz courtyard movement with the carpet stable. SHOT 3 · 3.6–6.3s: hard cut to @full; complete 60-raj carpet, medallion, borders and fringe visible. SHOT 4 · 6.3–8.0s: hard cut to @detail and hold the fine color junctions for inspection.",
+          hooks: [["۶۰ رج در نمای نزدیک یعنی این.", "This is what 60 raj looks like up close."], ["جزئیاتی که در یک نگاه دیده نمی‌شوند.", "Detail that cannot be absorbed in one glance."], ["فکر می‌کنید چند گره در این قاب می‌بینید؟", "How many knots do you think are visible in this frame?"]],
+          engagementFa: "این نمای نزدیک را ذخیره کنید و برای کسی بفرستید که کیفیت بافت را می‌شناسد.", engagementEn: "Save this close-up and send it to someone who understands fine weaving."
+        }
+      };
+
+      const STORAGE_KEY = "hosseintalab-higgsfield-workbook-v1";
+      const NOTES_KEY = "hosseintalab-higgsfield-workbook-notes-v1";
+      const IMAGE_BASE = "../public";
+      const CONTACT = {
+        whatsapp: "+46 70 452 56 46",
+        call: "+98 938 787 7818",
+        website: "hosseintalab.ir"
+      };
+      let activeFilter = "all";
+      let toastTimer;
+
+      const readJson = (key) => {
+        try { return JSON.parse(localStorage.getItem(key) || "{}"); }
+        catch { return {}; }
+      };
+
+      const progressState = readJson(STORAGE_KEY);
+      const notesState = readJson(NOTES_KEY);
+
+      const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character]);
+
+      const outputName = (product, shotIndex) => `${product.sku}_${String.fromCharCode(65 + shotIndex)}_${product.shots[shotIndex].kind}_approved.mp4`;
+
+      const detailMotionRecipe = (shot) => {
+        const motion = `${shot.motion} ${shot.direction}`.toLowerCase();
+        if (motion.includes("diagonal")) return "Fill the 9:16 frame, set Scale to 108%, then keyframe Position from X −2% / Y +2% to X +2% / Y −2%. Keep Scale fixed at 108%.";
+        if (motion.includes("horizontal") || motion.includes("lateral") || motion.includes("side-to-side") || motion.includes("side slide")) return "Fill the 9:16 frame, set Scale to 108%, then keyframe only Position X from −2% to +2%. Keep Y and Scale fixed.";
+        if (motion.includes("vertical") || motion.includes("upward") || motion.includes("axial") || motion.includes("along")) return "Fill the 9:16 frame, set Scale to 108%, then keyframe only Position Y from +2% to −2%. Keep X and Scale fixed.";
+        return "Center the supplied detail photograph, then keyframe Scale from 102% to 106% with X and Y locked. This is an editor zoom, not a generated camera move.";
+      };
+
+      const buildDetailEdit = (product, shot) => `TRUTH-SAFE DETAIL CLIP — MAKE THIS IN EDITS OR CAPCUT, NOT HIGGSFIELD.
+
+SOURCE: ${PROJECT_ROOT}/public${shot.source}
+OUTPUT: ${outputName(product, 2)}
+
+1. Create a 4.0-second 9:16 clip from this real detail photograph.
+2. Disable AI Expand, generative fill, 3D photo, image animation, stabilization reconstruction and automatic reframing.
+3. ${detailMotionRecipe(shot)}
+4. Use linear keyframes. No easing bounce, perspective shift, artificial depth of field, sharpening, interpolation or texture animation.
+5. Preview the first and final frames. Every visible knot and motif must come from the supplied photograph; no empty canvas may enter the frame.
+6. Export 1080 × 1920, H.264, 30 fps, four seconds, no watermark.`;
+
+      const buildMultiReferencePrompt = (product, shot) => {
+        const fullShot = product.shots.find((candidate) => candidate.kind === "full");
+        return `OPTIONAL HIGGSFIELD MULTI-REFERENCE TEST — NOT THE DEFAULT PRODUCT-TRUTH WORKFLOW.
+
+Use a model/mode that accepts multiple Reference Images without assigning either image as Start Frame or End Frame.
+REFERENCE 1 — complete geometry: ${PROJECT_ROOT}/public${fullShot.source}
+REFERENCE 2 — exact high-resolution weave evidence: ${PROJECT_ROOT}/public${shot.source}
+
+PROMPT:
+Create a self-contained five-second 9:16 product macro of ${product.name}. The shot is already a close-up for its entire duration; do not transition from a full view into a detail. Reference 1 defines the carpet's complete geometry, proportions, colors and motif placement. Reference 2 defines the only permitted close-up composition, knot texture and fine pattern evidence. Keep the virtual camera perpendicular to the flat textile. Use only a two-percent centered optical push within the area visibly documented by Reference 2. Do not reveal, extend, outpaint or infer anything outside Reference 2. Do not merge alternative motifs from the references. No pattern morphing, invented knots, added petals, moving figures, animated textile, restored wear, color drift, perspective change or artificial depth. The first, middle and final frames must depict the same documented motif.
+
+If the interface turns either image into a Start/End frame, or the result changes even one motif, reject it and use the editor recipe instead.`;
+      };
+
+      const buildPrompt = (product, shot) => {
+        if (shot.kind === "detail") return buildDetailEdit(product, shot);
+        const kindRule = shot.kind === "context"
+          ? "This is a contextual product shot: the surrounding architecture and landscape are also locked to the reference and must not be redesigned."
+          : shot.kind === "full"
+            ? "This is the product-record shot: keep the complete carpet readable, undistorted and correctly proportioned throughout."
+            : shot.kind === "studio"
+              ? "This is a studio product shot: keep the neutral studio environment and carpet placement unchanged."
+              : "Keep all visible evidence inside the supplied composition.";
+
+        return `IMAGE-TO-VIDEO PRODUCT FILM. Create one silent 5-second vertical 9:16 shot using the uploaded photograph as visual evidence. ${shot.direction} LOCKED PRODUCT IDENTITY: ${product.name}, ${product.pattern}, ${product.colors}. Preserve exactly ${product.protected}. ${kindRule} Keep the complete camera path inside areas already visible in the uploaded photograph; no reveal, outpainting or inferred off-frame content. Camera movement is the only action. Use documentary realism, smooth restrained motion, natural existing light, stable geometry and deep focus. NO pattern morphing, no new motifs, no altered colors, no fake restoration, no removed wear, no fringe or fabric movement, no stretching, no scale change, no added people, objects, text, logos or rooms, and no animation of any woven person, animal, bird, plant or calligraphy. End calmly without a sudden zoom or transition.`;
+      };
+
+      const toLatinDigits = (value) => String(value)
+        .replace(/[۰-۹]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹".indexOf(digit))
+        .replace(/٬/g, ",");
+
+      const dimensionEn = (value) => {
+        if (value.includes("تکمیل")) return "Exact dimensions being confirmed";
+        if (value.includes("تعیین")) return "Possibly a curtain format; exact dimensions being confirmed";
+        return toLatinDigits(value).replace(" سانتی‌متر", " cm");
+      };
+
+      const ageEn = (value) => value.includes("تکمیل")
+        ? "Being confirmed"
+        : `Approximately ${toLatinDigits(value.replace("حدود ", "")).replace(" تا ", "–").replace(" سال", " years")}`;
+
+      const priceEn = (value) => `${toLatinDigits(value.replace(" تومان", ""))} toman`;
+
+      const screenFacts = (product) => {
+        const hasAge = !product.age.includes("تکمیل");
+        const hasDimensions = !product.dimensions.includes("تکمیل") && !product.dimensions.includes("تعیین");
+        const fa = [hasAge ? product.age : product.pattern, hasDimensions ? product.dimensions.replace(" سانتی‌متر", "") : ""].filter(Boolean).join(" · ");
+        const en = [hasAge ? ageEn(product.age) : REEL_PACKS[product.sku].enPattern, hasDimensions ? dimensionEn(product.dimensions) : ""].filter(Boolean).join(" · ");
+        return { fa, en };
+      };
+
+      const buildCaption = (product) => {
+        const pack = REEL_PACKS[product.sku];
+        return `${product.hook}
+
+${product.name}
+محل بافت: ${product.origin}
+نقشه: ${product.pattern}
+ابعاد: ${product.dimensions}
+قدمت: ${product.age}
+قیمت ثبت‌شده: ${product.price}
+کد: ${product.sku}
+
+برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، کد ${product.sku} را در واتساپ ${CONTACT.whatsapp} بفرستید یا وارد ${CONTACT.website} شوید.
+
+—
+
+${pack.enHook}
+
+${pack.enName}
+Origin: ${pack.enOrigin}
+Design: ${pack.enPattern}
+Dimensions: ${dimensionEn(product.dimensions)}
+Age: ${ageEn(product.age)}
+Listed price: ${priceEn(product.price)}
+Reference: ${product.sku}
+
+Send “${product.sku}” on WhatsApp ${CONTACT.whatsapp} for complete photographs, condition notes and purchase details, or visit ${CONTACT.website}.
+
+${pack.hashtags}`;
+      };
+
+      const buildViralPrompt = (product) => {
+        const viral = VIRAL_PACKS[product.sku];
+        const contextShot = product.shots.find((shot) => shot.kind === "context" || shot.kind === "studio");
+        const fullShot = product.shots.find((shot) => shot.kind === "full");
+        const detailShot = product.shots.find((shot) => shot.kind === "detail");
+        return `SEEDANCE 2.0 MULTI-REFERENCE CINEMATIC REEL — CLEAN COMMERCIAL FOOTAGE.
+
+Upload these through the normal Reference Image slots. Do not assign any image as Start Frame or End Frame. Replace the aliases below with the @ tags shown by Higgsfield.
+
+@full — PRODUCT AUTHORITY: ${PROJECT_ROOT}/public${fullShot.source}
+@context — ENVIRONMENT / ATMOSPHERE: ${PROJECT_ROOT}/public${contextShot.source}
+@detail — MACRO EVIDENCE: ${PROJECT_ROOT}/public${detailShot.source}
+
+All three references depict or support one specific physical product: ${product.name}, reference ${product.sku}. @full is authoritative for complete proportions, ${product.pattern}, colors, border count, fringe and total geometry. @detail is authoritative for the exact close-up motif, knots, pile, wear and color boundaries. @context is authoritative only for the supplied surroundings and atmosphere; it must never redesign the carpet.
+
+Create one original silent eight-second vertical 9:16 luxury micro-commercial titled “${viral.concept}”. Use four short shots joined by clean hard cuts. Never morph, interpolate or transform one reference photograph into another.
+
+${viral.sequence}
+
+COMMERCIAL DIRECTION: immediate first-frame visual interest, confident pacing, premium Persian-art atmosphere, controlled optical camera motion, realistic existing light, strong composition and a clean visual payoff. No slow logo introduction. No presenter. No generated speech, music, captions, typography, logos, prices or interface graphics; these will be added later in the editor.
+
+PRODUCT LOCK: preserve exactly ${product.protected}. The carpet is a flat physical textile and remains the same object across every shot. No pattern mutation, invented surrounding motifs, animated figures, moving birds or animals, growing flowers, fabric breathing, ripple, floating, perspective warping, new fringe, repaired wear, color drift, fake gloss, artificial restoration or scale inconsistency. The environment may receive restrained cinematic camera movement; the carpet design may not change.
+
+Finish on a stable frame that can hard-cut to the real full-frontal still. If the Unlimited interface offers only five seconds, keep the same four-shot order and compress the beats proportionally; do not remove the full-product proof shot.`;
+      };
+
+      const buildViralCaption = (product) => {
+        const viral = VIRAL_PACKS[product.sku];
+        const pack = REEL_PACKS[product.sku];
+        return `${viral.hooks[0][0]}
+
+${viral.engagementFa}
+
+${product.name} · ${product.origin}
+کد: ${product.sku}
+
+برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، کد ${product.sku} را در واتساپ ${CONTACT.whatsapp} بفرستید یا وارد ${CONTACT.website} شوید.
+
+—
+
+${viral.hooks[0][1]}
+
+${viral.engagementEn}
+
+${pack.enName} · ${pack.enOrigin}
+Reference: ${product.sku}
+
+Send “${product.sku}” on WhatsApp ${CONTACT.whatsapp} for complete photographs, condition notes and purchase details, or visit ${CONTACT.website}.
+
+${pack.hashtags}`;
+      };
+
+      const viralKit = (product) => {
+        const viral = VIRAL_PACKS[product.sku];
+        const contextShot = product.shots.find((shot) => shot.kind === "context" || shot.kind === "studio");
+        const fullShot = product.shots.find((shot) => shot.kind === "full");
+        const detailShot = product.shots.find((shot) => shot.kind === "detail");
+        const promptId = `viral-prompt-${product.slug}`;
+        const captionId = `viral-caption-${product.slug}`;
+        const viralPrompt = buildViralPrompt(product);
+        const viralCaption = buildViralCaption(product);
+        return `
+          <details class="viral-kit">
+            <summary>
+              <span class="viral-index">V</span>
+              <span class="viral-title"><small>Cinematic discovery campaign · Seedance multi-reference</small><strong>${escapeHtml(viral.concept)}</strong></span>
+              <span class="viral-mechanism">${escapeHtml(viral.mechanism)}</span>
+            </summary>
+            <div class="viral-body">
+              <p class="viral-rule"><b>Different job from the product Reel:</b> this version earns discovery and shares. Generate clean footage once, then make three Trial Reel edits by changing only the opening hook.</p>
+              <div class="viral-grid">
+                <article class="viral-card">
+                  <h4>Reference upload order</h4>
+                  <ol><li><b>@full</b><br /><code>public${escapeHtml(fullShot.source)}</code></li><li><b>@context</b><br /><code>public${escapeHtml(contextShot.source)}</code></li><li><b>@detail</b><br /><code>public${escapeHtml(detailShot.source)}</code></li></ol>
+                  <p>Normal Reference Image slots only. No Start Frame. No End Frame. Do not add unrelated room or city images.</p>
+                </article>
+                <article class="viral-card">
+                  <h4>Three bilingual hook tests</h4>
+                  ${viral.hooks.map((hook, index) => `<div class="hook-variant"><b dir="rtl" lang="fa">${String.fromCharCode(65 + index)} · ${escapeHtml(hook[0])}</b><small>${escapeHtml(hook[1])}</small><button class="copy-button" type="button" data-copy-text="${escapeHtml(`${hook[0]}\n${hook[1]}`)}">Copy</button></div>`).join("")}
+                </article>
+                <div class="viral-prompt"><label>Exact Seedance 2.0 cinematic prompt</label><p id="${promptId}">${escapeHtml(viralPrompt).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${promptId}">Copy</button></div>
+                <article class="viral-card">
+                  <h4>Ten-second editor assembly</h4>
+                  <ol><li><b>0–2s:</b> generated body + one selected hook immediately.</li><li><b>2–5s:</b> name/origin in small bilingual type.</li><li><b>5–7s:</b> let the cinematic payoff breathe; no extra sales text.</li><li><b>7–10s:</b> supplied branded CTA card for ${product.sku}; hold completely still.</li></ol>
+                  <p>Use the carpet’s music recipe in the Reel kit below. Label the post as AI-generated where Instagram provides the disclosure control.</p>
+                </article>
+                <div class="viral-prompt"><label>Short bilingual viral caption + engagement CTA</label><p id="${captionId}" dir="auto">${escapeHtml(viralCaption).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${captionId}">Copy</button></div>
+              </div>
+              <div class="trial-strip"><span>Trial A · Hook A<br />same footage + cover + caption body</span><span>Trial B · Hook B<br />same footage + cover + caption body</span><span>Trial C · Hook C<br />review at 24h · decide at 72h</span></div>
+            </div>
+          </details>`;
+      };
+
+      const reelKit = (product) => {
+        const captionId = `caption-${product.slug}`;
+        const commentId = `comment-${product.slug}`;
+        const storyId = `story-${product.slug}`;
+        const pack = REEL_PACKS[product.sku];
+        const facts = screenFacts(product);
+        const caption = buildCaption(product);
+        const pinnedComment = `برای دریافت تصاویر کامل و بررسی وضعیت، کد ${product.sku} را در واتساپ ${CONTACT.whatsapp} بفرستید.\nSend “${product.sku}” on WhatsApp ${CONTACT.whatsapp} for full photographs and condition details.`;
+        const storyCta = `این فرش را از نزدیک ببینید\n${product.sku} · ${CONTACT.website}\nواتساپ: ${CONTACT.whatsapp}\n\nSee this carpet in detail\n${product.sku} · ${CONTACT.website}\nWhatsApp: ${CONTACT.whatsapp}`;
+        const fullShot = product.shots.find((shot) => shot.kind === "full");
+        const coverPath = `${IMAGE_BASE}/media/reel-covers/${product.slug}-reel-cover.png`;
+        const ctaPath = `${IMAGE_BASE}/media/reel-ctas/${product.slug}-reel-cta.png`;
+        return `
+          <section class="reel-kit" aria-label="Reel assembly kit for ${product.sku}">
+            <div class="reel-kit-head">
+              <div><p class="eyebrow">Complete music-only publishing pack</p><h3>One 14-second Reel—ready to assemble</h3></div>
+              <p><b>No voiceover.</b> Mute all source clips. Use the music, bilingual screen text, caption, cover, pinned comment and Story CTA below.</p>
+            </div>
+            <div class="mini-timeline"><span>A · 0–3s</span><span>B · 3–7s</span><span>C · 7–11s</span><span>CTA · 11–14s</span></div>
+            <div class="reel-pack-grid">
+              <article class="reel-pack-card">
+                <h4>1 · Music</h4>
+                <p>${escapeHtml(pack.music)}</p>
+                <div class="music-search"><span>Search: ${escapeHtml(pack.musicSearch)}</span><button class="copy-button" type="button" data-copy-text="${escapeHtml(pack.musicSearch)}">Copy</button></div>
+                <ul><li>Choose a track from Meta Sound Collection / business-safe audio.</li><li>Volume: 35–45%. No vocals. Higgsfield audio: 0%.</li><li>Cut on beats near 0:03, 0:07 and 0:11; continue under the CTA and fade at 0:13.8.</li></ul>
+              </article>
+              <article class="reel-pack-card">
+                <h4>2 · Exact on-screen text</h4>
+                <div class="screen-cues">
+                  <div class="screen-cue"><time>0:00–0:03</time><span><b dir="rtl" lang="fa">${escapeHtml(pack.screenFa)}</b><small>${escapeHtml(pack.screenEn)}</small></span></div>
+                  <div class="screen-cue"><time>0:03–0:07</time><span><b dir="rtl" lang="fa">${escapeHtml(product.name)}</b><small>${escapeHtml(pack.enName)}</small></span></div>
+                  <div class="screen-cue"><time>0:07–0:11</time><span><b dir="rtl" lang="fa">${escapeHtml(facts.fa)}</b><small>${escapeHtml(facts.en)}</small></span></div>
+                  <div class="screen-cue"><time>0:11–0:14</time><span><b dir="rtl" lang="fa">کارت پایانی آماده · کد ${product.sku}</b><small>Ready branded CTA · WhatsApp ${CONTACT.whatsapp}</small></span></div>
+                </div>
+              </article>
+              <article class="reel-pack-card cover-card">
+                <div class="cover-preview"><img src="${coverPath}" alt="Finished Reel cover for ${escapeHtml(product.name)}" loading="lazy" /></div>
+                <div><h4>3 · Finished cover image</h4><p><b>Ready at 1080 × 1920.</b> It uses the original full-frontal photograph with the entire carpet visible—never an AI frame, never cropped or stretched.</p><p>Title: <span dir="rtl" lang="fa">${escapeHtml(product.name)}</span><br />Subtitle: ${escapeHtml(pack.enName)}<br />Reference: ${product.sku}</p><p><a href="${coverPath}" target="_blank" download="${product.slug}-reel-cover.png">Open / download finished PNG ↗</a> · <a href="${IMAGE_BASE}${fullShot.source}" target="_blank">Original source ↗</a></p></div>
+              </article>
+              <article class="reel-pack-card cover-card">
+                <div class="cover-preview"><img src="${ctaPath}" alt="Finished three-second Reel CTA card for ${product.sku}" loading="lazy" /></div>
+                <div><h4>4 · Finished three-second CTA card</h4><p><b>Ready at 1080 × 1920.</b> Place this still at 0:11–0:14 and hold it for the full three seconds. Do not animate it or add more text.</p><p>Same brand system on every Reel:<br />WhatsApp ${CONTACT.whatsapp}<br />Call ${CONTACT.call}<br />${CONTACT.website}<br />Only the reference changes: ${product.sku}</p><p><a href="${ctaPath}" target="_blank" download="${product.slug}-reel-cta.png">Open / download finished CTA PNG ↗</a></p></div>
+              </article>
+              <div class="copy-panel caption-panel"><label>5 · Bilingual caption + five focused hashtags</label><p id="${captionId}" dir="auto">${escapeHtml(caption).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${captionId}">Copy</button></div>
+              <div class="microcopy-grid">
+                <div class="copy-panel"><label>6 · Pin this comment</label><p id="${commentId}" dir="auto">${escapeHtml(pinnedComment).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${commentId}">Copy</button></div>
+                <div class="copy-panel"><label>7 · Story link text</label><p id="${storyId}" dir="auto">${escapeHtml(storyCta).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${storyId}">Copy</button></div>
+              </div>
+            </div>
+          </section>`;
+      };
+
+      const shotCard = (product, shot, shotIndex) => {
+        const taskId = `${product.sku}-${shot.kind}`;
+        const sourcePath = `${PROJECT_ROOT}/public${shot.source}`;
+        const promptId = `prompt-${product.slug}-${shot.kind}`;
+        const referencePromptId = `reference-${product.slug}-${shot.kind}`;
+        const isDetail = shot.kind === "detail";
+        const prompt = buildPrompt(product, shot);
+        const referencePrompt = isDetail ? buildMultiReferencePrompt(product, shot) : "";
+        return `
+          <article class="shot ${isDetail ? "is-truth-safe" : ""}">
+            <div class="shot-visual">
+              <img src="${IMAGE_BASE}${shot.source}" alt="${escapeHtml(product.name)} — ${escapeHtml(shot.title)} source image" loading="lazy" />
+              <span class="shot-number">SHOT ${String.fromCharCode(65 + shotIndex)}${isDetail ? " · REAL PHOTO EDIT" : " · HIGGSFIELD"}</span>
+            </div>
+            <div class="shot-body">
+              <div class="shot-top"><h3>${escapeHtml(shot.title)}</h3><span class="motion-tag">${isDetail ? "Editor keyframes" : escapeHtml(shot.motion)}</span></div>
+              <p class="source-file">Input: public${escapeHtml(shot.source)}<br />Output: ${escapeHtml(outputName(product, shotIndex))}</p>
+              <div class="source-actions"><a href="${IMAGE_BASE}${shot.source}" target="_blank">Open source image ↗</a><button class="copy-path button" type="button" data-copy-text="${escapeHtml(sourcePath)}">Copy local path</button></div>
+              ${isDetail ? '<p class="shot-mode-note">Do not upload this crop as a Higgsfield Start Frame. Build Shot C from its real pixels in Edits or CapCut.</p>' : ""}
+              <div class="prompt-box"><p id="${promptId}">${escapeHtml(prompt)}</p><button class="copy-button" type="button" data-copy-target="${promptId}">Copy</button></div>
+              ${isDetail ? `<details class="reference-test"><summary>Optional experiment · full + detail in multi-reference mode</summary><div class="prompt-box"><p id="${referencePromptId}">${escapeHtml(referencePrompt)}</p><button class="copy-button" type="button" data-copy-target="${referencePromptId}">Copy</button></div></details>` : ""}
+              <div class="approval"><input id="task-${product.slug}-${shot.kind}" type="checkbox" data-task-id="${taskId}" ${progressState[taskId] ? "checked" : ""} /><label for="task-${product.slug}-${shot.kind}">${isDetail ? "Four-second editor clip uses only real detail pixels; no generative fill or invented pattern." : "Final Higgsfield clip is faithful, approved, downloaded, and renamed."}</label></div>
+            </div>
+          </article>`;
+      };
+
+      const productCard = (product, index) => {
+        const completed = product.shots.filter((shot) => progressState[`${product.sku}-${shot.kind}`]).length;
+        const searchText = `${product.sku} ${product.slug} ${product.name} ${product.origin} ${product.pattern}`.toLowerCase();
+        return `
+          <details class="product" data-product="${product.sku}" data-search="${escapeHtml(searchText)}" ${index === 0 ? "open" : ""}>
+            <summary class="product-summary">
+              <span class="product-index">${String(index + 1).padStart(2, "0")}</span>
+              <span class="product-thumb"><img src="${IMAGE_BASE}${product.shots.find((shot) => shot.kind === "full").source}" alt="${escapeHtml(product.name)}" loading="lazy" /></span>
+              <span class="product-title"><small>${product.sku}</small><strong dir="rtl" lang="fa">${escapeHtml(product.name)}</strong><span class="hook" dir="rtl" lang="fa">${escapeHtml(product.hook)}</span></span>
+              <span class="meta-grid">
+                <span class="meta-line"><b>Origin</b><span dir="rtl">${escapeHtml(product.origin)}</span></span>
+                <span class="meta-line"><b>Pattern</b><span dir="rtl">${escapeHtml(product.pattern)}</span></span>
+                <span class="meta-line"><b>Dimensions</b><span dir="rtl">${escapeHtml(product.dimensions)}</span></span>
+                <span class="meta-line"><b>Age</b><span dir="rtl">${escapeHtml(product.age)}</span></span>
+              </span>
+              <span class="product-status"><span class="status-pill ${completed === 3 ? "is-complete" : ""}" data-product-status>${completed}/3 clips</span><span class="chevron">+</span></span>
+            </summary>
+            <div class="product-body">
+              <div class="shot-intro"><p><b>${escapeHtml(product.price)}</b> · Generate Shot A and B in Higgsfield. Build Shot C from the real detail still in Edits/CapCut. Then assemble all three with music and bilingual text.</p><button class="button copy-all" type="button" data-copy-product="${product.sku}">Copy complete shot recipe</button></div>
+              ${viralKit(product)}
+              ${reelKit(product)}
+              <div class="shots">${product.shots.map((shot, shotIndex) => shotCard(product, shot, shotIndex)).join("")}</div>
+              <div class="notes"><label for="notes-${product.slug}">Model / take notes</label><textarea id="notes-${product.slug}" data-notes="${product.sku}" placeholder="Example: Seedance Fast · Take 2 approved · Take 1 changed fringe…">${escapeHtml(notesState[product.sku] || "")}</textarea></div>
+            </div>
+          </details>`;
+      };
+
+      const catalog = document.getElementById("catalog");
+      catalog.innerHTML = PRODUCTS.map(productCard).join("");
+
+      const showToast = (message) => {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1500);
+      };
+
+      const copyText = async (value) => {
+        try { await navigator.clipboard.writeText(value); }
+        catch {
+          const textarea = document.createElement("textarea");
+          textarea.value = value;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          textarea.remove();
+        }
+        showToast("Copied to clipboard");
+      };
+
+      const currentState = () => Object.fromEntries([...document.querySelectorAll("[data-task-id]")].map((input) => [input.dataset.taskId, input.checked]));
+
+      const isProductComplete = (productElement) => [...productElement.querySelectorAll("[data-task-id]")].every((input) => input.checked);
+
+      const updateProgress = () => {
+        const tasks = [...document.querySelectorAll("[data-task-id]")];
+        const complete = tasks.filter((input) => input.checked).length;
+        const percent = Math.round((complete / tasks.length) * 100);
+        document.getElementById("progress-label").textContent = `${complete} of ${tasks.length} clips approved`;
+        document.getElementById("progress-percent").textContent = `${percent}%`;
+        document.getElementById("progress-bar").style.width = `${percent}%`;
+
+        document.querySelectorAll(".product").forEach((productElement) => {
+          const productTasks = [...productElement.querySelectorAll("[data-task-id]")];
+          const productComplete = productTasks.filter((input) => input.checked).length;
+          const status = productElement.querySelector("[data-product-status]");
+          status.textContent = `${productComplete}/3 clips`;
+          status.classList.toggle("is-complete", productComplete === 3);
+        });
+        applyFilters();
+      };
+
+      const applyFilters = () => {
+        const query = document.getElementById("search").value.trim().toLowerCase();
+        let visible = 0;
+        document.querySelectorAll(".product").forEach((productElement) => {
+          const searchMatch = productElement.dataset.search.includes(query);
+          const complete = isProductComplete(productElement);
+          const filterMatch = activeFilter === "all" || (activeFilter === "complete" ? complete : !complete);
+          const show = searchMatch && filterMatch;
+          productElement.classList.toggle("is-hidden", !show);
+          if (show) visible += 1;
+        });
+        document.getElementById("empty").classList.toggle("is-visible", visible === 0);
+      };
+
+      document.addEventListener("click", (event) => {
+        const copyTarget = event.target.closest("[data-copy-target]");
+        if (copyTarget) copyText(document.getElementById(copyTarget.dataset.copyTarget).innerText.trim());
+
+        const copyValue = event.target.closest("[data-copy-text]");
+        if (copyValue) copyText(copyValue.dataset.copyText);
+
+        const copyAll = event.target.closest("[data-copy-product]");
+        if (copyAll) {
+          const product = PRODUCTS.find((candidate) => candidate.sku === copyAll.dataset.copyProduct);
+          const bundle = product.shots.map((shot, index) => `${shot.kind === "detail" ? "EDITOR RECIPE" : "HIGGSFIELD PROMPT"} · SHOT ${String.fromCharCode(65 + index)} — ${shot.title}\nSOURCE: ${PROJECT_ROOT}/public${shot.source}\nOUTPUT: ${outputName(product, index)}\n\n${buildPrompt(product, shot)}`).join("\n\n————————————\n\n");
+          copyText(bundle);
+        }
+
+        const filter = event.target.closest("[data-filter]");
+        if (filter) {
+          activeFilter = filter.dataset.filter;
+          document.querySelectorAll("[data-filter]").forEach((button) => button.classList.toggle("is-active", button === filter));
+          applyFilters();
+        }
+      });
+
+      document.querySelectorAll("[data-task-id]").forEach((input) => input.addEventListener("change", () => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentState()));
+        updateProgress();
+      }));
+
+      document.querySelectorAll("[data-notes]").forEach((textarea) => textarea.addEventListener("input", () => {
+        notesState[textarea.dataset.notes] = textarea.value;
+        localStorage.setItem(NOTES_KEY, JSON.stringify(notesState));
+      }));
+
+      document.getElementById("search").addEventListener("input", applyFilters);
+      document.getElementById("open-all").addEventListener("click", () => document.querySelectorAll(".product:not(.is-hidden)").forEach((product) => { product.open = true; }));
+      document.getElementById("close-all").addEventListener("click", () => document.querySelectorAll(".product").forEach((product) => { product.open = false; }));
+      document.getElementById("print-button").addEventListener("click", () => window.print());
+      document.getElementById("reset-button").addEventListener("click", () => {
+        if (!window.confirm("Reset all approved clips and notes?")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(NOTES_KEY);
+        document.querySelectorAll("[data-task-id]").forEach((input) => { input.checked = false; });
+        document.querySelectorAll("[data-notes]").forEach((textarea) => { textarea.value = ""; });
+        Object.keys(notesState).forEach((key) => delete notesState[key]);
+        updateProgress();
+        showToast("Workbook reset");
+      });
+
+      updateProgress();
+    </script>
+  </body>
+</html>

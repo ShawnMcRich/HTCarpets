@@ -7,6 +7,7 @@ import {
   isKnownValue,
   productSearchText,
 } from "./catalog-helpers";
+import { contact } from "./contact";
 
 type CollectionFilter = "all" | "home" | "antique";
 type SortOrder = "curated" | "price-asc" | "price-desc";
@@ -109,6 +110,7 @@ export default function Home() {
             <a href="#places">فرش و جغرافیا</a>
             <a href="#buying-guide">روش انتخاب</a>
             <a href="#heritage">درباره‌ی حسین‌طلب</a>
+            <a href="#contact">تماس</a>
           </nav>
           <a className="header-cta" href="#collection">
             دیدن مجموعه
@@ -385,6 +387,37 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section id="contact" className="section contact-section">
+          <div className="shell contact-section__grid">
+            <div className="contact-section__intro">
+              <p className="eyebrow eyebrow--light">تماس و مشاوره</p>
+              <h2>کد فرش را بفرستید؛ درباره‌ی همان تخته پاسخ می‌دهیم.</h2>
+              <p>
+                برای دریافت تصاویر کامل، بررسی موجودی و هماهنگی خرید، کد یکتای فرش را در
+                واتساپ ارسال کنید. برای گفت‌وگوی تلفنی هم مستقیماً تماس بگیرید.
+              </p>
+            </div>
+            <div className="contact-section__actions">
+              <a href={contact.whatsappHref} target="_blank" rel="noreferrer">
+                <span>واتساپ</span>
+                <strong dir="ltr">{contact.whatsappDisplay}</strong>
+                <small>ارسال کد فرش و دریافت جزئیات</small>
+              </a>
+              <a href={contact.callHref}>
+                <span>تماس تلفنی</span>
+                <strong dir="ltr">{contact.callDisplay}</strong>
+                <small>پرسش درباره‌ی موجودی و خرید</small>
+              </a>
+              <a href={contact.mapsHref} target="_blank" rel="noreferrer">
+                <span>نشانی فروشگاه</span>
+                <strong className="contact-section__address">{contact.address}</strong>
+                <small>بازکردن نشانی در نقشه</small>
+              </a>
+              <p>برای بازدید حضوری، پیش از مراجعه هماهنگ کنید.</p>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="site-footer">
@@ -402,6 +435,13 @@ export default function Home() {
           <a href="#places">فرش و جغرافیا</a>
           <a href="#buying-guide">روش انتخاب</a>
           <a href="#heritage">درباره‌ی حسین‌طلب</a>
+          <a href="#contact">تماس</a>
+          <a href={contact.whatsappHref} target="_blank" rel="noreferrer" dir="ltr">
+            WhatsApp {contact.whatsappDisplay}
+          </a>
+          <a href={contact.callHref} dir="ltr">Call {contact.callDisplay}</a>
+          <a href={contact.websiteHref} dir="ltr">{contact.website}</a>
+          <a href={contact.mapsHref} target="_blank" rel="noreferrer">{contact.address}</a>
         </div>
         <div className="shell site-footer__bottom">
           <p>© ۱۴۰۵ حسین‌طلب</p>

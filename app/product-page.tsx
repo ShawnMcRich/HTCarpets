@@ -6,6 +6,7 @@ import {
   getContextImage,
   isKnownValue,
 } from "./catalog-helpers";
+import { contact, whatsappProductHref } from "./contact";
 
 type Spec = {
   label: string;
@@ -163,11 +164,26 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
               <div><dt>طرح و نقشه</dt><dd>{product.pattern}</dd></div>
             </dl>
 
-            <button className="button button--primary product-summary__copy" type="button" onClick={copySku}>
-              {copied ? "کد فرش کپی شد" : "کپی‌کردن کد برای پیگیری"}
-            </button>
+            <div className="product-summary__actions">
+              <a
+                className="button button--primary"
+                href={whatsappProductHref(product.sku)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                پیام در واتساپ درباره‌ی این فرش
+              </a>
+              <a className="button product-summary__call" href={contact.callHref}>
+                تماس تلفنی
+              </a>
+              <button className="product-summary__copy" type="button" onClick={copySku}>
+                {copied ? "کد فرش کپی شد" : `کپی کد ${product.sku}`}
+              </button>
+            </div>
             <p className="product-summary__note">
-              برای هر پرسش یا بررسی بعدی، همین کد را همراه داشته باشید تا گفت‌وگو دقیقاً درباره‌ی همین تخته باشد.
+              واتساپ: <a href={contact.whatsappHref} dir="ltr">{contact.whatsappDisplay}</a>
+              <span aria-hidden="true"> · </span>
+              تماس: <a href={contact.callHref} dir="ltr">{contact.callDisplay}</a>
             </p>
           </aside>
         </section>
@@ -295,7 +311,14 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
         </div>
         <div className="shell site-footer__bottom">
           <p>© ۱۴۰۵ حسین‌طلب</p>
-          <a href="/#collection">بازگشت به مجموعه‌ی فرش‌ها</a>
+          <div className="product-footer__links">
+            <a href={contact.whatsappHref} target="_blank" rel="noreferrer" dir="ltr">
+              WhatsApp {contact.whatsappDisplay}
+            </a>
+            <a href={contact.callHref} dir="ltr">Call {contact.callDisplay}</a>
+            <a href={contact.mapsHref} target="_blank" rel="noreferrer">{contact.address}</a>
+            <a href="/#collection">بازگشت به مجموعه‌ی فرش‌ها</a>
+          </div>
         </div>
       </footer>
 

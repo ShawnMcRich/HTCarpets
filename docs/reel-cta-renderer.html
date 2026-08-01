@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hosseintalab Reel CTA Renderer</title>
+    <style>
+      @font-face {
+        font-family: "Vazirmatn";
+        src: url("../node_modules/@fontsource-variable/vazirmatn/files/vazirmatn-arabic-wght-normal.woff2") format("woff2");
+        font-weight: 100 900;
+      }
+
+      @font-face {
+        font-family: "Cormorant";
+        src: url("../public/brand/fonts/cormorant-latin-variable.woff2") format("woff2");
+        font-weight: 300 700;
+      }
+
+      :root {
+        --forest: #0b211b;
+        --forest-light: #17382e;
+        --gold: #d6a85d;
+        --gold-pale: #ead6ad;
+        --paper: #f4efe5;
+      }
+
+      * { box-sizing: border-box; }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background: var(--forest);
+        color: var(--paper);
+        font-family: "Vazirmatn", Tahoma, sans-serif;
+      }
+
+      .card {
+        position: relative;
+        display: grid;
+        width: 100vw;
+        height: 100vh;
+        place-items: center;
+        overflow: hidden;
+        padding: 154px 105px 130px;
+        background:
+          radial-gradient(circle at 84% 10%, rgba(214, 168, 93, 0.23), transparent 27%),
+          radial-gradient(circle at 8% 88%, rgba(77, 128, 107, 0.18), transparent 34%),
+          linear-gradient(145deg, var(--forest-light), var(--forest) 60%);
+        text-align: center;
+      }
+
+      .card::before,
+      .card::after {
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border: 1px solid rgba(214, 168, 93, 0.19);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .card::before { top: -220px; right: -240px; }
+      .card::after { bottom: -270px; left: -220px; }
+
+      .frame {
+        position: absolute;
+        inset: 42px;
+        border: 1px solid rgba(214, 168, 93, 0.36);
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+      }
+
+      .logo {
+        display: block;
+        width: 760px;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto 132px;
+      }
+
+      .rule {
+        width: 74px;
+        height: 2px;
+        margin: 0 auto 54px;
+        background: var(--gold);
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--paper);
+        font-size: 56px;
+        font-weight: 520;
+        letter-spacing: -0.035em;
+        line-height: 1.55;
+      }
+
+      .english {
+        margin: 12px 0 0;
+        color: rgba(255, 255, 255, 0.57);
+        font-family: "Cormorant", Georgia, serif;
+        font-size: 33px;
+        font-weight: 520;
+        letter-spacing: 0.025em;
+      }
+
+      .sku-wrap {
+        margin: 76px auto 82px;
+      }
+
+      .sku-label {
+        display: block;
+        color: rgba(255, 255, 255, 0.43);
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+      }
+
+      .sku {
+        display: block;
+        margin-top: 10px;
+        color: var(--gold-pale);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 48px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .contacts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-block: 1px solid rgba(214, 168, 93, 0.38);
+      }
+
+      .contact {
+        padding: 34px 30px 32px;
+      }
+
+      .contact + .contact {
+        border-right: 1px solid rgba(214, 168, 93, 0.38);
+      }
+
+      .contact span,
+      .contact strong {
+        display: block;
+      }
+
+      .contact span {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .contact strong {
+        margin-top: 9px;
+        color: var(--paper);
+        font-family: "Cormorant", Georgia, serif;
+        font-size: 31px;
+        font-weight: 600;
+        letter-spacing: 0.035em;
+      }
+
+      .website {
+        margin: 55px 0 0;
+        color: var(--gold-pale);
+        font-family: "Cormorant", Georgia, serif;
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="frame" aria-hidden="true"></div>
+      <div class="content">
+        <img class="logo" id="logo" src="../public/brand/exports/hosseintalab-lockup-horizontal-reversed.svg" alt="Hosseintalab" />
+        <div class="rule" aria-hidden="true"></div>
+        <h1>کد فرش را در واتساپ بفرستید</h1>
+        <p class="english" dir="ltr">Send the carpet code on WhatsApp</p>
+        <div class="sku-wrap" dir="ltr">
+          <span class="sku-label">CARPET REFERENCE</span>
+          <strong class="sku" id="sku"></strong>
+        </div>
+        <div class="contacts" dir="ltr">
+          <div class="contact"><span>WHATSAPP</span><strong>+46 70 452 56 46</strong></div>
+          <div class="contact"><span>CALL</span><strong>+98 938 787 7818</strong></div>
+        </div>
+        <p class="website" dir="ltr">hosseintalab.ir</p>
+      </div>
+    </main>
+    <script>
+      const requested = new URLSearchParams(location.search).get("sku") || "HT-KSH-0001";
+      const sku = /^HT-[A-Z]{3}-\d{4}$/.test(requested) ? requested : "HT-KSH-0001";
+      document.getElementById("sku").textContent = sku;
+      document.title = `${sku} Reel CTA`;
+    </script>
+  </body>
+</html>

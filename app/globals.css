@@ -822,6 +822,84 @@ select:focus-visible {
   margin-top: 34px;
 }
 
+.contact-section {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.contact-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(440px, 1.1fr);
+  gap: clamp(60px, 9vw, 140px);
+  align-items: center;
+}
+
+.contact-section__intro h2 {
+  max-width: 760px;
+  margin-top: 15px;
+  font-size: clamp(2.5rem, 4.4vw, 5rem);
+  font-weight: 390;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+}
+
+.contact-section__intro > p:not(.eyebrow) {
+  max-width: 680px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 2;
+}
+
+.contact-section__actions {
+  border-top: 1px solid var(--line-light);
+}
+
+.contact-section__actions > a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px 28px;
+  padding-block: 25px;
+  border-bottom: 1px solid var(--line-light);
+  transition: color 180ms ease, padding-inline 180ms ease;
+}
+
+.contact-section__actions > a:hover {
+  padding-inline: 10px;
+  color: #d8bb83;
+}
+
+.contact-section__actions span,
+.contact-section__actions small {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.7rem;
+}
+
+.contact-section__actions strong {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  align-self: center;
+  font-family: "Cormorant Variable", serif;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 560;
+  letter-spacing: 0.04em;
+}
+
+.contact-section__actions .contact-section__address {
+  max-width: 400px;
+  font-family: inherit;
+  font-size: clamp(0.9rem, 1.45vw, 1.12rem);
+  font-weight: 520;
+  letter-spacing: 0;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.contact-section__actions > p {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+}
+
 .site-footer {
   padding-block: 74px 30px;
   background: var(--navy-deep);
@@ -1042,9 +1120,33 @@ select:focus-visible {
   font-weight: 600;
 }
 
-.product-summary__copy {
-  width: 100%;
+.product-summary__actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
   margin-top: 30px;
+}
+
+.product-summary__actions .button--primary {
+  grid-column: 1 / -1;
+}
+
+.product-summary__call {
+  min-height: 42px;
+  padding-inline: 18px;
+}
+
+.product-summary__copy {
+  min-height: 42px;
+  border: 0;
+  border-bottom: 1px solid var(--navy);
+  padding-inline: 8px;
+  background: transparent;
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .product-summary__note {
@@ -1052,6 +1154,17 @@ select:focus-visible {
   color: var(--muted);
   font-size: 0.7rem;
   line-height: 1.85;
+}
+
+.product-summary__note a {
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.product-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 30px;
 }
 
 .product-identity {
@@ -1382,6 +1495,7 @@ select:focus-visible {
   .section-heading--split,
   .buying-guide__grid,
   .heritage-section__grid,
+  .contact-section__grid,
   .product-hero,
   .product-identity__grid,
   .product-place__grid {
@@ -1431,6 +1545,7 @@ select:focus-visible {
 
   .buying-guide__grid,
   .heritage-section__grid,
+  .contact-section__grid,
   .product-identity__grid,
   .product-place__grid {
     gap: 64px;
@@ -1594,6 +1709,29 @@ select:focus-visible {
   .site-footer__bottom {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .product-footer__links {
+    flex-direction: column;
+  }
+
+  .contact-section__actions > a {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .contact-section__actions strong {
+    grid-row: auto;
+    grid-column: auto;
+    justify-self: start;
+  }
+
+  .product-summary__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .product-summary__actions .button--primary {
+    grid-column: auto;
   }
 
   .product-breadcrumb {

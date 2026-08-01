@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hosseintalab Reel Cover Renderer</title>
+    <style>
+      :root {
+        --forest: #0d241d;
+        --forest-light: #193b30;
+        --gold: #d6a85d;
+        --gold-pale: #ead6ad;
+        --paper: #f4efe5;
+      }
+
+      * { box-sizing: border-box; }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background: var(--forest);
+        font-family: "Noto Sans", Arial, sans-serif;
+      }
+
+      .cover {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 86% 12%, rgba(214, 168, 93, 0.22), transparent 29%),
+          radial-gradient(circle at 10% 84%, rgba(71, 120, 99, 0.17), transparent 34%),
+          linear-gradient(142deg, var(--forest-light), var(--forest) 62%);
+        color: var(--paper);
+      }
+
+      .cover::before,
+      .cover::after {
+        position: absolute;
+        border: 1px solid rgba(214, 168, 93, 0.2);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .cover::before {
+        top: -190px;
+        right: -170px;
+        width: 470px;
+        height: 470px;
+      }
+
+      .cover::after {
+        bottom: -240px;
+        left: -210px;
+        width: 520px;
+        height: 520px;
+      }
+
+      .frame-line {
+        position: absolute;
+        z-index: 1;
+        inset: 38px;
+        border: 1px solid rgba(214, 168, 93, 0.33);
+        pointer-events: none;
+      }
+
+      .brand {
+        position: absolute;
+        z-index: 2;
+        top: 67px;
+        right: 76px;
+        left: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand-lockup {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 58px;
+        height: 58px;
+        place-items: center;
+        border: 2px solid var(--gold);
+        color: var(--gold-pale);
+        font-family: Georgia, serif;
+        font-size: 20px;
+        transform: rotate(45deg);
+      }
+
+      .brand-mark span { transform: rotate(-45deg); }
+
+      .brand-name strong,
+      .brand-name small {
+        display: block;
+      }
+
+      .brand-name strong {
+        font-family: Georgia, serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+      }
+
+      .brand-name small,
+      .edition {
+        margin-top: 4px;
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+      }
+
+      .edition {
+        color: var(--gold-pale);
+      }
+
+      .title {
+        position: absolute;
+        z-index: 2;
+        top: 171px;
+        right: 84px;
+        left: 84px;
+        height: 166px;
+        text-align: center;
+      }
+
+      .title-fa {
+        overflow: hidden;
+        margin: 0;
+        color: var(--paper);
+        font-family: "Noto Kufi Arabic", "Noto Sans Arabic", Tahoma, sans-serif;
+        font-size: 62px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.35;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .title-fa.is-long { font-size: 49px; }
+
+      .title-en {
+        overflow: hidden;
+        margin: 12px 0 0;
+        color: var(--gold-pale);
+        font-family: Georgia, serif;
+        font-size: 21px;
+        font-weight: 400;
+        letter-spacing: 0.095em;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .product-stage {
+        position: absolute;
+        z-index: 2;
+        top: 352px;
+        right: 91px;
+        left: 91px;
+        height: 1194px;
+        padding: 25px;
+        border: 1px solid rgba(214, 168, 93, 0.66);
+        background: rgba(244, 239, 229, 0.08);
+        box-shadow: 0 34px 90px rgba(0, 0, 0, 0.3);
+      }
+
+      .product-stage::before,
+      .product-stage::after {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        border-color: var(--gold);
+        content: "";
+      }
+
+      .product-stage::before {
+        top: -1px;
+        left: -1px;
+        border-top: 4px solid var(--gold);
+        border-left: 4px solid var(--gold);
+      }
+
+      .product-stage::after {
+        right: -1px;
+        bottom: -1px;
+        border-right: 4px solid var(--gold);
+        border-bottom: 4px solid var(--gold);
+      }
+
+      .product-stage img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .footer-meta {
+        position: absolute;
+        z-index: 2;
+        right: 84px;
+        bottom: 116px;
+        left: 84px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: end;
+        padding-top: 29px;
+        border-top: 1px solid rgba(214, 168, 93, 0.38);
+      }
+
+      .origin-fa,
+      .origin-en,
+      .sku-label,
+      .sku {
+        display: block;
+      }
+
+      .footer-meta > div:first-child { text-align: left; }
+
+      .origin-fa {
+        font-family: "Noto Sans Arabic", Tahoma, sans-serif;
+        font-size: 26px;
+        font-weight: 600;
+      }
+
+      .origin-en {
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.52);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .reference { text-align: right; }
+
+      .sku-label {
+        color: rgba(255, 255, 255, 0.44);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+      }
+
+      .sku {
+        margin-top: 5px;
+        color: var(--gold-pale);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 23px;
+        letter-spacing: 0.06em;
+      }
+
+      .site {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        bottom: 52px;
+        left: 0;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="cover">
+      <div class="frame-line"></div>
+      <header class="brand">
+        <div class="brand-lockup"><div class="brand-mark"><span>HT</span></div><div class="brand-name"><strong>HOSSEINTALAB</strong><small>PERSIAN CARPET ARCHIVE</small></div></div>
+        <div class="edition">ONE CARPET · ONE STORY</div>
+      </header>
+      <section class="title"><h1 class="title-fa" id="title-fa" dir="rtl"></h1><p class="title-en" id="title-en"></p></section>
+      <figure class="product-stage"><img id="carpet" alt="" /></figure>
+      <footer class="footer-meta">
+        <div><span class="origin-fa" id="origin-fa" dir="rtl"></span><span class="origin-en" id="origin-en"></span></div>
+        <div class="reference"><span class="sku-label">REFERENCE</span><span class="sku" id="sku"></span></div>
+      </footer>
+      <div class="site">HOSSEINTALAB.IR</div>
+    </main>
+
+    <script>
+      const COVERS = {
+        "HT-KSH-0001": ["درختِ زندگیِ کاشان", "Kashan Tree of Life Carpet", "کاشان", "Kashan, Iran", "ht-ksh-0001"],
+        "HT-KHY-0001": ["گلدانیِ خوی", "Khoy Vase Carpet", "خوی، آذربایجان غربی", "Khoy, West Azerbaijan, Iran", "ht-khy-0001"],
+        "HT-KRM-0001": ["هزارگلِ کرمان", "Kerman Millefleurs Carpet", "کرمان", "Kerman, Iran", "ht-krm-0001"],
+        "HT-NHV-0001": ["تابلوفرشِ نورعلی‌شاه", "Nur Ali Shah Pictorial Carpet", "نهاوند، همدان", "Nahavand, Hamadan, Iran", "ht-nhv-0001"],
+        "HT-RVR-0001": ["درختیِ راور", "Ravar Tree Carpet", "راور، کرمان", "Ravar, Kerman, Iran", "ht-rvr-0001"],
+        "HT-QOM-0001": ["شکارگاهِ قم", "Qom Hunting Scene Carpet", "قم", "Qom, Iran", "ht-qom-0001"],
+        "HT-QOM-0002": ["شکارگاهِ لاجوردیِ قم", "Qom Lapis Hunting Carpet", "قم", "Qom, Iran", "ht-qom-0002"],
+        "HT-QOM-0003": ["لچک‌وترنجِ قم", "Qom Medallion-and-Corner Carpet", "قم", "Qom, Iran", "ht-qom-0003"],
+        "HT-KSH-0002": ["لچک‌وترنجِ کف‌ساده‌ی کاشان", "Kashan Open-Field Medallion Carpet", "کاشان", "Kashan, Iran", "ht-ksh-0002"],
+        "HT-ISF-0001": ["لچک‌وترنجِ اصفهان", "Isfahan Medallion-and-Corner Carpet", "اصفهان", "Isfahan, Iran", "ht-isf-0001"],
+        "HT-ISF-0002": ["شکارگاهِ اصفهان", "Isfahan Hunting Scene Carpet", "اصفهان", "Isfahan, Iran", "ht-isf-0002"],
+        "HT-SRJ-0001": ["قالی عشایریِ سیرجان", "Sirjan Tribal Carpet", "سیرجان", "Sirjan, Iran", "ht-srj-0001"],
+        "HT-SNH-0001": ["سه‌ترنجِ سنندج", "Sanandaj Three-Medallion Carpet", "سنندج، کردستان", "Sanandaj, Kurdistan, Iran", "ht-snh-0001"],
+        "HT-NJF-0001": ["لچک‌وترنجِ نجف‌آباد", "Najafabad Medallion-and-Corner Carpet", "نجف‌آباد", "Najafabad, Iran", "ht-njf-0001"],
+        "HT-BJR-0001": ["لچک‌وترنجِ بیجار/جوزان", "Bijar/Jozan Medallion Carpet", "بیجار/جوزان", "Bijar/Jozan, Iran", "ht-bjr-0001"],
+        "HT-KSH-0003": ["لچک‌وترنجِ کاشان", "Kashan Medallion-and-Corner Carpet", "کاشان", "Kashan, Iran", "ht-ksh-0003"],
+        "HT-QOM-0004": ["محرابی قندیلیِ قم", "Qom Lamp-Mihrab Carpet", "قم", "Qom, Iran", "ht-qom-0004"],
+        "HT-SHB-0001": ["محرماتِ شهر بابک / سیرجان", "Shahr Babak/Sirjan Moharramat Carpet", "شهر بابک / سیرجان", "Shahr Babak/Sirjan, Iran", "ht-shb-0001"],
+        "HT-TBZ-0001": ["لچک‌وترنجِ تبریز، ۶۰ رج", "Tabriz 60-Raj Medallion Carpet", "تبریز", "Tabriz, Iran", "ht-tbz-0001"]
+      };
+
+      const requested = new URLSearchParams(location.search).get("sku") || "HT-KSH-0001";
+      const sku = COVERS[requested] ? requested : "HT-KSH-0001";
+      const [faName, enName, faOrigin, enOrigin, slug] = COVERS[sku];
+      const faTitle = document.getElementById("title-fa");
+      faTitle.textContent = faName;
+      faTitle.classList.toggle("is-long", faName.length > 22);
+      document.getElementById("title-en").textContent = enName;
+      document.getElementById("origin-fa").textContent = faOrigin;
+      document.getElementById("origin-en").textContent = enOrigin;
+      document.getElementById("sku").textContent = sku;
+      document.getElementById("carpet").src = `../public/media/products/${slug}/full-frontal.png`;
+      document.getElementById("carpet").alt = `${faName} · ${sku}`;
+      document.title = `${sku} Reel Cover`;
+    </script>
+  </body>
+</html>
