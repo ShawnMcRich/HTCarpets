@@ -1,0 +1,1649 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#061d36" />
+    <title>Hosseintalab — 30-Day Instagram Launch Plan</title>
+    <style>
+      @font-face {
+        font-family: "Hosseintalab Serif";
+        src: url("../public/brand/fonts/cormorant-latin-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+      }
+
+      :root {
+        --navy-1000: #03162a;
+        --navy-950: #061d36;
+        --navy-900: #072a51;
+        --navy-750: #17466e;
+        --gold-700: #8d6326;
+        --gold-500: #b78b3f;
+        --gold-300: #d8b97b;
+        --gold-150: #efe0c2;
+        --ivory: #f8f1e5;
+        --paper: #fffdf8;
+        --mist: #f1f3f4;
+        --ink: #172536;
+        --muted: #69737d;
+        --green: #28745d;
+        --red: #a34b43;
+        --line: rgba(23, 37, 54, 0.14);
+        --shadow: 0 24px 70px rgba(5, 25, 46, 0.12);
+        --radius: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 24px;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 90% 2%, rgba(183, 139, 63, 0.1), transparent 25rem),
+          var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+        line-height: 1.62;
+      }
+
+      button,
+      a,
+      input {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 3px solid rgba(183, 139, 63, 0.45);
+        outline-offset: 3px;
+      }
+
+      .shell {
+        display: grid;
+        min-height: 100vh;
+        grid-template-columns: 290px minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 28px 22px 22px;
+        background:
+          radial-gradient(circle at 50% -10%, rgba(183, 139, 63, 0.25), transparent 19rem),
+          var(--navy-1000);
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .brand {
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+      }
+
+      .brand img {
+        display: block;
+        width: 210px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .brand small {
+        display: block;
+        margin-top: 10px;
+        color: var(--gold-300);
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .progress-card {
+        margin-top: 22px;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      .progress-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+      }
+
+      .progress-row span {
+        font-size: 0.73rem;
+      }
+
+      .progress-row strong {
+        color: var(--gold-150);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 1.7rem;
+        font-weight: 500;
+      }
+
+      .progress-track {
+        height: 6px;
+        margin-top: 13px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .progress-track span {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--gold-500), var(--gold-150));
+        transition: width 220ms ease;
+      }
+
+      .nav {
+        display: grid;
+        gap: 3px;
+        margin-top: 22px;
+      }
+
+      .nav a {
+        padding: 8px 11px;
+        border-left: 2px solid transparent;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 0.76rem;
+        text-decoration: none;
+      }
+
+      .nav a:hover {
+        border-left-color: var(--gold-500);
+        color: white;
+      }
+
+      .sidebar-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 22px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 43px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 10px;
+        padding: 8px 11px;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        font-size: 0.7rem;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        border-color: var(--gold-500);
+        color: var(--gold-150);
+      }
+
+      .main {
+        min-width: 0;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 690px;
+        padding: clamp(72px, 9vw, 132px) clamp(24px, 7vw, 104px) 90px;
+        background:
+          linear-gradient(120deg, rgba(3, 22, 42, 0.99), rgba(7, 42, 81, 0.95)),
+          var(--navy-950);
+        color: white;
+      }
+
+      .hero::before,
+      .hero::after {
+        position: absolute;
+        border: 1px solid rgba(216, 185, 123, 0.18);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .hero::before {
+        top: -230px;
+        right: -100px;
+        width: 580px;
+        height: 580px;
+      }
+
+      .hero::after {
+        right: 170px;
+        bottom: -300px;
+        width: 500px;
+        height: 500px;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1040px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--gold-700);
+        font-size: 0.69rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .hero .eyebrow {
+        color: var(--gold-300);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        overflow-wrap: anywhere;
+      }
+
+      h1,
+      h2,
+      h3 {
+        text-wrap: balance;
+      }
+
+      .hero h1 {
+        max-width: 930px;
+        margin: 22px 0 0;
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: clamp(3.5rem, 8vw, 8rem);
+        font-weight: 420;
+        letter-spacing: -0.055em;
+        line-height: 0.88;
+      }
+
+      .hero h1 em {
+        display: block;
+        color: var(--gold-150);
+        font-style: normal;
+      }
+
+      .hero-lead {
+        max-width: 720px;
+        margin: 30px 0 0;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: clamp(1rem, 1.45vw, 1.18rem);
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 34px;
+      }
+
+      .tag {
+        display: inline-flex;
+        min-height: 28px;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.19);
+        border-radius: 999px;
+        padding: 5px 10px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .content {
+        width: min(1390px, 100%);
+        margin-inline: auto;
+        padding: 0 clamp(18px, 5vw, 76px) 110px;
+      }
+
+      .stats {
+        position: relative;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: -50px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 253, 248, 0.96);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      .stat {
+        padding: 27px 24px;
+        border-right: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-right: 0;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--navy-900);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: clamp(2rem, 4vw, 3.6rem);
+        font-weight: 520;
+        line-height: 0.95;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 0.71rem;
+      }
+
+      .section {
+        padding-top: 104px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+        gap: 50px;
+        align-items: end;
+        margin-bottom: 31px;
+      }
+
+      .section-head h2 {
+        max-width: 820px;
+        margin: 11px 0 0;
+        color: var(--navy-900);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: clamp(2.7rem, 5vw, 5.5rem);
+        font-weight: 470;
+        letter-spacing: -0.045em;
+        line-height: 0.95;
+      }
+
+      .section-head > p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .north-star {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(34px, 6vw, 76px);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(125deg, rgba(6, 29, 54, 0.99), rgba(7, 42, 81, 0.95)),
+          var(--navy-950);
+        box-shadow: var(--shadow);
+        color: white;
+      }
+
+      .north-star::after {
+        position: absolute;
+        top: -130px;
+        right: -50px;
+        width: 330px;
+        height: 330px;
+        border: 1px solid rgba(216, 185, 123, 0.2);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .north-star blockquote {
+        position: relative;
+        z-index: 1;
+        max-width: 820px;
+        margin: 0;
+        color: var(--ivory);
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: clamp(2.2rem, 6vw, 6rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 1.35;
+      }
+
+      .north-star blockquote span {
+        display: block;
+        color: var(--gold-300);
+      }
+
+      .north-star p {
+        position: relative;
+        z-index: 1;
+        max-width: 650px;
+        margin: 22px 0 0;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 0.84rem;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: clamp(24px, 3.5vw, 38px);
+        background: rgba(255, 255, 255, 0.74);
+        box-shadow: 0 10px 35px rgba(5, 25, 46, 0.055);
+      }
+
+      .panel h3 {
+        margin: 0;
+        color: var(--navy-900);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 2.15rem;
+        font-weight: 520;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+
+      .panel > p {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .profile-copy {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid rgba(183, 139, 63, 0.3);
+        border-radius: 14px;
+        background: var(--ivory);
+      }
+
+      .profile-copy p {
+        margin: 0;
+        color: var(--navy-900);
+        font-size: 1rem;
+        line-height: 2;
+      }
+
+      .copy-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-top: 14px;
+      }
+
+      .copy-row small {
+        color: var(--muted);
+      }
+
+      .copy-button {
+        border: 1px solid var(--navy-900);
+        border-radius: 8px;
+        padding: 6px 11px;
+        background: var(--navy-900);
+        color: white;
+        cursor: pointer;
+        font-size: 0.68rem;
+      }
+
+      .tasks {
+        display: grid;
+        gap: 9px;
+        margin-top: 20px;
+      }
+
+      .task {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 11px;
+        align-items: start;
+        padding: 13px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.76);
+        transition: opacity 160ms ease, background 160ms ease;
+      }
+
+      .task input {
+        width: 18px;
+        height: 18px;
+        margin: 2px 0 0;
+        accent-color: var(--green);
+        cursor: pointer;
+      }
+
+      .task label {
+        color: #344352;
+        cursor: pointer;
+        font-size: 0.78rem;
+      }
+
+      .task:has(input:checked) {
+        background: rgba(40, 116, 93, 0.08);
+        opacity: 0.68;
+      }
+
+      .task:has(input:checked) label {
+        text-decoration: line-through;
+      }
+
+      .priority {
+        border-radius: 999px;
+        padding: 4px 8px;
+        color: var(--gold-700);
+        background: var(--gold-150);
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .launch-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+      }
+
+      .launch-card {
+        position: relative;
+        display: grid;
+        min-height: 238px;
+        grid-template-columns: auto 1fr;
+        gap: 18px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 27px;
+        background: rgba(255, 255, 255, 0.79);
+        box-shadow: 0 10px 32px rgba(5, 25, 46, 0.05);
+      }
+
+      .launch-card.pinned {
+        border-color: rgba(183, 139, 63, 0.55);
+        background: linear-gradient(145deg, #fffdf8, #f9eedb);
+      }
+
+      .day-number {
+        color: rgba(7, 42, 81, 0.14);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 4.2rem;
+        font-weight: 620;
+        line-height: 0.88;
+      }
+
+      .launch-body {
+        min-width: 0;
+      }
+
+      .launch-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+
+      .chip {
+        border-radius: 999px;
+        padding: 4px 8px;
+        background: var(--mist);
+        color: var(--navy-750);
+        font-size: 0.59rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .chip.gold {
+        background: var(--gold-150);
+        color: var(--gold-700);
+      }
+
+      .launch-card h3 {
+        margin: 0;
+        color: var(--navy-900);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 1.75rem;
+        font-weight: 580;
+        line-height: 1.02;
+      }
+
+      .launch-card p {
+        margin: 11px 0 0;
+        color: var(--muted);
+        font-size: 0.76rem;
+      }
+
+      .launch-card .task {
+        position: absolute;
+        right: 18px;
+        bottom: 17px;
+        display: flex;
+        width: auto;
+        align-items: center;
+        border: 0;
+        padding: 0;
+        background: transparent;
+      }
+
+      .launch-card .task label {
+        font-size: 0.66rem;
+        font-weight: 750;
+      }
+
+      .rhythm {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: white;
+        box-shadow: 0 16px 50px rgba(5, 25, 46, 0.07);
+      }
+
+      .rhythm article {
+        min-height: 225px;
+        padding: 23px 17px;
+        border-right: 1px solid var(--line);
+      }
+
+      .rhythm article:last-child {
+        border-right: 0;
+      }
+
+      .rhythm small {
+        color: var(--gold-700);
+        font-size: 0.6rem;
+        font-weight: 850;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .rhythm h3 {
+        min-height: 59px;
+        margin: 12px 0 0;
+        color: var(--navy-900);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 570;
+        line-height: 1;
+      }
+
+      .rhythm p {
+        color: var(--muted);
+        font-size: 0.68rem;
+      }
+
+      .recipe {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+        gap: 18px;
+      }
+
+      .timeline {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: white;
+      }
+
+      .timeline-step {
+        display: grid;
+        grid-template-columns: 105px 1fr;
+        gap: 24px;
+        align-items: center;
+        padding: 24px 28px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .timeline-step:last-child {
+        border-bottom: 0;
+      }
+
+      .timeline-step > span {
+        color: var(--gold-700);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 1.45rem;
+        font-weight: 620;
+      }
+
+      .timeline-step h3 {
+        margin: 0;
+        color: var(--navy-900);
+        font-size: 0.9rem;
+      }
+
+      .timeline-step p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+
+      .rules {
+        border-radius: var(--radius);
+        padding: 31px;
+        background: var(--navy-950);
+        color: white;
+      }
+
+      .rules h3 {
+        margin: 0;
+        color: var(--gold-150);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 2rem;
+        font-weight: 530;
+      }
+
+      .rules ul {
+        margin: 19px 0 0;
+        padding-left: 18px;
+      }
+
+      .rules li {
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.75rem;
+      }
+
+      .weeks {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 15px;
+      }
+
+      .week {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 29px 25px;
+        background: white;
+      }
+
+      .week-number {
+        position: absolute;
+        top: -20px;
+        right: 9px;
+        color: rgba(7, 42, 81, 0.06);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 7rem;
+        font-weight: 650;
+        line-height: 1;
+      }
+
+      .week h3 {
+        position: relative;
+        margin: 11px 0 0;
+        color: var(--navy-900);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 1.8rem;
+        font-weight: 570;
+        line-height: 1;
+      }
+
+      .week > p {
+        position: relative;
+        min-height: 78px;
+        color: var(--muted);
+        font-size: 0.73rem;
+      }
+
+      .week .tasks {
+        position: relative;
+      }
+
+      .week .task {
+        grid-template-columns: auto 1fr;
+        padding: 10px;
+      }
+
+      .metrics-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: white;
+        box-shadow: 0 16px 50px rgba(5, 25, 46, 0.06);
+      }
+
+      table {
+        width: 100%;
+        min-width: 850px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        font-size: 0.74rem;
+      }
+
+      th {
+        background: var(--navy-950);
+        color: var(--gold-150);
+        font-size: 0.63rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      td:first-child {
+        color: var(--navy-900);
+        font-weight: 780;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .winner {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 24px;
+        align-items: center;
+        margin-top: 18px;
+        border: 1px solid rgba(183, 139, 63, 0.35);
+        border-radius: var(--radius);
+        padding: 25px 28px;
+        background: linear-gradient(140deg, #fffdf8, var(--ivory));
+      }
+
+      .winner strong {
+        color: var(--gold-700);
+        font-family: "Hosseintalab Serif", Georgia, serif;
+        font-size: 2.7rem;
+        font-weight: 580;
+        white-space: nowrap;
+      }
+
+      .winner p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .warning-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .warning {
+        border: 1px solid rgba(163, 75, 67, 0.24);
+        border-radius: 16px;
+        padding: 22px;
+        background: rgba(163, 75, 67, 0.055);
+      }
+
+      .warning h3 {
+        margin: 0;
+        color: var(--red);
+        font-size: 0.88rem;
+      }
+
+      .warning p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.74rem;
+      }
+
+      .avoid-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .avoid-list span {
+        border: 1px solid rgba(163, 75, 67, 0.23);
+        border-radius: 999px;
+        padding: 7px 11px;
+        color: var(--red);
+        background: white;
+        font-size: 0.66rem;
+        font-weight: 700;
+      }
+
+      .sources {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .sources a {
+        display: block;
+        min-height: 100%;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px;
+        background: white;
+        color: var(--navy-750);
+        font-size: 0.73rem;
+        font-weight: 720;
+        text-decoration: none;
+      }
+
+      .sources a:hover {
+        border-color: var(--gold-500);
+        color: var(--gold-700);
+      }
+
+      .footer {
+        margin-top: 105px;
+        padding: 30px 0 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+
+      .footer a {
+        color: var(--navy-750);
+        font-weight: 750;
+      }
+
+      .toast {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 50;
+        pointer-events: none;
+        border-radius: 10px;
+        padding: 11px 15px;
+        background: var(--navy-950);
+        color: white;
+        font-size: 0.72rem;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1120px) {
+        .shell {
+          grid-template-columns: 238px minmax(0, 1fr);
+        }
+
+        .rhythm {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .rhythm article {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .rhythm article:nth-child(4n) {
+          border-right: 0;
+        }
+
+        .weeks {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 820px) {
+        .shell {
+          display: block;
+        }
+
+        .sidebar {
+          position: relative;
+          height: auto;
+          padding: 19px;
+        }
+
+        .brand {
+          display: flex;
+          justify-content: space-between;
+          gap: 15px;
+          align-items: center;
+          padding-bottom: 17px;
+        }
+
+        .brand img {
+          width: 175px;
+        }
+
+        .brand small {
+          margin: 0;
+          text-align: right;
+        }
+
+        .progress-card,
+        .nav {
+          display: none;
+        }
+
+        .sidebar-actions {
+          margin: 0;
+          padding-top: 14px;
+        }
+
+        .hero {
+          min-height: 610px;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .stat:nth-child(2) {
+          border-right: 0;
+        }
+
+        .stat:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .section-head,
+        .recipe {
+          grid-template-columns: 1fr;
+          gap: 19px;
+        }
+
+        .section-head {
+          align-items: start;
+        }
+
+        .two-col,
+        .launch-grid,
+        .warning-grid,
+        .sources {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 580px) {
+        .hero {
+          min-height: 560px;
+          padding-top: 70px;
+        }
+
+        .hero h1 {
+          font-size: clamp(3.15rem, 17vw, 5rem);
+        }
+
+        .content {
+          padding-inline: 14px;
+        }
+
+        .stats {
+          margin-top: -30px;
+        }
+
+        .stat {
+          padding: 20px 16px;
+        }
+
+        .section {
+          padding-top: 76px;
+        }
+
+        .section-head h2 {
+          font-size: 3rem;
+        }
+
+        .launch-card {
+          min-height: 260px;
+          grid-template-columns: 1fr;
+        }
+
+        .day-number {
+          font-size: 3rem;
+        }
+
+        .rhythm,
+        .weeks {
+          grid-template-columns: 1fr;
+        }
+
+        .rhythm article,
+        .rhythm article:nth-child(4n) {
+          min-height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .rhythm h3 {
+          min-height: auto;
+        }
+
+        .timeline-step {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+
+        .winner {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+
+        .winner strong {
+          white-space: normal;
+        }
+      }
+
+      @media print {
+        @page {
+          margin: 14mm;
+          size: A4;
+        }
+
+        body {
+          background: white;
+        }
+
+        .shell {
+          display: block;
+        }
+
+        .sidebar,
+        .toast,
+        .copy-button {
+          display: none !important;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 32px;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .hero h1 {
+          font-size: 54pt;
+        }
+
+        .content {
+          width: 100%;
+          padding: 0;
+        }
+
+        .stats {
+          margin-top: 14px;
+          box-shadow: none;
+        }
+
+        .section {
+          padding-top: 42px;
+          break-inside: avoid;
+        }
+
+        .panel,
+        .launch-card,
+        .week,
+        .warning,
+        .north-star,
+        .rhythm,
+        .timeline,
+        .rules,
+        .winner,
+        .metrics-wrap {
+          box-shadow: none;
+          break-inside: avoid;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .section-head h2 {
+          font-size: 34pt;
+        }
+
+        .launch-grid,
+        .weeks {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .rhythm {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="../public/brand/exports/hosseintalab-lockup-horizontal-reversed.svg" alt="Hosseintalab Persian handwoven carpets" />
+          <small>Instagram launch · August 2026</small>
+        </div>
+
+        <div class="progress-card" aria-live="polite">
+          <div class="progress-row"><span>Launch progress</span><strong id="progress-percent">0%</strong></div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+          <div class="progress-row" style="margin-top: 9px"><span id="progress-count">0 of 0 tasks</span><span>saved locally</span></div>
+        </div>
+
+        <nav class="nav" aria-label="Playbook sections">
+          <a href="#strategy">01 — Strategy</a>
+          <a href="#day-zero">02 — Day zero</a>
+          <a href="#first-ten">03 — First 10 posts</a>
+          <a href="#rhythm">04 — Weekly rhythm</a>
+          <a href="#reels">05 — Reel formula</a>
+          <a href="#growth">06 — Growth loop</a>
+          <a href="#roadmap">07 — 30-day roadmap</a>
+          <a href="#measurement">08 — Measurement</a>
+          <a href="#safeguards">09 — Safeguards</a>
+          <a href="#sources">10 — Sources</a>
+        </nav>
+
+        <div class="sidebar-actions">
+          <button class="button" type="button" id="print-plan">Print / PDF</button>
+          <button class="button" type="button" id="reset-plan">Reset tasks</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="hero">
+          <div class="hero-inner">
+            <p class="eyebrow">30-day growth + conversion sprint</p>
+            <h1>Turn attention <em>into trust.</em></h1>
+            <p class="hero-lead">
+              A practical launch system for making Hosseintalab discoverable, memorable and useful—then turning the right viewers into qualified carpet conversations, viewings and sales.
+            </p>
+            <div class="hero-tags">
+              <span class="tag">Persian-first</span>
+              <span class="tag">Original media</span>
+              <span class="tag">Real expert voice</span>
+              <span class="tag">Transparent pricing</span>
+              <span class="tag">DM-assisted sales</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <section class="stats" aria-label="Thirty-day production targets">
+            <article class="stat"><strong>20</strong><span>original Reels in 30 days</span></article>
+            <article class="stat"><strong>8</strong><span>saveable carousels</span></article>
+            <article class="stat"><strong>4</strong><span>relevant Collab posts</span></article>
+            <article class="stat"><strong>1</strong><span>measured sales process</span></article>
+          </section>
+
+          <section class="section" id="strategy">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">01 · Strategic position</p>
+                <h2>Do not launch as a catalogue.</h2>
+              </div>
+              <p>Reels create discovery. Carousels remove doubt. Stories create familiarity. DMs, WhatsApp and showroom appointments convert interest into a real buying process.</p>
+            </div>
+
+            <article class="north-star">
+              <blockquote dir="rtl" lang="fa">فرش را کامل ببینید.<span>بعد انتخاب کنید.</span></blockquote>
+              <p>Repeat this promise until the market associates complete viewing, honest guidance and transparent evidence with Hosseintalab.</p>
+            </article>
+          </section>
+
+          <section class="section" id="day-zero">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">02 · Before publishing</p>
+                <h2>Prepare the conversion path.</h2>
+              </div>
+              <p>A viral post is wasted if the profile is unclear, the featured carpet is unavailable or no one replies to the resulting enquiry.</p>
+            </div>
+
+            <div class="two-col">
+              <article class="panel">
+                <h3>Day-zero checklist</h3>
+                <div class="tasks">
+                  <div class="task"><input id="setup-business" type="checkbox" data-task /><label for="setup-business">Use a public Business account and select the closest carpet retail category.</label><span class="priority">Now</span></div>
+                  <div class="task"><input id="setup-profile" type="checkbox" data-task /><label for="setup-profile">Install the searchable name, bio, avatar and tracked website link.</label><span class="priority">Now</span></div>
+                  <div class="task"><input id="setup-contact" type="checkbox" data-task /><label for="setup-contact">Connect WhatsApp, calling and showroom contact actions.</label><span class="priority">Now</span></div>
+                  <div class="task"><input id="setup-security" type="checkbox" data-task /><label for="setup-security">Enable two-factor authentication and store recovery codes securely.</label><span class="priority">Safety</span></div>
+                  <div class="task"><input id="setup-status" type="checkbox" data-task /><label for="setup-status">Confirm Account Status shows recommendation eligibility.</label><span class="priority">Reach</span></div>
+                  <div class="task"><input id="setup-expert" type="checkbox" data-task /><label for="setup-expert">Assign one recognisable expert who will appear twice each week.</label><span class="priority">Trust</span></div>
+                  <div class="task"><input id="setup-stock" type="checkbox" data-task /><label for="setup-stock">Verify availability, live product page and current price for every launch SKU.</label><span class="priority">Truth</span></div>
+                  <div class="task"><input id="setup-inbox" type="checkbox" data-task /><label for="setup-inbox">Prepare saved DM replies and a simple enquiry tracker.</label><span class="priority">Sales</span></div>
+                </div>
+              </article>
+
+              <article class="panel">
+                <h3>Safe launch bio</h3>
+                <p>Use this until the public founding-year claim has been verified with publishable evidence.</p>
+                <div class="profile-copy">
+                  <p id="safe-bio" dir="rtl" lang="fa">فرش دستباف تک‌تخته | تهران<br />انتخاب و کارشناسی در بازار فرش تهران<br />نمای کامل، جزئیات و قیمت شفاف<br />مشاهدهٔ مجموعه و پیگیری خرید ↓</p>
+                  <div class="copy-row"><small>Persian-first · customer focused</small><button type="button" class="copy-button" data-copy="safe-bio">Copy bio</button></div>
+                </div>
+                <div class="warning" style="margin-top: 17px">
+                  <h3>Founding-year hold</h3>
+                  <p>Do not write «از ۱۲۹۰» in the bio, captions or pinned posts until the establishment date is supported. The current project documents conflict on this claim.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="section" id="first-ten">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">03 · Launch sequence</p>
+                <h2>The first 10 posts.</h2>
+              </div>
+              <p>Publish these across roughly 10 days. Pin the first three so every new visitor immediately understands the business, the buying process and the visual standard.</p>
+            </div>
+
+            <div class="launch-grid">
+              <article class="launch-card pinned">
+                <span class="day-number">01</span><div class="launch-body"><div class="launch-meta"><span class="chip gold">Pin</span><span class="chip">Reel</span><span class="chip">Trust</span></div><h3>What Hosseintalab stands for</h3><p>The real expert introduces complete viewing, honest guidance, transparent price and the purpose of the page.</p></div>
+                <div class="task"><input id="post-01" type="checkbox" data-task /><label for="post-01">Published</label></div>
+              </article>
+              <article class="launch-card pinned">
+                <span class="day-number">02</span><div class="launch-body"><div class="launch-meta"><span class="chip gold">Pin</span><span class="chip">Carousel</span><span class="chip">Trust</span></div><h3>How buying works</h3><p>Post → product details → room fit → video or showroom viewing → informed decision.</p></div>
+                <div class="task"><input id="post-02" type="checkbox" data-task /><label for="post-02">Published</label></div>
+              </article>
+              <article class="launch-card pinned">
+                <span class="day-number">03</span><div class="launch-body"><div class="launch-meta"><span class="chip gold">Pin</span><span class="chip">Reel</span><span class="chip">Discovery</span></div><h3>تابلوفرش نورعلی‌شاه</h3><p>Use the most unmistakable carpet as the flagship visual reveal. State age only as an evidenced approximation.</p></div>
+                <div class="task"><input id="post-03" type="checkbox" data-task /><label for="post-03">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">04</span><div class="launch-body"><div class="launch-meta"><span class="chip">Reel</span><span class="chip">Comparison</span></div><h3>۳۵ میلیون vs. ۷۵۰ میلیون</h3><p>Compare the Sirjan and Noor Ali Shah pieces. Let the expert explain the real reasons for the price difference.</p></div>
+                <div class="task"><input id="post-04" type="checkbox" data-task /><label for="post-04">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">05</span><div class="launch-body"><div class="launch-meta"><span class="chip">Carousel</span><span class="chip">Education</span></div><h3>Five views every buyer should request</h3><p>Full, angled, detail, back and edge, plus a true-scale or daylight view. Build for saves.</p></div>
+                <div class="task"><input id="post-05" type="checkbox" data-task /><label for="post-05">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">06</span><div class="launch-body"><div class="launch-meta"><span class="chip">Trial Reel</span><span class="chip">Quiz</span></div><h3 dir="rtl" lang="fa">قم یا اصفهان؟ از روی ترنج حدس بزن.</h3><p>Show two useful details before revealing the answer. Test with non-followers first when Trial Reels is available.</p></div>
+                <div class="task"><input id="post-06" type="checkbox" data-task /><label for="post-06">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">07</span><div class="launch-body"><div class="launch-meta"><span class="chip">Reel</span><span class="chip">Expert</span></div><h3>One real inspection detail</h3><p>The expert explains condition, construction, pile, edge or restoration in natural Persian.</p></div>
+                <div class="task"><input id="post-07" type="checkbox" data-task /><label for="post-07">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">08</span><div class="launch-body"><div class="launch-meta"><span class="chip">Reel</span><span class="chip">Place</span></div><h3>Carpet and weaving geography</h3><p>Connect one verified design detail to its origin. Do not present a generated location as documentary photography.</p></div>
+                <div class="task"><input id="post-08" type="checkbox" data-task /><label for="post-08">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">09</span><div class="launch-body"><div class="launch-meta"><span class="chip">Reel</span><span class="chip">Game</span></div><h3 dir="rtl" lang="fa">در این شکارگاه چند حیوان پیدا می‌کنی؟</h3><p>Use a Qom or Isfahan hunting-scene carpet to encourage rewatching and natural sending.</p></div>
+                <div class="task"><input id="post-09" type="checkbox" data-task /><label for="post-09">Published</label></div>
+              </article>
+              <article class="launch-card">
+                <span class="day-number">10</span><div class="launch-body"><div class="launch-meta"><span class="chip">Reel / Carousel</span><span class="chip">Lead</span></div><h3>Room-selection clinic</h3><p>Invite the viewer to send a room photo and approximate dimensions, then receive three honest suggestions.</p></div>
+                <div class="task"><input id="post-10" type="checkbox" data-task /><label for="post-10">Published</label></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="section" id="rhythm">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">04 · Sustainable cadence</p>
+                <h2>The weekly rhythm.</h2>
+              </div>
+              <p>Repeat the format while changing the carpet, hook and insight. Daily Stories run alongside the feed and make the business feel active and human.</p>
+            </div>
+
+            <div class="rhythm">
+              <article><small>Saturday</small><h3>Hero reveal</h3><p>The strongest original product Reel of the week.</p></article>
+              <article><small>Sunday</small><h3>Macro quiz</h3><p>Story poll and a short Trial Reel about city, pattern or detail.</p></article>
+              <article><small>Monday</small><h3>Buyer education</h3><p>A saveable carousel about inspection, sizing, comparison or care.</p></article>
+              <article><small>Tuesday</small><h3>Carpet + place</h3><p>One verified regional design insight with truthful media.</p></article>
+              <article><small>Wednesday</small><h3>Expert voice</h3><p>A real person explains one detail, uncertainty or buying decision.</p></article>
+              <article><small>Thursday</small><h3>Collab / room fit</h3><p>A designer collaboration or three recommendations for one room.</p></article>
+              <article><small>Friday</small><h3>Quiet recap</h3><p>Behind-the-scenes Stories, Q&amp;A, replies and next-week preparation.</p></article>
+            </div>
+          </section>
+
+          <section class="section" id="reels">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">05 · Creative structure</p>
+                <h2>Build for retention and sending.</h2>
+              </div>
+              <p>A refined brand can still move quickly. Show the full carpet early, then earn attention with useful evidence—not empty cinematic filler.</p>
+            </div>
+
+            <div class="recipe">
+              <div class="timeline">
+                <article class="timeline-step"><span>0–1.5s</span><div><h3>Hook</h3><p>A visual interruption plus one concise question or claim. No logo animation.</p></div></article>
+                <article class="timeline-step"><span>1.5–5s</span><div><h3>Reveal</h3><p>Show the complete carpet quickly so the opening promise is paid off.</p></div></article>
+                <article class="timeline-step"><span>5–12s</span><div><h3>Evidence</h3><p>Show two or three meaningful details: construction, pattern, condition or scale.</p></div></article>
+                <article class="timeline-step"><span>12–22s</span><div><h3>Fact + action</h3><p>Origin, dimensions, price or condition—then one DM, WhatsApp or link action.</p></div></article>
+              </div>
+              <aside class="rules">
+                <h3>Production rules</h3>
+                <ul>
+                  <li>Persian subtitles on every Reel; assume viewers begin muted.</li>
+                  <li>One Reel, one idea and one call to action.</li>
+                  <li>Use a real expert voice regularly.</li>
+                  <li>Keep the complete carpet recognisable and geometrically faithful.</li>
+                  <li>Use the readable carpet name, not only its inventory code.</li>
+                  <li>Do not upload another platform's watermark.</li>
+                  <li>Disclose realistically generated or materially altered media when required.</li>
+                </ul>
+              </aside>
+            </div>
+          </section>
+
+          <section class="section" id="growth">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">06 · Distribution</p>
+                <h2>Borrow relevant trust.</h2>
+              </div>
+              <p>One small audience that already cares about interiors, heritage and high-consideration purchases is worth more than thousands of random followers.</p>
+            </div>
+
+            <div class="two-col">
+              <article class="panel">
+                <h3>Partner growth loop</h3>
+                <div class="tasks">
+                  <div class="task"><input id="growth-list" type="checkbox" data-task /><label for="growth-list">Build a list of 30 designers, architects, heritage pages, boutique hotels, photographers and restoration specialists.</label><span class="priority">List</span></div>
+                  <div class="task"><input id="growth-outreach" type="checkbox" data-task /><label for="growth-outreach">Send 10 personalised Collab proposals each week.</label><span class="priority">Weekly</span></div>
+                  <div class="task"><input id="growth-concept" type="checkbox" data-task /><label for="growth-concept">Offer a useful concept: the partner supplies a room or style; Hosseintalab recommends three carpets.</label><span class="priority">Value</span></div>
+                  <div class="task"><input id="growth-repost" type="checkbox" data-task /><label for="growth-repost">Ask owners, staff and genuine customers to repost relevant content naturally.</label><span class="priority">Reach</span></div>
+                  <div class="task"><input id="growth-sequel" type="checkbox" data-task /><label for="growth-sequel">Publish a close sequel within 72 hours when a concept begins winning.</label><span class="priority">Scale</span></div>
+                </div>
+              </article>
+
+              <article class="panel">
+                <h3>What earns sending</h3>
+                <p>Build recurring series around genuine curiosity and usefulness:</p>
+                <div class="avoid-list" style="margin-top: 20px">
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">City or pattern quiz</span>
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">Macro-to-full reveal</span>
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">Price comparison</span>
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">Find the hidden animals</span>
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">What the back reveals</span>
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">Carpet for a real room</span>
+                  <span style="border-color: rgba(40,116,93,.22); color: var(--green)">Expert condition check</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="section" id="roadmap">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">07 · Month one</p>
+                <h2>The 30-day roadmap.</h2>
+              </div>
+              <p>The first month is a controlled testing sprint. The output is not only followers: it is two repeatable content series and a dependable path from post to qualified conversation.</p>
+            </div>
+
+            <div class="weeks">
+              <article class="week"><span class="week-number">1</span><p class="eyebrow">Week one</p><h3>Establish credibility</h3><p>Make the empty profile feel real, informed and safe to explore.</p><div class="tasks"><div class="task"><input id="week1-pin" type="checkbox" data-task /><label for="week1-pin">Publish and pin the three foundation posts.</label></div><div class="task"><input id="week1-stories" type="checkbox" data-task /><label for="week1-stories">Create product, guide, market and contact Highlights.</label></div></div></article>
+              <article class="week"><span class="week-number">2</span><p class="eyebrow">Week two</p><h3>Test viral formats</h3><p>Keep the carpet constant and change the opening so the hook becomes the variable.</p><div class="tasks"><div class="task"><input id="week2-trials" type="checkbox" data-task /><label for="week2-trials">Run at least three Trial Reel experiments.</label></div><div class="task"><input id="week2-data" type="checkbox" data-task /><label for="week2-data">Record results at 24 and 72 hours.</label></div></div></article>
+              <article class="week"><span class="week-number">3</span><p class="eyebrow">Week three</p><h3>Borrow audiences</h3><p>Collaborate with people whose followers already care about the subject.</p><div class="tasks"><div class="task"><input id="week3-outreach" type="checkbox" data-task /><label for="week3-outreach">Send 10 personalised collaboration invitations.</label></div><div class="task"><input id="week3-collab" type="checkbox" data-task /><label for="week3-collab">Publish the first accepted Collab Reel.</label></div></div></article>
+              <article class="week"><span class="week-number">4</span><p class="eyebrow">Week four</p><h3>Convert attention</h3><p>Launch a useful service that gives serious buyers a natural reason to reply.</p><div class="tasks"><div class="task"><input id="week4-clinic" type="checkbox" data-task /><label for="week4-clinic">Launch the room-selection clinic.</label></div><div class="task"><input id="week4-winners" type="checkbox" data-task /><label for="week4-winners">Choose three winning formats and schedule sequels.</label></div></div></article>
+            </div>
+          </section>
+
+          <section class="section" id="measurement">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">08 · Learning loop</p>
+                <h2>Measure the next action.</h2>
+              </div>
+              <p>There is no useful universal view target for a new page. Establish the account's own median, compare formats and connect each enquiry back to its source post.</p>
+            </div>
+
+            <div class="metrics-wrap">
+              <table>
+                <thead><tr><th>Metric</th><th>What it reveals</th><th>Decision</th></tr></thead>
+                <tbody>
+                  <tr><td>Non-follower reach</td><td>Whether Instagram distributes the post beyond the current audience.</td><td>Keep the subject; improve the first second if reach remains weak.</td></tr>
+                  <tr><td>Average watch time</td><td>Whether the opening, reveal and pacing hold attention.</td><td>Move the complete reveal earlier where viewers leave.</td></tr>
+                  <tr><td>Shares ÷ reach</td><td>Whether the concept is socially useful or visually distinctive.</td><td>Make a close sequel to the most-sent ideas.</td></tr>
+                  <tr><td>Saves ÷ reach</td><td>Whether the information is worth returning to.</td><td>Turn successful education into a recurring carousel series.</td></tr>
+                  <tr><td>Profile visits and follows</td><td>Whether the Reel creates curiosity and the profile earns trust.</td><td>Strengthen the promise, bio and pinned posts.</td></tr>
+                  <tr><td>Qualified DMs</td><td>Whether the audience is commercially relevant.</td><td>Track carpet, room, location, budget context and next step.</td></tr>
+                  <tr><td>Viewings and sales</td><td>The actual business outcome.</td><td>Compare lead quality and revenue by source post.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="winner"><strong>Top 25%</strong><p>After 12 Reels, calculate the median. Treat a post as a breakout when it reaches at least 5× median non-follower reach and also has above-median sharing. Publish a close sequel within 72 hours. Test a format three times before abandoning it.</p></div>
+          </section>
+
+          <section class="section" id="safeguards">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">09 · Protect the brand</p>
+                <h2>Virality must not damage trust.</h2>
+              </div>
+              <p>Hosseintalab sells one-of-one, high-consideration pieces. False context, stale availability or exaggerated history may create reach while destroying the reason a serious buyer would choose the business.</p>
+            </div>
+
+            <div class="warning-grid">
+              <article class="warning"><h3>Reference imagery</h3><p>Project documentation says several room and contextual images are production references, not final catalogue evidence. Do not present them as documentary photographs of the actual carpet in a real home.</p></article>
+              <article class="warning"><h3>Inventory mismatch</h3><p>The content library includes 20 SKU sets while the current launch playbook identifies 19 live product pages. Confirm the exact active SKU before publishing any product post.</p></article>
+              <article class="warning"><h3>Generated motion</h3><p>If the border, medallion, colour, fringe, proportions, wear or scale changes, reject the clip. A beautiful invented detail is still false product information.</p></article>
+              <article class="warning"><h3>History and condition</h3><p>Use approximate age, provenance, restoration and technical claims only when supported. Keep evidence and expert opinion clearly separated.</p></article>
+            </div>
+
+            <div class="avoid-list">
+              <span>Purchased followers</span><span>Engagement pods</span><span>Generic giveaways</span><span>Fake urgency</span><span>Hidden prices everywhere</span><span>Catalogue-only posting</span><span>Invented rooms</span><span>Unverified history</span>
+            </div>
+          </section>
+
+          <section class="section" id="sources">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">10 · Official guidance</p>
+                <h2>Platform references.</h2>
+              </div>
+              <p>Instagram changes frequently. Recheck the Professional Dashboard and official Meta guidance before depending on a particular feature or fixed publishing rule.</p>
+            </div>
+
+            <ul class="sources">
+              <li><a href="https://about.fb.com/news/2026/01/2026-ai-drives-performance/amp/" target="_blank" rel="noreferrer">Meta — Original content in Instagram recommendations</a></li>
+              <li><a href="https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/" target="_blank" rel="noreferrer">Meta — Testing content with non-followers using Trial Reels</a></li>
+              <li><a href="https://about.fb.com/news/2025/08/new-instagram-features-help-you-connect/" target="_blank" rel="noreferrer">Meta — Reposts and expanded creator reach</a></li>
+              <li><a href="https://about.fb.com/news/2024/10/best-practices-education-hub-creators-instagram/" target="_blank" rel="noreferrer">Instagram — Best Practices in the Professional Dashboard</a></li>
+              <li><a href="https://www.facebook.com/help/instagram/653964212890722" target="_blank" rel="noreferrer">Instagram — Recommendation eligibility and Account Status</a></li>
+              <li><a href="https://www.facebook.com/help/instagram/202865988324236" target="_blank" rel="noreferrer">Instagram — Reel insights and watch-time metrics</a></li>
+            </ul>
+          </section>
+
+          <footer class="footer">
+            <p>Hosseintalab 30-Day Instagram Launch Plan · August 2026 · Checklist progress is stored only in this browser. For production prompts, detailed DM scripts and the extended operating plan, open the <a href="instagram-playbook.html">complete Instagram Growth &amp; Sales Playbook</a>.</p>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
+    <script>
+      (() => {
+        const storageKey = "hosseintalab-instagram-launch-plan-v1";
+        const tasks = [...document.querySelectorAll("[data-task]")];
+        const progressPercent = document.getElementById("progress-percent");
+        const progressCount = document.getElementById("progress-count");
+        const progressBar = document.getElementById("progress-bar");
+        const toast = document.getElementById("toast");
+
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+        tasks.forEach((task) => {
+          task.checked = Boolean(saved[task.id]);
+          task.addEventListener("change", save);
+        });
+
+        function updateProgress() {
+          const complete = tasks.filter((task) => task.checked).length;
+          const percent = tasks.length ? Math.round((complete / tasks.length) * 100) : 0;
+          progressPercent.textContent = `${percent}%`;
+          progressCount.textContent = `${complete} of ${tasks.length} tasks`;
+          progressBar.style.width = `${percent}%`;
+        }
+
+        function save() {
+          const state = Object.fromEntries(tasks.map((task) => [task.id, task.checked]));
+          localStorage.setItem(storageKey, JSON.stringify(state));
+          updateProgress();
+        }
+
+        function showToast(message) {
+          toast.textContent = message;
+          toast.classList.add("show");
+          window.setTimeout(() => toast.classList.remove("show"), 1500);
+        }
+
+        document.getElementById("print-plan").addEventListener("click", () => window.print());
+        document.getElementById("reset-plan").addEventListener("click", () => {
+          if (!window.confirm("Reset all launch-plan checkboxes?")) return;
+          tasks.forEach((task) => { task.checked = false; });
+          localStorage.removeItem(storageKey);
+          updateProgress();
+          showToast("Tasks reset");
+        });
+
+        document.querySelectorAll("[data-copy]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            const target = document.getElementById(button.dataset.copy);
+            const value = target.innerText;
+            try {
+              await navigator.clipboard.writeText(value);
+              showToast("Copied to clipboard");
+            } catch {
+              const range = document.createRange();
+              range.selectNodeContents(target);
+              const selection = window.getSelection();
+              selection.removeAllRanges();
+              selection.addRange(range);
+              showToast("Text selected — copy it manually");
+            }
+          });
+        });
+
+        updateProgress();
+      })();
+    </script>
+  </body>
+</html>

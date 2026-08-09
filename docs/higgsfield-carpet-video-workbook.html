@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#10261f" />
-    <title>Hosseintalab — Higgsfield Carpet Video Workbook</title>
+    <title>Hosseintalab — Higgsfield Multi-Reference Video Lab</title>
     <style>
       :root {
         --forest: #10261f;
@@ -1318,6 +1318,310 @@
         color: var(--forest);
       }
 
+      .multi-ref-studio {
+        display: grid;
+        gap: 18px;
+      }
+
+      .reference-upload {
+        border: 1px solid #244c40;
+        background: #102a23;
+        color: var(--white);
+      }
+
+      .reference-upload-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 22px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .reference-upload-head h3,
+      .prompt-section-head h3 {
+        margin: 4px 0 0;
+        font-family: Georgia, serif;
+        font-size: 1.55rem;
+        font-weight: 400;
+      }
+
+      .reference-upload-head p {
+        max-width: 650px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 0.72rem;
+      }
+
+      .reference-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .reference-tile {
+        display: grid;
+        grid-template-columns: 118px minmax(0, 1fr);
+        min-width: 0;
+        min-height: 138px;
+        background: #17372e;
+      }
+
+      .reference-tile img {
+        width: 118px;
+        height: 138px;
+        object-fit: cover;
+      }
+
+      .reference-tile.is-full img {
+        object-fit: contain;
+        padding: 6px;
+        background: #0d211c;
+      }
+
+      .reference-info {
+        min-width: 0;
+        padding: 16px;
+      }
+
+      .reference-info strong,
+      .reference-info span,
+      .reference-info code {
+        display: block;
+      }
+
+      .reference-info strong {
+        color: var(--gold-light);
+        font-size: 0.82rem;
+      }
+
+      .reference-info span {
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.66rem;
+      }
+
+      .reference-info code {
+        margin-top: 12px;
+        color: rgba(255, 255, 255, 0.46);
+        font-size: 0.59rem;
+        overflow-wrap: anywhere;
+      }
+
+      .studio-rule {
+        padding: 15px 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.68rem;
+      }
+
+      .studio-rule b {
+        color: #fff;
+      }
+
+      .prompt-section {
+        border: 1px solid var(--line);
+        background: #f8f4eb;
+      }
+
+      .prompt-section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 22px;
+      }
+
+      .prompt-section-head p {
+        max-width: 620px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+
+      .prompt-count {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border: 1px solid var(--line);
+        background: var(--white);
+        color: var(--forest);
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .prompt-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        border-top: 1px solid var(--line);
+        background: var(--line);
+      }
+
+      .prompt-card {
+        min-width: 0;
+        background: var(--white);
+      }
+
+      .prompt-card > summary {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        min-height: 88px;
+        padding: 16px 18px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .prompt-card > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .prompt-card > summary::after {
+        content: "+";
+        color: var(--gold);
+        font-family: Georgia, serif;
+        font-size: 1.45rem;
+      }
+
+      .prompt-card[open] > summary::after {
+        content: "−";
+      }
+
+      .prompt-number {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.62rem;
+        font-weight: 850;
+      }
+
+      .prompt-title {
+        min-width: 0;
+      }
+
+      .prompt-title strong,
+      .prompt-title small {
+        display: block;
+      }
+
+      .prompt-title strong {
+        margin-top: 5px;
+        color: var(--ink);
+        font-family: Georgia, serif;
+        font-size: 1.08rem;
+        font-weight: 400;
+      }
+
+      .prompt-title small {
+        color: var(--muted);
+        font-size: 0.62rem;
+      }
+
+      .prompt-mode {
+        display: inline-block;
+        width: max-content;
+        padding: 4px 7px;
+        color: #17372e;
+        background: #dcebe4;
+        font-size: 0.55rem;
+        font-weight: 850;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .prompt-mode.is-viral {
+        color: #5e1f4c;
+        background: #f1deeb;
+      }
+
+      .prompt-mode.is-wild {
+        color: #684511;
+        background: #f5e4bf;
+      }
+
+      .prompt-card-body {
+        padding: 0 18px 18px;
+        border-top: 1px solid #eee7da;
+      }
+
+      .prompt-lead {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+        margin: 16px 0;
+        padding: 10px;
+        border: 1px solid #e9dfcf;
+        background: #fbf8f2;
+      }
+
+      .prompt-lead img {
+        width: 92px;
+        height: 84px;
+        object-fit: cover;
+      }
+
+      .prompt-lead b,
+      .prompt-lead span {
+        display: block;
+      }
+
+      .prompt-lead b {
+        color: var(--forest);
+        font-size: 0.72rem;
+      }
+
+      .prompt-lead span {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.64rem;
+      }
+
+      .prompt-text {
+        position: relative;
+        max-height: 430px;
+        overflow: auto;
+        margin: 0;
+        padding: 18px 62px 18px 18px;
+        border: 1px solid #d9cebd;
+        background: #f7f2e8;
+        color: #2b2e2c;
+        font-size: 0.68rem;
+        line-height: 1.72;
+        white-space: pre-line;
+      }
+
+      .prompt-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
+
+      .prompt-approval {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-top: 12px;
+        padding: 11px 12px;
+        border-left: 3px solid var(--gold);
+        background: #fff8e9;
+        color: var(--muted);
+        font-size: 0.65rem;
+      }
+
+      .prompt-approval input {
+        flex: 0 0 auto;
+        margin-top: 2px;
+        accent-color: var(--forest);
+      }
+
       .shots {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1671,6 +1975,10 @@
         .content-system article:nth-child(2) { border-right: 0; }
 
         .content-system article:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+
+        .reference-strip {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 760px) {
@@ -1786,6 +2094,15 @@
         .microcopy-grid,
         .viral-prompt {
           grid-column: auto;
+        }
+
+        .prompt-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .reference-upload-head,
+        .prompt-section-head {
+          display: grid;
         }
 
         .viral-kit > summary {
@@ -1945,6 +2262,25 @@
           padding-right: 0;
           padding-top: 32px;
         }
+
+        .reference-tile {
+          grid-template-columns: 92px minmax(0, 1fr);
+          min-height: 112px;
+        }
+
+        .reference-tile img {
+          width: 92px;
+          height: 112px;
+        }
+
+        .prompt-card > summary {
+          grid-template-columns: auto minmax(0, 1fr) auto;
+          padding: 14px;
+        }
+
+        .prompt-text {
+          padding-right: 18px;
+        }
       }
 
       @media print {
@@ -1973,6 +2309,8 @@
 
         .product,
         .shot,
+        .prompt-card,
+        .prompt-section,
         .decision,
         .qc-card {
           break-inside: avoid;
@@ -2001,7 +2339,7 @@
           <span><strong>Hosseintalab</strong><small>Higgsfield production workbook</small></span>
         </a>
         <div class="top-progress" aria-live="polite">
-          <span id="progress-label">0 of 57 clips approved</span>
+          <span id="progress-label">0 prompt tests completed</span>
           <span class="progress-track" aria-hidden="true"><span id="progress-bar"></span></span>
           <strong id="progress-percent">0%</strong>
         </div>
@@ -2014,14 +2352,14 @@
       <main id="top">
         <section class="hero">
           <div class="hero-inner">
-            <p class="eyebrow">One week · website workflow · copy-ready prompts</p>
-            <h1>Turn every carpet <em>into three truthful shots.</em></h1>
-            <p class="hero-lead">A source-led production workbook built from the actual Hosseintalab catalog photography. Generate context and full-product shots in Higgsfield; build the detail shot from real pixels in your editor; finish every Reel with the same branded three-second contact card.</p>
+            <p class="eyebrow">Multi-reference workflow · one generation · many creative tests</p>
+            <h1>Give Higgsfield the whole carpet story. <em>Let it direct the film.</em></h1>
+            <p class="hero-lead">Every prompt is now a full-screen Instagram Reel built around a bizarre, believable cold open: a controlled fall, dropped object, sudden catch, slamming panel, weather impact or impossible-looking reveal that creates an immediate “what happens next?” gap. All references still work together to protect the exact carpet.</p>
             <div class="hero-stats">
-              <div class="hero-stat"><strong>19</strong><span>catalog carpets covered</span></div>
-              <div class="hero-stat"><strong>38</strong><span>Higgsfield video prompts</span></div>
-              <div class="hero-stat"><strong>19</strong><span>cinematic viral campaigns</span></div>
-              <div class="hero-stat"><strong>57</strong><span>bilingual hook tests</span></div>
+              <div class="hero-stat"><strong>20</strong><span>catalog carpets covered</span></div>
+              <div class="hero-stat"><strong>3+</strong><span>references used together</span></div>
+              <div class="hero-stat"><strong>18</strong><span>viral directions per carpet</span></div>
+              <div class="hero-stat"><strong>360</strong><span>viral Reel experiments</span></div>
             </div>
           </div>
         </section>
@@ -2060,150 +2398,168 @@
             <div class="steps">
               <article class="step"><span class="step-number">01</span><h3>Open Video</h3><p>Sign in at higgsfield.ai. Open Generate → Video or the Image-to-Video workflow. Avoid Text-to-Video for products.</p></article>
               <article class="step"><span class="step-number">02</span><h3>Choose Unlimited</h3><p>Select the model marked Unlimited in your account. Enhanced Seedance Fast is a good starting point when that is the included model.</p></article>
-              <article class="step"><span class="step-number">03</span><h3>Check the card type</h3><p>In the truthful product workflow, Context and Full go to Higgsfield while Detail uses editor keyframes. The separate Viral Campaign kit later uses all three as multi-reference evidence.</p></article>
-              <article class="step"><span class="step-number">04</span><h3>Set the frame</h3><p>Choose vertical 9:16, five seconds, and 720p when that is the highest Unlimited setting. Turn generated audio off for clean masters.</p></article>
-              <article class="step"><span class="step-number">05</span><h3>Paste the prompt</h3><p>Copy the entire English prompt. If there is a separate motion selector, choose the same restrained motion named on the card.</p></article>
-              <article class="step"><span class="step-number">06</span><h3>Generate three AI takes</h3><p>For Context and Full only, run the identical prompt three times. The Detail clip needs no AI generation and therefore no alternate takes.</p></article>
-              <article class="step"><span class="step-number">07</span><h3>Reject aggressively</h3><p>Compare the first, middle, and final frames to the source. Reject any changing border, motif, fringe, scale, text, face, or architecture.</p></article>
-              <article class="step"><span class="step-number">08</span><h3>Download + rename</h3><p>Keep only the winner. Use the output filename shown on the card, then check the task box and record the model/take in Notes.</p></article>
+              <article class="step"><span class="step-number">03</span><h3>Upload every reference</h3><p>Add Full, Context and Detail through normal Reference Image slots. If the product folder has extra angles or macros, add those too. Do not assign Start or End frames.</p></article>
+              <article class="step"><span class="step-number">04</span><h3>Lock Instagram Reel size</h3><p>Choose Seedance 2.0, vertical 9:16 and eight to ten seconds. Export full-screen 1080 × 1920 with native audio enabled. Every prompt repeats this lock: no landscape frame, square crop, border, letterbox or pillarbox.</p></article>
+              <article class="step"><span class="step-number">05</span><h3>Paste one viral prompt</h3><p>Choose a Disruption, Mystery or Spectacle prompt and copy it in full. Replace @full, @context and @detail with Higgsfield's reference tags if its interface names them differently.</p></article>
+              <article class="step"><span class="step-number">06</span><h3>Generate three hook takes</h3><p>Test A: the written opening. Test B: a tighter macro opening. Test C: a complete-carpet scale reveal. Each take is still one finished multi-shot film—not separate clips to assemble.</p></article>
+              <article class="step"><span class="step-number">07</span><h3>Reject mutations</h3><p>Compare the first, middle and final frames with all references. Reject changed borders, motifs, inscriptions, portraits, colors, proportions, fringe or wear.</p></article>
+              <article class="step"><span class="step-number">08</span><h3>Score twice</h3><p>Use the raw check for visual hook and focus. Then add the real hook text, music and synchronized sound cue and score the finished Reel separately before choosing the winner.</p></article>
             </div>
 
-            <div class="warning"><strong>!</strong><div><b>Do not ask a crop to reveal what is outside it.</b> That is an outpainting request disguised as camera movement, so invented motifs are unavoidable. A Detail card now uses non-generative editor keyframes that move only across pixels already present in the real detail photograph.</div></div>
+            <div class="warning"><strong>!</strong><div><b>The room, atmosphere and people may be invented; the carpet may not be.</b> Use @full for total geometry, @detail for weave evidence and @context for atmosphere. A person can walk beside, point near or carefully handle an edge, but nobody steps on the carpet and no woven figure ever comes alive.</div></div>
           </section>
 
           <section class="section" id="editing">
             <div class="section-head">
-              <div><p class="eyebrow">After Higgsfield</p><h2>Do not post the three clips separately.</h2></div>
-              <p>Turn them into one short Reel. The contextual shot earns attention, the complete view proves what the carpet is, the detail creates trust, and a real still frame gives the buyer a clean final reference.</p>
+              <div><p class="eyebrow">After Higgsfield</p><h2>One generated film. One simple branded finish.</h2></div>
+              <p>Higgsfield now creates the camera changes, internal cuts, original score and synchronized sound in a single generation. In the editor, preserve that soundtrack and add only the hook, factual product text and supplied three-second CTA card.</p>
             </div>
 
-            <div class="edit-timeline" aria-label="Fourteen-second Reel timeline">
-              <article class="timeline-clip"><small>0.0–3.0 seconds</small><strong>Shot A · Context</strong><span>Trim to the strongest opening three seconds. Put the hook on screen immediately.</span></article>
-              <article class="timeline-clip"><small>3.0–7.0 seconds</small><strong>Shot B · Complete view</strong><span>Give the carpet a clear uninterrupted view. Add its name and origin.</span></article>
-              <article class="timeline-clip"><small>7.0–11.0 seconds</small><strong>Shot C · Detail</strong><span>Show the evidence: weave, medallion, tree, figure, stripe, border, or pile.</span></article>
-              <article class="timeline-clip"><small>11.0–14.0 seconds</small><strong>Branded CTA card</strong><span>Use the ready-made card for that SKU. Hold it still for the full three seconds.</span></article>
+            <div class="edit-timeline" aria-label="Twelve-second Reel timeline">
+              <article class="timeline-clip"><small>0.0–1.2 seconds</small><strong>Bizarre cold open</strong><span>A safe staged fall, dropped object, sudden catch, impact or unexplained reveal starts on frame one and creates a curiosity gap.</span></article>
+              <article class="timeline-clip"><small>1.2–5.3 seconds</small><strong>Reveal the connection</strong><span>Explain why the strange event happened through one clear action and one consistent motion direction.</span></article>
+              <article class="timeline-clip"><small>5.3–9.0 seconds</small><strong>Carpet payoff + proof</strong><span>Resolve the mystery on the exact carpet, then finish on a stable full view or documented detail.</span></article>
+              <article class="timeline-clip"><small>9.0–12.0 seconds</small><strong>Branded CTA card</strong><span>Hard-cut to the supplied card and hold it still for the full three seconds.</span></article>
             </div>
 
             <div class="decision" style="margin-top: 18px">
               <article class="decision-main">
                 <p class="eyebrow">One recognizable ending</p>
-                <h2>Same system. Different carpet code.</h2>
-                <p>Do not redesign the ending for every Reel. Repetition makes the logo, colors and contact route recognizable. Every supplied CTA card has the same layout, wording, website, WhatsApp number, calling number and three-second duration.</p>
+                <h2>One universal ending for every carpet.</h2>
+                <p>Do not redesign the ending for every Reel. Repetition makes the logo, colors and contact route recognizable. Every supplied CTA card uses the same layout, wording, website, Instagram account, WhatsApp number and three-second duration.</p>
                 <div class="choice-list">
-                  <div class="choice"><strong>=</strong><div><b>Always identical.</b><span>Logo, forest-and-gold design, type, CTA wording, WhatsApp +46 70 452 56 46, call +98 938 787 7818 and hosseintalab.ir.</span></div></div>
-                  <div class="choice"><strong>↻</strong><div><b>Changes per carpet.</b><span>Only the SKU, so a buyer can send the exact code without ambiguity.</span></div></div>
+                  <div class="choice"><strong>=</strong><div><b>Always identical.</b><span>Logo, forest-and-gold design, CTA wording, Instagram @hosseintalab.carpets, WhatsApp +46 70 452 56 46 and hosseintalab.ir.</span></div></div>
+                  <div class="choice"><strong>↗</strong><div><b>Two easy contact routes.</b><span>The viewer can DM the Reel or send its name, link, or screenshot on WhatsApp—no inventory code required.</span></div></div>
                   <div class="choice"><strong>3s</strong><div><b>Hold completely still.</b><span>No animation, extra transition or new copy. Three seconds is just enough to read and screenshot.</span></div></div>
                 </div>
               </article>
               <aside class="decision-side">
                 <p class="eyebrow">The exact final frame</p>
-                <h2>Logo → action → code → contacts.</h2>
-                <p dir="rtl" lang="fa">کد فرش را در واتساپ بفرستید</p>
-                <p>Send the carpet code on WhatsApp</p>
-                <p dir="ltr" style="margin-top: 24px; color: #ead6ad">WhatsApp +46 70 452 56 46<br />Call +98 938 787 7818<br />hosseintalab.ir</p>
+                <h2>Logo → easy action → two contact routes.</h2>
+                <p dir="rtl" lang="fa">نام فرش یا اسکرین‌شات را بفرستید</p>
+                <p>Send the carpet name or a screenshot</p>
+                <p dir="ltr" style="margin-top: 24px; color: #ead6ad">Instagram DM @hosseintalab.carpets<br />WhatsApp +46 70 452 56 46<br />hosseintalab.ir</p>
               </aside>
             </div>
 
             <div class="steps">
               <article class="step"><span class="step-number">01</span><h3>Install Edits</h3><p>Use Meta’s free Edits app on your phone, or CapCut if you already know it. Edits has a frame-accurate timeline and exports without an added watermark.</p></article>
-              <article class="step"><span class="step-number">02</span><h3>Start 9:16</h3><p>Create a new vertical project. Import approved Shot A, Shot B, Shot C, then the supplied CTA PNG for that SKU—in exactly that order.</p></article>
-              <article class="step"><span class="step-number">03</span><h3>Trim the clips</h3><p>A = 3.0s, B = 4.0s, C = 4.0s, CTA card = 3.0s. Total target: 14 seconds. Choose each video clip’s most stable section; never shorten the CTA.</p></article>
-              <article class="step"><span class="step-number">04</span><h3>Use hard cuts</h3><p>Place the clips directly against each other. No spinning, flash, zoom, glitch, page-turn, or AI transition. The movement is already inside the shots.</p></article>
-              <article class="step"><span class="step-number">05</span><h3>Add four text cues</h3><p>Use the exact Persian + English lines in each Reel kit. Persian is the main line; English is smaller beneath it. Use off-white text and a subtle dark shadow—not a loud template.</p></article>
-              <article class="step"><span class="step-number">06</span><h3>Add music—no voice needed</h3><p>Mute every Higgsfield clip. Add one instrumental track at 35–45% volume, align the cuts near 0:03 / 0:07 / 0:11, and let the music continue under the CTA before fading only the final 0.2 seconds.</p></article>
+              <article class="step"><span class="step-number">02</span><h3>Start 9:16</h3><p>Create a vertical project. Import one approved multi-reference Higgsfield film, then the supplied universal CTA PNG.</p></article>
+              <article class="step"><span class="step-number">03</span><h3>Trim once</h3><p>Keep the strongest eight or nine seconds of the generated film, then add the CTA card for three seconds. Total target: 11–12 seconds.</p></article>
+              <article class="step"><span class="step-number">04</span><h3>Use one hard cut</h3><p>Place the CTA directly after the generated film. No spinning, flash, glitch, page-turn or extra AI transition; Higgsfield already directed the internal edit.</p></article>
+              <article class="step"><span class="step-number">05</span><h3>Add three text cues</h3><p>Use the supplied Persian + English hook, name and factual line. Persian is primary; English is smaller beneath it. Keep typography quiet and readable.</p></article>
+              <article class="step"><span class="step-number">06</span><h3>Keep the generated score</h3><p>Use Higgsfield's original music and synchronized effects when they fit. Replace them only when the audio is distorted, generic, overly loud or disconnected from the cuts; never discard a strong visual take only because its audio needs replacement.</p></article>
               <article class="step"><span class="step-number">07</span><h3>Keep text safe</h3><p>Keep important text away from the extreme top, bottom, and right edge where Instagram’s interface sits. Preview the Reel full-screen before export.</p></article>
-              <article class="step"><span class="step-number">08</span><h3>Export one master</h3><p>Export vertical 1080 × 1920, H.264, 30 fps, highest quality, no watermark. Do not add filters, HDR, artificial sharpening, or color replacement.</p></article>
+              <article class="step"><span class="step-number">08</span><h3>Export one master</h3><p>Export vertical 1080 × 1920, H.264, 30 fps, highest quality, no watermark. Do not recolor, over-sharpen or filter the carpet.</p></article>
             </div>
 
-            <div class="music-note"><strong>♪</strong><p><b>Use commercially safe music.</b> For each carpet below, search the exact phrase inside Meta Sound Collection (or the royalty-free audio available to your business account), then choose a no-vocal track matching the listed instruments and BPM. Track titles and availability vary by account and region, so a fixed song title would be unreliable. Sound Collection is cleared by Meta for commercial use; it also keeps the Reel eligible for boosting. <a href="https://www.facebook.com/help/instagram/402084904469945" target="_blank" rel="noreferrer">Meta music guidance ↗</a></p></div>
+            <div class="music-note"><strong>♪</strong><p><b>Higgsfield first; Instagram only as fallback.</b> Every generation prompt now engineers a completely original instrumental score around that carpet and concept, including frame-one music and cut-synchronized effects. If a winning video has unusable audio, mute it and use the listed Meta Sound Collection search phrase instead. Meta's Sound Collection remains the royalty-free commercial fallback. <a href="https://higgsfield.ai/seedance/2.0" target="_blank" rel="noreferrer">Seedance native audio ↗</a> · <a href="https://www.facebook.com/help/instagram/402084904469945" target="_blank" rel="noreferrer">Meta music guidance ↗</a></p></div>
 
             <div class="first-reel">
               <article class="first-reel-copy">
                 <p class="eyebrow">Your first finished Reel · HT-KSH-0001</p>
-                <h3>Music + exact screen text</h3>
-                <p><b>Music:</b> warm santur with soft kamancheh, 78–84 BPM, no vocals. Search <b>“Persian santur calm instrumental”</b>. Start on a clear plucked note, cut on beats near 0:03 / 0:07 / 0:11, and fade at 0:13.8.</p>
+                <h3>Native score + exact screen text</h3>
+                <p><b>Higgsfield score:</b> an original warm santur-and-kamancheh instrumental, 78–84 BPM, beginning on a clear plucked note and placing musical accents exactly on the generated hard cuts. If that native score fails, search Meta Sound Collection for <b>“Persian santur calm instrumental”</b>.</p>
                 <div class="text-cue-list">
-                  <div class="text-cue"><time>0:00–0:03</time><span dir="rtl" lang="fa">یک باغ، بافته‌شده با نخ<small lang="en" dir="ltr">A garden woven in thread</small></span></div>
-                  <div class="text-cue"><time>0:03–0:07</time><span dir="rtl" lang="fa">درخت زندگیِ کاشان<small lang="en" dir="ltr">Kashan Tree of Life Carpet</small></span></div>
-                  <div class="text-cue"><time>0:07–0:11</time><span dir="rtl" lang="fa">حدود ۶۰ تا ۸۰ سال · ۱۳۸ × ۲۱۷<small lang="en" dir="ltr">Approx. 60–80 years · 138 × 217 cm</small></span></div>
-                  <div class="text-cue"><time>0:11–0:14</time><span dir="rtl" lang="fa">کارت پایانی آماده · کد HT-KSH-0001<small lang="en" dir="ltr">Ready CTA card · HT-KSH-0001</small></span></div>
+                  <div class="text-cue"><time>0:00–0:02</time><span dir="rtl" lang="fa">یک باغ، بافته‌شده با نخ<small lang="en" dir="ltr">A garden woven in thread</small></span></div>
+                  <div class="text-cue"><time>0:02–0:06</time><span dir="rtl" lang="fa">درخت زندگیِ کاشان<small lang="en" dir="ltr">Kashan Tree of Life Carpet</small></span></div>
+                  <div class="text-cue"><time>0:06–0:09</time><span dir="rtl" lang="fa">حدود ۶۰ تا ۸۰ سال · ۱۳۸ × ۲۱۷<small lang="en" dir="ltr">Approx. 60–80 years · 138 × 217 cm</small></span></div>
+                  <div class="text-cue"><time>0:09–0:12</time><span dir="rtl" lang="fa">نام فرش یا اسکرین‌شات را بفرستید<small lang="en" dir="ltr">Instagram DM or WhatsApp a screenshot</small></span></div>
                 </div>
               </article>
               <article class="first-reel-plan">
                 <h3>Cover, caption, publish.</h3>
                 <div class="copy-panel">
                   <label>Finished cover</label>
-                  <p>Your 1080 × 1920 cover is ready: original full-frontal photograph, complete carpet visible, Persian and English title, and SKU. <a href="../public/media/reel-covers/ht-ksh-0001-reel-cover.png" target="_blank" download="ht-ksh-0001-reel-cover.png">Open / download PNG ↗</a></p>
+                  <p>Your 1080 × 1920 cover is ready: original full-frontal photograph, complete carpet visible, Persian and English title, origin, and one-of-one collection mark—without an inventory code. <a href="../public/media/reel-covers/ht-ksh-0001-reel-cover.png" target="_blank" download="ht-ksh-0001-reel-cover.png">Open / download PNG ↗</a></p>
                 </div>
                 <div class="copy-panel">
                   <label>Finished three-second CTA card</label>
-                  <p>Place this still at 0:11–0:14. Do not add more text over it. <a href="../public/media/reel-ctas/ht-ksh-0001-reel-cta.png" target="_blank" download="ht-ksh-0001-reel-cta.png">Open / download PNG ↗</a></p>
+                  <p>Place this universal still for the final three seconds, usually 0:09–0:12. Do not add more text over it. <a href="../public/media/reel-ctas/hosseintalab-universal-reel-cta.png" target="_blank" download="hosseintalab-universal-reel-cta.png">Open / download universal CTA PNG ↗</a></p>
                 </div>
                 <div class="copy-panel">
                   <label>Bilingual Instagram caption</label>
-                  <p id="first-caption" dir="auto">یک باغ کامل، بافته‌شده روی ۱۳۸ × ۲۱۷ سانتی‌متر.<br /><br />درخت زندگیِ کاشان<br />محل بافت: کاشان<br />ابعاد: ۱۳۸ × ۲۱۷ سانتی‌متر<br />قدمت تقریبی: ۶۰ تا ۸۰ سال<br />قیمت ثبت‌شده: ۳۷۰٬۰۰۰٬۰۰۰ تومان<br />کد: HT-KSH-0001<br /><br />برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، کد HT-KSH-0001 را در واتساپ +46 70 452 56 46 بفرستید یا وارد hosseintalab.ir شوید.<br /><br />—<br /><br />A whole garden woven into 138 × 217 centimeters.<br /><br />Kashan Tree of Life Carpet<br />Origin: Kashan, Iran<br />Dimensions: 138 × 217 cm<br />Approximate age: 60–80 years<br />Listed price: 370,000,000 toman<br />Reference: HT-KSH-0001<br /><br />Send “HT-KSH-0001” on WhatsApp +46 70 452 56 46 for complete photographs, condition notes and purchase details, or visit hosseintalab.ir.<br /><br />#فرش_دستباف #فرش_کاشان #PersianCarpet #KashanCarpet #Hosseintalab</p>
+                  <p id="first-caption" dir="auto">یک باغ کامل، بافته‌شده روی ۱۳۸ × ۲۱۷ سانتی‌متر.<br /><br />درخت زندگیِ کاشان<br />محل بافت: کاشان<br />ابعاد: ۱۳۸ × ۲۱۷ سانتی‌متر<br />قدمت تقریبی: ۶۰ تا ۸۰ سال<br />قیمت ثبت‌شده: ۳۷۰٬۰۰۰٬۰۰۰ تومان<br /><br />برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، نام فرش، لینک این پست یا یک اسکرین‌شات را در دایرکت @hosseintalab.carpets یا واتساپ +46 70 452 56 46 بفرستید. اطلاعات کامل در hosseintalab.ir هم در دسترس است.<br /><br />—<br /><br />A whole garden woven into 138 × 217 centimeters.<br /><br />Kashan Tree of Life Carpet<br />Origin: Kashan, Iran<br />Dimensions: 138 × 217 cm<br />Approximate age: 60–80 years<br />Listed price: 370,000,000 toman<br /><br />For complete photographs, condition notes and purchase details, send the carpet name, this post, or a screenshot by Instagram DM to @hosseintalab.carpets or WhatsApp +46 70 452 56 46. Full details are also available at hosseintalab.ir.<br /><br />#فرش_دستباف #فرش_کاشان #PersianCarpet #KashanCarpet #Hosseintalab</p>
                   <button class="copy-button" type="button" data-copy-target="first-caption">Copy</button>
                 </div>
               </article>
             </div>
 
             <div class="publish-list">
-              <article><h3>Build the cover</h3><ol><li>Create a separate 1080 × 1920 cover—do not pull a frame from the AI video.</li><li>Use a deep forest background and the original full-frontal photograph with the entire carpet visible.</li><li>Add the Persian short name, smaller English name, and SKU only.</li><li>Keep all text and most of the carpet inside the center area; preview the profile-grid crop before publishing.</li></ol></article>
+              <article><h3>Build the cover</h3><ol><li>Create a separate 1080 × 1920 cover—do not pull a frame from the AI video.</li><li>Use a deep forest background and the original full-frontal photograph with the entire carpet visible.</li><li>Add the Persian short name, smaller English name, origin, and one-of-one collection mark—never the inventory code.</li><li>Keep all text and most of the carpet inside the center area; preview the profile-grid crop before publishing.</li></ol></article>
               <article><h3>Upload settings</h3><ol><li>Instagram Settings → Media quality → turn on “Upload at highest quality.”</li><li>Create Reel and upload the exported master.</li><li>Add the cover and paste the supplied caption.</li><li>Turn on the AI information/disclosure option because the motion was generated.</li><li>Share to Feed. Do not geotag a city unless the media was actually created there.</li></ol></article>
-              <article><h3>Immediately after posting</h3><ol><li>Pin this comment: <span dir="rtl">«برای دیدن تصاویر کامل، کد فرش را در واتساپ +46 70 452 56 46 بفرستید.»</span></li><li>Share the Reel to Stories.</li><li>Add a second Story with a detail still and a poll.</li><li>Add a third Story with price, SKU, and hosseintalab.ir link sticker.</li><li>Answer every genuine comment, WhatsApp message and DM the same day.</li></ol></article>
-              <article><h3>Measure before repeating</h3><ol><li>At 24 hours record reach, non-follower reach, watch time, shares, saves, profile visits, website taps, and DMs.</li><li>At 72 hours update the numbers.</li><li>Do not judge only by likes.</li><li>If people drop in the first three seconds, change the hook—not the carpet.</li><li>Reuse the same 14-second structure for the next four carpets.</li></ol></article>
+              <article><h3>Immediately after posting</h3><ol><li>Pin this comment: <span dir="rtl">«برای تصاویر کامل، همین پست یا اسکرین‌شاتش را دایرکت کنید یا در واتساپ +46 70 452 56 46 بفرستید.»</span></li><li>Share the Reel to Stories.</li><li>Add a second Story with a detail still and a poll.</li><li>Add a third Story with price and the exact hosseintalab.ir product-link sticker.</li><li>Answer every genuine comment, WhatsApp message and DM the same day.</li></ol></article>
+              <article><h3>Measure before repeating</h3><ol><li>At 24 hours record reach, non-follower reach, watch time, shares, saves, profile visits, website taps, and DMs.</li><li>At 72 hours update the numbers.</li><li>Do not judge only by likes.</li><li>If people drop in the first two seconds, replace the bizarre incident—not the carpet reveal.</li><li>Compare Disruption, Mystery and Spectacle directions—not just different seeds.</li></ol></article>
             </div>
 
-            <div class="warning"><strong>!</strong><div><b>Your three 5-second clips are raw material, not three posts—and voiceover is optional.</b> Trim them, assemble one 14-second master, use one music track plus the supplied bilingual text, and finish with the supplied branded CTA card for the exact SKU.</div></div>
+            <div class="warning"><strong>!</strong><div><b>Do not rebuild Higgsfield's film shot by shot.</b> Keep one winning multi-reference generation and its native soundtrack intact, add restrained bilingual text, then finish with the supplied universal CTA card.</div></div>
             <p style="margin: 18px 0 0; color: var(--muted); font-size: 0.72rem">Editing reference: <a href="https://about.fb.com/news/2025/04/introducing-edits-streamlined-video-creation-app/" target="_blank" rel="noreferrer">Meta Edits</a> · Upload reference: <a href="https://www.facebook.com/help/1038071743007909" target="_blank" rel="noreferrer">Instagram Reel resolution, cover, and highest-quality settings</a></p>
           </section>
 
           <section class="section" id="viral-studio">
             <div class="section-head">
-              <div><p class="eyebrow">Cinematic reach system</p><h2>Luxury enough to desire. Native enough to share.</h2></div>
-              <p>The product Reel proves the carpet. The viral campaign Reel earns attention through a question, contradiction, reveal, opinion, or visual challenge. Use both; do not turn the entire page into polished advertisements.</p>
+              <div><p class="eyebrow">All-viral multi-reference system</p><h2>Disrupt first. Create a question. Reveal the carpet.</h2></div>
+              <p>There are no ordinary product-film or commercial prompt categories now. Every direction begins with a strange but physically believable incident and withholds its explanation long enough to earn the next second.</p>
             </div>
 
             <div class="content-system">
-              <article><strong>30%</strong><b>Cinematic desire</b><span>Campaign films, geography, room transformations and museum-style reveals that make the collection feel important.</span></article>
-              <article><strong>40%</strong><b>Discovery + sharing</b><span>Find-the-detail challenges, directional puzzles, visual contradictions and questions people want to send to someone.</span></article>
-              <article><strong>20%</strong><b>Expertise + trust</b><span>Real hands, measurements, backs, fringes, wear, age, raj count and honest explanations of what is known.</span></article>
-              <article><strong>10%</strong><b>Direct selling</b><span>Availability, price, dimensions, SKU, website and DM. One clear action—never five competing requests.</span></article>
+              <article><strong>30%</strong><b>Physical disruption</b><span>A controlled fall, sudden catch, dropped object, slamming panel or impact begins on frame one without harming the carpet.</span></article>
+              <article><strong>30%</strong><b>Unanswered mystery</b><span>The viewer sees something odd before understanding what it has to do with the carpet.</span></article>
+              <article><strong>25%</strong><b>Escalation + reversal</b><span>The second composition changes the meaning of the opening instead of merely showing another angle.</span></article>
+              <article><strong>15%</strong><b>Product payoff</b><span>The final composition resolves the question on an exact full view, signature, portrait, motif, weave or scale proof.</span></article>
             </div>
 
             <div class="decision" style="margin-top: 18px">
               <article class="decision-main">
-                <p class="eyebrow">Seedance 2.0 · reference mode</p>
-                <h2>Upload evidence, not Start/End frames.</h2>
-                <p>Each carpet card below has a dedicated viral prompt. Upload its three named references through the normal reference slots and insert the tags Higgsfield gives you. The prompt directs a short multi-shot commercial with hard cuts, so Seedance never needs to morph one photograph into another.</p>
+                <p class="eyebrow">Higgsfield · multi-reference mode</p>
+                <h2>All images go into every generation.</h2>
+                <p>Upload the three named anchors—and any extra product photos you have—through normal Reference Image slots. Every prompt directs one self-contained multi-shot film with hard cuts, so there is nothing to stitch together afterward.</p>
                 <div class="choice-list">
                   <div class="choice"><strong>1</strong><div><b>Full-frontal reference.</b><span>Authoritative geometry, proportions, colors and complete border structure.</span></div></div>
-                  <div class="choice"><strong>2</strong><div><b>Context reference.</b><span>Atmosphere and commercial setting; never authoritative for unseen textile detail.</span></div></div>
+                  <div class="choice"><strong>2</strong><div><b>Context reference.</b><span>Atmosphere and generated setting; never authoritative for unseen textile detail.</span></div></div>
                   <div class="choice"><strong>3</strong><div><b>Detail reference.</b><span>Authoritative motif, pile and knot evidence for the close-up shot.</span></div></div>
                 </div>
               </article>
               <aside class="decision-side">
-                <p class="eyebrow">One body · three Trial Reels</p>
-                <h2>Test the hook, not everything.</h2>
-                <ol class="later-list"><li>Generate one clean commercial without AI text or logos.</li><li>Make three edits with Hook A, B and C.</li><li>Keep footage, music, caption body and cover identical.</li><li>Publish as Trial Reels to non-followers.</li><li>Review after 24 hours; decide after 72.</li></ol>
+                <p class="eyebrow">Unlimited-credit test loop</p>
+                <h2>Test ideas before polishing edits.</h2>
+                <ol class="later-list"><li>Pick one complete prompt and upload all references.</li><li>Generate several seeds of that same idea.</li><li>Then test a genuinely different concept.</li><li>Keep only faithful films with immediate first-frame interest.</li><li>Publish the strongest as Trial Reels; review after 24 and 72 hours.</li></ol>
                 <p style="margin-top: 18px; color: rgba(255,255,255,.58); font-size: .7rem">Choose the winner by watch time, completion/replays, sends, saves, profile visits and genuine DMs—not likes alone.</p>
               </aside>
             </div>
 
-            <div class="warning"><strong>!</strong><div><b>Cinematic does not mean slow.</b> The first visual and hook appear immediately. Generated footage stays clean; all Persian/English text is added later in Edits/CapCut. Finish every version with the same supplied three-second branded CTA card for its SKU.</div></div>
-            <p style="margin: 18px 0 0; color: var(--muted); font-size: 0.72rem">Research: <a href="https://higgsfield.ai/blog/generating-with-seedance-2-0" target="_blank" rel="noreferrer">Seedance 2.0 multi-reference system</a> · <a href="https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/" target="_blank" rel="noreferrer">Instagram Trial Reels</a> · <a href="https://www.facebook.com/business/ads/facebook-instagram-reels-ads" target="_blank" rel="noreferrer">Meta Reels creative essentials</a></p>
+            <div class="decision" style="margin-top: 18px">
+              <article class="decision-main">
+                <p class="eyebrow">Virality-check calibration</p>
+                <h2>A 49/100 raw master can still contain a strong film.</h2>
+                <p>A 94% Hold Rate means the body is keeping attention once the viewer commits. The revised system attacks the remaining bottleneck with a full 1.2-second incident that starts before the viewer understands it.</p>
+                <div class="choice-list">
+                  <div class="choice"><strong>35</strong><div><b>Low Hook Score.</b><span>Regenerate the first 1.2 seconds with a bizarre physical event already underway. No fade, empty room, distant carpet, slow approach or camera settling.</span></div></div>
+                  <div class="choice"><strong>43</strong><div><b>Weak Attention Control.</b><span>Limit the film to three primary compositions, one realistic person, one physical action and one consistent direction of movement.</span></div></div>
+                  <div class="choice"><strong>56</strong><div><b>High Focus Drift.</b><span>Remove decorative action and extra people. The carpet should fill roughly 60–75% of the frame or be the clearest high-contrast subject.</span></div></div>
+                </div>
+              </article>
+              <aside class="decision-side">
+                <p class="eyebrow">Score the right stage</p>
+                <h2>Raw visual → finished Reel.</h2>
+                <ol class="later-list"><li><b>Raw Higgsfield master:</b> now includes its original native score; judge Hook, Visual Cortex, Attention Control, Focus Drift, Auditory Cortex and product accuracy.</li><li><b>Finished Reel:</b> preserve the generated audio, add the bilingual hook at 0:00 and replace music only when the native score genuinely fails.</li><li>Run the virality check again; only the finished text-and-audio version can fairly judge Language Network and Overall Score.</li><li>Keep the strong 94% hold body and replace only the opening or soundtrack when possible.</li></ol>
+              </aside>
+            </div>
+
+            <div class="warning"><strong>!</strong><div><b>The bizarre event happens around the carpet—never to it.</b> A person may perform a safe staged stumble, an empty frame may fall, a magnifier may be caught or a panel may slam open. Nothing heavy, wet, sharp, hot or dirty touches the textile; nobody is injured; the carpet is never thrown, struck, stepped on or used as a stunt surface.</div></div>
+            <p style="margin: 18px 0 0; color: var(--muted); font-size: 0.72rem">Research: <a href="https://higgsfield.ai/blog/generating-with-seedance-2-0" target="_blank" rel="noreferrer">Seedance 2.0 multi-reference system</a> · <a href="https://higgsfield.ai/blog/how-to-keep-viewers-hooked" target="_blank" rel="noreferrer">Higgsfield motion + attention guidance</a> · <a href="https://higgsfield.ai/blog/How-Small-Brands-Can-Generate-Luxury-Level-AI-Generated-Ads" target="_blank" rel="noreferrer">Opening-frame ad testing</a> · <a href="https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/" target="_blank" rel="noreferrer">Instagram Trial Reels</a> · <a href="https://www.facebook.com/business/ads/facebook-instagram-reels-ads" target="_blank" rel="noreferrer">Meta Reels creative essentials</a></p>
           </section>
 
           <section class="section" id="carpets">
             <div class="section-head">
-              <div><p class="eyebrow">Corrected production cards</p><h2>Two AI shots. One real-photo detail shot.</h2></div>
-              <p>Context and Full use restrained Higgsfield motion. Detail uses the actual high-resolution crop in Edits/CapCut, so no unseen border or motif has to be invented.</p>
+              <div><p class="eyebrow">All-reference viral laboratories</p><h2>Eighteen viral Reels for every carpet.</h2></div>
+              <p>Open a carpet to find six reference-led disruption/mystery hooks, six bizarre physical cold opens and six high-spectacle curiosity loops. Every one is locked to full-screen 9:16 Reel format.</p>
             </div>
 
             <div class="toolbar">
               <input class="search" id="search" type="search" placeholder="Search SKU, city, pattern, or Persian name…" autocomplete="off" />
               <div class="filters" aria-label="Workbook filters">
-                <button type="button" class="is-active" data-filter="all">All 19</button>
+                <button type="button" class="is-active" data-filter="all">All 20</button>
                 <button type="button" data-filter="todo">Needs work</button>
                 <button type="button" data-filter="complete">Complete</button>
               </div>
@@ -2223,13 +2579,13 @@
               <p>Judge at full-screen size. A clip passes only when a buyer could compare it with the product photographs and recognize the same carpet without qualification.</p>
             </div>
             <div class="qc-grid">
-              <article class="qc-card"><h3>Approve when…</h3><ul><li>The border count and shape remain identical.</li><li>The central medallion, tree, vase, stripes, or figures do not morph.</li><li>Colors do not drift between frames.</li><li>Fringe and edges stay attached and physically plausible.</li><li>Any architecture and scale remain stable.</li><li>The movement is subtle enough to feel intentional.</li></ul></article>
+              <article class="qc-card"><h3>Approve when…</h3><ul><li>The border count and shape remain identical.</li><li>The central medallion, tree, vase, stripes, or figures do not morph.</li><li>Colors do not drift between frames.</li><li>Fringe and edges stay attached and physically plausible.</li><li>The strange action is safe, readable and clearly separate from the carpet.</li><li>The output fills a 1080 × 1920 vertical Reel without bars or cropping.</li></ul></article>
               <article class="qc-card"><h3>Reject immediately when…</h3><ul><li>Woven animals or people begin moving.</li><li>Calligraphy changes, shimmers, or becomes invented text.</li><li>Damage disappears or the pile looks newly restored.</li><li>Extra flowers, borders, furniture, or buildings appear.</li><li>The carpet stretches, breathes, ripples, floats, or changes size.</li><li>A dramatic camera move hides product inaccuracies.</li></ul></article>
             </div>
           </section>
 
           <footer class="footer">
-            <p>This workbook covers the 19 carpet records currently present in the Hosseintalab catalog. Progress and notes are stored only in this browser. Source photography remains in the project and is not embedded into this HTML.</p>
+            <p>This workbook covers the 20 carpet records currently present in the Hosseintalab catalog. Progress and notes are stored only in this browser. Source photography remains in the project and is not embedded into this HTML.</p>
             <p>Platform references: <a href="https://higgsfield.ai/blog/generating-with-seedance-2-0" target="_blank" rel="noreferrer">Seedance 2.0 reference workflow</a> · <a href="https://higgsfield.ai/blog/cinema-studio-guide" target="_blank" rel="noreferrer">Cinema Studio workflow</a> · <a href="https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/" target="_blank" rel="noreferrer">Instagram Trial Reels</a> · <a href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">MCP &amp; CLI</a></p>
           </footer>
         </div>
@@ -2654,6 +3010,7 @@
       const IMAGE_BASE = "../public";
       const CONTACT = {
         whatsapp: "+46 70 452 56 46",
+        instagram: "@hosseintalab.carpets",
         call: "+98 938 787 7818",
         website: "hosseintalab.ir"
       };
@@ -2670,55 +3027,6 @@
 
       const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character]);
 
-      const outputName = (product, shotIndex) => `${product.sku}_${String.fromCharCode(65 + shotIndex)}_${product.shots[shotIndex].kind}_approved.mp4`;
-
-      const detailMotionRecipe = (shot) => {
-        const motion = `${shot.motion} ${shot.direction}`.toLowerCase();
-        if (motion.includes("diagonal")) return "Fill the 9:16 frame, set Scale to 108%, then keyframe Position from X −2% / Y +2% to X +2% / Y −2%. Keep Scale fixed at 108%.";
-        if (motion.includes("horizontal") || motion.includes("lateral") || motion.includes("side-to-side") || motion.includes("side slide")) return "Fill the 9:16 frame, set Scale to 108%, then keyframe only Position X from −2% to +2%. Keep Y and Scale fixed.";
-        if (motion.includes("vertical") || motion.includes("upward") || motion.includes("axial") || motion.includes("along")) return "Fill the 9:16 frame, set Scale to 108%, then keyframe only Position Y from +2% to −2%. Keep X and Scale fixed.";
-        return "Center the supplied detail photograph, then keyframe Scale from 102% to 106% with X and Y locked. This is an editor zoom, not a generated camera move.";
-      };
-
-      const buildDetailEdit = (product, shot) => `TRUTH-SAFE DETAIL CLIP — MAKE THIS IN EDITS OR CAPCUT, NOT HIGGSFIELD.
-
-SOURCE: ${PROJECT_ROOT}/public${shot.source}
-OUTPUT: ${outputName(product, 2)}
-
-1. Create a 4.0-second 9:16 clip from this real detail photograph.
-2. Disable AI Expand, generative fill, 3D photo, image animation, stabilization reconstruction and automatic reframing.
-3. ${detailMotionRecipe(shot)}
-4. Use linear keyframes. No easing bounce, perspective shift, artificial depth of field, sharpening, interpolation or texture animation.
-5. Preview the first and final frames. Every visible knot and motif must come from the supplied photograph; no empty canvas may enter the frame.
-6. Export 1080 × 1920, H.264, 30 fps, four seconds, no watermark.`;
-
-      const buildMultiReferencePrompt = (product, shot) => {
-        const fullShot = product.shots.find((candidate) => candidate.kind === "full");
-        return `OPTIONAL HIGGSFIELD MULTI-REFERENCE TEST — NOT THE DEFAULT PRODUCT-TRUTH WORKFLOW.
-
-Use a model/mode that accepts multiple Reference Images without assigning either image as Start Frame or End Frame.
-REFERENCE 1 — complete geometry: ${PROJECT_ROOT}/public${fullShot.source}
-REFERENCE 2 — exact high-resolution weave evidence: ${PROJECT_ROOT}/public${shot.source}
-
-PROMPT:
-Create a self-contained five-second 9:16 product macro of ${product.name}. The shot is already a close-up for its entire duration; do not transition from a full view into a detail. Reference 1 defines the carpet's complete geometry, proportions, colors and motif placement. Reference 2 defines the only permitted close-up composition, knot texture and fine pattern evidence. Keep the virtual camera perpendicular to the flat textile. Use only a two-percent centered optical push within the area visibly documented by Reference 2. Do not reveal, extend, outpaint or infer anything outside Reference 2. Do not merge alternative motifs from the references. No pattern morphing, invented knots, added petals, moving figures, animated textile, restored wear, color drift, perspective change or artificial depth. The first, middle and final frames must depict the same documented motif.
-
-If the interface turns either image into a Start/End frame, or the result changes even one motif, reject it and use the editor recipe instead.`;
-      };
-
-      const buildPrompt = (product, shot) => {
-        if (shot.kind === "detail") return buildDetailEdit(product, shot);
-        const kindRule = shot.kind === "context"
-          ? "This is a contextual product shot: the surrounding architecture and landscape are also locked to the reference and must not be redesigned."
-          : shot.kind === "full"
-            ? "This is the product-record shot: keep the complete carpet readable, undistorted and correctly proportioned throughout."
-            : shot.kind === "studio"
-              ? "This is a studio product shot: keep the neutral studio environment and carpet placement unchanged."
-              : "Keep all visible evidence inside the supplied composition.";
-
-        return `IMAGE-TO-VIDEO PRODUCT FILM. Create one silent 5-second vertical 9:16 shot using the uploaded photograph as visual evidence. ${shot.direction} LOCKED PRODUCT IDENTITY: ${product.name}, ${product.pattern}, ${product.colors}. Preserve exactly ${product.protected}. ${kindRule} Keep the complete camera path inside areas already visible in the uploaded photograph; no reveal, outpainting or inferred off-frame content. Camera movement is the only action. Use documentary realism, smooth restrained motion, natural existing light, stable geometry and deep focus. NO pattern morphing, no new motifs, no altered colors, no fake restoration, no removed wear, no fringe or fabric movement, no stretching, no scale change, no added people, objects, text, logos or rooms, and no animation of any woven person, animal, bird, plant or calligraphy. End calmly without a sudden zoom or transition.`;
-      };
-
       const toLatinDigits = (value) => String(value)
         .replace(/[۰-۹]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹".indexOf(digit))
         .replace(/٬/g, ",");
@@ -2733,7 +3041,9 @@ If the interface turns either image into a Start/End frame, or the result change
         ? "Being confirmed"
         : `Approximately ${toLatinDigits(value.replace("حدود ", "")).replace(" تا ", "–").replace(" سال", " years")}`;
 
-      const priceEn = (value) => `${toLatinDigits(value.replace(" تومان", ""))} toman`;
+      const priceEn = (value) => value.includes("USD") || value.includes("$")
+        ? value
+        : `${toLatinDigits(value.replace(" تومان", ""))} toman`;
 
       const screenFacts = (product) => {
         const hasAge = !product.age.includes("تکمیل");
@@ -2753,9 +3063,8 @@ ${product.name}
 ابعاد: ${product.dimensions}
 قدمت: ${product.age}
 قیمت ثبت‌شده: ${product.price}
-کد: ${product.sku}
 
-برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، کد ${product.sku} را در واتساپ ${CONTACT.whatsapp} بفرستید یا وارد ${CONTACT.website} شوید.
+برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، نام «${product.name}»، لینک این پست یا یک اسکرین‌شات را در دایرکت ${CONTACT.instagram} یا واتساپ ${CONTACT.whatsapp} بفرستید. اطلاعات کامل در ${CONTACT.website} هم در دسترس است.
 
 —
 
@@ -2767,104 +3076,244 @@ Design: ${pack.enPattern}
 Dimensions: ${dimensionEn(product.dimensions)}
 Age: ${ageEn(product.age)}
 Listed price: ${priceEn(product.price)}
-Reference: ${product.sku}
 
-Send “${product.sku}” on WhatsApp ${CONTACT.whatsapp} for complete photographs, condition notes and purchase details, or visit ${CONTACT.website}.
+For complete photographs, condition notes and purchase details, send the carpet name, this post, or a screenshot by Instagram DM to ${CONTACT.instagram} or WhatsApp ${CONTACT.whatsapp}. Full details are also available at ${CONTACT.website}.
 
 ${pack.hashtags}`;
       };
 
-      const buildViralPrompt = (product) => {
-        const viral = VIRAL_PACKS[product.sku];
-        const contextShot = product.shots.find((shot) => shot.kind === "context" || shot.kind === "studio");
-        const fullShot = product.shots.find((shot) => shot.kind === "full");
-        const detailShot = product.shots.find((shot) => shot.kind === "detail");
-        return `SEEDANCE 2.0 MULTI-REFERENCE CINEMATIC REEL — CLEAN COMMERCIAL FOOTAGE.
+      const referenceAlias = (shot) => shot.kind === "full" ? "@full" : shot.kind === "detail" ? "@detail" : "@context";
 
-Upload these through the normal Reference Image slots. Do not assign any image as Start Frame or End Frame. Replace the aliases below with the @ tags shown by Higgsfield.
+      const referencePurpose = (shot) => shot.kind === "full"
+        ? "authority for complete geometry, proportions, border, fringe and color placement"
+        : shot.kind === "detail"
+          ? "authority for exact weave, inscription, motif, pile, wear and fine color boundaries"
+          : "authority for the supplied atmosphere, lighting and display context";
 
-@full — PRODUCT AUTHORITY: ${PROJECT_ROOT}/public${fullShot.source}
-@context — ENVIRONMENT / ATMOSPHERE: ${PROJECT_ROOT}/public${contextShot.source}
-@detail — MACRO EVIDENCE: ${PROJECT_ROOT}/public${detailShot.source}
+      const referenceManifest = (product) => product.shots.map((shot) => `${referenceAlias(shot)} — ${referencePurpose(shot)}: ${PROJECT_ROOT}/public${shot.source}`).join("\n");
 
-All three references depict or support one specific physical product: ${product.name}, reference ${product.sku}. @full is authoritative for complete proportions, ${product.pattern}, colors, border count, fringe and total geometry. @detail is authoritative for the exact close-up motif, knots, pile, wear and color boundaries. @context is authoritative only for the supplied surroundings and atmosphere; it must never redesign the carpet.
+      const multiReferenceHeader = (product, title, leadAlias = "all references equally") => `HIGGSFIELD MULTI-REFERENCE VIRAL REEL — ONE SELF-CONTAINED FILM.
 
-Create one original silent eight-second vertical 9:16 luxury micro-commercial titled “${viral.concept}”. Use four short shots joined by clean hard cuts. Never morph, interpolate or transform one reference photograph into another.
+Upload every supplied product image through normal Reference Image slots. Do not use Start Frame or End Frame. Replace the aliases with Higgsfield's actual @ tags.
 
-${viral.sequence}
+${referenceManifest(product)}
 
-COMMERCIAL DIRECTION: immediate first-frame visual interest, confident pacing, premium Persian-art atmosphere, controlled optical camera motion, realistic existing light, strong composition and a clean visual payoff. No slow logo introduction. No presenter. No generated speech, music, captions, typography, logos, prices or interface graphics; these will be added later in the editor.
+All references document one exact physical carpet: ${product.name}, reference ${product.sku}, ${product.pattern}, ${product.colors}. Lead visual authority for this concept: ${leadAlias}.
 
-PRODUCT LOCK: preserve exactly ${product.protected}. The carpet is a flat physical textile and remains the same object across every shot. No pattern mutation, invented surrounding motifs, animated figures, moving birds or animals, growing flowers, fabric breathing, ripple, floating, perspective warping, new fringe, repaired wear, color drift, fake gloss, artificial restoration or scale inconsistency. The environment may receive restrained cinematic camera movement; the carpet design may not change.
+OUTPUT CANVAS — NON-NEGOTIABLE: Instagram Reels full-screen portrait, vertical 9:16, exactly 1080 × 1920 pixels. Compose natively for the tall phone screen. Do not output 16:9, landscape, square, 1:1, 4:5, a rotated canvas, a horizontal crop, borders, padding, letterboxing or pillarboxing. Keep the carpet, the hook action and every person's face and body inside the 9:16 safe frame.
 
-Finish on a stable frame that can hard-cut to the real full-frontal still. If the Unlimited interface offers only five seconds, keep the same four-shot order and compress the beats proportionally; do not remove the full-product proof shot.`;
+Create one complete viral Reel titled “${title}” at the duration selected in Higgsfield, normally eight or nine seconds. The shot timings below assume nine seconds; if the interface outputs eight seconds, compress every beat proportionally without removing a composition. Higgsfield must create the internal shots, edit, original music and synchronized sound together inside this single generation. Use clean hard cuts between compositions; never morph one reference into another.`;
+
+      const firstFrameRule = (leadAlias) => `BIZARRE COLD OPEN — NON-NEGOTIABLE:
+At 0.0 seconds, begin in the middle of one safe, staged, physically believable incident involving the room or a prop: something drops, slams, flies, is caught, or makes a person perform a controlled stumble. The viewer should instantly ask “What just happened?” and need the next shot for the answer. The strange action must peak by 1.2 seconds, then hard-cut to the carpet reveal. Use ${leadAlias} as visual authority; the complete carpet or one exact documented detail remains clearly visible behind or beside the action and occupies roughly 45–70% of the vertical frame. No fade-in, black frame, empty establishing room, slow approach, camera search or delayed motion. No injury, fear, reckless impact, broken glass, fire, weapon, child, animal, actual accident or contact between the prop/person and the carpet. The carpet causes no danger and receives no impact. Make the opening surprising, not cartoonish.`;
+
+      const AUDIO_TREATMENTS = {
+        "reference-disruption-context": "Start with a sharp wooden display-panel slam and a single startled shoe scrape, both realistic and dry. The impact launches an urgent plucked-string ostinato; land a low frame-drum accent on the carpet reveal and resolve with a clean motif chime.",
+        "reference-mystery-context": "Start with a startled shoe scrape and the natural padded thump of a controlled drop into a waiting chair. A tense three-note plucked motif asks what caused the reaction; the first hard cut answers it with bass and the final proof receives one bright note.",
+        "reference-disruption-full": "Start with the flutter and clatter of blank archival cards thrown upward during a controlled stumble, plus one chair contact sound. Drive forward with clipped strings and restrained hand percussion; the carpet reveal gets one deep, precise accent.",
+        "reference-mystery-full": "Start with the mechanical descent and soft floor-stop of a large empty gilded frame around the visible carpet. Use a strange high harmonic over a 100 BPM pulse, then open into warm low strings when the person walks through the frame.",
+        "reference-disruption-detail": "Start with a magnifier slipping through the air and a crisp gloved catch just before impact. Pair it with a fast three-note plucked figure; use one low accent on the full-carpet cut and a small glassy answer on the final macro.",
+        "reference-mystery-detail": "Begin with a close, dry pointer tap and an unresolved three-note phrase while the macro resembles an impossible landscape. The full-carpet reveal receives a controlled bass hit; return to the original notes in reverse for a clean loop.",
+        "museum-after-hours": "A sudden metal cable stop and padded frame thump start the soundtrack, followed immediately by sparse santur at 104 BPM over a low bowed pulse. The museum reveal gets one deep frame-drum accent and the final weave detail one glassy harmonic.",
+        "collector-private-viewing": "Blank cards flutter, a shoe scrapes and a chair gives one soft impact at frame one. Build a warm but urgent setar-and-bass motif; synchronize the first reveal to a controlled low drum and let the final full-carpet proof resolve the melody.",
+        "architect-three-rooms": "A full-height wall panel slams along its track at frame one. Continue with one original 102 BPM three-note motif whose arrangement changes across the three interiors—acoustic pluck, clean pulse, then warm gallery strings—without changing key.",
+        "conservation-table": "Open with the brief whistle of a falling magnifier and a crisp gloved catch. Minimal high santur notes and a restrained 100 BPM low pulse carry the reveal; add one tiny scale-marker sound and neutral conservation-room air.",
+        "editorial-palette": "A large silk sheet snaps through the air and fills the microphone perspective at frame one. A contemporary bass pulse, restrained hand percussion and crisp Persian plucked strings enter underneath, with one sharp rhythmic accent on each hard cut.",
+        "origin-light": "Wooden shutters burst open with one believable latch crack and rush of air; fast moving shadows arrive with a short hand-percussion flourish. Continue with an original 102 BPM plucked-string pulse and resolve when the shadows stop at the carpet edge.",
+        "signature-campaign": "A magnifier spins once through the air with a bright glass harmonic and lands safely in a gloved hand. Follow with a memorable repeating discovery motif; each reveal gets one synchronized accent and the final signature restates the opening notes.",
+        "three-worlds": "Three freestanding doors make three distinct latch-and-stop sounds while one original melody persists across every location. Keep 104 BPM and one key; change only the arrangement—earthy acoustic, clean modern pulse, then sparse bowed-and-plucked gallery finish.",
+        "scale-reveal": "A controlled chair catch and startled shoe scrape open the film, immediately joined by small dry ticking. Land a deep but refined frame-drum and bass accent on the scale reveal, then return to the opening plucked texture for replay.",
+        "pov-unveiling": "A heavy crate lid drops open onto padded stops with a believable wooden thump at frame one. Add one natural cloth-rustle effect and a restrained forward-moving plucked pulse; the final detail receives a delicate answer chime.",
+        "weather-pavilion": "A branch strikes exterior glass once during rain and the visitor's clothing moves with a quick duck, all safely behind sealed glass. Pair realistic rain and distant thunder with an elegant 100 BPM frame-drum and low-string pulse; no disaster intensity.",
+        "day-night-timepiece": "A large mechanical wall switch clacks at frame one and three time states receive three tightly synchronized electrical-relay ticks. One original 104 BPM three-note theme changes timbre across dawn, sunset and evening while tempo and key remain locked."
       };
 
-      const buildViralCaption = (product) => {
-        const viral = VIRAL_PACKS[product.sku];
+      const buildNativeAudioPrompt = (product, treatmentKey) => {
         const pack = REEL_PACKS[product.sku];
-        return `${viral.hooks[0][0]}
+        const treatment = AUDIO_TREATMENTS[treatmentKey] || AUDIO_TREATMENTS["reference-disruption-full"];
+        return `NATIVE AUDIO — COMPOSE THE MUSIC AND SOUND WITH THE VIDEO:
+Generate a completely original instrumental score and synchronized sound design for the full selected video duration, normally eight or nine seconds, in the same pass as the picture. Audio starts on frame one; never begin with silence. Scale every musical event proportionally when the selected duration is eight seconds.
 
-${viral.engagementFa}
+CARPET SONIC IDENTITY: ${pack.music}. Use this only as an instrumentation and mood brief; invent a new melody and rhythm for this exact film. If the listed tempo is slower, reinterpret the same palette at 96–110 BPM so the first two seconds move decisively.
 
-${product.name} · ${product.origin}
-کد: ${product.sku}
+CONCEPT ARRANGEMENT: ${treatment}
 
-برای دریافت تصاویر کامل، توضیحات وضعیت و جزئیات خرید، کد ${product.sku} را در واتساپ ${CONTACT.whatsapp} بفرستید یا وارد ${CONTACT.website} شوید.
+AUDIO TIMELINE:
+• 0.00–0.15s — an unmistakable musical attack, signature note or physical sound immediately supports the visual hook.
+• First hard cut near 1.2s — place one precisely synchronized musical accent. It must feel like part of the composition, not a generic trailer boom.
+• Middle composition — develop one short memorable motif with forward momentum; do not introduce a second song or unrelated rhythm.
+• Second hard cut — place a different but related accent exactly on the cut, then simplify the arrangement so the product-proof image can breathe.
+• Final 0.6s — resolve the motif cleanly on the final frame. No abrupt chopped note and no fade to silence before the picture ends.
 
-—
-
-${viral.hooks[0][1]}
-
-${viral.engagementEn}
-
-${pack.enName} · ${pack.enOrigin}
-Reference: ${product.sku}
-
-Send “${product.sku}” on WhatsApp ${CONTACT.whatsapp} for complete photographs, condition notes and purchase details, or visit ${CONTACT.website}.
-
-${pack.hashtags}`;
+MIX AND RIGHTS DIRECTION: music is clear and emotionally legible; physical effects are quieter, realistic and synchronized; ambience stays underneath both. No vocals, lyrics, chanting, speech, crowd voices or presenter. Do not imitate, quote or closely resemble any existing song, melody, recording, composer or recognizable artist. No stock-music cliché, festival EDM drop, oversized cinematic boom, audio watermark or spoken brand name.`;
       };
 
-      const viralKit = (product) => {
-        const viral = VIRAL_PACKS[product.sku];
-        const contextShot = product.shots.find((shot) => shot.kind === "context" || shot.kind === "studio");
-        const fullShot = product.shots.find((shot) => shot.kind === "full");
-        const detailShot = product.shots.find((shot) => shot.kind === "detail");
-        const promptId = `viral-prompt-${product.slug}`;
-        const captionId = `viral-caption-${product.slug}`;
-        const viralPrompt = buildViralPrompt(product);
-        const viralCaption = buildViralCaption(product);
-        return `
-          <details class="viral-kit">
-            <summary>
-              <span class="viral-index">V</span>
-              <span class="viral-title"><small>Cinematic discovery campaign · Seedance multi-reference</small><strong>${escapeHtml(viral.concept)}</strong></span>
-              <span class="viral-mechanism">${escapeHtml(viral.mechanism)}</span>
-            </summary>
-            <div class="viral-body">
-              <p class="viral-rule"><b>Different job from the product Reel:</b> this version earns discovery and shares. Generate clean footage once, then make three Trial Reel edits by changing only the opening hook.</p>
-              <div class="viral-grid">
-                <article class="viral-card">
-                  <h4>Reference upload order</h4>
-                  <ol><li><b>@full</b><br /><code>public${escapeHtml(fullShot.source)}</code></li><li><b>@context</b><br /><code>public${escapeHtml(contextShot.source)}</code></li><li><b>@detail</b><br /><code>public${escapeHtml(detailShot.source)}</code></li></ol>
-                  <p>Normal Reference Image slots only. No Start Frame. No End Frame. Do not add unrelated room or city images.</p>
-                </article>
-                <article class="viral-card">
-                  <h4>Three bilingual hook tests</h4>
-                  ${viral.hooks.map((hook, index) => `<div class="hook-variant"><b dir="rtl" lang="fa">${String.fromCharCode(65 + index)} · ${escapeHtml(hook[0])}</b><small>${escapeHtml(hook[1])}</small><button class="copy-button" type="button" data-copy-text="${escapeHtml(`${hook[0]}\n${hook[1]}`)}">Copy</button></div>`).join("")}
-                </article>
-                <div class="viral-prompt"><label>Exact Seedance 2.0 cinematic prompt</label><p id="${promptId}">${escapeHtml(viralPrompt).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${promptId}">Copy</button></div>
-                <article class="viral-card">
-                  <h4>Ten-second editor assembly</h4>
-                  <ol><li><b>0–2s:</b> generated body + one selected hook immediately.</li><li><b>2–5s:</b> name/origin in small bilingual type.</li><li><b>5–7s:</b> let the cinematic payoff breathe; no extra sales text.</li><li><b>7–10s:</b> supplied branded CTA card for ${product.sku}; hold completely still.</li></ol>
-                  <p>Use the carpet’s music recipe in the Reel kit below. Label the post as AI-generated where Instagram provides the disclosure control.</p>
-                </article>
-                <div class="viral-prompt"><label>Short bilingual viral caption + engagement CTA</label><p id="${captionId}" dir="auto">${escapeHtml(viralCaption).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${captionId}">Copy</button></div>
-              </div>
-              <div class="trial-strip"><span>Trial A · Hook A<br />same footage + cover + caption body</span><span>Trial B · Hook B<br />same footage + cover + caption body</span><span>Trial C · Hook C<br />review at 24h · decide at 72h</span></div>
+      const productLock = (product) => `PRODUCT LOCK — NON-NEGOTIABLE: preserve exactly ${product.protected}. The carpet remains one flat, gravity-bound physical textile with consistent size, thickness, weight and contact shadows. The setting, lighting and people may be newly created, but the carpet's design, colors, border count, inscriptions, portrait identities, wear, fringe and proportions may not change. No restoration, outpainting of textile detail, pattern mutation, added motifs, color drift, fake gloss, floating, flying, rippling, breathing fabric, magic unfolding, scale inconsistency or perspective warping. Never animate a woven person, animal, bird, flower or calligraphy. Real people may walk beside it, look at it, point near it or carefully touch an edge; nobody steps on it, hides it or handles it impossibly. Every bizarre action happens safely beside, behind or above a protected no-contact zone around the carpet. People remain anatomically believable and uninjured; falling or flying props stop safely and never touch, cover, stain or move the carpet.`;
+
+      const outputRules = `ATTENTION CONTROL: use exactly three primary compositions across nine seconds. Introduce new visual information at each hard cut, but keep one clear focal path, one consistent direction of camera or subject motion and no more than one visually active person. Avoid decorative movement, multiple simultaneous gestures, random rack focus, unrelated cutaways and rapid changes of lens language. The carpet stays the highest-contrast and most readable subject.
+
+REALISM AND OUTPUT: premium live-action cinematography, believable anatomy and cloth physics, accurate contact shadows, confident pacing and a stable proof frame before the end. Deliver an Instagram Reel in full-screen portrait, vertical 9:16 at exactly 1080 × 1920 pixels; no other aspect ratio, horizontal layout, crop, bars or borders. Follow the Native Audio section exactly. No captions, typography, prices, logos, visual watermarks, presenter speech or interface graphics. Do not make unverifiable historical claims in the imagery. End cleanly so the film can hard-cut to a branded CTA card.`;
+
+      const referenceLedSequence = (shot, variant) => {
+        const alias = referenceAlias(shot);
+        if (shot.kind === "full" && variant === "disruption") return `SHOT PLAN — THE CARDS GO FLYING:
+1. 0.0–1.2s — ${alias} remains readable as one adult collector performs a clearly controlled backward stumble into a waiting chair beside the carpet and releases a small stack of blank archival cards upward. The cards flutter only over the empty floor beside the carpet; no injury and no carpet contact.
+2. 1.2–5.3s — on the chair-contact sound, hard cut to @context: the collector is now still, looking toward the complete carpet while the final cards land safely away from it, establishing human scale and the reason for the reaction.
+3. 5.3–9.0s — hard cut to @detail for the exact visual evidence that caused the reaction; execute one tiny optical push and finish on a stable loopable proof frame.`;
+        if (shot.kind === "full") return `SHOT PLAN — THE FRAME DROPS AROUND IT:
+1. 0.0–1.2s — a large empty gilded display frame descends suddenly into the foreground and stops upright on a hidden padded floor rig, visually framing ${alias} without touching it. The complete carpet is visible through the empty frame throughout.
+2. 1.2–5.3s — hard cut to @context as one adult visitor walks through the empty frame opening and stops safely beside the carpet, proving the frame is real and revealing scale.
+3. 5.3–9.0s — hard cut to @detail; the same frame edge becomes a soft foreground line while the documented motif stays tack sharp. End with a tiny upward movement that can replay into the frame's descent.`;
+        if (shot.kind === "detail" && variant === "disruption") return `SHOT PLAN — CATCH IT BEFORE IT HITS:
+1. 0.0–1.2s — over ${alias}, a plain handheld magnifier slips downward and a conservator's gloved hand catches it sharply at least five centimetres above the protected carpet. Show the clear air gap; nothing touches the textile.
+2. 1.2–5.3s — hard cut to @full: the conservator stands safely at the outer edge with the magnifier now under control, revealing the complete carpet and true scale.
+3. 5.3–9.0s — hard cut back to the identical ${alias} area beneath the stationary magnifier; resolve on exact weave, inscription or motif evidence and match the final position to the opening.`;
+        if (shot.kind === "detail") return `SHOT PLAN — THIS IS NOT A LANDSCAPE:
+1. 0.0–1.2s — ${alias} fills the phone screen so the real documented weave resembles an aerial landscape, face, map or architecture without inventing any marks. A plain pointer abruptly enters, stops over empty air beside one feature and creates the unanswered question.
+2. 1.2–5.3s — hard cut—not a zoom or morph—to @full as one adult stands beside the carpet, instantly revealing the surprising true scale.
+3. 5.3–9.0s — hard cut back to the identical ${alias} composition as the visual answer; the pointer exits in the same direction it entered for a replay loop.`;
+        if (variant === "disruption") return `SHOT PLAN — THE WALL SLAMS OPEN:
+1. 0.0–1.2s — within the spatial logic of ${alias}, an empty full-height wooden display panel slides sideways fast and stops with a padded mechanical slam, revealing the carpet already displayed behind it. The panel stays on a separate track and never touches the carpet.
+2. 1.2–5.3s — hard cut to @full as one adult curator reacts with one contained step backward on bare floor beside the carpet, then becomes still so the eye can read the product.
+3. 5.3–9.0s — hard cut to @detail for the exact motif, texture or inscription; finish stable while the room tone proves the action has stopped.`;
+        return `SHOT PLAN — WHY DID THEY FALL BACK?:
+1. 0.0–1.2s — use ${alias} as the setting: one adult visitor already beside a waiting chair performs a safe, staged backward drop into the seat while looking at an offscreen detail. The carpet remains clearly visible, flat and untouched; the body never approaches it.
+2. 1.2–5.3s — hard cut to @detail and reveal the exact documented feature that caused the reaction, with one subtle lateral move already underway.
+3. 5.3–9.0s — hard cut to @full as the visitor stands calmly beside the carpet for scale; hold a clean proof frame and let the final camera direction connect back to the opening.`;
+      };
+
+      const buildReferenceLedPrompt = (product, shot, variant) => `${multiReferenceHeader(product, `${shot.title} — ${variant === "disruption" ? "Disruption Hook" : "Mystery Hook"}`, `${referenceAlias(shot)} leads the opening; all other references remain active evidence`)}
+
+${firstFrameRule(referenceAlias(shot))}
+
+${referenceLedSequence(shot, variant)}
+
+${buildNativeAudioPrompt(product, `reference-${variant}-${shot.kind === "studio" ? "context" : shot.kind}`)}
+
+${productLock(product)}
+
+${outputRules}`;
+
+      const CONCEPT_DIRECTIONS = [
+        {
+          id: "museum-after-hours", mode: "viral", family: "disruption", title: "The Museum Frame Falls", description: "A giant frame drops, stops safely, and reveals the answer.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: 1) 0.0–1.2s — in a dark museum, a large empty gilded frame suddenly falls from above and stops upright on visible padded cable restraints around @full; the carpet stays visible through it and is never touched. 2) 1.2–5.3s — hard cut to @context as conservation lights snap on and one curator takes a single surprised step on bare floor beside the protected carpet. 3) 5.3–9.0s — hard cut to @detail under soft raking light and finish stable on documented weave. The rig is believable; no broken object, injury or magic.`
+        },
+        {
+          id: "collector-private-viewing", mode: "viral", family: "disruption", title: "The Collector Falls Back", description: "A controlled stumble sends archival cards flying before the reveal.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: 1) 0.0–1.2s — in @context, one collector performs a controlled backward stumble into a waiting chair and drops blank invitation cards after noticing the carpet; cards remain over bare floor and the carpet stays untouched. 2) 1.2–5.3s — hard cut to @detail for the exact visual reason, with one gloved finger hovering beside—not over—the motif. 3) 5.3–9.0s — hard cut to @full for uninterrupted proof as the collector stands calmly at the outer edge. Natural anatomy, no injury, no speech and no slapstick.`
+        },
+        {
+          id: "architect-three-rooms", mode: "viral", family: "disruption", title: "The Wall Slams into Another World", description: "One moving wall reveals three believable interiors around one carpet.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: Show the exact same carpet across precisely three plausible interiors. 1) 0.0–1.2s — a full-height plaster wall panel slams sideways on a padded track and reveals @full in a warm historic room; the panel remains far behind the carpet. 2) 1.2–5.0s — hard cut on continued panel motion to a restrained contemporary apartment around the identical carpet. 3) 5.0–9.0s — hard cut to a quiet gallery derived from @context where the panel stops and one adult stands beside the carpet for scale. Match carpet position, size, orientation and camera direction; surroundings change, textile does not.`
+        },
+        {
+          id: "conservation-table", mode: "viral", family: "disruption", title: "Catch It Before It Hits", description: "A falling magnifier is caught centimetres above the weave.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: 1) 0.0–1.2s — @detail fills the frame as a plain magnifier slips and a conservator's gloved hand catches it at least five centimetres above the protected carpet; make the air gap obvious. 2) 1.2–5.3s — hard cut to a perpendicular @full inspection with the specialist standing safely at the outer edge, magnifier under control. 3) 5.3–9.0s — hard cut back to @detail with a plain scale marker resting on the table beside the textile; no invented numbers, folding, brushing or fake repair.`
+        },
+        {
+          id: "editorial-palette", mode: "viral", family: "disruption", title: "The Flying Silk Reveal", description: "A giant silk sheet snaps at camera and vanishes on the cut.",
+          sequence: (product) => `THREE-COMPOSITION SHOT PLAN: Create a realistic editorial set whose one adult model's wardrobe echoes ${product.colors}. 1) 0.0–1.2s — the model throws a large plain silk sheet upward from bare floor beside @context; it snaps toward camera and fills the phone frame, but never passes over or lands on the carpet. 2) 1.2–5.3s — hard cut as the silk fills frame to @full, completely unobstructed, with the model now still beside it. 3) 5.3–9.0s — hard cut to @detail while only a matching garment edge remains at the outermost safe frame. No costume change, carpet handling or fabric-to-carpet morph.`
+        },
+        {
+          id: "origin-light", mode: "viral", family: "disruption", title: "The Shadows Stop at the Carpet", description: "Shutters burst open and racing shadows stop at one exact edge.",
+          sequence: (product) => `THREE-COMPOSITION SHOT PLAN: Build a plausible contemporary interior loosely inspired by ${product.origin}; it is atmosphere, not historical proof. 1) 0.0–1.2s — one adult throws open wooden shutters and fast flock-like shadows race across the bare wall and floor, then stop sharply at the outer edge of @full without changing the textile. 2) 1.2–5.3s — hard cut to @context as the adult looks back toward the strange stationary shadow boundary while the carpet remains dominant. 3) 5.3–9.0s — hard cut to @detail where ordinary sunlight settles on the real motif. The shadows come from a believable moving screen outside; no fantasy creature or animated carpet.`
+        },
+        {
+          id: "signature-campaign", mode: "viral", family: "spectacle", title: "Catch the Hidden Signature", description: "The carpet's own bespoke question begins with a flying magnifier.",
+          sequence: (product) => `BESPOKE IDEA: “${VIRAL_PACKS[product.sku].concept}” — ${VIRAL_PACKS[product.sku].mechanism}. Use only genuine evidence from the uploads. THREE-COMPOSITION SHOT PLAN: 1) 0.0–1.2s — above @detail, one specialist flips a plain magnifier once through the air and catches it safely in a gloved hand; the lens reveals the exact evidence and never touches the carpet. 2) 1.2–5.3s — hard cut to @full in @context atmosphere so a first-time viewer understands where the evidence sits; one adult at the edge may provide scale. 3) 5.3–9.0s — hard cut back through the magnifier to the decisive @detail and end in a position that invites replay. No added marks, labels or historical claim.`
+        },
+        {
+          id: "three-worlds", mode: "viral", family: "spectacle", title: "Three Doors, Three Worlds", description: "One person throws open three doors around the same impossible constant.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: Place the exact same carpet in precisely three believable environments joined by hard cuts. 1) 0.0–1.2s — one adult forcefully opens a freestanding wooden door in an old courtyard and unexpectedly reveals @full beyond it. 2) 1.2–5.0s — the continued door swing hard-cuts to a glass-walled modern home at blue hour around the identical carpet. 3) 5.0–9.0s — the third hard cut completes the swing inside a dark gallery where the adult stops beside the carpet for scale. Doors use padded stops; match carpet size, orientation, contrast and direction across all worlds.`
+        },
+        {
+          id: "scale-reveal", mode: "viral", family: "spectacle", title: "The Scale Makes Them Fall Back", description: "A safe human reaction turns a macro puzzle into a scale reveal.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: 1) 0.0–1.2s — @detail fills the screen like an aerial landscape while, at the far edge, one adult reacts with a controlled backward drop into a waiting padded chair on bare floor. The chair and person stay outside the carpet zone. 2) 1.2–5.3s — hard cut instantly to @full as the adult stands calmly beside the carpet, revealing true scale. 3) 5.3–9.0s — hard cut back to the identical macro with matching lateral motion for a clean replay loop. No injury, slapstick or continuous zoom; surprise comes from editing.`
+        },
+        {
+          id: "pov-unveiling", mode: "viral", family: "spectacle", title: "The Crate Drops Open", description: "A heavy lid falls toward camera, stops, and reveals the collection.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: 1) 0.0–1.2s — realistic first-person view as a large empty wooden presentation-crate lid drops toward camera and stops abruptly on visible padded hinges, revealing @full safely displayed several metres beyond it. The carpet was never inside the crate. 2) 1.2–5.3s — hard cut to @full at believable eye height as one visitor stops beside the carpet. 3) 5.3–9.0s — hard cut to @detail as one gloved specialist indicates a feature without covering it. Keep forward motion consistent; no camera-touching hands or danger.`
+        },
+        {
+          id: "weather-pavilion", mode: "viral", family: "spectacle", title: "The Storm Hits the Glass", description: "A branch strike and human duck create danger outside, safety inside.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: The carpet remains perfectly dry inside a sealed minimalist glass pavilion. 1) 0.0–1.2s — during heavy rain, a small branch strikes the exterior glass once and one adult inside ducks instinctively on bare floor beside @full; laminated glass does not crack and everyone remains safe. 2) 1.2–5.3s — hard cut to @context as the visitor stands and looks from the storm back to the carpet, which remains the brightest stable subject. 3) 5.3–9.0s — hard cut to @detail while realistic rain continues outside. Dry floor, no wind at fringe, no disaster imagery.`
+        },
+        {
+          id: "day-night-timepiece", mode: "viral", family: "spectacle", title: "One Switch Changes Time", description: "A giant real switch snaps the room through a full day.",
+          sequence: () => `THREE-COMPOSITION SHOT PLAN: Lock one camera and @full in precisely the same position for three hard-cut states. 1) 0.0–1.2s — one adult slaps down an oversized but mechanically plausible wall switch; the room jumps from deep night to cool dawn while the carpet remains unchanged and fully visible. 2) 1.2–5.0s — the switch rebounds once and hard-cuts the room to amber sunset. 3) 5.0–9.0s — a final relay click hard-cuts to deep evening as one nearby lamp turns on and @detail becomes readable. Only the room's time and light change; no carpet morphing, magical electricity or extra people.`
+        }
+      ];
+
+      const buildConceptPrompt = (product, direction) => `${multiReferenceHeader(product, direction.title, "all uploaded references working together")}
+
+${firstFrameRule("the most visually arresting evidence from @full or @detail")}
+
+CREATIVE CONCEPT: ${direction.description}
+
+${direction.sequence(product)}
+
+${buildNativeAudioPrompt(product, direction.id)}
+
+ENVIRONMENT PERMISSION: You may create new architecture, furnishing, weather, wardrobe and realistic adult people when the concept calls for them. New surroundings must look physically plausible and must cast consistent light and contact shadows on the unchanged carpet. Treat origin-inspired scenery as visual atmosphere, never proof of where this specific object was photographed or historically used.
+
+${productLock(product)}
+
+${outputRules}`;
+
+      const promptLibrary = (product) => {
+        const referencePrompts = product.shots.flatMap((shot) => [
+          { id: `lead-${shot.kind}-disruption`, group: "reference", mode: "viral", title: `${shot.title} · Disruption Hook`, description: `${referenceAlias(shot)} leads a safe physical interruption; every reference still contributes.`, image: shot.source, prompt: buildReferenceLedPrompt(product, shot, "disruption") },
+          { id: `lead-${shot.kind}-mystery`, group: "reference", mode: "viral", title: `${shot.title} · Mystery Hook`, description: `${referenceAlias(shot)} leads an unexplained visual question; every reference still contributes.`, image: shot.source, prompt: buildReferenceLedPrompt(product, shot, "mystery") }
+        ]);
+        const concepts = CONCEPT_DIRECTIONS.map((direction) => ({ ...direction, group: direction.family, prompt: buildConceptPrompt(product, direction) }));
+        return [...referencePrompts, ...concepts];
+      };
+
+      const promptCard = (product, item, index) => {
+        const promptId = `multi-prompt-${product.slug}-${item.id}`;
+        const taskId = `${product.sku}-${item.id}`;
+        return `<details class="prompt-card">
+          <summary>
+            <span class="prompt-number">${String(index + 1).padStart(2, "0")}</span>
+            <span class="prompt-title"><span class="prompt-mode is-viral">Viral Reel</span><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.description)}</small></span>
+          </summary>
+          <div class="prompt-card-body">
+            ${item.image ? `<div class="prompt-lead"><img src="${IMAGE_BASE}${item.image}" alt="Lead reference for ${escapeHtml(item.title)}" loading="lazy" /><span><b>Lead image only—not the only input</b><span>Upload this image together with Full, Context and Detail. The lead changes the opening idea; the complete set protects the result.</span></span></div>` : ""}
+            <p class="prompt-text" id="${promptId}">${escapeHtml(item.prompt)}</p>
+            <div class="prompt-actions"><button class="button" type="button" data-copy-target="${promptId}">Copy complete prompt</button></div>
+            <label class="prompt-approval"><input type="checkbox" data-task-id="${taskId}" ${progressState[taskId] ? "checked" : ""} /><span>I tested the bizarre first 1.2 seconds, 9:16 Reel framing, product fidelity, focus path, original music and synchronized effects, then recorded the useful take or rejection in Notes.</span></label>
+          </div>
+        </details>`;
+      };
+
+      const multiReferenceStudio = (product) => {
+        const library = promptLibrary(product);
+        const referencePrompts = library.filter((item) => item.group === "reference");
+        const disruptionPrompts = library.filter((item) => item.group === "disruption");
+        const spectaclePrompts = library.filter((item) => item.group === "spectacle");
+        const localPaths = product.shots.map((shot) => `${referenceAlias(shot)}: ${PROJECT_ROOT}/public${shot.source}`).join("\n");
+        return `<section class="multi-ref-studio" aria-label="Multi-reference prompt laboratory for ${product.sku}">
+          <div class="reference-upload">
+            <div class="reference-upload-head"><div><p class="eyebrow">Upload set · use together every time</p><h3>Three anchors, one exact carpet</h3></div><p>Upload all three named images into normal Reference Image slots. Add any extra real angles or close-ups from the same product folder as bonus evidence. The prompts below always produce one complete film.</p></div>
+            <div class="reference-strip">
+              ${product.shots.map((shot) => `<article class="reference-tile is-${shot.kind}"><img src="${IMAGE_BASE}${shot.source}" alt="${escapeHtml(shot.title)} reference" loading="lazy" /><div class="reference-info"><strong>${referenceAlias(shot)} · ${escapeHtml(shot.title)}</strong><span>${escapeHtml(referencePurpose(shot))}</span><code>public${escapeHtml(shot.source)}</code></div></article>`).join("")}
             </div>
-          </details>`;
+            <div class="studio-rule"><b>Reference rule:</b> @full controls total carpet geometry; @detail controls microscopic evidence; @context controls atmosphere. Every prompt starts with a safe bizarre incident, reveals its connection to the carpet, uses three primary compositions and outputs a full-screen 9:16 Reel. If Higgsfield offers more reference slots, add more real images of this same SKU—never a different carpet. <button class="copy-button" type="button" data-copy-text="${escapeHtml(localPaths)}">Copy local paths</button></div>
+          </div>
+          <section class="prompt-section">
+            <div class="prompt-section-head"><div><p class="eyebrow">For each named image</p><h3>Disruption + Mystery viral hooks</h3></div><p>Every image gets two aggressive first-second treatments while all references remain uploaded: one safe physical interruption and one unexplained visual question.</p><span class="prompt-count">6 viral prompts</span></div>
+            <div class="prompt-grid">${referencePrompts.map((item, index) => promptCard(product, item, index)).join("")}</div>
+          </section>
+          <section class="prompt-section">
+            <div class="prompt-section-head"><div><p class="eyebrow">Bizarre physical cold opens</p><h3>Drop, slam, catch, stumble, throw, stop</h3></div><p>Six premium but startling incidents engineered to peak within 1.2 seconds, stay safe and turn immediately into product proof.</p><span class="prompt-count">6 viral prompts</span></div>
+            <div class="prompt-grid">${disruptionPrompts.map((item, index) => promptCard(product, item, index + referencePrompts.length)).join("")}</div>
+          </section>
+          <section class="prompt-section">
+            <div class="prompt-section-head"><div><p class="eyebrow">High-spectacle curiosity loops</p><h3>Impossible-looking, physically believable</h3></div><p>Six larger viral ideas built around scale, doors, weather, time and this carpet's own hook. Add the bilingual text later; keep Higgsfield focused on picture and native audio.</p><span class="prompt-count">6 viral prompts</span></div>
+            <div class="prompt-grid">${spectaclePrompts.map((item, index) => promptCard(product, item, index + referencePrompts.length + disruptionPrompts.length)).join("")}</div>
+          </section>
+        </section>`;
       };
 
       const reelKit = (product) => {
@@ -2874,41 +3323,41 @@ ${pack.hashtags}`;
         const pack = REEL_PACKS[product.sku];
         const facts = screenFacts(product);
         const caption = buildCaption(product);
-        const pinnedComment = `برای دریافت تصاویر کامل و بررسی وضعیت، کد ${product.sku} را در واتساپ ${CONTACT.whatsapp} بفرستید.\nSend “${product.sku}” on WhatsApp ${CONTACT.whatsapp} for full photographs and condition details.`;
-        const storyCta = `این فرش را از نزدیک ببینید\n${product.sku} · ${CONTACT.website}\nواتساپ: ${CONTACT.whatsapp}\n\nSee this carpet in detail\n${product.sku} · ${CONTACT.website}\nWhatsApp: ${CONTACT.whatsapp}`;
+        const pinnedComment = `برای تصاویر کامل و بررسی وضعیت، همین پست یا اسکرین‌شاتش را به ${CONTACT.instagram} دایرکت کنید یا در واتساپ ${CONTACT.whatsapp} بفرستید.\nFor full photographs and condition details, DM this post or a screenshot to ${CONTACT.instagram}, or send it on WhatsApp ${CONTACT.whatsapp}.`;
+        const storyCta = `این فرش را از نزدیک ببینید\nروی لینک بزنید یا همین استوری را به ${CONTACT.instagram} دایرکت کنید\n${CONTACT.website}/carpets/${product.slug}\n\nSee this carpet in detail\nTap the link or DM this Story to ${CONTACT.instagram}\n${CONTACT.website}/carpets/${product.slug}`;
         const fullShot = product.shots.find((shot) => shot.kind === "full");
         const coverPath = `${IMAGE_BASE}/media/reel-covers/${product.slug}-reel-cover.png`;
-        const ctaPath = `${IMAGE_BASE}/media/reel-ctas/${product.slug}-reel-cta.png`;
+        const ctaPath = `${IMAGE_BASE}/media/reel-ctas/hosseintalab-universal-reel-cta.png`;
         return `
           <section class="reel-kit" aria-label="Reel assembly kit for ${product.sku}">
             <div class="reel-kit-head">
-              <div><p class="eyebrow">Complete music-only publishing pack</p><h3>One 14-second Reel—ready to assemble</h3></div>
-              <p><b>No voiceover.</b> Mute all source clips. Use the music, bilingual screen text, caption, cover, pinned comment and Story CTA below.</p>
+              <div><p class="eyebrow">Simple finish for the winning generation</p><h3>One generated film + one CTA</h3></div>
+              <p><b>No rebuilding the shots or hunting for music by default.</b> Keep the winning Higgsfield film and its original native soundtrack intact; add the bilingual screen text, caption, cover, pinned comment and Story CTA below.</p>
             </div>
-            <div class="mini-timeline"><span>A · 0–3s</span><span>B · 3–7s</span><span>C · 7–11s</span><span>CTA · 11–14s</span></div>
+            <div class="mini-timeline"><span>Bizarre incident · 0–1.2s</span><span>Reveal connection · 1.2–5.3s</span><span>Product proof · 5.3–9s</span><span>CTA · 9–12s</span></div>
             <div class="reel-pack-grid">
               <article class="reel-pack-card">
-                <h4>1 · Music</h4>
-                <p>${escapeHtml(pack.music)}</p>
-                <div class="music-search"><span>Search: ${escapeHtml(pack.musicSearch)}</span><button class="copy-button" type="button" data-copy-text="${escapeHtml(pack.musicSearch)}">Copy</button></div>
-                <ul><li>Choose a track from Meta Sound Collection / business-safe audio.</li><li>Volume: 35–45%. No vocals. Higgsfield audio: 0%.</li><li>Cut on beats near 0:03, 0:07 and 0:11; continue under the CTA and fade at 0:13.8.</li></ul>
+                <h4>1 · Native score + fallback</h4>
+                <p><b>The complete generation prompt already composes:</b> ${escapeHtml(pack.music)}. It also engineers a frame-one musical hook, accents on both hard cuts, concept-specific ambience and a clean final resolution.</p>
+                <div class="music-search"><span>Fallback only: ${escapeHtml(pack.musicSearch)}</span><button class="copy-button" type="button" data-copy-text="${escapeHtml(pack.musicSearch)}">Copy</button></div>
+                <ul><li>Keep the Higgsfield soundtrack when the music, effects and cuts feel synchronized.</li><li>Do not add a second Instagram song over a good native score.</li><li>If the audio fails but the visuals are excellent, mute the clip and use the fallback Meta Sound Collection search above.</li><li>Run the virality check again only after the bilingual hook is present and the final audio choice is locked.</li></ul>
               </article>
               <article class="reel-pack-card">
                 <h4>2 · Exact on-screen text</h4>
                 <div class="screen-cues">
-                  <div class="screen-cue"><time>0:00–0:03</time><span><b dir="rtl" lang="fa">${escapeHtml(pack.screenFa)}</b><small>${escapeHtml(pack.screenEn)}</small></span></div>
-                  <div class="screen-cue"><time>0:03–0:07</time><span><b dir="rtl" lang="fa">${escapeHtml(product.name)}</b><small>${escapeHtml(pack.enName)}</small></span></div>
-                  <div class="screen-cue"><time>0:07–0:11</time><span><b dir="rtl" lang="fa">${escapeHtml(facts.fa)}</b><small>${escapeHtml(facts.en)}</small></span></div>
-                  <div class="screen-cue"><time>0:11–0:14</time><span><b dir="rtl" lang="fa">کارت پایانی آماده · کد ${product.sku}</b><small>Ready branded CTA · WhatsApp ${CONTACT.whatsapp}</small></span></div>
+                  <div class="screen-cue"><time>0:00–0:02</time><span><b dir="rtl" lang="fa">${escapeHtml(pack.screenFa)}</b><small>${escapeHtml(pack.screenEn)}</small></span></div>
+                  <div class="screen-cue"><time>0:02–0:06</time><span><b dir="rtl" lang="fa">${escapeHtml(product.name)}</b><small>${escapeHtml(pack.enName)}</small></span></div>
+                  <div class="screen-cue"><time>0:06–0:09</time><span><b dir="rtl" lang="fa">${escapeHtml(facts.fa)}</b><small>${escapeHtml(facts.en)}</small></span></div>
+                  <div class="screen-cue"><time>0:09–0:12</time><span><b dir="rtl" lang="fa">نام فرش یا اسکرین‌شات را بفرستید</b><small>Instagram DM ${CONTACT.instagram} · WhatsApp ${CONTACT.whatsapp}</small></span></div>
                 </div>
               </article>
               <article class="reel-pack-card cover-card">
                 <div class="cover-preview"><img src="${coverPath}" alt="Finished Reel cover for ${escapeHtml(product.name)}" loading="lazy" /></div>
-                <div><h4>3 · Finished cover image</h4><p><b>Ready at 1080 × 1920.</b> It uses the original full-frontal photograph with the entire carpet visible—never an AI frame, never cropped or stretched.</p><p>Title: <span dir="rtl" lang="fa">${escapeHtml(product.name)}</span><br />Subtitle: ${escapeHtml(pack.enName)}<br />Reference: ${product.sku}</p><p><a href="${coverPath}" target="_blank" download="${product.slug}-reel-cover.png">Open / download finished PNG ↗</a> · <a href="${IMAGE_BASE}${fullShot.source}" target="_blank">Original source ↗</a></p></div>
+                <div><h4>3 · Finished cover image</h4><p><b>Ready at 1080 × 1920.</b> It uses the original full-frontal photograph with the entire carpet visible—never an AI frame, never cropped or stretched.</p><p>Title: <span dir="rtl" lang="fa">${escapeHtml(product.name)}</span><br />Subtitle: ${escapeHtml(pack.enName)}<br />Footer: origin + one-of-one collection mark; no customer-facing inventory code.</p><p><a href="${coverPath}" target="_blank" download="${product.slug}-reel-cover.png">Open / download finished PNG ↗</a> · <a href="${IMAGE_BASE}${fullShot.source}" target="_blank">Original source ↗</a></p></div>
               </article>
               <article class="reel-pack-card cover-card">
                 <div class="cover-preview"><img src="${ctaPath}" alt="Finished three-second Reel CTA card for ${product.sku}" loading="lazy" /></div>
-                <div><h4>4 · Finished three-second CTA card</h4><p><b>Ready at 1080 × 1920.</b> Place this still at 0:11–0:14 and hold it for the full three seconds. Do not animate it or add more text.</p><p>Same brand system on every Reel:<br />WhatsApp ${CONTACT.whatsapp}<br />Call ${CONTACT.call}<br />${CONTACT.website}<br />Only the reference changes: ${product.sku}</p><p><a href="${ctaPath}" target="_blank" download="${product.slug}-reel-cta.png">Open / download finished CTA PNG ↗</a></p></div>
+                <div><h4>4 · Finished three-second CTA card</h4><p><b>Ready at 1080 × 1920.</b> Place this still for the final three seconds, usually 0:09–0:12, and hold it completely still. Do not animate it or add more text.</p><p>Use the same universal conversion card on every Reel:<br />Instagram DM ${CONTACT.instagram}<br />WhatsApp ${CONTACT.whatsapp}<br />${CONTACT.website}<br />The viewer can send the carpet name, the Reel, or a screenshot—never an inventory code.</p><p><a href="${ctaPath}" target="_blank" download="hosseintalab-universal-reel-cta.png">Open / download universal CTA PNG ↗</a></p></div>
               </article>
               <div class="copy-panel caption-panel"><label>5 · Bilingual caption + five focused hashtags</label><p id="${captionId}" dir="auto">${escapeHtml(caption).replace(/\n/g, "<br />")}</p><button class="copy-button" type="button" data-copy-target="${captionId}">Copy</button></div>
               <div class="microcopy-grid">
@@ -2919,34 +3368,9 @@ ${pack.hashtags}`;
           </section>`;
       };
 
-      const shotCard = (product, shot, shotIndex) => {
-        const taskId = `${product.sku}-${shot.kind}`;
-        const sourcePath = `${PROJECT_ROOT}/public${shot.source}`;
-        const promptId = `prompt-${product.slug}-${shot.kind}`;
-        const referencePromptId = `reference-${product.slug}-${shot.kind}`;
-        const isDetail = shot.kind === "detail";
-        const prompt = buildPrompt(product, shot);
-        const referencePrompt = isDetail ? buildMultiReferencePrompt(product, shot) : "";
-        return `
-          <article class="shot ${isDetail ? "is-truth-safe" : ""}">
-            <div class="shot-visual">
-              <img src="${IMAGE_BASE}${shot.source}" alt="${escapeHtml(product.name)} — ${escapeHtml(shot.title)} source image" loading="lazy" />
-              <span class="shot-number">SHOT ${String.fromCharCode(65 + shotIndex)}${isDetail ? " · REAL PHOTO EDIT" : " · HIGGSFIELD"}</span>
-            </div>
-            <div class="shot-body">
-              <div class="shot-top"><h3>${escapeHtml(shot.title)}</h3><span class="motion-tag">${isDetail ? "Editor keyframes" : escapeHtml(shot.motion)}</span></div>
-              <p class="source-file">Input: public${escapeHtml(shot.source)}<br />Output: ${escapeHtml(outputName(product, shotIndex))}</p>
-              <div class="source-actions"><a href="${IMAGE_BASE}${shot.source}" target="_blank">Open source image ↗</a><button class="copy-path button" type="button" data-copy-text="${escapeHtml(sourcePath)}">Copy local path</button></div>
-              ${isDetail ? '<p class="shot-mode-note">Do not upload this crop as a Higgsfield Start Frame. Build Shot C from its real pixels in Edits or CapCut.</p>' : ""}
-              <div class="prompt-box"><p id="${promptId}">${escapeHtml(prompt)}</p><button class="copy-button" type="button" data-copy-target="${promptId}">Copy</button></div>
-              ${isDetail ? `<details class="reference-test"><summary>Optional experiment · full + detail in multi-reference mode</summary><div class="prompt-box"><p id="${referencePromptId}">${escapeHtml(referencePrompt)}</p><button class="copy-button" type="button" data-copy-target="${referencePromptId}">Copy</button></div></details>` : ""}
-              <div class="approval"><input id="task-${product.slug}-${shot.kind}" type="checkbox" data-task-id="${taskId}" ${progressState[taskId] ? "checked" : ""} /><label for="task-${product.slug}-${shot.kind}">${isDetail ? "Four-second editor clip uses only real detail pixels; no generative fill or invented pattern." : "Final Higgsfield clip is faithful, approved, downloaded, and renamed."}</label></div>
-            </div>
-          </article>`;
-      };
-
       const productCard = (product, index) => {
-        const completed = product.shots.filter((shot) => progressState[`${product.sku}-${shot.kind}`]).length;
+        const library = promptLibrary(product);
+        const completed = library.filter((item) => progressState[`${product.sku}-${item.id}`]).length;
         const searchText = `${product.sku} ${product.slug} ${product.name} ${product.origin} ${product.pattern}`.toLowerCase();
         return `
           <details class="product" data-product="${product.sku}" data-search="${escapeHtml(searchText)}" ${index === 0 ? "open" : ""}>
@@ -2960,14 +3384,13 @@ ${pack.hashtags}`;
                 <span class="meta-line"><b>Dimensions</b><span dir="rtl">${escapeHtml(product.dimensions)}</span></span>
                 <span class="meta-line"><b>Age</b><span dir="rtl">${escapeHtml(product.age)}</span></span>
               </span>
-              <span class="product-status"><span class="status-pill ${completed === 3 ? "is-complete" : ""}" data-product-status>${completed}/3 clips</span><span class="chevron">+</span></span>
+              <span class="product-status"><span class="status-pill ${completed === library.length ? "is-complete" : ""}" data-product-status>${completed}/${library.length} prompts</span><span class="chevron">+</span></span>
             </summary>
             <div class="product-body">
-              <div class="shot-intro"><p><b>${escapeHtml(product.price)}</b> · Generate Shot A and B in Higgsfield. Build Shot C from the real detail still in Edits/CapCut. Then assemble all three with music and bilingual text.</p><button class="button copy-all" type="button" data-copy-product="${product.sku}">Copy complete shot recipe</button></div>
-              ${viralKit(product)}
+              <div class="shot-intro"><p><b>${escapeHtml(product.price)}</b> · Upload all three anchors together, choose one complete-film direction, and generate several variations. Each prompt allows creative people and settings while locking the exact carpet.</p><button class="button copy-all" type="button" data-copy-product="${product.sku}">Copy all 18 prompts</button></div>
+              ${multiReferenceStudio(product)}
               ${reelKit(product)}
-              <div class="shots">${product.shots.map((shot, shotIndex) => shotCard(product, shot, shotIndex)).join("")}</div>
-              <div class="notes"><label for="notes-${product.slug}">Model / take notes</label><textarea id="notes-${product.slug}" data-notes="${product.sku}" placeholder="Example: Seedance Fast · Take 2 approved · Take 1 changed fringe…">${escapeHtml(notesState[product.sku] || "")}</textarea></div>
+              <div class="notes"><label for="notes-${product.slug}">Model / seed / concept / audio / virality notes</label><textarea id="notes-${product.slug}" data-notes="${product.sku}" placeholder="Example: Storm Pavilion · Take B · native rain + frame drum matched both cuts · Hook 61 · Hold 94 · one-person focus worked · border stayed accurate…">${escapeHtml(notesState[product.sku] || "")}</textarea></div>
             </div>
           </details>`;
       };
@@ -3006,7 +3429,7 @@ ${pack.hashtags}`;
         const tasks = [...document.querySelectorAll("[data-task-id]")];
         const complete = tasks.filter((input) => input.checked).length;
         const percent = Math.round((complete / tasks.length) * 100);
-        document.getElementById("progress-label").textContent = `${complete} of ${tasks.length} clips approved`;
+        document.getElementById("progress-label").textContent = `${complete} of ${tasks.length} prompt tests completed`;
         document.getElementById("progress-percent").textContent = `${percent}%`;
         document.getElementById("progress-bar").style.width = `${percent}%`;
 
@@ -3014,8 +3437,8 @@ ${pack.hashtags}`;
           const productTasks = [...productElement.querySelectorAll("[data-task-id]")];
           const productComplete = productTasks.filter((input) => input.checked).length;
           const status = productElement.querySelector("[data-product-status]");
-          status.textContent = `${productComplete}/3 clips`;
-          status.classList.toggle("is-complete", productComplete === 3);
+          status.textContent = `${productComplete}/${productTasks.length} prompts`;
+          status.classList.toggle("is-complete", productComplete === productTasks.length);
         });
         applyFilters();
       };
@@ -3044,7 +3467,7 @@ ${pack.hashtags}`;
         const copyAll = event.target.closest("[data-copy-product]");
         if (copyAll) {
           const product = PRODUCTS.find((candidate) => candidate.sku === copyAll.dataset.copyProduct);
-          const bundle = product.shots.map((shot, index) => `${shot.kind === "detail" ? "EDITOR RECIPE" : "HIGGSFIELD PROMPT"} · SHOT ${String.fromCharCode(65 + index)} — ${shot.title}\nSOURCE: ${PROJECT_ROOT}/public${shot.source}\nOUTPUT: ${outputName(product, index)}\n\n${buildPrompt(product, shot)}`).join("\n\n————————————\n\n");
+          const bundle = promptLibrary(product).map((item, index) => `${String(index + 1).padStart(2, "0")} · ${item.mode.toUpperCase()} · ${item.title}\n${item.description}\n\n${item.prompt}`).join("\n\n————————————\n\n");
           copyText(bundle);
         }
 
@@ -3071,7 +3494,7 @@ ${pack.hashtags}`;
       document.getElementById("close-all").addEventListener("click", () => document.querySelectorAll(".product").forEach((product) => { product.open = false; }));
       document.getElementById("print-button").addEventListener("click", () => window.print());
       document.getElementById("reset-button").addEventListener("click", () => {
-        if (!window.confirm("Reset all approved clips and notes?")) return;
+        if (!window.confirm("Reset all completed prompt tests and notes?")) return;
         localStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(NOTES_KEY);
         document.querySelectorAll("[data-task-id]").forEach((input) => { input.checked = false; });

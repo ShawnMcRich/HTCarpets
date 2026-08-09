@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "images:frontals": "node scripts/optimize_frontals.mjs",
     "preview": "vite preview",
     "check": "tsc --noEmit"
   },
@@ -22,6 +23,7 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
+    "sharp": "^0.35.3",
     "typescript": "5.9.3",
     "vite": "8.1.5"
   },

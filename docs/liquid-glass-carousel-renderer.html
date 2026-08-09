@@ -16,6 +16,12 @@
         font-weight: 300 700;
       }
 
+      @font-face {
+        font-family: "Vazirmatn Latin";
+        src: url("../node_modules/@fontsource-variable/vazirmatn/files/vazirmatn-latin-wght-normal.woff2") format("woff2");
+        font-weight: 100 900;
+      }
+
       :root {
         --gold: #d6a85d;
         --gold-pale: #ead6ad;
@@ -170,6 +176,15 @@
         line-height: 1.12;
       }
 
+      .glass-card strong.is-numeric {
+        font-family: "Vazirmatn Latin", Arial, sans-serif;
+        font-size: 22px;
+        font-feature-settings: "lnum" 1, "tnum" 1;
+        font-variant-numeric: lining-nums tabular-nums;
+        font-weight: 540;
+        letter-spacing: 0.01em;
+      }
+
       .edition {
         position: absolute;
         z-index: 5;
@@ -196,26 +211,26 @@
 
     <script>
       const CARPETS = {
-        "HT-KSH-0001": { slug: "ht-ksh-0001", facts: [["REFERENCE", "HT-KSH-0001"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "138 × 217 CM"], ["MATERIAL", "WOOL & SILK"], ["AGE", "APPROX. 60–80 YEARS"]] },
-        "HT-KHY-0001": { slug: "ht-khy-0001", facts: [["REFERENCE", "HT-KHY-0001"], ["ORIGIN", "KHOY, WEST AZERBAIJAN"], ["DIMENSIONS", "135 × 194 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 60–80 YEARS"]] },
-        "HT-KRM-0001": { slug: "ht-krm-0001", facts: [["REFERENCE", "HT-KRM-0001"], ["ORIGIN", "KERMAN, IRAN"], ["DESIGN", "MILLEFLEURS"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 70–80 YEARS"]] },
-        "HT-NHV-0001": { slug: "ht-nhv-0001", facts: [["REFERENCE", "HT-NHV-0001"], ["ORIGIN", "NAHAVAND, HAMADAN"], ["DIMENSIONS", "135 × 190 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 120 YEARS"]] },
-        "HT-RVR-0001": { slug: "ht-rvr-0001", facts: [["REFERENCE", "HT-RVR-0001"], ["ORIGIN", "RAVAR, KERMAN"], ["DIMENSIONS", "136 × 213 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 110–140 YEARS"]] },
-        "HT-QOM-0001": { slug: "ht-qom-0001", facts: [["REFERENCE", "HT-QOM-0001"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "165 × 255 CM"], ["MATERIAL", "SILK"], ["AGE", "APPROX. 40 YEARS"]] },
-        "HT-QOM-0002": { slug: "ht-qom-0002", facts: [["REFERENCE", "HT-QOM-0002"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "142 × 215 CM"], ["MATERIAL", "SILK DETAILS"], ["AGE", "APPROX. 40 YEARS"]] },
-        "HT-QOM-0003": { slug: "ht-qom-0003", facts: [["REFERENCE", "HT-QOM-0003"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "137 × 212 CM"], ["DESIGN", "MEDALLION & CORNER"], ["AGE", "APPROX. 60 YEARS"]] },
-        "HT-KSH-0002": { slug: "ht-ksh-0002", facts: [["REFERENCE", "HT-KSH-0002"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "135 × 207 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 80–100 YEARS"]] },
-        "HT-ISF-0001": { slug: "ht-isf-0001", facts: [["REFERENCE", "HT-ISF-0001"], ["ORIGIN", "ISFAHAN, IRAN"], ["DIMENSIONS", "154 × 242 CM"], ["MATERIAL", "KORK & SILK · SILK FOUNDATION"], ["AGE", "APPROX. 50–60 YEARS"]] },
-        "HT-ISF-0002": { slug: "ht-isf-0002", facts: [["REFERENCE", "HT-ISF-0002"], ["ORIGIN", "ISFAHAN, IRAN"], ["DIMENSIONS", "153 × 233 CM"], ["MATERIAL", "KORK & SILK · SILK FOUNDATION"], ["DESIGN", "HUNTING SCENE"]] },
-        "HT-SRJ-0001": { slug: "ht-srj-0001", facts: [["REFERENCE", "HT-SRJ-0001"], ["ORIGIN", "SIRJAN, IRAN"], ["DIMENSIONS", "118 × 163 CM"], ["DESIGN", "TRIBAL DESIGN"], ["AGE", "APPROX. 40–50 YEARS"]] },
-        "HT-SNH-0001": { slug: "ht-snh-0001", facts: [["REFERENCE", "HT-SNH-0001"], ["ORIGIN", "SANANDAJ, KURDISTAN"], ["DIMENSIONS", "114 × 168 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 60 YEARS"]] },
-        "HT-NJF-0001": { slug: "ht-njf-0001", facts: [["REFERENCE", "HT-NJF-0001"], ["ORIGIN", "NAJAFABAD, IRAN"], ["DIMENSIONS", "104 × 162 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 50 YEARS"]] },
-        "HT-BJR-0001": { slug: "ht-bjr-0001", facts: [["REFERENCE", "HT-BJR-0001"], ["ORIGIN", "BIJAR / JOZAN"], ["DIMENSIONS", "114 × 153 CM"], ["DESIGN", "MEDALLION & CORNER"]] },
-        "HT-KSH-0003": { slug: "ht-ksh-0003", facts: [["REFERENCE", "HT-KSH-0003"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "131 × 212 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 60–70 YEARS"]] },
-        "HT-QOM-0004": { slug: "ht-qom-0004", facts: [["REFERENCE", "HT-QOM-0004"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "140 × 212 CM"], ["MATERIAL", "KORK WOOL"], ["AGE", "APPROX. 60 YEARS"]] },
-        "HT-SHB-0001": { slug: "ht-shb-0001", facts: [["REFERENCE", "HT-SHB-0001"], ["ORIGIN", "SHAHR BABAK / SIRJAN"], ["DESIGN", "MOHARRAMAT STRIPES"], ["AGE", "APPROX. 90–110 YEARS"]] },
-        "HT-TBZ-0001": { slug: "ht-tbz-0001", facts: [["REFERENCE", "HT-TBZ-0001"], ["ORIGIN", "TABRIZ, IRAN"], ["DIMENSIONS", "136 × 192 CM"], ["MATERIAL", "KORK WOOL"], ["AGE", "APPROX. 70–90 YEARS"]] },
-        "HT-KSH-0004": { slug: "ht-ksh-0004", facts: [["REFERENCE", "HT-KSH-0004"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "106 × 156 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 70 YEARS"]] }
+        "HT-KSH-0001": { slug: "ht-ksh-0001", facts: [["CARPET", "KASHAN TREE OF LIFE"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "138 × 217 CM"], ["MATERIAL", "WOOL & SILK"], ["AGE", "APPROX. 60–80 YEARS"]] },
+        "HT-KHY-0001": { slug: "ht-khy-0001", facts: [["CARPET", "KHOY VASE CARPET"], ["ORIGIN", "KHOY, WEST AZERBAIJAN"], ["DIMENSIONS", "135 × 194 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 60–80 YEARS"]] },
+        "HT-KRM-0001": { slug: "ht-krm-0001", facts: [["CARPET", "KERMAN MILLEFLEURS"], ["ORIGIN", "KERMAN, IRAN"], ["DESIGN", "MILLEFLEURS"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 70–80 YEARS"]] },
+        "HT-NHV-0001": { slug: "ht-nhv-0001", facts: [["CARPET", "NUR ALI SHAH PORTRAIT"], ["ORIGIN", "NAHAVAND, HAMADAN"], ["DIMENSIONS", "135 × 190 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 120 YEARS"]] },
+        "HT-RVR-0001": { slug: "ht-rvr-0001", facts: [["CARPET", "RAVAR TREE CARPET"], ["ORIGIN", "RAVAR, KERMAN"], ["DIMENSIONS", "136 × 213 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 110–140 YEARS"]] },
+        "HT-QOM-0001": { slug: "ht-qom-0001", facts: [["CARPET", "QOM HUNTING SCENE"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "165 × 255 CM"], ["MATERIAL", "SILK"], ["AGE", "APPROX. 40 YEARS"]] },
+        "HT-QOM-0002": { slug: "ht-qom-0002", facts: [["CARPET", "QOM LAPIS HUNTING"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "142 × 215 CM"], ["MATERIAL", "SILK DETAILS"], ["AGE", "APPROX. 40 YEARS"]] },
+        "HT-QOM-0003": { slug: "ht-qom-0003", facts: [["CARPET", "QOM MEDALLION"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "137 × 212 CM"], ["DESIGN", "MEDALLION & CORNER"], ["AGE", "APPROX. 60 YEARS"]] },
+        "HT-KSH-0002": { slug: "ht-ksh-0002", facts: [["CARPET", "KASHAN OPEN-FIELD"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "135 × 207 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 80–100 YEARS"]] },
+        "HT-ISF-0001": { slug: "ht-isf-0001", facts: [["CARPET", "ISFAHAN MEDALLION"], ["ORIGIN", "ISFAHAN, IRAN"], ["DIMENSIONS", "154 × 242 CM"], ["MATERIAL", "KORK & SILK · SILK FOUNDATION"], ["AGE", "APPROX. 50–60 YEARS"]] },
+        "HT-ISF-0002": { slug: "ht-isf-0002", facts: [["CARPET", "ISFAHAN HUNTING SCENE"], ["ORIGIN", "ISFAHAN, IRAN"], ["DIMENSIONS", "153 × 233 CM"], ["MATERIAL", "KORK & SILK · SILK FOUNDATION"], ["DESIGN", "HUNTING SCENE"]] },
+        "HT-SRJ-0001": { slug: "ht-srj-0001", facts: [["CARPET", "SIRJAN TRIBAL CARPET"], ["ORIGIN", "SIRJAN, IRAN"], ["DIMENSIONS", "118 × 163 CM"], ["DESIGN", "TRIBAL DESIGN"], ["AGE", "APPROX. 40–50 YEARS"]] },
+        "HT-SNH-0001": { slug: "ht-snh-0001", facts: [["CARPET", "SANANDAJ THREE-MEDALLION"], ["ORIGIN", "SANANDAJ, KURDISTAN"], ["DIMENSIONS", "114 × 168 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 60 YEARS"]] },
+        "HT-NJF-0001": { slug: "ht-njf-0001", facts: [["CARPET", "NAJAFABAD MEDALLION"], ["ORIGIN", "NAJAFABAD, IRAN"], ["DIMENSIONS", "104 × 162 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 50 YEARS"]] },
+        "HT-BJR-0001": { slug: "ht-bjr-0001", facts: [["CARPET", "BIJAR / JOZAN MEDALLION"], ["ORIGIN", "BIJAR / JOZAN"], ["DIMENSIONS", "114 × 153 CM"], ["DESIGN", "MEDALLION & CORNER"]] },
+        "HT-KSH-0003": { slug: "ht-ksh-0003", facts: [["CARPET", "KASHAN MEDALLION"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "131 × 212 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 60–70 YEARS"]] },
+        "HT-QOM-0004": { slug: "ht-qom-0004", facts: [["CARPET", "QOM LAMP MIHRAB"], ["ORIGIN", "QOM, IRAN"], ["DIMENSIONS", "140 × 212 CM"], ["MATERIAL", "KORK WOOL"], ["AGE", "APPROX. 60 YEARS"]] },
+        "HT-SHB-0001": { slug: "ht-shb-0001", facts: [["CARPET", "SHAHR BABAK MOHARRAMAT"], ["ORIGIN", "SHAHR BABAK / SIRJAN"], ["DESIGN", "MOHARRAMAT STRIPES"], ["AGE", "APPROX. 90–110 YEARS"]] },
+        "HT-TBZ-0001": { slug: "ht-tbz-0001", facts: [["CARPET", "TABRIZ 60-RAJ MEDALLION"], ["ORIGIN", "TABRIZ, IRAN"], ["DIMENSIONS", "136 × 192 CM"], ["MATERIAL", "KORK WOOL"], ["AGE", "APPROX. 70–90 YEARS"]] },
+        "HT-KSH-0004": { slug: "ht-ksh-0004", facts: [["CARPET", "KASHAN PICTORIAL LUMINARIES"], ["ORIGIN", "KASHAN, IRAN"], ["DIMENSIONS", "106 × 156 CM"], ["MATERIAL", "WOOL"], ["AGE", "APPROX. 70 YEARS"]] }
       };
 
       const requested = new URLSearchParams(location.search).get("sku") || "HT-KSH-0001";
@@ -228,7 +243,7 @@
       document.getElementById("facts").innerHTML = carpet.facts.map(([label, value]) => `
         <article class="glass-card">
           <small>${label}</small>
-          <strong class="${value.length > 18 ? "is-long" : ""}">${value}</strong>
+          <strong class="${value.length > 18 ? "is-long" : ""} ${/\d/.test(value) ? "is-numeric" : ""}">${value}</strong>
         </article>
       `).join("");
       document.title = `${sku} Liquid Glass Carousel Slide`;

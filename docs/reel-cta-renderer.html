@@ -12,6 +12,12 @@
       }
 
       @font-face {
+        font-family: "Vazirmatn Latin";
+        src: url("../node_modules/@fontsource-variable/vazirmatn/files/vazirmatn-latin-wght-normal.woff2") format("woff2");
+        font-weight: 100 900;
+      }
+
+      @font-face {
         font-family: "Cormorant";
         src: url("../public/brand/fonts/cormorant-latin-variable.woff2") format("woff2");
         font-weight: 300 700;
@@ -86,7 +92,7 @@
         width: 760px;
         max-width: 100%;
         height: auto;
-        margin: 0 auto 132px;
+        margin: 0 auto 116px;
       }
 
       .rule {
@@ -99,7 +105,7 @@
       h1 {
         margin: 0;
         color: var(--paper);
-        font-size: 56px;
+        font-size: 58px;
         font-weight: 520;
         letter-spacing: -0.035em;
         line-height: 1.55;
@@ -109,30 +115,35 @@
         margin: 12px 0 0;
         color: rgba(255, 255, 255, 0.57);
         font-family: "Cormorant", Georgia, serif;
-        font-size: 33px;
+        font-size: 32px;
+        font-feature-settings: "lnum" 1, "pnum" 1;
+        font-variant-numeric: lining-nums proportional-nums;
         font-weight: 520;
         letter-spacing: 0.025em;
       }
 
-      .sku-wrap {
-        margin: 76px auto 82px;
+      .route-note {
+        margin: 78px auto 74px;
       }
 
-      .sku-label {
+      .route-note strong,
+      .route-note span {
         display: block;
-        color: rgba(255, 255, 255, 0.43);
-        font-family: Arial, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.18em;
       }
 
-      .sku {
-        display: block;
-        margin-top: 10px;
+      .route-note strong {
         color: var(--gold-pale);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 48px;
+        font-size: 34px;
+        font-weight: 560;
+      }
+
+      .route-note span {
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.52);
+        font-family: "Vazirmatn Latin", Arial, sans-serif;
+        font-size: 21px;
+        font-feature-settings: "lnum" 1, "pnum" 1;
+        font-variant-numeric: lining-nums proportional-nums;
         font-weight: 600;
         letter-spacing: 0.08em;
       }
@@ -165,10 +176,19 @@
       .contact strong {
         margin-top: 9px;
         color: var(--paper);
-        font-family: "Cormorant", Georgia, serif;
-        font-size: 31px;
+        font-family: "Vazirmatn Latin", Arial, sans-serif;
+        font-size: 27px;
+        font-feature-settings: "lnum" 1, "tnum" 1;
+        font-variant-numeric: lining-nums tabular-nums;
         font-weight: 600;
-        letter-spacing: 0.035em;
+        letter-spacing: 0.015em;
+        white-space: nowrap;
+      }
+
+      .contact strong.handle {
+        font-size: 24px;
+        font-variant-numeric: normal;
+        letter-spacing: 0;
       }
 
       .website {
@@ -188,24 +208,18 @@
       <div class="content">
         <img class="logo" id="logo" src="../public/brand/exports/hosseintalab-lockup-horizontal-reversed.svg" alt="Hosseintalab" />
         <div class="rule" aria-hidden="true"></div>
-        <h1>کد فرش را در واتساپ بفرستید</h1>
-        <p class="english" dir="ltr">Send the carpet code on WhatsApp</p>
-        <div class="sku-wrap" dir="ltr">
-          <span class="sku-label">CARPET REFERENCE</span>
-          <strong class="sku" id="sku"></strong>
+        <h1>نام فرش یا اسکرین‌شات را بفرستید</h1>
+        <p class="english" dir="ltr">Send the carpet name or a screenshot</p>
+        <div class="route-note">
+          <strong>دایرکت اینستاگرام یا واتساپ</strong>
+          <span dir="ltr">INSTAGRAM DM OR WHATSAPP</span>
         </div>
         <div class="contacts" dir="ltr">
+          <div class="contact"><span>INSTAGRAM DM</span><strong class="handle">@hosseintalab.carpets</strong></div>
           <div class="contact"><span>WHATSAPP</span><strong>+46 70 452 56 46</strong></div>
-          <div class="contact"><span>CALL</span><strong>+98 938 787 7818</strong></div>
         </div>
         <p class="website" dir="ltr">hosseintalab.ir</p>
       </div>
     </main>
-    <script>
-      const requested = new URLSearchParams(location.search).get("sku") || "HT-KSH-0001";
-      const sku = /^HT-[A-Z]{3}-\d{4}$/.test(requested) ? requested : "HT-KSH-0001";
-      document.getElementById("sku").textContent = sku;
-      document.title = `${sku} Reel CTA`;
-    </script>
   </body>
 </html>

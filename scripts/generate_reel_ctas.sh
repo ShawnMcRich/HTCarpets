@@ -80,4 +80,7 @@ for sku in "${SKUS[@]}"; do
   echo "Generated ${slug}-reel-cta.png"
 done
 
+canonical_slug="$(tr '[:upper:]' '[:lower:]' <<<"${SKUS[0]}")"
+cp "${OUTPUT_DIR}/${canonical_slug}-reel-cta.png" "${OUTPUT_DIR}/hosseintalab-universal-reel-cta.png"
+echo "Generated hosseintalab-universal-reel-cta.png"
 echo "Generated ${#SKUS[@]} Reel CTA cards in ${OUTPUT_DIR}"

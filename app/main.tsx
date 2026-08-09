@@ -1,15 +1,17 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { getCatalogProduct } from "./catalog";
-import Home from "./page";
-import ProductPage from "./product-page";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { resolveRoute } from "./router";
+import { applySeo } from "./seo";
 import "./globals.css";
 
-const productMatch = window.location.pathname.match(/^\/carpets\/([^/]+)\/?$/);
-const product = productMatch ? getCatalogProduct(productMatch[1]) : undefined;
+const route = resolveRoute(window.location.pathname);
+const rootElement = document.getElementById("root")!;
+const app = <StrictMode>{route.element}</StrictMode>;
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    {product ? <ProductPage product={product} /> : <Home />}
-  </StrictMode>,
-);
+applySeo(route.seo);
+
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(rootElement, app);
+} else {
+  createRoot(rootElement).render(app);
+}

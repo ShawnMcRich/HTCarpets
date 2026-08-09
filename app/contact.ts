@@ -13,7 +13,7 @@ export const contact = {
 } as const;
 
 export function whatsappProductHref(product: { name: string; slug: string }) {
-  const productUrl = `${contact.websiteHref}/carpets/${product.slug}`;
+  const productUrl = `${contact.websiteHref}/carpets/${product.slug}/`;
   const message = `سلام، درباره‌ی فرش «${product.name}» پیام می‌دهم.\n${productUrl}`;
   return `${contact.whatsappHref}?text=${encodeURIComponent(message)}`;
 }

@@ -129,6 +129,8 @@
         color: var(--gold-pale);
         font-family: Georgia, serif;
         font-size: 21px;
+        font-feature-settings: "lnum" 1, "pnum" 1;
+        font-variant-numeric: lining-nums proportional-nums;
         font-weight: 400;
         letter-spacing: 0.095em;
         text-overflow: ellipsis;
@@ -196,8 +198,8 @@
 
       .origin-fa,
       .origin-en,
-      .sku-label,
-      .sku {
+      .collection-label,
+      .collection-value {
         display: block;
       }
 
@@ -218,21 +220,24 @@
         text-transform: uppercase;
       }
 
-      .reference { text-align: right; }
+      .collection { text-align: right; }
 
-      .sku-label {
+      .collection-label {
         color: rgba(255, 255, 255, 0.44);
         font-size: 11px;
         font-weight: 800;
         letter-spacing: 0.16em;
       }
 
-      .sku {
+      .collection-value {
         margin-top: 5px;
         color: var(--gold-pale);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 23px;
-        letter-spacing: 0.06em;
+        font-family: Arial, sans-serif;
+        font-size: 19px;
+        font-feature-settings: "lnum" 1, "pnum" 1;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-weight: 700;
+        letter-spacing: 0.11em;
       }
 
       .site {
@@ -261,7 +266,7 @@
       <figure class="product-stage"><img id="carpet" alt="" /></figure>
       <footer class="footer-meta">
         <div><span class="origin-fa" id="origin-fa" dir="rtl"></span><span class="origin-en" id="origin-en"></span></div>
-        <div class="reference"><span class="sku-label">REFERENCE</span><span class="sku" id="sku"></span></div>
+        <div class="collection"><span class="collection-label">HANDWOVEN</span><span class="collection-value">ONE OF ONE</span></div>
       </footer>
       <div class="site">HOSSEINTALAB.IR</div>
     </main>
@@ -299,9 +304,8 @@
       document.getElementById("title-en").textContent = enName;
       document.getElementById("origin-fa").textContent = faOrigin;
       document.getElementById("origin-en").textContent = enOrigin;
-      document.getElementById("sku").textContent = sku;
       document.getElementById("carpet").src = `../public/media/products/${slug}/full-frontal.${extension}`;
-      document.getElementById("carpet").alt = `${faName} · ${sku}`;
+      document.getElementById("carpet").alt = faName;
       document.title = `${sku} Reel Cover`;
     </script>
   </body>

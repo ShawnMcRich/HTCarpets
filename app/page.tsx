@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { catalogProducts } from "./catalog";
 import {
   collectionLabel,
@@ -9,6 +9,7 @@ import {
   productSearchText,
 } from "./catalog-helpers";
 import { contact } from "./contact";
+import { SiteFooter, SiteHeader } from "./site-frame";
 
 type CollectionFilter = "all" | "home" | "antique";
 type SortOrder = "curated" | "price-asc" | "price-desc";
@@ -38,10 +39,6 @@ export default function Home() {
   const [originFilter, setOriginFilter] = useState("all");
   const [collectionQuery, setCollectionQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<SortOrder>("curated");
-
-  useEffect(() => {
-    document.title = "فرش حسین‌طلب | مجموعه‌ی فرش‌های دستباف ایرانی";
-  }, []);
 
   const origins = useMemo(
     () =>
@@ -77,8 +74,8 @@ export default function Home() {
     setSortOrder("curated");
   };
 
-  const heroProduct = catalogProducts.find((product) => product.sku === "HT-QOM-0003")!;
-  const heroImage = getContextImage(heroProduct)!;
+  const heroProduct = catalogProducts.find((product) => product.sku === "HT-KSH-0004")!;
+  const heroImage = heroProduct.images[0];
 
   return (
     <>
@@ -86,38 +83,7 @@ export default function Home() {
         رفتن به محتوای اصلی
       </a>
 
-      <div className="service-line">
-        <div className="shell service-line__inner">
-          <p>بازار فرش تهران · از ۱۲۹۰ هجری شمسی</p>
-          <p>هر فرش با نام، تصاویر همان تخته و اطلاعات ثبت‌شده</p>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="shell site-header__inner">
-          <a className="site-brand" href="#top" aria-label="فرش حسین‌طلب؛ صفحه‌ی نخست">
-            <picture>
-              <source media="(max-width: 580px)" srcSet="/brand/exports/hosseintalab-icon-192.png" />
-              <img
-                src="/brand/exports/hosseintalab-lockup-horizontal.svg"
-                alt="Hosseintalab — Persian Handwoven Carpets — Est. 1290 SH"
-                width="1600"
-                height="300"
-              />
-            </picture>
-          </a>
-          <nav className="main-nav" aria-label="راهنمای اصلی">
-            <a href="#collection">فرش‌های موجود</a>
-            <a href="#places">فرش و جغرافیا</a>
-            <a href="#buying-guide">روش انتخاب</a>
-            <a href="#heritage">درباره‌ی حسین‌طلب</a>
-            <a href="#contact">تماس</a>
-          </nav>
-          <a className="header-cta" href="#collection">
-            دیدن مجموعه
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="main-content">
         <section id="top" className="hero shell">
@@ -131,8 +97,8 @@ export default function Home() {
             </div>
             <div className="hero__copy">
               <p className="hero__lead">
-                نمای کامل، جزئیات بافت و تصویر محیطیِ همان تخته را کنار اطلاعات روشن آن ببینید؛
-                بی‌برش، بی‌اغراق و آماده‌ی مقایسه.
+                نمای کامل و جزئیات واقعی همان تخته را کنار اطلاعات روشن آن ببینید؛ تصویرهای
+                محیطی فقط برای تصور حضور فرش در فضا هستند و جداگانه معرفی می‌شوند.
               </p>
               <div className="hero__actions">
                 <a className="button button--primary" href="#collection">
@@ -146,21 +112,21 @@ export default function Home() {
           </div>
 
           <figure className="hero__media">
-            <a href={`/carpets/${heroProduct.slug}`} aria-label={`مشاهده‌ی ${heroProduct.name}`}>
+            <a href={`/carpets/${heroProduct.slug}/`} aria-label={`مشاهده‌ی ${heroProduct.name}`}>
               <img
                 src={heroImage.src}
                 alt={heroImage.alt}
-                width="1536"
-                height="1024"
+                width="1036"
+                height="1519"
                 fetchPriority="high"
               />
             </a>
             <figcaption>
               <div>
-                <span>قم · نمای محیطی همان تخته</span>
+                <span>نمای کامل و واقعی همان تخته</span>
                 <strong>{heroProduct.name}</strong>
               </div>
-              <a href={`/carpets/${heroProduct.slug}`}>دیدن تصاویر و شناسنامه</a>
+              <a href={`/carpets/${heroProduct.slug}/`}>دیدن تصاویر و شناسنامه</a>
             </figcaption>
           </figure>
         </section>
@@ -171,7 +137,7 @@ export default function Home() {
               <strong>۰۱</strong>
               <div>
                 <h2>تصاویرِ همان تخته</h2>
-                <p>نمای کامل، جزئیات و تصویر محیطیِ همان فرش را پیش از تصمیم کنار هم ببینید.</p>
+                <p>نمای کامل و جزئیات واقعی همان فرش را پیش از تصمیم کنار هم ببینید.</p>
               </div>
             </article>
             <article>
@@ -199,22 +165,22 @@ export default function Home() {
                 <h2>هر تخته را در نسبت با جایی که از آن آمده ببینید.</h2>
               </div>
               <p>
-                تصاویر محیطی بخشی از روایت محصول‌اند: نه پس‌زمینه‌ی تزئینی، بلکه راهی برای دیدن
-                رنگ، مقیاس و شخصیت فرش در یک قاب ایرانی.
+                تصویرهای این بخش بازسازی محیطی‌اند و برای تصور حضور فرش در یک قاب ایرانی ساخته
+                شده‌اند. برای بررسی دقیق رنگ، نسبت و وضعیت، تصاویر واقعی همان تخته را ملاک قرار دهید.
               </p>
             </div>
 
             <div className="place-grid">
               {contextStories.map(({ product, image }, index) => (
                 <figure className="place-card" key={product.sku}>
-                  <a className="place-card__image" href={`/carpets/${product.slug}`}>
-                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  <a className="place-card__image" href={`/carpets/${product.slug}/`}>
+                    <img src={image.src} alt={`تصویرسازی محیطی؛ ${image.alt}`} loading="lazy" decoding="async" />
                   </a>
                   <figcaption>
                     <span>{formatIndex(index + 1)}</span>
                     <div>
                       <p>{product.originName}</p>
-                      <a href={`/carpets/${product.slug}`}>{product.name}</a>
+                      <a href={`/carpets/${product.slug}/`}>{product.name}</a>
                     </div>
                   </figcaption>
                 </figure>
@@ -294,15 +260,15 @@ export default function Home() {
                 return (
                   <article className="product-card" key={product.sku}>
                     <div className="product-card__visual">
-                      <a className="product-card__frontal" href={`/carpets/${product.slug}`}>
+                      <a className="product-card__frontal" href={`/carpets/${product.slug}/`}>
                         <img src={product.image} alt={product.alt} loading="lazy" decoding="async" />
                       </a>
                       {contextImage && (
                         <figure className="product-card__context">
-                          <a href={`/carpets/${product.slug}`} tabIndex={-1}>
+                          <a href={`/carpets/${product.slug}/`} tabIndex={-1}>
                             <img src={contextImage.src} alt="" loading="lazy" decoding="async" />
                           </a>
-                          <figcaption>در {product.originName}</figcaption>
+                          <figcaption>تصویرسازی محیطی</figcaption>
                         </figure>
                       )}
                     </div>
@@ -312,14 +278,14 @@ export default function Home() {
                         <span>{formatIndex(index + 1)}</span>
                         <span>{collectionLabel(product)}</span>
                       </div>
-                      <h3><a href={`/carpets/${product.slug}`}>{product.name}</a></h3>
+                      <h3><a href={`/carpets/${product.slug}/`}>{product.name}</a></h3>
                       <p>{product.description}</p>
                       <dl>
                         <div><dt>محل بافت</dt><dd>{product.originName}</dd></div>
                         {isKnownValue(product.size) && <div><dt>ابعاد</dt><dd>{product.size}</dd></div>}
                         <div><dt>قیمت</dt><dd>{formatPrice(product)}</dd></div>
                       </dl>
-                      <a className="product-card__link" href={`/carpets/${product.slug}`}>
+                      <a className="product-card__link" href={`/carpets/${product.slug}/`}>
                         تصاویر و شناسنامه‌ی کامل
                       </a>
                     </div>
@@ -368,10 +334,10 @@ export default function Home() {
           <div className="shell heritage-section__grid">
             <div className="heritage-section__mark">
               <img
-                src="/brand/exports/hosseintalab-seal.svg"
-                alt="نشان حسین‌طلب؛ فرش دستباف ایرانی؛ تأسیس ۱۲۹۰ هجری شمسی"
-                width="900"
-                height="1000"
+                src="/brand/raster/hosseintalab-medallion-transparent.png"
+                alt="نشان تصویری حسین‌طلب"
+                width="608"
+                height="710"
                 loading="lazy"
               />
             </div>
@@ -379,9 +345,9 @@ export default function Home() {
               <p className="eyebrow">ریشه در بازار فرش تهران</p>
               <h2>اعتماد، پیش از فروشگاه آنلاین ساخته شده است.</h2>
               <p>
-                فعالیت خانواده‌ی حسین‌طلب از سال ۱۲۹۰ هجری شمسی در بازار فرش تهران آغاز شده
-                است. این فروشگاه قرار نیست آن تجربه را با ادعاهای پرزرق‌وبرق جایگزین کند؛ باید
-                شناخت فرش را به اطلاعات روشن، تصویر دقیق و انتخاب کم‌ریسک‌تر تبدیل کند.
+                حسین‌طلب یک کسب‌وکار خانوادگی در بازار فرش تهران است. این فروشگاه قرار نیست
+                تجربه‌ی بازار را با ادعاهای پرزرق‌وبرق جایگزین کند؛ باید شناخت فرش را به اطلاعات
+                روشن، تصویر دقیق و انتخاب کم‌ریسک‌تر تبدیل کند.
               </p>
               <a className="text-link" href="#collection">بازگشت به مجموعه‌ی موجود</a>
             </div>
@@ -426,37 +392,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="shell site-footer__top">
-          <img
-            src="/brand/exports/hosseintalab-lockup-horizontal-reversed.svg"
-            alt="Hosseintalab"
-            width="1600"
-            height="300"
-          />
-          <p>فرش دستباف ایرانی، با تصویر همان تخته و اطلاعاتی که بتوان بررسی کرد.</p>
-        </div>
-        <div className="shell site-footer__nav">
-          <a href="#collection">فرش‌های موجود</a>
-          <a href="#places">فرش و جغرافیا</a>
-          <a href="#buying-guide">روش انتخاب</a>
-          <a href="#heritage">درباره‌ی حسین‌طلب</a>
-          <a href="#contact">تماس</a>
-          <a href={contact.whatsappHref} target="_blank" rel="noreferrer" dir="ltr">
-            WhatsApp {contact.whatsappDisplay}
-          </a>
-          <a href={contact.instagramHref} target="_blank" rel="noreferrer" dir="ltr">
-            Instagram {contact.instagramDisplay}
-          </a>
-          <a href={contact.callHref} dir="ltr">Call {contact.callDisplay}</a>
-          <a href={contact.websiteHref} dir="ltr">{contact.website}</a>
-          <a href={contact.mapsHref} target="_blank" rel="noreferrer">{contact.address}</a>
-        </div>
-        <div className="shell site-footer__bottom">
-          <p>© ۱۴۰۵ حسین‌طلب</p>
-          <a href="#top">بازگشت به ابتدای صفحه</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

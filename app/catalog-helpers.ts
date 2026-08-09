@@ -50,9 +50,11 @@ export function collectionLabel(product: CatalogProduct) {
 }
 
 export function getContextImage(product: CatalogProduct): ProductImage | undefined {
-  return product.images.find((image) =>
-    contextMarkers.some((marker) => image.src.includes(marker)),
-  );
+  return product.images.find(isContextImage);
+}
+
+export function isContextImage(image: ProductImage) {
+  return contextMarkers.some((marker) => image.src.includes(marker));
 }
 
 export function getDetailImage(product: CatalogProduct): ProductImage | undefined {

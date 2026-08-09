@@ -1,0 +1,23 @@
+{
+  "name": "فرش حسین‌طلب",
+  "short_name": "حسین‌طلب",
+  "description": "فرش دستباف ایرانی با تصاویر، ابعاد، قیمت و اطلاعات هر تخته",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffdf8",
+  "theme_color": "#072a51",
+  "icons": [
+    {
+      "src": "/brand/exports/hosseintalab-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/exports/hosseintalab-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

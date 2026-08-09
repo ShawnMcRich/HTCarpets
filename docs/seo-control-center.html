@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مرکز کنترل سئوی حسین‌طلب</title>
+  <style>
+    @font-face{font-family:Vazir;src:url('../node_modules/@fontsource-variable/vazirmatn/files/vazirmatn-arabic-wght-normal.woff2') format('woff2');font-display:swap}
+    :root{--navy:#061f3b;--blue:#0b3969;--gold:#ba8d43;--paper:#f3eee5;--cream:#fffaf0;--ink:#172536;--muted:#68717a;--white:#fff;--line:rgba(23,37,54,.14);--green:#1d7257;--orange:#a85b1d}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Vazir,"Vazirmatn",Tahoma,sans-serif;line-height:1.85}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}.topbar{padding:12px 0;background:#031426;color:#d8c39d;font-size:12px}.topbar .wrap{display:flex;justify-content:space-between;gap:20px}.hero{position:relative;overflow:hidden;padding:90px 0 78px;background:var(--navy);color:white}.hero:before{position:absolute;inset:-40% -20% auto auto;width:620px;height:620px;border:1px solid rgba(186,141,67,.22);border-radius:50%;content:""}.hero:after{position:absolute;top:11%;left:-120px;width:360px;height:360px;border:1px solid rgba(255,255,255,.08);transform:rotate(45deg);content:""}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.4fr .6fr;gap:80px;align-items:end}.kicker{margin:0 0 18px;color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.08em}.hero h1{max-width:780px;margin:0;font-size:clamp(44px,7vw,86px);font-weight:430;letter-spacing:-.055em;line-height:1.14}.hero h1 em{display:block;color:#d7b475;font-style:normal}.hero-copy{max-width:460px;color:rgba(255,255,255,.68)}.status{display:inline-flex;margin-top:28px;padding:9px 14px;border:1px solid rgba(255,255,255,.22);color:#e6d4b3;font-size:12px}.nav{position:sticky;z-index:10;top:0;border-bottom:1px solid var(--line);background:rgba(255,250,240,.94);backdrop-filter:blur(14px)}.nav .wrap{display:flex;gap:28px;overflow:auto;padding:17px 0;white-space:nowrap;font-size:13px;font-weight:650}.nav a:hover{color:var(--gold)}section{padding:88px 0}.section-head{display:grid;grid-template-columns:1fr .7fr;gap:60px;align-items:end;margin-bottom:42px}.section-head h2{margin:8px 0 0;color:var(--navy);font-size:clamp(30px,4vw,52px);font-weight:460;letter-spacing:-.035em;line-height:1.3}.section-head>p{margin:0;color:var(--muted)}.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);background:var(--line)}.score{min-height:210px;padding:28px;background:white}.score span{color:var(--gold);font-size:12px}.score strong{display:block;margin-top:30px;color:var(--navy);font-size:38px;font-weight:520}.score p{margin:10px 0 0;color:var(--muted);font-size:13px}.done{background:var(--paper)}.done-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.done-card{position:relative;min-height:190px;padding:30px 68px 30px 30px;border:1px solid var(--line);background:white}.done-card:before{position:absolute;right:26px;top:32px;display:grid;width:26px;height:26px;place-items:center;border-radius:50%;background:var(--green);color:white;content:"✓";font-size:14px}.done-card h3{margin:0;color:var(--navy);font-size:19px}.done-card p{margin:12px 0 0;color:var(--muted);font-size:13px}.map{width:100%;border-collapse:collapse;border-top:2px solid var(--navy);background:white}.map th,.map td{padding:18px 16px;border-bottom:1px solid var(--line);vertical-align:top;text-align:right}.map th{color:var(--gold);font-size:11px}.map td{font-size:13px}.map td:first-child{color:var(--navy);font-weight:700}.pill{display:inline-block;margin:2px;padding:4px 9px;border-radius:999px;background:#edf1f5;color:var(--blue);font-size:11px}.pages{background:var(--navy);color:white}.pages .section-head h2{color:white}.pages .section-head>p{color:rgba(255,255,255,.62)}.page-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.page-card{min-height:230px;padding:28px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.035)}.page-card span{color:#d7b475;font-size:11px}.page-card strong{display:block;margin-top:32px;font-size:34px;font-weight:450}.page-card h3{margin:7px 0 0;font-size:18px}.page-card p{margin:12px 0 0;color:rgba(255,255,255,.62);font-size:12px}.launch-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.checklist,.warning{padding:34px;border:1px solid var(--line);background:white}.checklist h3,.warning h3{margin:0 0 20px;color:var(--navy);font-size:22px}.checklist ol{margin:0;padding-right:22px}.checklist li{padding:10px 4px;border-bottom:1px solid var(--line);font-size:13px}.checklist li::marker{color:var(--gold);font-weight:800}.warning{background:#fff4e8}.warning p{margin:0;color:#73512d}.timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.phase{min-height:255px;padding:28px;border-top:3px solid var(--gold);background:white;box-shadow:0 18px 44px rgba(6,31,59,.07)}.phase small{color:var(--gold)}.phase h3{margin:22px 0 12px;color:var(--navy);font-size:20px}.phase ul{margin:0;padding-right:18px;color:var(--muted);font-size:12px}.kpis{background:var(--paper)}.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.kpi{padding:28px;border-bottom:3px solid var(--navy);background:white}.kpi span{color:var(--gold);font-size:11px}.kpi h3{margin:18px 0 8px;color:var(--navy);font-size:18px}.kpi p{margin:0;color:var(--muted);font-size:12px}.principle{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center}.quote{padding:44px;border-right:4px solid var(--gold);background:var(--navy);color:white;font-size:clamp(23px,3vw,36px);line-height:1.6}.principle-list{display:grid;gap:18px}.principle-list div{padding-bottom:18px;border-bottom:1px solid var(--line)}.principle-list strong{color:var(--navy)}.principle-list p{margin:5px 0 0;color:var(--muted);font-size:13px}.sources{padding:54px 0;background:#031426;color:rgba(255,255,255,.7)}.sources h2{color:white;font-size:22px}.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.source-grid a{padding:18px;border:1px solid rgba(255,255,255,.12);font-size:12px}.source-grid a:hover{border-color:var(--gold);color:#d7b475}.footer{padding:22px 0;background:#020e1b;color:rgba(255,255,255,.4);font-size:11px}.footer .wrap{display:flex;justify-content:space-between;gap:20px}@media(max-width:900px){.hero-grid,.section-head,.principle{grid-template-columns:1fr}.score-grid,.page-grid,.timeline{grid-template-columns:repeat(2,1fr)}.hero-grid{gap:40px}.section-head{gap:18px}.source-grid{grid-template-columns:1fr 1fr}}@media(max-width:620px){.wrap{width:min(100% - 24px,1180px)}.topbar .wrap,.footer .wrap{flex-direction:column;gap:3px}.hero{padding:66px 0}.hero h1{font-size:44px}.score-grid,.done-grid,.page-grid,.launch-grid,.timeline,.kpi-grid,.source-grid{grid-template-columns:1fr}.score,.page-card,.phase{min-height:0}.nav .wrap{gap:20px}.map{display:block;overflow:auto}.section-head h2{font-size:34px}section{padding:68px 0}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="wrap"><span>HOSSEINTALAB · SEO CONTROL CENTER</span><span>نسخهٔ نخست · ۱۸ مرداد ۱۴۰۵</span></div></div>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div><p class="kicker">زیرساخت، محتوا و رشد ارگانیک</p><h1>مرکز کنترل سئوی <em>فرش حسین‌طلب</em></h1><span class="status">فاز پایه اجرا شده · آمادهٔ انتشار و ثبت در Search Console</span></div>
+      <p class="hero-copy">هدف، ساختن یک مرجع قابل اعتماد برای جست‌وجوی فرش دستباف است: صفحه‌هایی که هم برای خریدار روشن‌اند، هم برای گوگل قابل‌خزش‌اند و هم موتورهای پاسخ‌گوی هوش مصنوعی می‌توانند اطلاعات دقیقشان را بفهمند.</p>
+    </div>
+  </header>
+  <nav class="nav"><div class="wrap"><a href="#status">وضعیت اجرا</a><a href="#done">کارهای انجام‌شده</a><a href="#keywords">نقشهٔ جست‌وجو</a><a href="#pages">صفحه‌ها</a><a href="#launch">انتشار</a><a href="#roadmap">نقشهٔ ۹۰ روزه</a><a href="#kpis">شاخص‌ها</a></div></nav>
+
+  <section id="status"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">نمای کلی</p><h2>پایه‌ای که اکنون ساخته شده</h2></div><p>این اعداد به معنی رتبهٔ تضمینی نیستند؛ دامنهٔ واقعی اجرای فنی و محتوایی نسخهٔ حاضر را نشان می‌دهند.</p></div>
+    <div class="score-grid">
+      <article class="score"><span>صفحهٔ HTML مستقل</span><strong>۴۲</strong><p>صفحهٔ اصلی، محصول، شهر، راهنما، درباره و تماس</p></article>
+      <article class="score"><span>صفحهٔ محصول</span><strong>۲۰</strong><p>عنوان، توضیح، قیمت، تصویر و دادهٔ ساختاریافتهٔ منحصربه‌فرد</p></article>
+      <article class="score"><span>خوشهٔ محل بافت</span><strong>۱۱</strong><p>فقط برای شهرها و گروه‌هایی که موجودی واقعی دارند</p></article>
+      <article class="score"><span>راهنمای فارسی</span><strong>۶</strong><p>متن روان، تصمیم‌محور و دور از ترجمهٔ ماشینی</p></article>
+    </div>
+  </div></section>
+
+  <section id="done" class="done"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">اجرا شده</p><h2>سئو از داخل خود سایت شروع شده است</h2></div><p>کارهای زیر در کد سایت انجام شده‌اند و پس از انتشار نسخهٔ جدید در دسترس موتورهای جست‌وجو قرار می‌گیرند.</p></div>
+    <div class="done-grid">
+      <article class="done-card"><h3>پیش‌رندر کامل</h3><p>محتوای هر مسیر داخل HTML اولیه قرار می‌گیرد؛ ربات مجبور نیست برای دیدن نام، قیمت و متن فرش فقط به اجرای جاوااسکریپت تکیه کند.</p></article>
+      <article class="done-card"><h3>عنوان و توضیح یکتا</h3><p>صفحهٔ اصلی، هر محصول، هر شهر و هر راهنما عنوان، توضیح، canonical، Open Graph و تنظیم ربات مخصوص خود را دارد.</p></article>
+      <article class="done-card"><h3>دادهٔ ساختاریافته</h3><p>Product، Offer، Organization، HomeGoodsStore، Article، Breadcrumb، FAQ و ItemList متناسب با محتوای قابل مشاهده اضافه شده‌اند.</p></article>
+      <article class="done-card"><h3>نقشهٔ سایت و تصویر</h3><p>sitemap.xml همهٔ مسیرهای معتبر و تصاویر محصول را معرفی می‌کند؛ robots.txt نیز مستقیماً همین نقشه را اعلام می‌کند.</p></article>
+      <article class="done-card"><h3>معماری لینک داخلی</h3><p>محصول‌ها به محل بافت، شهرها به محصول‌ها، راهنماها به یکدیگر و همهٔ بخش‌ها به مجموعه و تماس متصل شده‌اند.</p></article>
+      <article class="done-card"><h3>اعتماد و دقت</h3><p>ادعای تاریخیِ تأییدنشده حذف شده، تصویرسازی‌ها صریحاً برچسب خورده‌اند و اطلاعات نامعلوم به‌جای حدس‌زدن، نامعلوم باقی مانده‌اند.</p></article>
+      <article class="done-card"><h3>۴۰۴ واقعی</h3><p>مسیرهای نامعتبر دیگر نسخهٔ صفحهٔ اصلی را با پاسخ موفق نشان نمی‌دهند؛ فایل ۴۰۴ و تنظیم سرور برای پاسخ درست آماده است.</p></article>
+      <article class="done-card"><h3>سرعت و تجربه</h3><p>تصویر واقعی WebP برای نمای نخست انتخاب شده، بارگذاری تصاویر پایین صفحه تنبل است و فشرده‌سازی متنی در تنظیمات Nginx فعال شده است.</p></article>
+    </div>
+  </div></section>
+
+  <section id="keywords"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">نقشهٔ نیت جست‌وجو</p><h2>هر عبارت، در صفحهٔ درست</h2></div><p>به‌جای تکرار یک واژه در همه‌جا، هر خوشه یک مقصد روشن دارد. عبارت‌های واقعی Search Console بعداً این نقشه را دقیق‌تر می‌کنند.</p></div>
+    <table class="map"><thead><tr><th>خوشه</th><th>نمونهٔ عبارت‌ها</th><th>صفحهٔ هدف</th><th>هدف کاربر</th></tr></thead><tbody>
+      <tr><td>تجاری اصلی</td><td><span class="pill">خرید فرش دستباف</span><span class="pill">قیمت فرش دستباف</span><span class="pill">فرش دستباف ایرانی</span></td><td>صفحهٔ اصلی و مجموعه</td><td>دیدن گزینه و مقایسه</td></tr>
+      <tr><td>محلی تهران</td><td><span class="pill">فرش دستباف بازار تهران</span><span class="pill">خرید حضوری فرش دستباف تهران</span></td><td>تماس و درباره</td><td>مراجعه یا تماس</td></tr>
+      <tr><td>محل بافت</td><td><span class="pill">فرش دستباف کاشان</span><span class="pill">فرش قم</span><span class="pill">فرش اصفهان</span><span class="pill">فرش تبریز</span></td><td>۱۱ صفحهٔ محل بافت</td><td>مقایسهٔ نمونه‌های همان گروه</td></tr>
+      <tr><td>محصول بلند</td><td><span class="pill">فرش درخت زندگی کاشان</span><span class="pill">فرش شکارگاه اصفهان</span><span class="pill">فرش گلستان قم</span></td><td>صفحهٔ همان تخته</td><td>بررسی دقیق و خرید</td></tr>
+      <tr><td>راهنمای خرید</td><td><span class="pill">راهنمای خرید فرش دستباف</span><span class="pill">بررسی فرش دستباف</span></td><td>راهنمای خرید و بررسی</td><td>کاهش ریسک تصمیم</td></tr>
+      <tr><td>اندازه و چیدمان</td><td><span class="pill">اندازه مناسب فرش پذیرایی</span><span class="pill">انتخاب قواره فرش</span></td><td>راهنمای اندازه</td><td>انتخاب برای فضای واقعی</td></tr>
+      <tr><td>فرش قدیمی</td><td><span class="pill">خرید فرش آنتیک</span><span class="pill">بررسی سلامت فرش قدیمی</span></td><td>راهنمای وضعیت فرش قدیمی</td><td>شناخت وضعیت و مرمت</td></tr>
+      <tr><td>شناخت و نگهداری</td><td><span class="pill">نقش‌های فرش ایرانی</span><span class="pill">نگهداری فرش دستباف</span></td><td>راهنمای نقش و مراقبت</td><td>یادگیری و نگهداری</td></tr>
+    </tbody></table>
+  </div></section>
+
+  <section id="pages" class="pages"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">معماری محتوا</p><h2>شبکه‌ای برای کشف، فهم و اعتماد</h2></div><p>هر صفحه یک وظیفه دارد و از مسیرهای دیگر حمایت می‌کند؛ این ساختار هم برای انسان روشن است و هم برای خزنده‌ها.</p></div>
+    <div class="page-grid">
+      <article class="page-card"><span>مرکز تجاری</span><strong>۰۱</strong><h3>صفحهٔ اصلی</h3><p>عبارت‌های اصلی، فهرست موجودی، فیلترها، روش انتخاب و راه‌های تماس.</p></article>
+      <article class="page-card"><span>موجودی تک‌تخته</span><strong>۲۰</strong><h3>صفحهٔ محصول</h3><p>نام، تصاویر، ابعاد، قیمت، محل بافت، وضعیت، محصول مرتبط و تماس مستقیم.</p></article>
+      <article class="page-card"><span>خوشهٔ جغرافیایی</span><strong>۱۱</strong><h3>صفحهٔ محل بافت</h3><p>معرفی دقیق گروه و نمایش فقط نمونه‌هایی که واقعاً در کاتالوگ ثبت شده‌اند.</p></article>
+      <article class="page-card"><span>دانش کاربردی</span><strong>۰۶</strong><h3>راهنمای فارسی</h3><p>پاسخ روشن به پرسش‌هایی که پیش از خرید، چیدمان و نگهداری مطرح می‌شوند.</p></article>
+      <article class="page-card"><span>اعتماد محلی</span><strong>۰۲</strong><h3>درباره و تماس</h3><p>ماهیت کسب‌وکار، نشانی بازار فرش، تلفن، واتساپ، اینستاگرام و نقشه.</p></article>
+      <article class="page-card"><span>زیرساخت</span><strong>۰۲</strong><h3>نقشهٔ سایت و ۴۰۴</h3><p>کشف مسیرهای معتبر و جلوگیری از ایندکس‌شدن آدرس‌های اشتباه.</p></article>
+    </div>
+  </div></section>
+
+  <section id="launch"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">پس از انتشار</p><h2>کارهای Search Console</h2></div><p>این مرحله باید روی نسخهٔ آنلاین انجام شود. چون دسترسی مستقیم به حساب Search Console در این محیط وجود ندارد، فهرست دقیق اقدام آماده شده است.</p></div>
+    <div class="launch-grid">
+      <article class="checklist"><h3>چک‌لیست روز انتشار</h3><ol><li>نسخهٔ جدید سایت و تنظیم تازهٔ Nginx منتشر شود.</li><li>آدرس <bdi>https://hosseintalab.ir/sitemap.xml</bdi> در بخش Sitemaps ثبت شود.</li><li>صفحهٔ اصلی، یک محصول، یک شهر و یک راهنما با URL Inspection آزمایش شوند.</li><li>برای همان چهار URL، Live Test اجرا و سپس Request Indexing زده شود.</li><li>HTTPS، canonical انتخاب‌شده و وضعیت ۴۰۴ یک مسیر ساختگی کنترل شود.</li><li>گزارش Product snippets و Merchant listings پس از پردازش بررسی شود.</li></ol></article>
+      <aside class="warning"><h3>انتظار درست</h3><p>ایندکس‌شدن و رشد رتبه فوری نیست. دادهٔ اولیه معمولاً با فاصله ظاهر می‌شود و موتور جست‌وجو زمان لازم دارد تا نسخهٔ تازه را بخزد، سیگنال‌ها را جمع کند و جایگاه هر صفحه را بیازماید. هیچ متخصصی نمی‌تواند رتبهٔ اول یا حضور در پاسخ هوش مصنوعی را تضمین کند؛ اما می‌توان احتمال دیده‌شدن را با محتوای دقیق، ساختار سالم و بهبود پیوسته بالا برد.</p></aside>
+    </div>
+  </div></section>
+
+  <section id="roadmap" class="done"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">نقشهٔ ۹۰ روزه</p><h2>سئو یک انتشار نیست؛ یک چرخه است</h2></div><p>پس از ایجاد خط مبنا، تصمیم‌های بعدی باید از روی عبارت‌ها، صفحات و رفتار واقعی کاربران گرفته شوند.</p></div>
+    <div class="timeline">
+      <article class="phase"><small>روز ۰ تا ۷</small><h3>انتشار و کشف</h3><ul><li>ثبت sitemap</li><li>آزمایش URLها</li><li>رفع خطاهای crawl</li><li>ثبت خط مبنای سرعت</li></ul></article>
+      <article class="phase"><small>هفتهٔ ۲ تا ۴</small><h3>ایندکس و کیفیت</h3><ul><li>بررسی Pages report</li><li>کنترل Product data</li><li>بهینه‌سازی تصاویر سنگین</li><li>تطبیق موبایل و Core Web Vitals</li></ul></article>
+      <article class="phase"><small>ماه دوم</small><h3>تقاضای واقعی</h3><ul><li>خوشه‌بندی Queryها</li><li>بازنویسی titleهای کم‌کلیک</li><li>گسترش پاسخ‌های پرتکرار</li><li>ساخت محتوای تازه از پرسش مشتری</li></ul></article>
+      <article class="phase"><small>ماه سوم</small><h3>اعتبار و رشد</h3><ul><li>لینک از اینستاگرام به صفحهٔ دقیق</li><li>کسب اشاره و لینک طبیعی</li><li>به‌روزرسانی موجودی و قیمت</li><li>مقایسهٔ عملکرد غیر‌برندی</li></ul></article>
+    </div>
+  </div></section>
+
+  <section id="kpis" class="kpis"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">اندازه‌گیری</p><h2>شاخص‌هایی که واقعاً مهم‌اند</h2></div><p>هدف فقط بالا رفتن Impression نیست؛ باید دیده‌شدن به بازدید باکیفیت و سپس گفت‌وگوی خرید تبدیل شود.</p></div>
+    <div class="kpi-grid">
+      <article class="kpi"><span>کشف</span><h3>صفحات معتبر ایندکس‌شده</h3><p>تعداد URLهای معتبر در Pages و نسبت آن‌ها به نقشهٔ سایت.</p></article>
+      <article class="kpi"><span>تقاضا</span><h3>Impression غیر‌برندی</h3><p>دیده‌شدن برای عبارت‌هایی غیر از نام حسین‌طلب.</p></article>
+      <article class="kpi"><span>جذب</span><h3>کلیک و CTR</h3><p>اثر عنوان و توضیح در تبدیل نمایش به ورود.</p></article>
+      <article class="kpi"><span>رتبه</span><h3>جایگاه بر پایهٔ خوشه</h3><p>میانگین کلی گمراه‌کننده است؛ هر خوشه جدا بررسی شود.</p></article>
+      <article class="kpi"><span>تجربه</span><h3>Core Web Vitals</h3><p>LCP، INP و CLS روی موبایل با دادهٔ واقعی کاربران.</p></article>
+      <article class="kpi"><span>کسب‌وکار</span><h3>گفت‌وگوی منتسب به سایت</h3><p>واتساپ، تماس، دایرکت و مراجعه‌ای که از یک صفحه آغاز شده است.</p></article>
+    </div>
+  </div></section>
+
+  <section><div class="wrap principle">
+    <div class="quote">برای جست‌وجوی هوش مصنوعی، فایل جادویی یا تگ مخفی لازم نیست؛ صفحه باید قابل‌خزش، روشن، دقیق و قابل استناد باشد.</div>
+    <div class="principle-list"><div><strong>پاسخ مستقیم</strong><p>هر راهنما پرسش را با توضیح روشن، تیترهای معنی‌دار و پاسخ‌های قابل برداشت پوشش می‌دهد.</p></div><div><strong>موجودیت روشن</strong><p>نام کسب‌وکار، نشانی، تلفن، محصولات، شهرها و رابطهٔ آن‌ها با دادهٔ ساختاریافته بیان شده است.</p></div><div><strong>واقعیت قابل مشاهده</strong><p>اطلاعات schema با متن همان صفحه هماهنگ است و ادعای پنهانی به ربات داده نمی‌شود.</p></div><div><strong>تازه‌ماندن</strong><p>قیمت، موجودی، وضعیت و تاریخ بازبینی باید با تغییر واقعی به‌روزرسانی شوند.</p></div></div>
+  </div></section>
+
+  <section class="sources"><div class="wrap"><h2>راهنماهای رسمی مبنا</h2><div class="source-grid"><a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank">AI features and your website — Google Search Central</a><a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics" target="_blank">JavaScript SEO basics — Google Search Central</a><a href="https://developers.google.com/search/docs/appearance/structured-data/product" target="_blank">Product structured data — Google Search Central</a><a href="https://developers.google.com/search/docs/appearance/structured-data/local-business" target="_blank">Local business structured data — Google Search Central</a><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps" target="_blank">Image sitemaps — Google Search Central</a><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" target="_blank">Build and submit a sitemap — Google Search Central</a></div></div></section>
+  <footer class="footer"><div class="wrap"><span>مرکز کنترل سئوی فرش حسین‌طلب</span><span>مبنای تصمیم: دادهٔ واقعی Search Console، کیفیت محتوا و نتیجهٔ کسب‌وکار</span></div></footer>
+</body>
+</html>

@@ -40,7 +40,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۸ × ۲۱۷ سانتی‌متر",
     dimensions: "۱۳۸ × ۲۱۷ سانتی‌متر",
     description: "نقشه‌ی درختی با زمینه‌ی عاجی، پرندگان و جانوران در میان گل‌وبرگ",
-    image: "/media/products/ht-ksh-0001/full-frontal.png",
+    image: "/media/products/ht-ksh-0001/full-frontal.webp",
     alt: "فرش نیمه‌آنتیک دستباف کاشان با نقشه‌ی درخت زندگی و زمینه‌ی عاجی",
     collection: "antique",
     priceToman: 370000000,
@@ -58,7 +58,7 @@ export const catalogProducts: CatalogProduct[] = [
       "تصاویر کاملِ رو، زاویه‌دار، آویخته و جزئیاتِ پرز برای بررسی پیش از خرید در گالری ثبت شده‌اند. برای تأیید نهاییِ وضعیت، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-ksh-0001/full-frontal.png",
+        src: "/media/products/ht-ksh-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش نیمه‌آنتیک کاشان با نقشه‌ی درخت زندگی",
         label: "نمای کامل",
       },
@@ -98,7 +98,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۵ × ۱۹۴ سانتی‌متر",
     dimensions: "۱۳۵ × ۱۹۴ سانتی‌متر",
     description: "نقشه‌ی گلدانیِ یک‌طرفه با زمینه‌ی لاکی و حاشیه‌ی سرمه‌ای",
-    image: "/media/products/ht-khy-0001/full-frontal.png",
+    image: "/media/products/ht-khy-0001/full-frontal.webp",
     alt: "فرش نیمه‌آنتیک دستباف خوی با نقشه‌ی گلدانی یک‌طرفه و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 95000000,
@@ -116,7 +116,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کاملِ رو، نمای زاویه‌دار و تصویرِ جزئیاتِ گلدان و حاشیه در گالری ثبت شده‌اند. برای تأیید نهاییِ وضعیت پرز، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-khy-0001/full-frontal.png",
+        src: "/media/products/ht-khy-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش نیمه‌آنتیک خوی با نقش گلدانی یک‌طرفه",
         label: "نمای کامل",
       },
@@ -146,7 +146,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "ابعاد در دست تکمیل",
     dimensions: "ابعاد دقیق در دست تکمیل است",
     description: "نقشه‌ی هزارگلِ سراسری با زمینه‌ی کرم و حاشیه‌ی لاکیِ پرنقش",
-    image: "/media/products/ht-krm-0001/full-frontal.png",
+    image: "/media/products/ht-krm-0001/full-frontal.webp",
     alt: "فرش نیمه‌آنتیک دستباف کرمان با نقشه‌ی هزارگلِ سراسری و زمینه‌ی کرم",
     collection: "antique",
     priceToman: 160000000,
@@ -164,7 +164,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل و زاویه‌دار، همراه با جزئیاتِ زمینه و حاشیه، در گالری ثبت شده‌اند. ابعاد دقیق پیش از نهایی‌شدن ثبت و تأیید می‌شود؛ برای بررسی ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی نیز مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-krm-0001/full-frontal.png",
+        src: "/media/products/ht-krm-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش نیمه‌آنتیک کرمان با نقشه‌ی هزارگلِ سراسری",
         label: "نمای کامل",
       },
@@ -189,7 +189,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۵ × ۱۹۰ سانتی‌متر",
     dimensions: "۱۳۵ × ۱۹۰ سانتی‌متر",
     description: "تابلوفرش تصویری با پرتره‌ی نورعلی‌شاه و حاشیه‌های کتیبه‌دار",
-    image: "/media/products/ht-nhv-0001/full-frontal.png",
+    image: "/media/products/ht-nhv-0001/full-frontal.webp",
     alt: "تابلوفرش آنتیک دستباف نهاوند با تصویر نورعلی‌شاه و کتیبه‌های فارسی",
     collection: "antique",
     priceToman: 750000000,
@@ -207,7 +207,7 @@ export const catalogProducts: CatalogProduct[] = [
       "براساس اطلاعات ارائه‌شده، فرش دارای پرز کامل و ضخامت مطلوب است. تصاویر کاملِ رو، زاویه‌دار و نمای نمایشگاهی در گالری ثبت شده‌اند؛ بررسی حضوری یا مشاوره‌ی تصویری برای تأیید نهایی وضعیت اثر هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-nhv-0001/full-frontal.png",
+        src: "/media/products/ht-nhv-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل تابلوفرش نورعلی‌شاه با حاشیه‌های کتیبه‌دار",
         label: "نمای کامل",
       },
@@ -287,7 +287,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۶ × ۲۱۳ سانتی‌متر",
     dimensions: "۱۳۶ × ۲۱۳ سانتی‌متر",
     description: "نقشه‌ی درختیِ یک‌طرفه با زمینه‌ی سرمه‌ای، پرندگان و حاشیه‌ی لاکی",
-    image: "/media/products/ht-rvr-0001/full-frontal.png",
+    image: "/media/products/ht-rvr-0001/full-frontal.webp",
     alt: "فرش آنتیک دستباف راور کرمان با نقشه‌ی درختی یک‌طرفه و زمینه‌ی سرمه‌ای",
     collection: "antique",
     priceToman: 138000000,
@@ -305,7 +305,7 @@ export const catalogProducts: CatalogProduct[] = [
       "براساس اطلاعات ارائه‌شده، فرش در وضعیت بسیار خوب قرار دارد. نمای کامل، زاویه‌دار، جزئیاتِ پرز و نمای محیطی در گالری ثبت شده‌اند؛ بررسی حضوری یا مشاوره‌ی تصویری برای تأیید نهایی وضعیت اثر هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-rvr-0001/full-frontal.png",
+        src: "/media/products/ht-rvr-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش آنتیک راور با نقشه‌ی درختی یک‌طرفه",
         label: "نمای کامل",
       },
@@ -335,7 +335,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۶۵ × ۲۵۵ سانتی‌متر",
     dimensions: "۱۶۵ × ۲۵۵ سانتی‌متر",
     description: "نقشه‌ی شکارگاه با سواران، جانوران و پرندگان بر زمینه‌ی کرم",
-    image: "/media/products/ht-qom-0001/full-frontal.png",
+    image: "/media/products/ht-qom-0001/full-frontal.webp",
     alt: "فرش دستباف قدیمی قم با نقشه‌ی شکارگاه و زمینه‌ی کرم",
     collection: "home",
     priceToman: 165000000,
@@ -353,7 +353,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، زاویه‌دار، جزئیات صحنه و نمای محیطی در گالری ثبت شده‌اند. برای تأیید نهاییِ وضعیت ابریشم، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-qom-0001/full-frontal.png",
+        src: "/media/products/ht-qom-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش قدیمی قم با نقشه‌ی شکارگاه",
         label: "نمای کامل",
       },
@@ -383,7 +383,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۴۲ × ۲۱۵ سانتی‌متر",
     dimensions: "۱۴۲ × ۲۱۵ سانتی‌متر",
     description: "نقشه‌ی شکارگاه با زمینه‌ی سرمه‌ای، سواران، جانوران و حاشیه‌ی آبی",
-    image: "/media/products/ht-qom-0002/full-frontal.png",
+    image: "/media/products/ht-qom-0002/full-frontal.webp",
     alt: "فرش دستباف قدیمی قم با نقشه‌ی شکارگاه، زمینه‌ی سرمه‌ای و حاشیه‌ی آبی",
     collection: "home",
     priceToman: 250000000,
@@ -401,7 +401,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، زاویه‌دار، جزئیات صحنه و نمای محیطی در گالری ثبت شده‌اند. برای تأیید نهاییِ کیفیت بخش‌های ابریشمی، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-qom-0002/full-frontal.png",
+        src: "/media/products/ht-qom-0002/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش قدیمی قم با نقشه‌ی شکارگاه و زمینه‌ی سرمه‌ای",
         label: "نمای کامل",
       },
@@ -431,7 +431,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۷ × ۲۱۲ سانتی‌متر",
     dimensions: "۱۳۷ × ۲۱۲ سانتی‌متر",
     description: "نقشه‌ی لچک‌وترنج با زمینه‌ی کرم، ترنج لاکی و حاشیه‌ی آبی",
-    image: "/media/products/ht-qom-0003/full-frontal.png",
+    image: "/media/products/ht-qom-0003/full-frontal.webp",
     alt: "فرش نیمه‌آنتیک دستباف قم با نقشه‌ی لچک‌وترنج و زمینه‌ی کرم",
     collection: "antique",
     priceToman: 165000000,
@@ -449,7 +449,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، زاویه‌دار، جزئیات ترنج و نمای محیطی در گالری ثبت شده‌اند. پشم تأییدشده است؛ وجود بخش‌های ابریشمی نیازمند تأیید کارشناسی است. برای بررسی نهایی ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-qom-0003/full-frontal.png",
+        src: "/media/products/ht-qom-0003/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش نیمه‌آنتیک قم با نقشه‌ی لچک‌وترنج",
         label: "نمای کامل",
       },
@@ -479,7 +479,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۵ × ۲۰۷ سانتی‌متر",
     dimensions: "۱۳۵ × ۲۰۷ سانتی‌متر",
     description: "نقشه‌ی لچک‌وترنجِ کف‌ساده با زمینه‌ی لاکی و حاشیه‌ی تیره",
-    image: "/media/products/ht-ksh-0002/full-frontal.png",
+    image: "/media/products/ht-ksh-0002/full-frontal.webp",
     alt: "فرش دستباف کاشان با نقشه‌ی لچک‌وترنج کف‌ساده و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 220000000,
@@ -497,7 +497,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، زاویه‌دار، جزئیاتِ ترنج و دو نمای محیطی در گالری ثبت شده‌اند. بازه‌ی سن این تخته به مرز آنتیک نزدیک است و برای تأیید نهاییِ قدمت، وضعیت پرز، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-ksh-0002/full-frontal.png",
+        src: "/media/products/ht-ksh-0002/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش کاشان با نقشه‌ی لچک‌وترنج کف‌ساده",
         label: "نمای کامل",
       },
@@ -532,7 +532,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۵۴ × ۲۴۲ سانتی‌متر",
     dimensions: "۱۵۴ × ۲۴۲ سانتی‌متر",
     description: "نقشه‌ی لچک‌وترنج با زمینه‌ی لاکی، کرک و گل‌ابریشم",
-    image: "/media/products/ht-isf-0001/full-frontal.png",
+    image: "/media/products/ht-isf-0001/full-frontal.webp",
     alt: "فرش نیمه‌آنتیک دستباف اصفهان با نقشه‌ی لچک‌وترنج و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 280000000,
@@ -550,7 +550,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، زاویه‌دار، جزئیاتِ ترنج و زمینه، و نمای محیطی در گالری ثبت شده‌اند. بازه‌ی قدمت از مرز قدیمی و نیمه‌آنتیک عبور می‌کند؛ برای تأیید نهاییِ وضعیت پرز، گل‌ابریشم، چله، ریشه‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-isf-0001/full-frontal.png",
+        src: "/media/products/ht-isf-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش اصفهان با نقشه‌ی لچک‌وترنج و زمینه‌ی لاکی",
         label: "نمای کامل",
       },
@@ -585,7 +585,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۵۳ × ۲۳۳ سانتی‌متر",
     dimensions: "۱۵۳ × ۲۳۳ سانتی‌متر",
     description: "نقشه‌ی شکارگاه با زمینه‌ی کرم، کرک و گل‌ابریشم",
-    image: "/media/products/ht-isf-0002/full-frontal.png",
+    image: "/media/products/ht-isf-0002/full-frontal.webp",
     alt: "فرش دستباف اصفهان با نقشه‌ی شکارگاه و زمینه‌ی کرم",
     collection: "home",
     priceToman: 420000000,
@@ -603,7 +603,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، زاویه‌دار، جزئیات صحنه و دو نمای محیطی در گالری ثبت شده‌اند. قدمت و انتساب بافت به استاد انتشاری بر اساس اطلاعات ارائه‌شده ثبت شده و برای انتشار به‌عنوان تأییدشده، نیازمند بررسی امضا، شناسنامه یا مستندات معتبر است.",
     images: [
       {
-        src: "/media/products/ht-isf-0002/full-frontal.png",
+        src: "/media/products/ht-isf-0002/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش اصفهان با نقشه‌ی شکارگاه",
         label: "نمای کامل",
       },
@@ -638,7 +638,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۱۸ × ۱۶۳ سانتی‌متر",
     dimensions: "۱۱۸ × ۱۶۳ سانتی‌متر",
     description: "نقشه‌ی عشایری با زمینه‌ی کرم، ترنجِ هندسی و حاشیه‌ی سرمه‌ای",
-    image: "/media/products/ht-srj-0001/full-frontal.png",
+    image: "/media/products/ht-srj-0001/full-frontal.webp",
     alt: "قالی دستباف عشایری سیرجان با زمینه‌ی کرم و ترنجِ هندسی",
     collection: "home",
     priceToman: 35000000,
@@ -656,7 +656,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، دو نمای زاویه‌دار، جزئیاتِ نقشه و نمای محیطی در گالری ثبت شده‌اند. وضعیت بسیار خوب و ضخامتِ بافت، بر اساس اطلاعات ارائه‌شده است؛ برای تأیید نهاییِ پرز، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-srj-0001/full-frontal.png",
+        src: "/media/products/ht-srj-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل قالی عشایری سیرجان",
         label: "نمای کامل",
       },
@@ -691,7 +691,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۱۴ × ۱۶۸ سانتی‌متر",
     dimensions: "۱۱۴ × ۱۶۸ سانتی‌متر",
     description: "سه‌ترنج هندسی با زمینه‌ی لاکی، سرمه‌ای و حاشیه‌ی آبی",
-    image: "/media/products/ht-snh-0001/full-frontal.png",
+    image: "/media/products/ht-snh-0001/full-frontal.webp",
     alt: "فرش دستباف سنندج با نقشه‌ی سه‌ترنج هندسی و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 160000000,
@@ -709,7 +709,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، دو نمای زاویه‌دار، جزئیاتِ سه‌ترنج و نمای محیطی در گالری ثبت شده‌اند. قدمتِ حدودی بر اساس اطلاعات ارائه‌شده است؛ برای تأیید نهاییِ وضعیت پرز، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-snh-0001/full-frontal.png",
+        src: "/media/products/ht-snh-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش سنندج با نقشه‌ی سه‌ترنج هندسی",
         label: "نمای کامل",
       },
@@ -749,7 +749,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۰۴ × ۱۶۲ سانتی‌متر",
     dimensions: "۱۰۴ × ۱۶۲ سانتی‌متر",
     description: "لچک‌وترنج با نقشه‌ی اصفهان، زمینه‌ی کرم و ترنجِ لاکی",
-    image: "/media/products/ht-njf-0001/full-frontal.png",
+    image: "/media/products/ht-njf-0001/full-frontal.webp",
     alt: "فرش دستباف نجف‌آباد با نقشه‌ی لچک‌وترنج اصفهان و زمینه‌ی کرم",
     collection: "home",
     priceToman: 85000000,
@@ -767,7 +767,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، دو نمای زاویه‌دار، جزئیاتِ ترنج و زمینه و نمای محیطی در گالری ثبت شده‌اند. قدمتِ حدودی بر اساس اطلاعات ارائه‌شده است؛ برای تأیید نهاییِ وضعیت پرز، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-njf-0001/full-frontal.png",
+        src: "/media/products/ht-njf-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش لچک‌وترنج نجف‌آباد",
         label: "نمای کامل",
       },
@@ -807,7 +807,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۱۴ × ۱۵۳ سانتی‌متر",
     dimensions: "۱۱۴ × ۱۵۳ سانتی‌متر",
     description: "لچک‌وترنج با زمینه‌ی کرم، ترنجِ سبز زیتونی و حاشیه‌ی تیره",
-    image: "/media/products/ht-bjr-0001/full-frontal.png",
+    image: "/media/products/ht-bjr-0001/full-frontal.webp",
     alt: "فرش دستباف بیجار/جوزان با نقشه‌ی لچک‌وترنج و زمینه‌ی کرم",
     collection: "home",
     priceToman: 60000000,
@@ -825,7 +825,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، دو نمای زاویه‌دار، جزئیاتِ ترنج و یک نمای محیطی در گالری ثبت شده‌اند. عنوان قدیمی و بافتِ پُرگوشت بر اساس اطلاعات ارائه‌شده است؛ جنس الیاف، قدمت و وضعیت فنی برای تأیید نهایی نیازمند کارشناسی هستند.",
     images: [
       {
-        src: "/media/products/ht-bjr-0001/full-frontal.png",
+        src: "/media/products/ht-bjr-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش لچک‌وترنج بیجار/جوزان",
         label: "نمای کامل",
       },
@@ -860,7 +860,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۱ × ۲۱۲ سانتی‌متر",
     dimensions: "۱۳۱ × ۲۱۲ سانتی‌متر",
     description: "لچک‌وترنج با زمینه‌ی لاکی، ترنج روشن و حاشیه‌ی مشکی",
-    image: "/media/products/ht-ksh-0003/full-frontal.png",
+    image: "/media/products/ht-ksh-0003/full-frontal.webp",
     alt: "فرش دستباف کاشان با نقشه‌ی لچک‌وترنج و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 120000000,
@@ -878,7 +878,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، دو نمای زاویه‌دار، جزئیات ترنج و نمای محیطی در گالری ثبت شده‌اند. بازه‌ی سن و بافتِ پُرگوشت بر اساس اطلاعات ارائه‌شده است؛ برای تأیید نهاییِ وضعیت پرز، ریشه‌ها، کناره‌ها و هرگونه مرمت احتمالی، مشاوره‌ی تصویری یا بازدید حضوری هماهنگ می‌شود.",
     images: [
       {
-        src: "/media/products/ht-ksh-0003/full-frontal.png",
+        src: "/media/products/ht-ksh-0003/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش لچک‌وترنج کاشان",
         label: "نمای کامل",
       },
@@ -913,7 +913,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۴۰ × ۲۱۲ سانتی‌متر",
     dimensions: "۱۴۰ × ۲۱۲ سانتی‌متر",
     description: "محرابی قندیلی با زمینه‌ی لاکی، قندیلِ مرکزی و پرندگانِ جفت",
-    image: "/media/products/ht-qom-0004/full-frontal.png",
+    image: "/media/products/ht-qom-0004/full-frontal.webp",
     alt: "فرش دستباف قم با نقشه‌ی محرابی قندیلی و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 170000000,
@@ -931,7 +931,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، دو نمای زاویه‌دار، جزئیاتِ محراب و قندیل و یک نمای محیطی در گالری ثبت شده‌اند. قدمت، جنس کرک و عنوان قدیمی/نیمه‌آنتیک بر اساس اطلاعات ارائه‌شده است؛ تأیید نهاییِ وضعیت فنی و قدمت با بررسی کارشناسی انجام می‌شود.",
     images: [
       {
-        src: "/media/products/ht-qom-0004/full-frontal.png",
+        src: "/media/products/ht-qom-0004/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش محرابی قندیلی قم",
         label: "نمای کامل",
       },
@@ -966,7 +966,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "ابعاد در دست تعیین",
     dimensions: "احتمالاً پرده‌ای؛ ابعاد دقیق در دست تعیین",
     description: "محرمات با ردیف‌های عمودیِ تکرارشونده و زمینه‌ی تیره",
-    image: "/media/products/ht-shb-0001/full-frontal.png",
+    image: "/media/products/ht-shb-0001/full-frontal.webp",
     alt: "فرش دستباف محرماتِ شهر بابک / سیرجان با زمینه‌ی تیره",
     collection: "antique",
     priceToman: 85000000,
@@ -984,7 +984,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، نمای زاویه‌دار، جزئیاتِ نقشه و دو نمای آویخته/محیطی در گالری ثبت شده‌اند. سن، عنوان نیمه‌آنتیک و وضعیت عالی بر اساس اطلاعات ارائه‌شده است؛ ابعاد، جنس الیاف و وضعیت فنی برای تأیید نهایی نیازمند بررسی کارشناسی هستند.",
     images: [
       {
-        src: "/media/products/ht-shb-0001/full-frontal.png",
+        src: "/media/products/ht-shb-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش محرمات شهر بابک / سیرجان",
         label: "نمای کامل",
       },
@@ -1019,7 +1019,7 @@ export const catalogProducts: CatalogProduct[] = [
     size: "۱۳۶ × ۱۹۲ سانتی‌متر",
     dimensions: "۱۳۶ × ۱۹۲ سانتی‌متر",
     description: "لچک‌وترنجِ ریزبافت با زمینه‌ی لاکی و ترنجِ سبز تیره",
-    image: "/media/products/ht-tbz-0001/full-frontal.png",
+    image: "/media/products/ht-tbz-0001/full-frontal.webp",
     alt: "فرش دستباف تبریز با نقشه‌ی لچک‌وترنج و زمینه‌ی لاکی",
     collection: "antique",
     priceToman: 470000000,
@@ -1037,7 +1037,7 @@ export const catalogProducts: CatalogProduct[] = [
       "نمای کامل، نمای زاویه‌دار، جزئیات ترنج و یک نمای محیطی در گالری ثبت شده‌اند. قدمت، جنس کرک، ۶۰ رج بودن و استادباف بودن بر اساس اطلاعات ارائه‌شده است؛ نام بافنده ارائه نشده و تأیید نهاییِ وضعیت فنی، قدمت و ظرافت بافت با بررسی کارشناسی انجام می‌شود.",
     images: [
       {
-        src: "/media/products/ht-tbz-0001/full-frontal.png",
+        src: "/media/products/ht-tbz-0001/full-frontal.webp",
         alt: "نمای روبه‌روی کامل فرش لچک‌وترنج تبریز، ۶۰ رج",
         label: "نمای کامل",
       },

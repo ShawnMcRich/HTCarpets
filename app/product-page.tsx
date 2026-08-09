@@ -4,9 +4,12 @@ import {
   collectionLabel,
   formatPrice,
   getContextImage,
+  isContextImage,
   isKnownValue,
 } from "./catalog-helpers";
 import { contact, whatsappProductHref } from "./contact";
+import { originGroups } from "./seo-content";
+import { BrandSignature, SiteFooter } from "./site-frame";
 
 type Spec = {
   label: string;
@@ -19,9 +22,9 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
   const [copied, setCopied] = useState(false);
   const activeImage = product.images[selectedImage];
   const contextImage = getContextImage(product);
+  const originGroup = originGroups.find((origin) => origin.originNames.includes(product.originName));
 
   useEffect(() => {
-    document.title = `${product.name} | فرش حسین‌طلب`;
     setSelectedImage(0);
     setLightboxOpen(false);
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -80,7 +83,7 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
 
       <div className="service-line">
         <div className="shell service-line__inner">
-          <p>بازار فرش تهران · از ۱۲۹۰ هجری شمسی</p>
+          <p>بازار فرش تهران · بازدید حضوری با هماهنگی</p>
           <p>تصاویر این صفحه متعلق به همین فرش است</p>
         </div>
       </div>
@@ -88,15 +91,7 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
       <header className="site-header product-site-header">
         <div className="shell site-header__inner">
           <a className="site-brand" href="/" aria-label="فرش حسین‌طلب؛ صفحه‌ی نخست">
-            <picture>
-              <source media="(max-width: 580px)" srcSet="/brand/exports/hosseintalab-icon-192.png" />
-              <img
-                src="/brand/exports/hosseintalab-lockup-horizontal.svg"
-                alt="Hosseintalab — Persian Handwoven Carpets — Est. 1290 SH"
-                width="1600"
-                height="300"
-              />
-            </picture>
+            <BrandSignature />
           </a>
           <nav className="product-nav" aria-label="راهنمای صفحه‌ی فرش">
             <a href="#identity">شناسنامه</a>
@@ -138,7 +133,7 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
                   aria-pressed={index === selectedImage}
                 >
                   <img src={image.src} alt="" loading="lazy" decoding="async" />
-                  <span>{image.label}</span>
+                  <span>{image.label}{isContextImage(image) ? " · تصویرسازی" : ""}</span>
                 </button>
               ))}
             </div>
@@ -157,7 +152,10 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
             </p>
 
             <dl className="product-summary__quick-facts">
-              <div><dt>محل بافت</dt><dd>{product.originName}</dd></div>
+              <div>
+                <dt>محل بافت</dt>
+                <dd>{originGroup ? <a className="inline-origin-link" href={`/origins/${originGroup.slug}/`}>{product.originName}</a> : product.originName}</dd>
+              </div>
               {isKnownValue(product.dimensions) && <div><dt>ابعاد</dt><dd>{product.dimensions}</dd></div>}
               <div><dt>طرح و نقشه</dt><dd>{product.pattern}</dd></div>
             </dl>
@@ -221,15 +219,17 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
           <section id="place" className="section product-place">
             <div className="shell product-place__grid">
               <figure>
-                <img src={contextImage.src} alt={contextImage.alt} loading="lazy" decoding="async" />
-                <figcaption>نمای محیطی ثبت‌شده برای {product.name}</figcaption>
+                <img src={contextImage.src} alt={`تصویرسازی محیطی برای ${product.name}`} loading="lazy" decoding="async" />
+                <figcaption>تصویرسازی محیطی برای تصور حضور {product.name} در فضا</figcaption>
               </figure>
               <div>
                 <p className="eyebrow">فرش در بستر جغرافیا</p>
                 <h2>{product.originName}؛ زمینه‌ای برای دیدن رنگ و شخصیت فرش.</h2>
                 <p>{product.designNote}</p>
                 <p className="product-place__note">
-                  تصویر محیطی برای روایت و مقیاس است. برای بررسی دقیق رنگ، حاشیه و تناسب، نمای کامل و تصاویر جزئیات را ملاک قرار دهید.
+                  این تصویر بازسازی محیطی است و برای تصور چیدمان ساخته شده؛ عکس مستند از حضور
+                  فرش در آن مکان نیست. برای بررسی رنگ، حاشیه، نسبت و وضعیت، نمای کامل و تصاویر
+                  واقعی جزئیات را ملاک قرار دهید.
                 </p>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
                   >
                     <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
                   </button>
-                  <figcaption>{image.label}</figcaption>
+                  <figcaption>{image.label}{isContextImage(image) ? " · تصویرسازی محیطی" : ""}</figcaption>
                 </figure>
               ))}
             </div>
@@ -295,10 +295,10 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
               <div className="related-products__grid">
                 {relatedProducts.map((related) => (
                   <article key={related.sku}>
-                    <a href={`/carpets/${related.slug}`}>
+                    <a href={`/carpets/${related.slug}/`}>
                       <img src={related.image} alt={related.alt} loading="lazy" decoding="async" />
                     </a>
-                    <h3><a href={`/carpets/${related.slug}`}>{related.name}</a></h3>
+                    <h3><a href={`/carpets/${related.slug}/`}>{related.name}</a></h3>
                     <span>{related.originName} · {formatPrice(related)}</span>
                   </article>
                 ))}
@@ -308,31 +308,7 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
         )}
       </main>
 
-      <footer className="site-footer product-footer">
-        <div className="shell site-footer__top">
-          <img
-            src="/brand/exports/hosseintalab-lockup-horizontal-reversed.svg"
-            alt="Hosseintalab"
-            width="1600"
-            height="300"
-          />
-          <p>فرش دستباف ایرانی، با تصویر همان تخته و اطلاعاتی که بتوان بررسی کرد.</p>
-        </div>
-        <div className="shell site-footer__bottom">
-          <p>© ۱۴۰۵ حسین‌طلب</p>
-          <div className="product-footer__links">
-            <a href={contact.whatsappHref} target="_blank" rel="noreferrer" dir="ltr">
-              WhatsApp {contact.whatsappDisplay}
-            </a>
-            <a href={contact.instagramHref} target="_blank" rel="noreferrer" dir="ltr">
-              Instagram {contact.instagramDisplay}
-            </a>
-            <a href={contact.callHref} dir="ltr">Call {contact.callDisplay}</a>
-            <a href={contact.mapsHref} target="_blank" rel="noreferrer">{contact.address}</a>
-            <a href="/#collection">بازگشت به مجموعه‌ی فرش‌ها</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {lightboxOpen && (
         <div
