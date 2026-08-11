@@ -2016,21 +2016,30 @@ select:focus-visible {
 
   .hero__intro {
     display: flex;
+    width: 100%;
+    max-width: none;
     flex-direction: column;
     gap: clamp(26px, 3.3vh, 38px);
-    max-width: 600px;
     margin: 0;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .hero__title,
+  .hero__copy,
+  .hero__title h1 {
+    width: 100%;
+    max-width: none;
   }
 
   .hero__title h1 {
-    max-width: 600px;
     margin-top: 14px;
     font-size: clamp(3rem, 4.6vw, 5rem);
   }
 
-  .hero__copy,
   .hero__lead {
-    max-width: 520px;
+    width: 100%;
+    max-width: none;
   }
 
   .hero__lead {
@@ -2038,6 +2047,8 @@ select:focus-visible {
   }
 
   .hero__actions {
+    width: 100%;
+    justify-content: flex-start;
     margin-top: 24px;
   }
 
