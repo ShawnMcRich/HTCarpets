@@ -464,7 +464,7 @@ export const catalogProducts: CatalogProduct[] = [
         label: "جزئیات ترنج",
       },
       {
-        src: "/media/products/ht-qom-0003/weaving-room-context.png",
+        src: "/media/products/ht-qom-0003/weaving-room-context.webp",
         alt: "فرش لچک‌وترنج قم در فضای کار بافندگی",
         label: "نمای محیطی",
       },

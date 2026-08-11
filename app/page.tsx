@@ -74,8 +74,8 @@ export default function Home() {
     setSortOrder("curated");
   };
 
-  const heroProduct = catalogProducts.find((product) => product.sku === "HT-KSH-0004")!;
-  const heroImage = heroProduct.images[0];
+  const heroProduct = catalogProducts.find((product) => product.sku === "HT-QOM-0003")!;
+  const heroImage = getContextImage(heroProduct)!;
 
   return (
     <>
@@ -115,15 +115,15 @@ export default function Home() {
             <a href={`/carpets/${heroProduct.slug}/`} aria-label={`مشاهده‌ی ${heroProduct.name}`}>
               <img
                 src={heroImage.src}
-                alt={heroImage.alt}
-                width="1036"
-                height="1519"
+                alt={`تصویرسازی محیطی؛ ${heroImage.alt}`}
+                width="1536"
+                height="1024"
                 fetchPriority="high"
               />
             </a>
             <figcaption>
               <div>
-                <span>نمای کامل و واقعی همان تخته</span>
+                <span>تصویرسازی محیطی · قم</span>
                 <strong>{heroProduct.name}</strong>
               </div>
               <a href={`/carpets/${heroProduct.slug}/`}>دیدن تصاویر و شناسنامه</a>
