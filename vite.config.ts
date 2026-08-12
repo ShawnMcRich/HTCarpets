@@ -4,7 +4,13 @@ import { renderToString } from "react-dom/server";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { prerenderPaths, resolveRoute } from "./app/router";
-import { absoluteMediaUrl, canonicalUrl, lastContentReview, type SeoData } from "./app/seo";
+import {
+  absoluteMediaUrl,
+  canonicalUrl,
+  defaultShareImage,
+  lastContentReview,
+  type SeoData,
+} from "./app/seo";
 
 const SEO_HEAD_PATTERN = /<!-- SEO_HEAD_START -->[\s\S]*?<!-- SEO_HEAD_END -->/;
 const ROOT_PATTERN = /<div id="root"><\/div>/;
@@ -25,7 +31,8 @@ function escapeXml(value: string) {
 function seoHead(seo: SeoData) {
   const canonical = canonicalUrl(seo.canonicalPath);
   const robots = seo.robots ?? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
-  const image = seo.image ? absoluteMediaUrl(seo.image) : undefined;
+  const shareImage = seo.image ?? defaultShareImage;
+  const image = absoluteMediaUrl(shareImage);
   const lines = [
     "<!-- SEO_HEAD_START -->",
     `    <meta data-seo-managed="true" name="description" content="${escapeHtml(seo.description)}" />`,
@@ -45,11 +52,19 @@ function seoHead(seo: SeoData) {
     `    <meta data-seo-managed="true" name="twitter:description" content="${escapeHtml(seo.description)}" />`,
   ];
 
-  if (image) {
+  lines.push(
+    `    <meta data-seo-managed="true" property="og:image" content="${escapeHtml(image)}" />`,
+    `    <meta data-seo-managed="true" property="og:image:secure_url" content="${escapeHtml(image)}" />`,
+    `    <meta data-seo-managed="true" property="og:image:alt" content="${escapeHtml(seo.imageAlt ?? seo.title)}" />`,
+    `    <meta data-seo-managed="true" name="twitter:image" content="${escapeHtml(image)}" />`,
+    `    <meta data-seo-managed="true" name="twitter:image:alt" content="${escapeHtml(seo.imageAlt ?? seo.title)}" />`,
+  );
+
+  if (shareImage === defaultShareImage) {
     lines.push(
-      `    <meta data-seo-managed="true" property="og:image" content="${escapeHtml(image)}" />`,
-      `    <meta data-seo-managed="true" property="og:image:alt" content="${escapeHtml(seo.imageAlt ?? seo.title)}" />`,
-      `    <meta data-seo-managed="true" name="twitter:image" content="${escapeHtml(image)}" />`,
+      "    <meta data-seo-managed=\"true\" property=\"og:image:type\" content=\"image/jpeg\" />",
+      "    <meta data-seo-managed=\"true\" property=\"og:image:width\" content=\"1200\" />",
+      "    <meta data-seo-managed=\"true\" property=\"og:image:height\" content=\"630\" />",
     );
   }
 

@@ -16,8 +16,8 @@ export type SeoData = {
 };
 
 export const siteUrl = "https://hosseintalab.ir";
-export const defaultShareImage = "/media/products/ht-ksh-0001/full-frontal.webp";
-export const lastContentReview = "2026-08-09";
+export const defaultShareImage = "/media/social/hosseintalab-share-v1.jpg";
+export const lastContentReview = "2026-08-12";
 
 export function canonicalUrl(path: string) {
   if (path === "/") return `${siteUrl}/`;
@@ -102,7 +102,7 @@ export function homeSeo(): SeoData {
       "مجموعه‌ی فرش دستباف ایرانی حسین‌طلب در بازار فرش تهران؛ مشاهده‌ی قیمت، ابعاد، نمای کامل، جزئیات بافت و راهنمای انتخاب هر فرش تک‌تخته.",
     canonicalPath: "/",
     image: defaultShareImage,
-    imageAlt: "فرش دستباف ایرانی از مجموعه‌ی حسین‌طلب",
+    imageAlt: "فرش حسین‌طلب؛ مجموعه‌ی فرش دستباف ایرانی",
     type: "website",
     structuredData: [
       businessSchema,
@@ -386,10 +386,20 @@ export function applySeo(seo: SeoData) {
   addMeta("twitter:title", seo.title);
   addMeta("twitter:description", seo.description);
 
-  if (seo.image) {
-    addMeta("og:image", absoluteMediaUrl(seo.image), true);
+  const shareImage = seo.image ?? defaultShareImage;
+  if (shareImage) {
+    const imageUrl = absoluteMediaUrl(shareImage);
+    addMeta("og:image", imageUrl, true);
+    addMeta("og:image:secure_url", imageUrl, true);
     addMeta("og:image:alt", seo.imageAlt ?? seo.title, true);
-    addMeta("twitter:image", absoluteMediaUrl(seo.image));
+    addMeta("twitter:image", imageUrl);
+    addMeta("twitter:image:alt", seo.imageAlt ?? seo.title);
+
+    if (shareImage === defaultShareImage) {
+      addMeta("og:image:type", "image/jpeg", true);
+      addMeta("og:image:width", "1200", true);
+      addMeta("og:image:height", "630", true);
+    }
   }
 
   const canonical = document.createElement("link");
