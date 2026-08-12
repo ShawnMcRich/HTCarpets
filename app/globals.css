@@ -950,9 +950,23 @@ select:focus-visible {
   display: flex;
   justify-content: space-between;
   gap: 30px;
+  align-items: flex-end;
   padding-top: 28px;
   color: rgba(255, 255, 255, 0.46);
   font-size: 0.7rem;
+}
+
+.site-footer__credits {
+  display: grid;
+  gap: 5px;
+  text-align: center;
+}
+
+.site-footer__credits a {
+  width: fit-content;
+  margin-inline: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.68);
 }
 
 /* Product pages */

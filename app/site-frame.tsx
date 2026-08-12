@@ -49,7 +49,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer">
+    <footer id="site-footer" className="site-footer">
       <div className="shell site-footer__top">
         <BrandSignature reversed />
         <p>فرش دستباف ایرانی، با تصویر همان تخته و اطلاعاتی که بتوان بررسی کرد.</p>
@@ -71,6 +71,25 @@ export function SiteFooter() {
       </div>
       <div className="shell site-footer__bottom">
         <p>© ۱۴۰۵ حسین‌طلب</p>
+        <div className="site-footer__credits">
+          <p>
+            طراحی محصول و توسعه وب‌سایت توسط{" "}
+            <a
+              href="https://shahinghanizadeh.ir/fa/work/hosseintalab"
+              target="_blank"
+              rel="noreferrer"
+            >
+              شاهین غنی‌زاده
+            </a>
+          </p>
+          <a
+            href="https://shahinghanizadeh.ir/fa/services"
+            target="_blank"
+            rel="noreferrer"
+          >
+            برای همکاری و سفارش پروژه
+          </a>
+        </div>
         <a href="#top">بازگشت به ابتدای صفحه</a>
       </div>
     </footer>
