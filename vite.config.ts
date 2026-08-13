@@ -64,7 +64,8 @@ function seoHead(seo: SeoData) {
     lines.push(
       "    <meta data-seo-managed=\"true\" property=\"og:image:type\" content=\"image/jpeg\" />",
       "    <meta data-seo-managed=\"true\" property=\"og:image:width\" content=\"1200\" />",
-      "    <meta data-seo-managed=\"true\" property=\"og:image:height\" content=\"630\" />",
+      "    <meta data-seo-managed=\"true\" property=\"og:image:height\" content=\"627\" />",
+      `    <link data-seo-managed="true" rel="image_src" href="${escapeHtml(image)}" />`,
     );
   }
 

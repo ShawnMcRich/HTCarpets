@@ -17,7 +17,7 @@ const fontPath = path.join(
 );
 const outputPath = path.join(
   root,
-  "public/media/social/hosseintalab-share-v1.jpg",
+  "public/media/social/hosseintalab-share-v2.jpg",
 );
 
 const [font, logo] = await Promise.all([
@@ -27,7 +27,7 @@ const [font, logo] = await Promise.all([
 
 const fontData = font.toString("base64");
 const overlay = Buffer.from(`
-  <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <svg width="1200" height="627" viewBox="0 0 1200 627" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <style>
         @font-face {
@@ -38,7 +38,7 @@ const overlay = Buffer.from(`
         .fa { font-family: Vazirmatn, sans-serif; direction: rtl; unicode-bidi: embed; }
       </style>
     </defs>
-    <rect x="17" y="17" width="1166" height="596" fill="none" stroke="#d8bb83" stroke-opacity="0.4" />
+    <rect x="17" y="17" width="1166" height="593" fill="none" stroke="#d8bb83" stroke-opacity="0.4" />
     <rect x="1062" y="237" width="78" height="2" fill="#b78b3f" />
     <text class="fa" x="1140" y="323" fill="#f8f1e5" font-size="48" font-weight="430">فرش را کامل ببینید.</text>
     <text class="fa" x="1140" y="394" fill="#d8bb83" font-size="48" font-weight="360">بعد انتخاب کنید.</text>
@@ -49,12 +49,12 @@ const overlay = Buffer.from(`
 
 await fs.mkdir(path.dirname(outputPath), { recursive: true });
 await sharp(backgroundPath)
-  .resize(1200, 630, { fit: "cover", position: "centre" })
+  .resize(1200, 627, { fit: "cover", position: "centre" })
   .composite([
     { input: overlay, left: 0, top: 0 },
     { input: logo, left: 700, top: 67 },
   ])
-  .jpeg({ quality: 88, chromaSubsampling: "4:4:4", mozjpeg: true })
+  .jpeg({ quality: 88, chromaSubsampling: "4:4:4", progressive: false })
   .toFile(outputPath);
 
 console.log(outputPath);

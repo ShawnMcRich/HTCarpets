@@ -16,7 +16,7 @@ export type SeoData = {
 };
 
 export const siteUrl = "https://hosseintalab.ir";
-export const defaultShareImage = "/media/social/hosseintalab-share-v1.jpg";
+export const defaultShareImage = "/media/social/hosseintalab-share-v2.jpg";
 export const lastContentReview = "2026-08-12";
 
 export function canonicalUrl(path: string) {
@@ -398,7 +398,7 @@ export function applySeo(seo: SeoData) {
     if (shareImage === defaultShareImage) {
       addMeta("og:image:type", "image/jpeg", true);
       addMeta("og:image:width", "1200", true);
-      addMeta("og:image:height", "630", true);
+      addMeta("og:image:height", "627", true);
     }
   }
 
@@ -407,6 +407,14 @@ export function applySeo(seo: SeoData) {
   canonical.href = canonicalUrl(seo.canonicalPath);
   canonical.dataset.seoManaged = "true";
   document.head.appendChild(canonical);
+
+  if (shareImage === defaultShareImage) {
+    const imageSource = document.createElement("link");
+    imageSource.rel = "image_src";
+    imageSource.href = absoluteMediaUrl(shareImage);
+    imageSource.dataset.seoManaged = "true";
+    document.head.appendChild(imageSource);
+  }
 
   for (const hreflang of ["fa-IR", "x-default"]) {
     const alternate = document.createElement("link");
