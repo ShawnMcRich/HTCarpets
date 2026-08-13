@@ -19,6 +19,12 @@ export const siteUrl = "https://hosseintalab.ir";
 export const defaultShareImage = "/media/social/hosseintalab-share-v2.jpg";
 export const lastContentReview = "2026-08-12";
 
+const googleRugsCategory = {
+  "@type": "CategoryCode",
+  inCodeSet: "https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt",
+  codeValue: "598",
+};
+
 export function canonicalUrl(path: string) {
   if (path === "/") return `${siteUrl}/`;
   return `${siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
@@ -158,7 +164,7 @@ export function productSeo(product: CatalogProduct): SeoData {
     sku: product.sku,
     url: canonicalUrl(path),
     image: product.images.filter((image) => !isContextImage(image)).map((image) => absoluteMediaUrl(image.src)),
-    category: product.collection === "antique" ? "فرش دستباف قدیمی و آنتیک" : "فرش دستباف برای خانه",
+    category: googleRugsCategory,
     brand: { "@type": "Brand", name: "حسین‌طلب" },
     color: `${product.fieldColor}؛ ${product.borderColor}`,
     additionalProperty,
