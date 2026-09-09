@@ -24,7 +24,7 @@ export function SiteHeader() {
     <>
       <div className="service-line">
         <div className="shell service-line__inner">
-          <p>بازار فرش تهران · بازدید حضوری با هماهنگی</p>
+          <p><a href="/#fair">این هفته در نمایشگاه فرش · سالن ۳۸، غرفه ۲۴</a></p>
           <p>هر فرش با نام، تصاویر همان تخته و اطلاعات ثبت‌شده</p>
         </div>
       </div>
@@ -55,6 +55,7 @@ export function SiteFooter() {
         <p>فرش دستباف ایرانی، با تصویر همان تخته و اطلاعاتی که بتوان بررسی کرد.</p>
       </div>
       <div className="shell site-footer__nav">
+        <a href="/#fair">دیدار در نمایشگاه · سالن ۳۸، غرفه ۲۴</a>
         <a href="/#collection">فرش‌های موجود</a>
         <a href="/origins/">فرش‌ها بر پایه‌ی محل بافت</a>
         <a href="/guides/">راهنمای خرید و شناخت فرش</a>

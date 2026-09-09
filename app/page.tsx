@@ -9,7 +9,7 @@ import {
   productSearchText,
 } from "./catalog-helpers";
 import { contact } from "./contact";
-import { SiteFooter, SiteHeader } from "./site-frame";
+import { BrandSignature, SiteFooter, SiteHeader } from "./site-frame";
 
 type CollectionFilter = "all" | "home" | "antique";
 type SortOrder = "curated" | "price-asc" | "price-desc";
@@ -129,6 +129,88 @@ export default function Home() {
               <a href={`/carpets/${heroProduct.slug}/`}>دیدن تصاویر و شناسنامه</a>
             </figcaption>
           </figure>
+        </section>
+
+        <section id="fair" className="fair-invitation" aria-labelledby="fair-title">
+          <div className="shell fair-invitation__grid">
+            <figure className="fair-invitation__media">
+              <img
+                src="/media/events/iran-handmade-carpet-exhibition-1405-poster.jpg"
+                alt="پوستر رسمی سی‌وسومین نمایشگاه فرش دستباف ایران"
+                width="914"
+                height="1280"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="fair-invitation__booth">
+                <small>نشانی ما</small>
+                <strong>سالن ۳۸</strong>
+                <span>غرفه ۲۴</span>
+              </figcaption>
+            </figure>
+
+            <div className="fair-invitation__content">
+              <div
+                className="fair-invitation__brands"
+                aria-label="حسین‌طلب در سی‌وسومین نمایشگاه فرش دستباف ایران"
+              >
+                <BrandSignature reversed />
+                <span aria-hidden="true">×</span>
+                <div className="fair-invitation__event-brand">
+                  <img
+                    src="/media/events/iran-handmade-carpet-exhibition-1405-mark.jpg"
+                    alt="نشان رسمی سی‌وسومین نمایشگاه فرش دستباف ایران"
+                    width="190"
+                    height="170"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <p>سی‌وسومین نمایشگاه<br />فرش دستباف ایران</p>
+                </div>
+              </div>
+
+              <p className="eyebrow eyebrow--light">دیدار در نمایشگاه</p>
+              <h2 id="fair-title">این هفته، فرش‌های حسین‌طلب را از نزدیک ببینید.</h2>
+              <p className="fair-invitation__lead">
+                در سی‌وسومین نمایشگاه فرش دستباف ایران منتظر دیدار شما هستیم. فرش‌ها
+                را از نزدیک ببینید، درباره‌ی بافت و رنگ آن‌ها سؤال کنید و برای فضای
+                خانه‌تان راهنمایی بگیرید.
+              </p>
+
+              <dl className="fair-invitation__details">
+                <div>
+                  <dt>تاریخ</dt>
+                  <dd>۱۷ تا ۲۱ شهریور ۱۴۰۵</dd>
+                </div>
+                <div>
+                  <dt>ساعت بازدید</dt>
+                  <dd>۸ تا ۱۵</dd>
+                </div>
+                <div>
+                  <dt>مکان</dt>
+                  <dd>محل دائمی نمایشگاه‌های بین‌المللی تهران</dd>
+                </div>
+                <div>
+                  <dt>نشانی غرفه</dt>
+                  <dd><strong>سالن ۳۸، غرفه ۲۴</strong></dd>
+                </div>
+              </dl>
+
+              <div className="fair-invitation__actions">
+                <a
+                  className="button fair-invitation__map"
+                  href="https://www.google.com/maps/search/?api=1&query=Tehran+International+Permanent+Fairground"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  مسیریابی تا نمایشگاه
+                </a>
+                <a className="text-link fair-invitation__call" href={contact.callHref}>
+                  هماهنگی پیش از مراجعه
+                </a>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="proof-strip" aria-label="اصول ارائه‌ی مجموعه">
