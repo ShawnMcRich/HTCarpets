@@ -27,7 +27,13 @@ export default function ProductPage({ product }: { product: CatalogProduct }) {
       <section className="product-hero shell">
         <div className="product-gallery">
           <div className="product-gallery__main">
-            <img src={activeImage.src} alt={activeImage.alt} width="1000" height="1573" />
+            <img
+              className={selectedImage === 0 ? "is-full-view" : undefined}
+              src={activeImage.src}
+              alt={activeImage.alt}
+              width="1000"
+              height="1573"
+            />
           </div>
           <div className="product-gallery__thumbs" aria-label="گالری تصاویر فرش">
             {product.images.map((image, index) => (

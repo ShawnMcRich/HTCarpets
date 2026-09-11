@@ -115,6 +115,12 @@ img {
   object-fit: cover;
 }
 
+.product-gallery__main img.is-full-view {
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
 .product-gallery__thumbs {
   margin-top: 12px;
   display: grid;
