@@ -639,7 +639,7 @@ export default function Home() {
                 </div>
                 <div>
                   <dt>ساعت بازدید</dt>
-                  <dd>۸ تا ۱۵</dd>
+                  <dd>۱۰ تا ۱۸</dd>
                 </div>
                 <div>
                   <dt>مکان</dt>
